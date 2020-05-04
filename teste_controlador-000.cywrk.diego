@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CyXmlSerializer>
+<!--This file is machine generated and read. It is not intended to be edited by hand.-->
+<!--Due to this, there is no schema for this file.-->
+<CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWrkspcCustomData" version="4">
+<CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997 type_name="CyDesigner.Common.Base.CyCustomData" version="2">
+<userData>
+<dataGuid v="5f2be1a5-0687-4501-bb8c-cf21cb8211bf">
+<CyGuid_5f2be1a5-0687-4501-bb8c-cf21cb8211bf type_name="CyDesigner.Common.ProjMgmt.GUI.CyBookmarkData" version="1">
+<indicators />
+</CyGuid_5f2be1a5-0687-4501-bb8c-cf21cb8211bf>
+</dataGuid>
+<dataGuid v="1b906a0f-a7b6-4e4d-a428-82f98b53cb35">
+<CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35 type_name="CyDesigner.Common.ProjMgmt.GUI.CyExplorerWindow+CyExplorerWindowState" version="3" SelectedTab="Source">
+<TreeKeys>
+<v>Source</v>
+<v>Components</v>
+<v>Output</v>
+</TreeKeys>
+<TreeStates>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="teste_controlador-000\teste_controlador">
+<ExpandedNodeIds>
+<v>teste_controlador-000</v>
+<v>teste_controlador-000\teste_controlador</v>
+<v>teste_controlador-000\teste_controlador\TopDesign</v>
+<v>teste_controlador-000\teste_controlador\teste_controlador.cydwr</v>
+<v>teste_controlador-000\teste_controlador\teste_controlador.cydwr\Pins</v>
+<v>teste_controlador-000\teste_controlador\teste_controlador.cydwr\Analog</v>
+<v>teste_controlador-000\teste_controlador\teste_controlador.cydwr\Clocks</v>
+<v>teste_controlador-000\teste_controlador\teste_controlador.cydwr\Interrupts</v>
+<v>teste_controlador-000\teste_controlador\teste_controlador.cydwr\DMA</v>
+<v>teste_controlador-000\teste_controlador\teste_controlador.cydwr\System</v>
+<v>teste_controlador-000\teste_controlador\teste_controlador.cydwr\Directives</v>
+<v>teste_controlador-000\teste_controlador\teste_controlador.cydwr\Flash Security</v>
+<v>teste_controlador-000\teste_controlador\teste_controlador.cydwr\EEPROM</v>
+<v>teste_controlador-000\teste_controlador\Header Files</v>
+<v>teste_controlador-000\teste_controlador\Header Files\aux_functions.h</v>
+<v>teste_controlador-000\teste_controlador\Header Files\controle_cinematico.h</v>
+<v>teste_controlador-000\teste_controlador\Header Files\cyapicallbacks.h</v>
+<v>teste_controlador-000\teste_controlador\Header Files\defines.h</v>
+<v>teste_controlador-000\teste_controlador\Header Files\fis.h</v>
+<v>teste_controlador-000\teste_controlador\Header Files\fuzzy_set.h</v>
+<v>teste_controlador-000\teste_controlador\Header Files\gain_scheduling_kb.h</v>
+<v>teste_controlador-000\teste_controlador\Header Files\isr.h</v>
+<v>teste_controlador-000\teste_controlador\Header Files\linguistic_variable.h</v>
+<v>teste_controlador-000\teste_controlador\Header Files\membership_functions.h</v>
+<v>teste_controlador-000\teste_controlador\Header Files\motor.h</v>
+<v>teste_controlador-000\teste_controlador\Source Files</v>
+<v>teste_controlador-000\teste_controlador\Source Files\aux_functions.c</v>
+<v>teste_controlador-000\teste_controlador\Source Files\controle_cinematico.c</v>
+<v>teste_controlador-000\teste_controlador\Source Files\fis.c</v>
+<v>teste_controlador-000\teste_controlador\Source Files\fuzzy_set.c</v>
+<v>teste_controlador-000\teste_controlador\Source Files\isr.c</v>
+<v>teste_controlador-000\teste_controlador\Source Files\linguistic_variable.c</v>
+<v>teste_controlador-000\teste_controlador\Source Files\main.c</v>
+<v>teste_controlador-000\teste_controlador\Source Files\membership_functions.c</v>
+<v>teste_controlador-000\teste_controlador\Source Files\motor.c</v>
+<v>teste_controlador-000\teste_controlador\Generated_Source</v>
+<v>teste_controlador-000\teste_controlador\Generated_Source\PSoC5</v>
+<v>teste_controlador-000\teste_controlador\Generated_Source\PSoC5\CAN</v>
+<v>teste_controlador-000\teste_controlador\Generated_Source\PSoC5\TimerMotores</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>teste_controlador-000</v>
+<v>teste_controlador-000\teste_controlador</v>
+<v>teste_controlador-000\teste_controlador\TopDesign</v>
+<v>teste_controlador-000\teste_controlador\teste_controlador.cydwr</v>
+<v>teste_controlador-000\teste_controlador\teste_controlador.cydwr\Pins</v>
+<v>teste_controlador-000\teste_controlador\teste_controlador.cydwr\Analog</v>
+<v>teste_controlador-000\teste_controlador\teste_controlador.cydwr\Clocks</v>
+<v>teste_controlador-000\teste_controlador\teste_controlador.cydwr\Interrupts</v>
+<v>teste_controlador-000\teste_controlador\teste_controlador.cydwr\DMA</v>
+<v>teste_controlador-000\teste_controlador\teste_controlador.cydwr\System</v>
+<v>teste_controlador-000\teste_controlador\teste_controlador.cydwr\Directives</v>
+<v>teste_controlador-000\teste_controlador\teste_controlador.cydwr\Flash Security</v>
+<v>teste_controlador-000\teste_controlador\teste_controlador.cydwr\EEPROM</v>
+<v>teste_controlador-000\teste_controlador\Header Files</v>
+<v>teste_controlador-000\teste_controlador\Header Files\aux_functions.h</v>
+<v>teste_controlador-000\teste_controlador\Header Files\controle_cinematico.h</v>
+<v>teste_controlador-000\teste_controlador\Header Files\cyapicallbacks.h</v>
+<v>teste_controlador-000\teste_controlador\Header Files\defines.h</v>
+<v>teste_controlador-000\teste_controlador\Header Files\fis.h</v>
+<v>teste_controlador-000\teste_controlador\Header Files\fuzzy_set.h</v>
+<v>teste_controlador-000\teste_controlador\Header Files\gain_scheduling_kb.h</v>
+<v>teste_controlador-000\teste_controlador\Header Files\isr.h</v>
+<v>teste_controlador-000\teste_controlador\Header Files\linguistic_variable.h</v>
+<v>teste_controlador-000\teste_controlador\Header Files\membership_functions.h</v>
+<v>teste_controlador-000\teste_controlador\Header Files\motor.h</v>
+<v>teste_controlador-000\teste_controlador\Source Files</v>
+<v>teste_controlador-000\teste_controlador\Source Files\aux_functions.c</v>
+<v>teste_controlador-000\teste_controlador\Source Files\controle_cinematico.c</v>
+<v>teste_controlador-000\teste_controlador\Source Files\fis.c</v>
+<v>teste_controlador-000\teste_controlador\Source Files\fuzzy_set.c</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>teste_controlador-000</v>
+<v>teste_controlador-000\teste_controlador</v>
+<v>teste_controlador-000\teste_controlador\TopDesign</v>
+<v>teste_controlador-000\teste_controlador\TopDesign\TopDesign.cysch</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>teste_controlador-000</v>
+<v>teste_controlador-000\teste_controlador</v>
+<v>teste_controlador-000\teste_controlador\TopDesign</v>
+<v>teste_controlador-000\teste_controlador\TopDesign\TopDesign.cysch</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>teste_controlador-000</v>
+<v>teste_controlador-000\teste_controlador</v>
+<v>teste_controlador-000\teste_controlador\CortexM3</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\aux_functions.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\BlocoPWM1.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\BlocoPWM1_PM.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\BlocoPWM2.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\BlocoPWM2_PM.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\BlocoPWM3.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\BlocoPWM3_PM.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\CAN.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\CAN_INT.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\CAN_PM.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\CAN_TX_RX_func.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\CANRX.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\CANTX.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\controle_cinematico.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\dir1.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\dir2.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\dir3.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\fis.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\fuzzy_set.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\isr.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_timer_cinematico.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_timer_motores.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\led.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\linguistic_variable.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\membership_functions.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\motor.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\pwm1.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\pwm2.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\pwm3.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\qa1.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\qa2.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\qa3.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\qb1.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\qb2.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\qb3.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec1.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec1_Cnt16.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec1_Cnt16_PM.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec1_INT.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec1_isr.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec1_PM.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec2.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec2_Cnt16.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec2_Cnt16_PM.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec2_INT.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec2_isr.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec2_PM.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec3.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec3_Cnt16.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec3_Cnt16_PM.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec3_INT.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec3_isr.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec3_PM.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\slp1.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\slp2.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\slp3.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\timer_clock_1.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\TimerCinematico.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\TimerCinematico_PM.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\TimerMotores.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\TimerMotores_PM.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\UART.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_BOOT.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_INT.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_IntClock.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_PM.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\teste_controlador.elf</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\teste_controlador.hex</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\teste_controlador.map</v>
+<v>teste_controlador-000\teste_controlador\teste_controlador.gpdsc</v>
+<v>teste_controlador-000\teste_controlador\teste_controlador.rpt</v>
+<v>teste_controlador-000\teste_controlador\teste_controlador_timing.html</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>teste_controlador-000</v>
+<v>teste_controlador-000\teste_controlador</v>
+<v>teste_controlador-000\teste_controlador\CortexM3</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\aux_functions.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\BlocoPWM1.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\BlocoPWM1_PM.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\BlocoPWM2.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\BlocoPWM2_PM.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\BlocoPWM3.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\BlocoPWM3_PM.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\CAN.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\CAN_INT.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\CAN_PM.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\CAN_TX_RX_func.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\CANRX.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\CANTX.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\controle_cinematico.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>teste_controlador-000\teste_controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStates>
+<TreeKeysV2>
+<v>Datasheet</v>
+</TreeKeysV2>
+<TreeStatesV2>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>teste_controlador-000</v>
+<v>teste_controlador-000\teste_controlador</v>
+<v>teste_controlador-000\teste_controlador\PSoC 5LP Architecture TRM</v>
+<v>teste_controlador-000\teste_controlador\CY8C58LP Family Datasheet</v>
+<v>teste_controlador-000\teste_controlador\System Reference Guides</v>
+<v>teste_controlador-000\teste_controlador\System Reference Guides\cy_boot_v5_80</v>
+<v>teste_controlador-000\teste_controlador\CAN_v3_0.pdf</v>
+<v>teste_controlador-000\teste_controlador\cy_clock_v2_20</v>
+<v>teste_controlador-000\teste_controlador\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
+<v>teste_controlador-000\teste_controlador\cy_constant_v1_0</v>
+<v>teste_controlador-000\teste_controlador\cy_constant_v1_0\cy_constant_v1_0.pdf</v>
+<v>teste_controlador-000\teste_controlador\cy_isr_v1_70</v>
+<v>teste_controlador-000\teste_controlador\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
+<v>teste_controlador-000\teste_controlador\cy_pins_v2_20</v>
+<v>teste_controlador-000\teste_controlador\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>teste_controlador-000\teste_controlador\PWM_v3_30</v>
+<v>teste_controlador-000\teste_controlador\PWM_v3_30\PWM_v3_30.pdf</v>
+<v>teste_controlador-000\teste_controlador\QuadDec_v3_0</v>
+<v>teste_controlador-000\teste_controlador\QuadDec_v3_0\QuadDec_v3_0.pdf</v>
+<v>teste_controlador-000\teste_controlador\Timer_v2_80</v>
+<v>teste_controlador-000\teste_controlador\Timer_v2_80\Timer_v2_80.pdf</v>
+<v>teste_controlador-000\teste_controlador\UART_v2_50.pdf</v>
+<v>teste_controlador-000\teste_controlador\ZeroTerminal</v>
+<v>teste_controlador-000\teste_controlador\ZeroTerminal\ZeroTerminal.pdf</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>teste_controlador-000</v>
+<v>teste_controlador-000\teste_controlador</v>
+<v>teste_controlador-000\teste_controlador\PSoC 5LP Architecture TRM</v>
+<v>teste_controlador-000\teste_controlador\CY8C58LP Family Datasheet</v>
+<v>teste_controlador-000\teste_controlador\System Reference Guides</v>
+<v>teste_controlador-000\teste_controlador\System Reference Guides\cy_boot_v5_80</v>
+<v>teste_controlador-000\teste_controlador\CAN_v3_0.pdf</v>
+<v>teste_controlador-000\teste_controlador\cy_clock_v2_20</v>
+<v>teste_controlador-000\teste_controlador\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
+<v>teste_controlador-000\teste_controlador\cy_constant_v1_0</v>
+<v>teste_controlador-000\teste_controlador\cy_constant_v1_0\cy_constant_v1_0.pdf</v>
+<v>teste_controlador-000\teste_controlador\cy_isr_v1_70</v>
+<v>teste_controlador-000\teste_controlador\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
+<v>teste_controlador-000\teste_controlador\cy_pins_v2_20</v>
+<v>teste_controlador-000\teste_controlador\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>teste_controlador-000\teste_controlador\PWM_v3_30</v>
+<v>teste_controlador-000\teste_controlador\PWM_v3_30\PWM_v3_30.pdf</v>
+<v>teste_controlador-000\teste_controlador\QuadDec_v3_0</v>
+<v>teste_controlador-000\teste_controlador\QuadDec_v3_0\QuadDec_v3_0.pdf</v>
+<v>teste_controlador-000\teste_controlador\Timer_v2_80</v>
+<v>teste_controlador-000\teste_controlador\Timer_v2_80\Timer_v2_80.pdf</v>
+<v>teste_controlador-000\teste_controlador\UART_v2_50.pdf</v>
+<v>teste_controlador-000\teste_controlador\ZeroTerminal</v>
+<v>teste_controlador-000\teste_controlador\ZeroTerminal\ZeroTerminal.pdf</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStatesV2>
+</CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35>
+</dataGuid>
+</userData>
+</CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
+<Unloaded />
+<OpenDocs>
+<name v=".\main.c" />
+<name v=".\TopDesign\TopDesign.cysch" />
+<name v=".\teste_controlador.cydwr" />
+<name v=".\Generated_Source\PSoC5\CAN_TX_RX_func.c" />
+<name v=".\controle_cinematico.c" />
+<name v=".\motor.h" />
+<name v=".\motor.c" />
+<name v=".\controle_cinematico.h" />
+<name v=".\Generated_Source\PSoC5\isr_timer_motores.c" />
+<name v=".\Generated_Source\PSoC5\TimerMotores.c" />
+<name v=".\isr.h" />
+<name v=".\isr.c" />
+</OpenDocs>
+<OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
+
+  Actipro Docking/MDI for WinForms
+  Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
+  http://www.actiprosoftware.com
+
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="750, 399" SelectedTabbedMdiWindow="bd8c9e53-d91e-4b38-a24b-e4f117d6be6c"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="fd99c7ec-bb77-4ca6-88cc-bb648ac8268b" /><DocumentWindow Key="C:\Users\diego\source\repos\teste_controlador.cydsn\main.c" Guid="bd8c9e53-d91e-4b38-a24b-e4f117d6be6c" /><DocumentWindow Key="C:\Users\diego\source\repos\teste_controlador.cydsn\TopDesign\TopDesign.cysch" Guid="f1cf3929-77ed-4e94-bd07-9b9dc9f0be77" /><DocumentWindow Key="C:\Users\diego\source\repos\teste_controlador.cydsn\teste_controlador.cydwr" Guid="838f1409-0863-4b42-a090-43ca9844ab4a" /><DocumentWindow Key="C:\Users\diego\source\repos\teste_controlador.cydsn\Generated_Source\PSoC5\CAN_TX_RX_func.c" Guid="b0e38139-da27-462c-a34b-1a8a9ce961bb" /><DocumentWindow Key="C:\Users\diego\source\repos\teste_controlador.cydsn\controle_cinematico.c" Guid="6c2bd1a7-73ca-4fe4-941a-73e2409a0311" /><DocumentWindow Key="C:\Users\diego\source\repos\teste_controlador.cydsn\motor.h" Guid="5ee94cf4-2093-47a5-aa81-ab825a1d586f" /><DocumentWindow Key="C:\Users\diego\source\repos\teste_controlador.cydsn\motor.c" Guid="ba50664d-a446-4e40-873d-128ebd58ff45" /><DocumentWindow Key="C:\Users\diego\source\repos\teste_controlador.cydsn\controle_cinematico.h" Guid="3578a866-87ef-4242-aa00-05c94cf75d2a" /><DocumentWindow Key="C:\Users\diego\source\repos\teste_controlador.cydsn\Generated_Source\PSoC5\isr_timer_motores.c" Guid="b06f83fc-c09c-44ba-8da1-f8ed2c7e6fe1" /><DocumentWindow Key="C:\Users\diego\source\repos\teste_controlador.cydsn\Generated_Source\PSoC5\TimerMotores.c" Guid="39a2624d-e36a-4273-875b-2e06ada971db" /><DocumentWindow Key="C:\Users\diego\source\repos\teste_controlador.cydsn\isr.h" Guid="5f7f11a6-dacd-48e4-8fac-1660a4c5795c" /><DocumentWindow Key="C:\Users\diego\source\repos\teste_controlador.cydsn\isr.c" Guid="af1c13a2-9919-40fd-b680-83124525978d" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+<config v="" />
+<AutoUpdate v="true" />
+</CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
+</CyXmlSerializer>

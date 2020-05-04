@@ -1,0 +1,1481 @@
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cclKLNZe.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"aux_functions.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	__aeabi_fcmpeq
+  20              		.global	__aeabi_fsub
+  21              		.global	__aeabi_fmul
+  22              		.section	.text.powf,"ax",%progbits
+  23              		.align	2
+  24              		.global	powf
+  25              		.thumb
+  26              		.thumb_func
+  27              		.type	powf, %function
+  28              	powf:
+  29              	.LFB63:
+  30              		.file 1 "aux_functions.c"
+   1:aux_functions.c **** /* ========================================
+   2:aux_functions.c ****  *
+   3:aux_functions.c ****  * Copyright YOUR COMPANY, THE YEAR
+   4:aux_functions.c ****  * All Rights Reserved
+   5:aux_functions.c ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:aux_functions.c ****  *
+   7:aux_functions.c ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:aux_functions.c ****  * WHICH IS THE PROPERTY OF your company.
+   9:aux_functions.c ****  *
+  10:aux_functions.c ****  * ========================================
+  11:aux_functions.c **** */
+  12:aux_functions.c **** 
+  13:aux_functions.c **** #include "aux_functions.h"
+  14:aux_functions.c **** 
+  15:aux_functions.c **** float powf(float b, float e) {
+  31              		.loc 1 15 0
+  32              		.cfi_startproc
+  33              		@ args = 0, pretend = 0, frame = 0
+  34              		@ frame_needed = 0, uses_anonymous_args = 0
+  35              	.LVL0:
+  36 0000 38B5     		push	{r3, r4, r5, lr}
+  37              		.cfi_def_cfa_offset 16
+  38              		.cfi_offset 3, -16
+  39              		.cfi_offset 4, -12
+  40              		.cfi_offset 5, -8
+  41              		.cfi_offset 14, -4
+  42 0002 0446     		mov	r4, r0
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cclKLNZe.s 			page 2
+
+
+  43 0004 0D46     		mov	r5, r1
+  16:aux_functions.c ****     if (e == 1.0f)
+  44              		.loc 1 16 0
+  45 0006 4FF07E51 		mov	r1, #1065353216
+  46              	.LVL1:
+  47 000a 2846     		mov	r0, r5
+  48              	.LVL2:
+  49 000c FFF7FEFF 		bl	__aeabi_fcmpeq
+  50              	.LVL3:
+  51 0010 68B9     		cbnz	r0, .L3
+  17:aux_functions.c ****         return b;
+  18:aux_functions.c ****     else {
+  19:aux_functions.c ****         return b * powf(b, e - 1.0f);
+  52              		.loc 1 19 0
+  53 0012 4FF07E51 		mov	r1, #1065353216
+  54 0016 2846     		mov	r0, r5
+  55 0018 FFF7FEFF 		bl	__aeabi_fsub
+  56              	.LVL4:
+  57 001c 0146     		mov	r1, r0
+  58 001e 2046     		mov	r0, r4
+  59 0020 FFF7FEFF 		bl	powf
+  60              	.LVL5:
+  61 0024 0146     		mov	r1, r0
+  62 0026 2046     		mov	r0, r4
+  63 0028 FFF7FEFF 		bl	__aeabi_fmul
+  64              	.LVL6:
+  65 002c 38BD     		pop	{r3, r4, r5, pc}
+  66              	.LVL7:
+  67              	.L3:
+  17:aux_functions.c ****         return b;
+  68              		.loc 1 17 0
+  69 002e 2046     		mov	r0, r4
+  20:aux_functions.c ****     }
+  21:aux_functions.c **** }
+  70              		.loc 1 21 0
+  71 0030 38BD     		pop	{r3, r4, r5, pc}
+  72              		.cfi_endproc
+  73              	.LFE63:
+  74              		.size	powf, .-powf
+  75              		.global	__aeabi_f2iz
+  76              		.global	__aeabi_fcmpgt
+  77              		.global	__aeabi_i2f
+  78              		.global	__aeabi_ui2f
+  79 0032 00BF     		.section	.text.float2string,"ax",%progbits
+  80              		.align	2
+  81              		.global	float2string
+  82              		.thumb
+  83              		.thumb_func
+  84              		.type	float2string, %function
+  85              	float2string:
+  86              	.LFB64:
+  22:aux_functions.c **** 
+  23:aux_functions.c **** void float2string(float number, char string[], uint8 precision) {
+  87              		.loc 1 23 0
+  88              		.cfi_startproc
+  89              		@ args = 0, pretend = 0, frame = 0
+  90              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cclKLNZe.s 			page 3
+
+
+  91              	.LVL8:
+  92 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+  93              		.cfi_def_cfa_offset 24
+  94              		.cfi_offset 3, -24
+  95              		.cfi_offset 4, -20
+  96              		.cfi_offset 5, -16
+  97              		.cfi_offset 6, -12
+  98              		.cfi_offset 7, -8
+  99              		.cfi_offset 14, -4
+ 100 0002 0546     		mov	r5, r0
+ 101 0004 0E46     		mov	r6, r1
+ 102 0006 1746     		mov	r7, r2
+  24:aux_functions.c ****     int characteristic = (int)number;
+ 103              		.loc 1 24 0
+ 104 0008 FFF7FEFF 		bl	__aeabi_f2iz
+ 105              	.LVL9:
+ 106 000c 0446     		mov	r4, r0
+ 107              	.LVL10:
+  25:aux_functions.c ****     float mantissa =
+  26:aux_functions.c ****         (number > 0 ? number - (float)characteristic : -number + (float)characteristic);
+ 108              		.loc 1 26 0
+ 109 000e 0021     		movs	r1, #0
+ 110 0010 2846     		mov	r0, r5
+ 111              	.LVL11:
+ 112 0012 FFF7FEFF 		bl	__aeabi_fcmpgt
+ 113              	.LVL12:
+ 114 0016 40B1     		cbz	r0, .L10
+ 115              		.loc 1 26 0 is_stmt 0 discriminator 1
+ 116 0018 2046     		mov	r0, r4
+ 117 001a FFF7FEFF 		bl	__aeabi_i2f
+ 118              	.LVL13:
+ 119 001e 0146     		mov	r1, r0
+ 120 0020 2846     		mov	r0, r5
+ 121 0022 FFF7FEFF 		bl	__aeabi_fsub
+ 122              	.LVL14:
+ 123 0026 0546     		mov	r5, r0
+ 124              	.LVL15:
+ 125 0028 06E0     		b	.L8
+ 126              	.LVL16:
+ 127              	.L10:
+ 128              		.loc 1 26 0 discriminator 2
+ 129 002a 2046     		mov	r0, r4
+ 130 002c FFF7FEFF 		bl	__aeabi_i2f
+ 131              	.LVL17:
+ 132 0030 2946     		mov	r1, r5
+ 133 0032 FFF7FEFF 		bl	__aeabi_fsub
+ 134              	.LVL18:
+ 135 0036 0546     		mov	r5, r0
+ 136              	.LVL19:
+ 137              	.L8:
+  27:aux_functions.c ****     int uint_mantissa =
+  28:aux_functions.c ****         (int)(powf(10.0f, (float)precision) * mantissa);
+ 138              		.loc 1 28 0 is_stmt 1
+ 139 0038 3846     		mov	r0, r7
+ 140 003a FFF7FEFF 		bl	__aeabi_ui2f
+ 141              	.LVL20:
+ 142 003e 0146     		mov	r1, r0
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cclKLNZe.s 			page 4
+
+
+ 143 0040 0748     		ldr	r0, .L12
+ 144 0042 FFF7FEFF 		bl	powf
+ 145              	.LVL21:
+ 146 0046 0146     		mov	r1, r0
+ 147 0048 2846     		mov	r0, r5
+ 148 004a FFF7FEFF 		bl	__aeabi_fmul
+ 149              	.LVL22:
+  27:aux_functions.c ****     int uint_mantissa =
+ 150              		.loc 1 27 0
+ 151 004e FFF7FEFF 		bl	__aeabi_f2iz
+ 152              	.LVL23:
+  29:aux_functions.c ****        
+  30:aux_functions.c ****     sprintf(string, "%d.%d\0", characteristic, uint_mantissa);
+ 153              		.loc 1 30 0
+ 154 0052 0346     		mov	r3, r0
+ 155 0054 2246     		mov	r2, r4
+ 156 0056 0349     		ldr	r1, .L12+4
+ 157 0058 3046     		mov	r0, r6
+ 158              	.LVL24:
+ 159 005a FFF7FEFF 		bl	sprintf
+ 160              	.LVL25:
+ 161 005e F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 162              	.LVL26:
+ 163              	.L13:
+ 164              		.align	2
+ 165              	.L12:
+ 166 0060 00002041 		.word	1092616192
+ 167 0064 00000000 		.word	.LANCHOR0
+ 168              		.cfi_endproc
+ 169              	.LFE64:
+ 170              		.size	float2string, .-float2string
+ 171              		.section	.text.nova,"ax",%progbits
+ 172              		.align	2
+ 173              		.global	nova
+ 174              		.thumb
+ 175              		.thumb_func
+ 176              		.type	nova, %function
+ 177              	nova:
+ 178              	.LFB65:
+  31:aux_functions.c **** }
+  32:aux_functions.c **** 
+  33:aux_functions.c **** void nova(float n, float *vec, uint8 tam) {
+ 179              		.loc 1 33 0
+ 180              		.cfi_startproc
+ 181              		@ args = 0, pretend = 0, frame = 0
+ 182              		@ frame_needed = 0, uses_anonymous_args = 0
+ 183              		@ link register save eliminated.
+ 184              	.LVL27:
+ 185 0000 10B4     		push	{r4}
+ 186              		.cfi_def_cfa_offset 4
+ 187              		.cfi_offset 4, -4
+ 188              	.LVL28:
+ 189              	.LBB2:
+  34:aux_functions.c ****     for (int i = 0; i < tam - 1; i++)
+ 190              		.loc 1 34 0
+ 191 0002 0023     		movs	r3, #0
+ 192 0004 05E0     		b	.L15
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cclKLNZe.s 			page 5
+
+
+ 193              	.LVL29:
+ 194              	.L16:
+  35:aux_functions.c ****         vec[i + 1] = vec[i];
+ 195              		.loc 1 35 0 discriminator 3
+ 196 0006 5C1C     		adds	r4, r3, #1
+ 197 0008 51F82330 		ldr	r3, [r1, r3, lsl #2]	@ float
+ 198              	.LVL30:
+ 199 000c 41F82430 		str	r3, [r1, r4, lsl #2]	@ float
+  34:aux_functions.c ****     for (int i = 0; i < tam - 1; i++)
+ 200              		.loc 1 34 0 discriminator 3
+ 201 0010 2346     		mov	r3, r4
+ 202              	.LVL31:
+ 203              	.L15:
+  34:aux_functions.c ****     for (int i = 0; i < tam - 1; i++)
+ 204              		.loc 1 34 0 is_stmt 0 discriminator 1
+ 205 0012 541E     		subs	r4, r2, #1
+ 206 0014 A342     		cmp	r3, r4
+ 207 0016 F6DB     		blt	.L16
+ 208              	.LBE2:
+  36:aux_functions.c ****         
+  37:aux_functions.c ****     vec[0] = n;
+ 209              		.loc 1 37 0 is_stmt 1
+ 210 0018 0860     		str	r0, [r1]	@ float
+  38:aux_functions.c **** }
+ 211              		.loc 1 38 0
+ 212 001a 10BC     		pop	{r4}
+ 213              		.cfi_restore 4
+ 214              		.cfi_def_cfa_offset 0
+ 215 001c 7047     		bx	lr
+ 216              		.cfi_endproc
+ 217              	.LFE65:
+ 218              		.size	nova, .-nova
+ 219              		.global	__aeabi_fadd
+ 220              		.global	__aeabi_fdiv
+ 221 001e 00BF     		.section	.text.media,"ax",%progbits
+ 222              		.align	2
+ 223              		.global	media
+ 224              		.thumb
+ 225              		.thumb_func
+ 226              		.type	media, %function
+ 227              	media:
+ 228              	.LFB66:
+  39:aux_functions.c **** 
+  40:aux_functions.c **** float media(float *vec, uint8 tam) {
+ 229              		.loc 1 40 0
+ 230              		.cfi_startproc
+ 231              		@ args = 0, pretend = 0, frame = 0
+ 232              		@ frame_needed = 0, uses_anonymous_args = 0
+ 233              	.LVL32:
+ 234 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 235              		.cfi_def_cfa_offset 24
+ 236              		.cfi_offset 3, -24
+ 237              		.cfi_offset 4, -20
+ 238              		.cfi_offset 5, -16
+ 239              		.cfi_offset 6, -12
+ 240              		.cfi_offset 7, -8
+ 241              		.cfi_offset 14, -4
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cclKLNZe.s 			page 6
+
+
+ 242 0002 0746     		mov	r7, r0
+ 243 0004 0D46     		mov	r5, r1
+ 244              	.LVL33:
+ 245              	.LBB3:
+  41:aux_functions.c ****     float soma = 0.0;
+  42:aux_functions.c ****     
+  43:aux_functions.c ****     for (int i = 0; i < tam; i++)
+ 246              		.loc 1 43 0
+ 247 0006 0024     		movs	r4, #0
+ 248              	.LBE3:
+  41:aux_functions.c ****     float soma = 0.0;
+ 249              		.loc 1 41 0
+ 250 0008 0026     		movs	r6, #0
+ 251              	.LBB4:
+ 252              		.loc 1 43 0
+ 253 000a 06E0     		b	.L19
+ 254              	.LVL34:
+ 255              	.L20:
+  44:aux_functions.c ****         soma += vec[i];
+ 256              		.loc 1 44 0 discriminator 3
+ 257 000c 57F82410 		ldr	r1, [r7, r4, lsl #2]	@ float
+ 258 0010 3046     		mov	r0, r6
+ 259 0012 FFF7FEFF 		bl	__aeabi_fadd
+ 260              	.LVL35:
+ 261 0016 0646     		mov	r6, r0
+ 262              	.LVL36:
+  43:aux_functions.c ****         soma += vec[i];
+ 263              		.loc 1 43 0 discriminator 3
+ 264 0018 0134     		adds	r4, r4, #1
+ 265              	.LVL37:
+ 266              	.L19:
+  43:aux_functions.c ****         soma += vec[i];
+ 267              		.loc 1 43 0 is_stmt 0 discriminator 1
+ 268 001a 2846     		mov	r0, r5
+ 269 001c AC42     		cmp	r4, r5
+ 270 001e F5DB     		blt	.L20
+ 271              	.LBE4:
+  45:aux_functions.c ****         
+  46:aux_functions.c ****     return (soma / tam);
+ 272              		.loc 1 46 0 is_stmt 1
+ 273 0020 FFF7FEFF 		bl	__aeabi_i2f
+ 274              	.LVL38:
+ 275 0024 0146     		mov	r1, r0
+ 276 0026 3046     		mov	r0, r6
+ 277 0028 FFF7FEFF 		bl	__aeabi_fdiv
+ 278              	.LVL39:
+  47:aux_functions.c **** }
+ 279              		.loc 1 47 0
+ 280 002c F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 281              		.cfi_endproc
+ 282              	.LFE66:
+ 283              		.size	media, .-media
+ 284 002e 00BF     		.section	.rodata
+ 285              		.align	2
+ 286              		.set	.LANCHOR0,. + 0
+ 287              	.LC0:
+ 288 0000 25642E25 		.ascii	"%d.%d\000\000"
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cclKLNZe.s 			page 7
+
+
+ 288      640000
+ 289              		.text
+ 290              	.Letext0:
+ 291              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 292              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 293              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 294              		.file 5 "<built-in>"
+ 295              		.file 6 "Generated_Source\\PSoC5/core_cm3.h"
+ 296              		.section	.debug_info,"",%progbits
+ 297              	.Ldebug_info0:
+ 298 0000 84020000 		.4byte	0x284
+ 299 0004 0400     		.2byte	0x4
+ 300 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 301 000a 04       		.byte	0x4
+ 302 000b 01       		.uleb128 0x1
+ 303 000c 43000000 		.4byte	.LASF28
+ 304 0010 0C       		.byte	0xc
+ 305 0011 00000000 		.4byte	.LASF29
+ 306 0015 11010000 		.4byte	.LASF30
+ 307 0019 18000000 		.4byte	.Ldebug_ranges0+0x18
+ 308 001d 00000000 		.4byte	0
+ 309 0021 00000000 		.4byte	.Ldebug_line0
+ 310 0025 02       		.uleb128 0x2
+ 311 0026 04       		.byte	0x4
+ 312 0027 04       		.byte	0x4
+ 313 0028 38000000 		.4byte	.LASF0
+ 314 002c 02       		.uleb128 0x2
+ 315 002d 01       		.byte	0x1
+ 316 002e 06       		.byte	0x6
+ 317 002f E7010000 		.4byte	.LASF1
+ 318 0033 02       		.uleb128 0x2
+ 319 0034 01       		.byte	0x1
+ 320 0035 08       		.byte	0x8
+ 321 0036 03010000 		.4byte	.LASF2
+ 322 003a 02       		.uleb128 0x2
+ 323 003b 02       		.byte	0x2
+ 324 003c 05       		.byte	0x5
+ 325 003d B0010000 		.4byte	.LASF3
+ 326 0041 02       		.uleb128 0x2
+ 327 0042 02       		.byte	0x2
+ 328 0043 07       		.byte	0x7
+ 329 0044 E3000000 		.4byte	.LASF4
+ 330 0048 03       		.uleb128 0x3
+ 331 0049 15000000 		.4byte	.LASF10
+ 332 004d 02       		.byte	0x2
+ 333 004e 3F       		.byte	0x3f
+ 334 004f 53000000 		.4byte	0x53
+ 335 0053 02       		.uleb128 0x2
+ 336 0054 04       		.byte	0x4
+ 337 0055 05       		.byte	0x5
+ 338 0056 1F000000 		.4byte	.LASF5
+ 339 005a 02       		.uleb128 0x2
+ 340 005b 04       		.byte	0x4
+ 341 005c 07       		.byte	0x7
+ 342 005d D1000000 		.4byte	.LASF6
+ 343 0061 02       		.uleb128 0x2
+ 344 0062 08       		.byte	0x8
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cclKLNZe.s 			page 8
+
+
+ 345 0063 05       		.byte	0x5
+ 346 0064 8D010000 		.4byte	.LASF7
+ 347 0068 02       		.uleb128 0x2
+ 348 0069 08       		.byte	0x8
+ 349 006a 07       		.byte	0x7
+ 350 006b 5E010000 		.4byte	.LASF8
+ 351 006f 04       		.uleb128 0x4
+ 352 0070 04       		.byte	0x4
+ 353 0071 05       		.byte	0x5
+ 354 0072 696E7400 		.ascii	"int\000"
+ 355 0076 02       		.uleb128 0x2
+ 356 0077 04       		.byte	0x4
+ 357 0078 07       		.byte	0x7
+ 358 0079 51010000 		.4byte	.LASF9
+ 359 007d 03       		.uleb128 0x3
+ 360 007e 7C010000 		.4byte	.LASF11
+ 361 0082 03       		.byte	0x3
+ 362 0083 2C       		.byte	0x2c
+ 363 0084 48000000 		.4byte	0x48
+ 364 0088 05       		.uleb128 0x5
+ 365 0089 BA010000 		.4byte	.LASF12
+ 366 008d 04       		.byte	0x4
+ 367 008e E401     		.2byte	0x1e4
+ 368 0090 33000000 		.4byte	0x33
+ 369 0094 02       		.uleb128 0x2
+ 370 0095 08       		.byte	0x8
+ 371 0096 04       		.byte	0x4
+ 372 0097 45010000 		.4byte	.LASF13
+ 373 009b 02       		.uleb128 0x2
+ 374 009c 01       		.byte	0x1
+ 375 009d 08       		.byte	0x8
+ 376 009e A5010000 		.4byte	.LASF14
+ 377 00a2 02       		.uleb128 0x2
+ 378 00a3 08       		.byte	0x8
+ 379 00a4 04       		.byte	0x4
+ 380 00a5 DB010000 		.4byte	.LASF15
+ 381 00a9 02       		.uleb128 0x2
+ 382 00aa 04       		.byte	0x4
+ 383 00ab 07       		.byte	0x7
+ 384 00ac 84010000 		.4byte	.LASF16
+ 385 00b0 06       		.uleb128 0x6
+ 386 00b1 04       		.byte	0x4
+ 387 00b2 9B000000 		.4byte	0x9b
+ 388 00b6 06       		.uleb128 0x6
+ 389 00b7 04       		.byte	0x4
+ 390 00b8 BC000000 		.4byte	0xbc
+ 391 00bc 07       		.uleb128 0x7
+ 392 00bd 9B000000 		.4byte	0x9b
+ 393 00c1 08       		.uleb128 0x8
+ 394 00c2 3E000000 		.4byte	.LASF25
+ 395 00c6 01       		.byte	0x1
+ 396 00c7 0F       		.byte	0xf
+ 397 00c8 25000000 		.4byte	0x25
+ 398 00cc 00000000 		.4byte	.LFB63
+ 399 00d0 32000000 		.4byte	.LFE63-.LFB63
+ 400 00d4 01       		.uleb128 0x1
+ 401 00d5 9C       		.byte	0x9c
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cclKLNZe.s 			page 9
+
+
+ 402 00d6 06010000 		.4byte	0x106
+ 403 00da 09       		.uleb128 0x9
+ 404 00db 6200     		.ascii	"b\000"
+ 405 00dd 01       		.byte	0x1
+ 406 00de 0F       		.byte	0xf
+ 407 00df 25000000 		.4byte	0x25
+ 408 00e3 00000000 		.4byte	.LLST0
+ 409 00e7 09       		.uleb128 0x9
+ 410 00e8 6500     		.ascii	"e\000"
+ 411 00ea 01       		.byte	0x1
+ 412 00eb 0F       		.byte	0xf
+ 413 00ec 25000000 		.4byte	0x25
+ 414 00f0 1E000000 		.4byte	.LLST1
+ 415 00f4 0A       		.uleb128 0xa
+ 416 00f5 24000000 		.4byte	.LVL5
+ 417 00f9 C1000000 		.4byte	0xc1
+ 418 00fd 0B       		.uleb128 0xb
+ 419 00fe 01       		.uleb128 0x1
+ 420 00ff 50       		.byte	0x50
+ 421 0100 03       		.uleb128 0x3
+ 422 0101 F5       		.byte	0xf5
+ 423 0102 04       		.uleb128 0x4
+ 424 0103 25       		.uleb128 0x25
+ 425 0104 00       		.byte	0
+ 426 0105 00       		.byte	0
+ 427 0106 0C       		.uleb128 0xc
+ 428 0107 CE010000 		.4byte	.LASF23
+ 429 010b 01       		.byte	0x1
+ 430 010c 17       		.byte	0x17
+ 431 010d 00000000 		.4byte	.LFB64
+ 432 0111 68000000 		.4byte	.LFE64-.LFB64
+ 433 0115 01       		.uleb128 0x1
+ 434 0116 9C       		.byte	0x9c
+ 435 0117 B9010000 		.4byte	0x1b9
+ 436 011b 0D       		.uleb128 0xd
+ 437 011c 75010000 		.4byte	.LASF17
+ 438 0120 01       		.byte	0x1
+ 439 0121 17       		.byte	0x17
+ 440 0122 25000000 		.4byte	0x25
+ 441 0126 3C000000 		.4byte	.LLST2
+ 442 012a 0D       		.uleb128 0xd
+ 443 012b 31000000 		.4byte	.LASF18
+ 444 012f 01       		.byte	0x1
+ 445 0130 17       		.byte	0x17
+ 446 0131 B0000000 		.4byte	0xb0
+ 447 0135 85000000 		.4byte	.LLST3
+ 448 0139 0D       		.uleb128 0xd
+ 449 013a 9B010000 		.4byte	.LASF19
+ 450 013e 01       		.byte	0x1
+ 451 013f 17       		.byte	0x17
+ 452 0140 88000000 		.4byte	0x88
+ 453 0144 B1000000 		.4byte	.LLST4
+ 454 0148 0E       		.uleb128 0xe
+ 455 0149 FB010000 		.4byte	.LASF20
+ 456 014d 01       		.byte	0x1
+ 457 014e 18       		.byte	0x18
+ 458 014f 6F000000 		.4byte	0x6f
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cclKLNZe.s 			page 10
+
+
+ 459 0153 D2000000 		.4byte	.LLST5
+ 460 0157 0E       		.uleb128 0xe
+ 461 0158 28000000 		.4byte	.LASF21
+ 462 015c 01       		.byte	0x1
+ 463 015d 19       		.byte	0x19
+ 464 015e 25000000 		.4byte	0x25
+ 465 0162 F0000000 		.4byte	.LLST6
+ 466 0166 0E       		.uleb128 0xe
+ 467 0167 C0010000 		.4byte	.LASF22
+ 468 016b 01       		.byte	0x1
+ 469 016c 1B       		.byte	0x1b
+ 470 016d 6F000000 		.4byte	0x6f
+ 471 0171 03010000 		.4byte	.LLST7
+ 472 0175 0F       		.uleb128 0xf
+ 473 0176 F3010000 		.4byte	.LASF31
+ 474 017a 05       		.byte	0x5
+ 475 017b 00       		.byte	0
+ 476 017c 6F000000 		.4byte	0x6f
+ 477 0180 90010000 		.4byte	0x190
+ 478 0184 10       		.uleb128 0x10
+ 479 0185 B0000000 		.4byte	0xb0
+ 480 0189 10       		.uleb128 0x10
+ 481 018a B6000000 		.4byte	0xb6
+ 482 018e 11       		.uleb128 0x11
+ 483 018f 00       		.byte	0
+ 484 0190 12       		.uleb128 0x12
+ 485 0191 46000000 		.4byte	.LVL21
+ 486 0195 C1000000 		.4byte	0xc1
+ 487 0199 0A       		.uleb128 0xa
+ 488 019a 5E000000 		.4byte	.LVL25
+ 489 019e 7C020000 		.4byte	0x27c
+ 490 01a2 0B       		.uleb128 0xb
+ 491 01a3 01       		.uleb128 0x1
+ 492 01a4 50       		.byte	0x50
+ 493 01a5 02       		.uleb128 0x2
+ 494 01a6 76       		.byte	0x76
+ 495 01a7 00       		.sleb128 0
+ 496 01a8 0B       		.uleb128 0xb
+ 497 01a9 01       		.uleb128 0x1
+ 498 01aa 51       		.byte	0x51
+ 499 01ab 05       		.uleb128 0x5
+ 500 01ac 03       		.byte	0x3
+ 501 01ad 00000000 		.4byte	.LANCHOR0
+ 502 01b1 0B       		.uleb128 0xb
+ 503 01b2 01       		.uleb128 0x1
+ 504 01b3 52       		.byte	0x52
+ 505 01b4 02       		.uleb128 0x2
+ 506 01b5 74       		.byte	0x74
+ 507 01b6 00       		.sleb128 0
+ 508 01b7 00       		.byte	0
+ 509 01b8 00       		.byte	0
+ 510 01b9 13       		.uleb128 0x13
+ 511 01ba 10000000 		.4byte	.LASF24
+ 512 01be 01       		.byte	0x1
+ 513 01bf 21       		.byte	0x21
+ 514 01c0 00000000 		.4byte	.LFB65
+ 515 01c4 1E000000 		.4byte	.LFE65-.LFB65
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cclKLNZe.s 			page 11
+
+
+ 516 01c8 01       		.uleb128 0x1
+ 517 01c9 9C       		.byte	0x9c
+ 518 01ca 0B020000 		.4byte	0x20b
+ 519 01ce 14       		.uleb128 0x14
+ 520 01cf 6E00     		.ascii	"n\000"
+ 521 01d1 01       		.byte	0x1
+ 522 01d2 21       		.byte	0x21
+ 523 01d3 25000000 		.4byte	0x25
+ 524 01d7 01       		.uleb128 0x1
+ 525 01d8 50       		.byte	0x50
+ 526 01d9 14       		.uleb128 0x14
+ 527 01da 76656300 		.ascii	"vec\000"
+ 528 01de 01       		.byte	0x1
+ 529 01df 21       		.byte	0x21
+ 530 01e0 0B020000 		.4byte	0x20b
+ 531 01e4 01       		.uleb128 0x1
+ 532 01e5 51       		.byte	0x51
+ 533 01e6 14       		.uleb128 0x14
+ 534 01e7 74616D00 		.ascii	"tam\000"
+ 535 01eb 01       		.byte	0x1
+ 536 01ec 21       		.byte	0x21
+ 537 01ed 88000000 		.4byte	0x88
+ 538 01f1 01       		.uleb128 0x1
+ 539 01f2 52       		.byte	0x52
+ 540 01f3 15       		.uleb128 0x15
+ 541 01f4 02000000 		.4byte	.LBB2
+ 542 01f8 16000000 		.4byte	.LBE2-.LBB2
+ 543 01fc 16       		.uleb128 0x16
+ 544 01fd 6900     		.ascii	"i\000"
+ 545 01ff 01       		.byte	0x1
+ 546 0200 22       		.byte	0x22
+ 547 0201 6F000000 		.4byte	0x6f
+ 548 0205 21010000 		.4byte	.LLST8
+ 549 0209 00       		.byte	0
+ 550 020a 00       		.byte	0
+ 551 020b 06       		.uleb128 0x6
+ 552 020c 04       		.byte	0x4
+ 553 020d 25000000 		.4byte	0x25
+ 554 0211 08       		.uleb128 0x8
+ 555 0212 AA010000 		.4byte	.LASF26
+ 556 0216 01       		.byte	0x1
+ 557 0217 28       		.byte	0x28
+ 558 0218 25000000 		.4byte	0x25
+ 559 021c 00000000 		.4byte	.LFB66
+ 560 0220 2E000000 		.4byte	.LFE66-.LFB66
+ 561 0224 01       		.uleb128 0x1
+ 562 0225 9C       		.byte	0x9c
+ 563 0226 6B020000 		.4byte	0x26b
+ 564 022a 09       		.uleb128 0x9
+ 565 022b 76656300 		.ascii	"vec\000"
+ 566 022f 01       		.byte	0x1
+ 567 0230 28       		.byte	0x28
+ 568 0231 0B020000 		.4byte	0x20b
+ 569 0235 58010000 		.4byte	.LLST9
+ 570 0239 09       		.uleb128 0x9
+ 571 023a 74616D00 		.ascii	"tam\000"
+ 572 023e 01       		.byte	0x1
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cclKLNZe.s 			page 12
+
+
+ 573 023f 28       		.byte	0x28
+ 574 0240 88000000 		.4byte	0x88
+ 575 0244 76010000 		.4byte	.LLST10
+ 576 0248 0E       		.uleb128 0xe
+ 577 0249 4C010000 		.4byte	.LASF27
+ 578 024d 01       		.byte	0x1
+ 579 024e 29       		.byte	0x29
+ 580 024f 25000000 		.4byte	0x25
+ 581 0253 97010000 		.4byte	.LLST11
+ 582 0257 17       		.uleb128 0x17
+ 583 0258 00000000 		.4byte	.Ldebug_ranges0+0
+ 584 025c 16       		.uleb128 0x16
+ 585 025d 6900     		.ascii	"i\000"
+ 586 025f 01       		.byte	0x1
+ 587 0260 2B       		.byte	0x2b
+ 588 0261 6F000000 		.4byte	0x6f
+ 589 0265 D0010000 		.4byte	.LLST12
+ 590 0269 00       		.byte	0
+ 591 026a 00       		.byte	0
+ 592 026b 18       		.uleb128 0x18
+ 593 026c F6000000 		.4byte	.LASF32
+ 594 0270 06       		.byte	0x6
+ 595 0271 1207     		.2byte	0x712
+ 596 0273 77020000 		.4byte	0x277
+ 597 0277 19       		.uleb128 0x19
+ 598 0278 7D000000 		.4byte	0x7d
+ 599 027c 1A       		.uleb128 0x1a
+ 600 027d F3010000 		.4byte	.LASF31
+ 601 0281 F3010000 		.4byte	.LASF31
+ 602 0285 05       		.byte	0x5
+ 603 0286 00       		.byte	0
+ 604 0287 00       		.byte	0
+ 605              		.section	.debug_abbrev,"",%progbits
+ 606              	.Ldebug_abbrev0:
+ 607 0000 01       		.uleb128 0x1
+ 608 0001 11       		.uleb128 0x11
+ 609 0002 01       		.byte	0x1
+ 610 0003 25       		.uleb128 0x25
+ 611 0004 0E       		.uleb128 0xe
+ 612 0005 13       		.uleb128 0x13
+ 613 0006 0B       		.uleb128 0xb
+ 614 0007 03       		.uleb128 0x3
+ 615 0008 0E       		.uleb128 0xe
+ 616 0009 1B       		.uleb128 0x1b
+ 617 000a 0E       		.uleb128 0xe
+ 618 000b 55       		.uleb128 0x55
+ 619 000c 17       		.uleb128 0x17
+ 620 000d 11       		.uleb128 0x11
+ 621 000e 01       		.uleb128 0x1
+ 622 000f 10       		.uleb128 0x10
+ 623 0010 17       		.uleb128 0x17
+ 624 0011 00       		.byte	0
+ 625 0012 00       		.byte	0
+ 626 0013 02       		.uleb128 0x2
+ 627 0014 24       		.uleb128 0x24
+ 628 0015 00       		.byte	0
+ 629 0016 0B       		.uleb128 0xb
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cclKLNZe.s 			page 13
+
+
+ 630 0017 0B       		.uleb128 0xb
+ 631 0018 3E       		.uleb128 0x3e
+ 632 0019 0B       		.uleb128 0xb
+ 633 001a 03       		.uleb128 0x3
+ 634 001b 0E       		.uleb128 0xe
+ 635 001c 00       		.byte	0
+ 636 001d 00       		.byte	0
+ 637 001e 03       		.uleb128 0x3
+ 638 001f 16       		.uleb128 0x16
+ 639 0020 00       		.byte	0
+ 640 0021 03       		.uleb128 0x3
+ 641 0022 0E       		.uleb128 0xe
+ 642 0023 3A       		.uleb128 0x3a
+ 643 0024 0B       		.uleb128 0xb
+ 644 0025 3B       		.uleb128 0x3b
+ 645 0026 0B       		.uleb128 0xb
+ 646 0027 49       		.uleb128 0x49
+ 647 0028 13       		.uleb128 0x13
+ 648 0029 00       		.byte	0
+ 649 002a 00       		.byte	0
+ 650 002b 04       		.uleb128 0x4
+ 651 002c 24       		.uleb128 0x24
+ 652 002d 00       		.byte	0
+ 653 002e 0B       		.uleb128 0xb
+ 654 002f 0B       		.uleb128 0xb
+ 655 0030 3E       		.uleb128 0x3e
+ 656 0031 0B       		.uleb128 0xb
+ 657 0032 03       		.uleb128 0x3
+ 658 0033 08       		.uleb128 0x8
+ 659 0034 00       		.byte	0
+ 660 0035 00       		.byte	0
+ 661 0036 05       		.uleb128 0x5
+ 662 0037 16       		.uleb128 0x16
+ 663 0038 00       		.byte	0
+ 664 0039 03       		.uleb128 0x3
+ 665 003a 0E       		.uleb128 0xe
+ 666 003b 3A       		.uleb128 0x3a
+ 667 003c 0B       		.uleb128 0xb
+ 668 003d 3B       		.uleb128 0x3b
+ 669 003e 05       		.uleb128 0x5
+ 670 003f 49       		.uleb128 0x49
+ 671 0040 13       		.uleb128 0x13
+ 672 0041 00       		.byte	0
+ 673 0042 00       		.byte	0
+ 674 0043 06       		.uleb128 0x6
+ 675 0044 0F       		.uleb128 0xf
+ 676 0045 00       		.byte	0
+ 677 0046 0B       		.uleb128 0xb
+ 678 0047 0B       		.uleb128 0xb
+ 679 0048 49       		.uleb128 0x49
+ 680 0049 13       		.uleb128 0x13
+ 681 004a 00       		.byte	0
+ 682 004b 00       		.byte	0
+ 683 004c 07       		.uleb128 0x7
+ 684 004d 26       		.uleb128 0x26
+ 685 004e 00       		.byte	0
+ 686 004f 49       		.uleb128 0x49
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cclKLNZe.s 			page 14
+
+
+ 687 0050 13       		.uleb128 0x13
+ 688 0051 00       		.byte	0
+ 689 0052 00       		.byte	0
+ 690 0053 08       		.uleb128 0x8
+ 691 0054 2E       		.uleb128 0x2e
+ 692 0055 01       		.byte	0x1
+ 693 0056 3F       		.uleb128 0x3f
+ 694 0057 19       		.uleb128 0x19
+ 695 0058 03       		.uleb128 0x3
+ 696 0059 0E       		.uleb128 0xe
+ 697 005a 3A       		.uleb128 0x3a
+ 698 005b 0B       		.uleb128 0xb
+ 699 005c 3B       		.uleb128 0x3b
+ 700 005d 0B       		.uleb128 0xb
+ 701 005e 27       		.uleb128 0x27
+ 702 005f 19       		.uleb128 0x19
+ 703 0060 49       		.uleb128 0x49
+ 704 0061 13       		.uleb128 0x13
+ 705 0062 11       		.uleb128 0x11
+ 706 0063 01       		.uleb128 0x1
+ 707 0064 12       		.uleb128 0x12
+ 708 0065 06       		.uleb128 0x6
+ 709 0066 40       		.uleb128 0x40
+ 710 0067 18       		.uleb128 0x18
+ 711 0068 9642     		.uleb128 0x2116
+ 712 006a 19       		.uleb128 0x19
+ 713 006b 01       		.uleb128 0x1
+ 714 006c 13       		.uleb128 0x13
+ 715 006d 00       		.byte	0
+ 716 006e 00       		.byte	0
+ 717 006f 09       		.uleb128 0x9
+ 718 0070 05       		.uleb128 0x5
+ 719 0071 00       		.byte	0
+ 720 0072 03       		.uleb128 0x3
+ 721 0073 08       		.uleb128 0x8
+ 722 0074 3A       		.uleb128 0x3a
+ 723 0075 0B       		.uleb128 0xb
+ 724 0076 3B       		.uleb128 0x3b
+ 725 0077 0B       		.uleb128 0xb
+ 726 0078 49       		.uleb128 0x49
+ 727 0079 13       		.uleb128 0x13
+ 728 007a 02       		.uleb128 0x2
+ 729 007b 17       		.uleb128 0x17
+ 730 007c 00       		.byte	0
+ 731 007d 00       		.byte	0
+ 732 007e 0A       		.uleb128 0xa
+ 733 007f 898201   		.uleb128 0x4109
+ 734 0082 01       		.byte	0x1
+ 735 0083 11       		.uleb128 0x11
+ 736 0084 01       		.uleb128 0x1
+ 737 0085 31       		.uleb128 0x31
+ 738 0086 13       		.uleb128 0x13
+ 739 0087 00       		.byte	0
+ 740 0088 00       		.byte	0
+ 741 0089 0B       		.uleb128 0xb
+ 742 008a 8A8201   		.uleb128 0x410a
+ 743 008d 00       		.byte	0
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cclKLNZe.s 			page 15
+
+
+ 744 008e 02       		.uleb128 0x2
+ 745 008f 18       		.uleb128 0x18
+ 746 0090 9142     		.uleb128 0x2111
+ 747 0092 18       		.uleb128 0x18
+ 748 0093 00       		.byte	0
+ 749 0094 00       		.byte	0
+ 750 0095 0C       		.uleb128 0xc
+ 751 0096 2E       		.uleb128 0x2e
+ 752 0097 01       		.byte	0x1
+ 753 0098 3F       		.uleb128 0x3f
+ 754 0099 19       		.uleb128 0x19
+ 755 009a 03       		.uleb128 0x3
+ 756 009b 0E       		.uleb128 0xe
+ 757 009c 3A       		.uleb128 0x3a
+ 758 009d 0B       		.uleb128 0xb
+ 759 009e 3B       		.uleb128 0x3b
+ 760 009f 0B       		.uleb128 0xb
+ 761 00a0 27       		.uleb128 0x27
+ 762 00a1 19       		.uleb128 0x19
+ 763 00a2 11       		.uleb128 0x11
+ 764 00a3 01       		.uleb128 0x1
+ 765 00a4 12       		.uleb128 0x12
+ 766 00a5 06       		.uleb128 0x6
+ 767 00a6 40       		.uleb128 0x40
+ 768 00a7 18       		.uleb128 0x18
+ 769 00a8 9642     		.uleb128 0x2116
+ 770 00aa 19       		.uleb128 0x19
+ 771 00ab 01       		.uleb128 0x1
+ 772 00ac 13       		.uleb128 0x13
+ 773 00ad 00       		.byte	0
+ 774 00ae 00       		.byte	0
+ 775 00af 0D       		.uleb128 0xd
+ 776 00b0 05       		.uleb128 0x5
+ 777 00b1 00       		.byte	0
+ 778 00b2 03       		.uleb128 0x3
+ 779 00b3 0E       		.uleb128 0xe
+ 780 00b4 3A       		.uleb128 0x3a
+ 781 00b5 0B       		.uleb128 0xb
+ 782 00b6 3B       		.uleb128 0x3b
+ 783 00b7 0B       		.uleb128 0xb
+ 784 00b8 49       		.uleb128 0x49
+ 785 00b9 13       		.uleb128 0x13
+ 786 00ba 02       		.uleb128 0x2
+ 787 00bb 17       		.uleb128 0x17
+ 788 00bc 00       		.byte	0
+ 789 00bd 00       		.byte	0
+ 790 00be 0E       		.uleb128 0xe
+ 791 00bf 34       		.uleb128 0x34
+ 792 00c0 00       		.byte	0
+ 793 00c1 03       		.uleb128 0x3
+ 794 00c2 0E       		.uleb128 0xe
+ 795 00c3 3A       		.uleb128 0x3a
+ 796 00c4 0B       		.uleb128 0xb
+ 797 00c5 3B       		.uleb128 0x3b
+ 798 00c6 0B       		.uleb128 0xb
+ 799 00c7 49       		.uleb128 0x49
+ 800 00c8 13       		.uleb128 0x13
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cclKLNZe.s 			page 16
+
+
+ 801 00c9 02       		.uleb128 0x2
+ 802 00ca 17       		.uleb128 0x17
+ 803 00cb 00       		.byte	0
+ 804 00cc 00       		.byte	0
+ 805 00cd 0F       		.uleb128 0xf
+ 806 00ce 2E       		.uleb128 0x2e
+ 807 00cf 01       		.byte	0x1
+ 808 00d0 3F       		.uleb128 0x3f
+ 809 00d1 19       		.uleb128 0x19
+ 810 00d2 03       		.uleb128 0x3
+ 811 00d3 0E       		.uleb128 0xe
+ 812 00d4 3A       		.uleb128 0x3a
+ 813 00d5 0B       		.uleb128 0xb
+ 814 00d6 3B       		.uleb128 0x3b
+ 815 00d7 0B       		.uleb128 0xb
+ 816 00d8 27       		.uleb128 0x27
+ 817 00d9 19       		.uleb128 0x19
+ 818 00da 49       		.uleb128 0x49
+ 819 00db 13       		.uleb128 0x13
+ 820 00dc 3C       		.uleb128 0x3c
+ 821 00dd 19       		.uleb128 0x19
+ 822 00de 01       		.uleb128 0x1
+ 823 00df 13       		.uleb128 0x13
+ 824 00e0 00       		.byte	0
+ 825 00e1 00       		.byte	0
+ 826 00e2 10       		.uleb128 0x10
+ 827 00e3 05       		.uleb128 0x5
+ 828 00e4 00       		.byte	0
+ 829 00e5 49       		.uleb128 0x49
+ 830 00e6 13       		.uleb128 0x13
+ 831 00e7 00       		.byte	0
+ 832 00e8 00       		.byte	0
+ 833 00e9 11       		.uleb128 0x11
+ 834 00ea 18       		.uleb128 0x18
+ 835 00eb 00       		.byte	0
+ 836 00ec 00       		.byte	0
+ 837 00ed 00       		.byte	0
+ 838 00ee 12       		.uleb128 0x12
+ 839 00ef 898201   		.uleb128 0x4109
+ 840 00f2 00       		.byte	0
+ 841 00f3 11       		.uleb128 0x11
+ 842 00f4 01       		.uleb128 0x1
+ 843 00f5 31       		.uleb128 0x31
+ 844 00f6 13       		.uleb128 0x13
+ 845 00f7 00       		.byte	0
+ 846 00f8 00       		.byte	0
+ 847 00f9 13       		.uleb128 0x13
+ 848 00fa 2E       		.uleb128 0x2e
+ 849 00fb 01       		.byte	0x1
+ 850 00fc 3F       		.uleb128 0x3f
+ 851 00fd 19       		.uleb128 0x19
+ 852 00fe 03       		.uleb128 0x3
+ 853 00ff 0E       		.uleb128 0xe
+ 854 0100 3A       		.uleb128 0x3a
+ 855 0101 0B       		.uleb128 0xb
+ 856 0102 3B       		.uleb128 0x3b
+ 857 0103 0B       		.uleb128 0xb
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cclKLNZe.s 			page 17
+
+
+ 858 0104 27       		.uleb128 0x27
+ 859 0105 19       		.uleb128 0x19
+ 860 0106 11       		.uleb128 0x11
+ 861 0107 01       		.uleb128 0x1
+ 862 0108 12       		.uleb128 0x12
+ 863 0109 06       		.uleb128 0x6
+ 864 010a 40       		.uleb128 0x40
+ 865 010b 18       		.uleb128 0x18
+ 866 010c 9742     		.uleb128 0x2117
+ 867 010e 19       		.uleb128 0x19
+ 868 010f 01       		.uleb128 0x1
+ 869 0110 13       		.uleb128 0x13
+ 870 0111 00       		.byte	0
+ 871 0112 00       		.byte	0
+ 872 0113 14       		.uleb128 0x14
+ 873 0114 05       		.uleb128 0x5
+ 874 0115 00       		.byte	0
+ 875 0116 03       		.uleb128 0x3
+ 876 0117 08       		.uleb128 0x8
+ 877 0118 3A       		.uleb128 0x3a
+ 878 0119 0B       		.uleb128 0xb
+ 879 011a 3B       		.uleb128 0x3b
+ 880 011b 0B       		.uleb128 0xb
+ 881 011c 49       		.uleb128 0x49
+ 882 011d 13       		.uleb128 0x13
+ 883 011e 02       		.uleb128 0x2
+ 884 011f 18       		.uleb128 0x18
+ 885 0120 00       		.byte	0
+ 886 0121 00       		.byte	0
+ 887 0122 15       		.uleb128 0x15
+ 888 0123 0B       		.uleb128 0xb
+ 889 0124 01       		.byte	0x1
+ 890 0125 11       		.uleb128 0x11
+ 891 0126 01       		.uleb128 0x1
+ 892 0127 12       		.uleb128 0x12
+ 893 0128 06       		.uleb128 0x6
+ 894 0129 00       		.byte	0
+ 895 012a 00       		.byte	0
+ 896 012b 16       		.uleb128 0x16
+ 897 012c 34       		.uleb128 0x34
+ 898 012d 00       		.byte	0
+ 899 012e 03       		.uleb128 0x3
+ 900 012f 08       		.uleb128 0x8
+ 901 0130 3A       		.uleb128 0x3a
+ 902 0131 0B       		.uleb128 0xb
+ 903 0132 3B       		.uleb128 0x3b
+ 904 0133 0B       		.uleb128 0xb
+ 905 0134 49       		.uleb128 0x49
+ 906 0135 13       		.uleb128 0x13
+ 907 0136 02       		.uleb128 0x2
+ 908 0137 17       		.uleb128 0x17
+ 909 0138 00       		.byte	0
+ 910 0139 00       		.byte	0
+ 911 013a 17       		.uleb128 0x17
+ 912 013b 0B       		.uleb128 0xb
+ 913 013c 01       		.byte	0x1
+ 914 013d 55       		.uleb128 0x55
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cclKLNZe.s 			page 18
+
+
+ 915 013e 17       		.uleb128 0x17
+ 916 013f 00       		.byte	0
+ 917 0140 00       		.byte	0
+ 918 0141 18       		.uleb128 0x18
+ 919 0142 34       		.uleb128 0x34
+ 920 0143 00       		.byte	0
+ 921 0144 03       		.uleb128 0x3
+ 922 0145 0E       		.uleb128 0xe
+ 923 0146 3A       		.uleb128 0x3a
+ 924 0147 0B       		.uleb128 0xb
+ 925 0148 3B       		.uleb128 0x3b
+ 926 0149 05       		.uleb128 0x5
+ 927 014a 49       		.uleb128 0x49
+ 928 014b 13       		.uleb128 0x13
+ 929 014c 3F       		.uleb128 0x3f
+ 930 014d 19       		.uleb128 0x19
+ 931 014e 3C       		.uleb128 0x3c
+ 932 014f 19       		.uleb128 0x19
+ 933 0150 00       		.byte	0
+ 934 0151 00       		.byte	0
+ 935 0152 19       		.uleb128 0x19
+ 936 0153 35       		.uleb128 0x35
+ 937 0154 00       		.byte	0
+ 938 0155 49       		.uleb128 0x49
+ 939 0156 13       		.uleb128 0x13
+ 940 0157 00       		.byte	0
+ 941 0158 00       		.byte	0
+ 942 0159 1A       		.uleb128 0x1a
+ 943 015a 2E       		.uleb128 0x2e
+ 944 015b 00       		.byte	0
+ 945 015c 3F       		.uleb128 0x3f
+ 946 015d 19       		.uleb128 0x19
+ 947 015e 3C       		.uleb128 0x3c
+ 948 015f 19       		.uleb128 0x19
+ 949 0160 6E       		.uleb128 0x6e
+ 950 0161 0E       		.uleb128 0xe
+ 951 0162 03       		.uleb128 0x3
+ 952 0163 0E       		.uleb128 0xe
+ 953 0164 3A       		.uleb128 0x3a
+ 954 0165 0B       		.uleb128 0xb
+ 955 0166 3B       		.uleb128 0x3b
+ 956 0167 0B       		.uleb128 0xb
+ 957 0168 00       		.byte	0
+ 958 0169 00       		.byte	0
+ 959 016a 00       		.byte	0
+ 960              		.section	.debug_loc,"",%progbits
+ 961              	.Ldebug_loc0:
+ 962              	.LLST0:
+ 963 0000 00000000 		.4byte	.LVL0
+ 964 0004 0C000000 		.4byte	.LVL2
+ 965 0008 0100     		.2byte	0x1
+ 966 000a 50       		.byte	0x50
+ 967 000b 0C000000 		.4byte	.LVL2
+ 968 000f 32000000 		.4byte	.LFE63
+ 969 0013 0100     		.2byte	0x1
+ 970 0015 54       		.byte	0x54
+ 971 0016 00000000 		.4byte	0
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cclKLNZe.s 			page 19
+
+
+ 972 001a 00000000 		.4byte	0
+ 973              	.LLST1:
+ 974 001e 00000000 		.4byte	.LVL0
+ 975 0022 0A000000 		.4byte	.LVL1
+ 976 0026 0100     		.2byte	0x1
+ 977 0028 51       		.byte	0x51
+ 978 0029 0A000000 		.4byte	.LVL1
+ 979 002d 32000000 		.4byte	.LFE63
+ 980 0031 0100     		.2byte	0x1
+ 981 0033 55       		.byte	0x55
+ 982 0034 00000000 		.4byte	0
+ 983 0038 00000000 		.4byte	0
+ 984              	.LLST2:
+ 985 003c 00000000 		.4byte	.LVL8
+ 986 0040 0B000000 		.4byte	.LVL9-1
+ 987 0044 0100     		.2byte	0x1
+ 988 0046 50       		.byte	0x50
+ 989 0047 0B000000 		.4byte	.LVL9-1
+ 990 004b 28000000 		.4byte	.LVL15
+ 991 004f 0100     		.2byte	0x1
+ 992 0051 55       		.byte	0x55
+ 993 0052 28000000 		.4byte	.LVL15
+ 994 0056 2A000000 		.4byte	.LVL16
+ 995 005a 0600     		.2byte	0x6
+ 996 005c F3       		.byte	0xf3
+ 997 005d 03       		.uleb128 0x3
+ 998 005e F5       		.byte	0xf5
+ 999 005f 00       		.uleb128 0
+ 1000 0060 25       		.uleb128 0x25
+ 1001 0061 9F       		.byte	0x9f
+ 1002 0062 2A000000 		.4byte	.LVL16
+ 1003 0066 38000000 		.4byte	.LVL19
+ 1004 006a 0100     		.2byte	0x1
+ 1005 006c 55       		.byte	0x55
+ 1006 006d 38000000 		.4byte	.LVL19
+ 1007 0071 68000000 		.4byte	.LFE64
+ 1008 0075 0600     		.2byte	0x6
+ 1009 0077 F3       		.byte	0xf3
+ 1010 0078 03       		.uleb128 0x3
+ 1011 0079 F5       		.byte	0xf5
+ 1012 007a 00       		.uleb128 0
+ 1013 007b 25       		.uleb128 0x25
+ 1014 007c 9F       		.byte	0x9f
+ 1015 007d 00000000 		.4byte	0
+ 1016 0081 00000000 		.4byte	0
+ 1017              	.LLST3:
+ 1018 0085 00000000 		.4byte	.LVL8
+ 1019 0089 0B000000 		.4byte	.LVL9-1
+ 1020 008d 0100     		.2byte	0x1
+ 1021 008f 51       		.byte	0x51
+ 1022 0090 0B000000 		.4byte	.LVL9-1
+ 1023 0094 60000000 		.4byte	.LVL26
+ 1024 0098 0100     		.2byte	0x1
+ 1025 009a 56       		.byte	0x56
+ 1026 009b 60000000 		.4byte	.LVL26
+ 1027 009f 68000000 		.4byte	.LFE64
+ 1028 00a3 0400     		.2byte	0x4
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cclKLNZe.s 			page 20
+
+
+ 1029 00a5 F3       		.byte	0xf3
+ 1030 00a6 01       		.uleb128 0x1
+ 1031 00a7 51       		.byte	0x51
+ 1032 00a8 9F       		.byte	0x9f
+ 1033 00a9 00000000 		.4byte	0
+ 1034 00ad 00000000 		.4byte	0
+ 1035              	.LLST4:
+ 1036 00b1 00000000 		.4byte	.LVL8
+ 1037 00b5 0B000000 		.4byte	.LVL9-1
+ 1038 00b9 0100     		.2byte	0x1
+ 1039 00bb 52       		.byte	0x52
+ 1040 00bc 0B000000 		.4byte	.LVL9-1
+ 1041 00c0 68000000 		.4byte	.LFE64
+ 1042 00c4 0400     		.2byte	0x4
+ 1043 00c6 F3       		.byte	0xf3
+ 1044 00c7 01       		.uleb128 0x1
+ 1045 00c8 52       		.byte	0x52
+ 1046 00c9 9F       		.byte	0x9f
+ 1047 00ca 00000000 		.4byte	0
+ 1048 00ce 00000000 		.4byte	0
+ 1049              	.LLST5:
+ 1050 00d2 0E000000 		.4byte	.LVL10
+ 1051 00d6 12000000 		.4byte	.LVL11
+ 1052 00da 0100     		.2byte	0x1
+ 1053 00dc 50       		.byte	0x50
+ 1054 00dd 12000000 		.4byte	.LVL11
+ 1055 00e1 60000000 		.4byte	.LVL26
+ 1056 00e5 0100     		.2byte	0x1
+ 1057 00e7 54       		.byte	0x54
+ 1058 00e8 00000000 		.4byte	0
+ 1059 00ec 00000000 		.4byte	0
+ 1060              	.LLST6:
+ 1061 00f0 38000000 		.4byte	.LVL19
+ 1062 00f4 60000000 		.4byte	.LVL26
+ 1063 00f8 0100     		.2byte	0x1
+ 1064 00fa 55       		.byte	0x55
+ 1065 00fb 00000000 		.4byte	0
+ 1066 00ff 00000000 		.4byte	0
+ 1067              	.LLST7:
+ 1068 0103 52000000 		.4byte	.LVL23
+ 1069 0107 5A000000 		.4byte	.LVL24
+ 1070 010b 0100     		.2byte	0x1
+ 1071 010d 50       		.byte	0x50
+ 1072 010e 5A000000 		.4byte	.LVL24
+ 1073 0112 5D000000 		.4byte	.LVL25-1
+ 1074 0116 0100     		.2byte	0x1
+ 1075 0118 53       		.byte	0x53
+ 1076 0119 00000000 		.4byte	0
+ 1077 011d 00000000 		.4byte	0
+ 1078              	.LLST8:
+ 1079 0121 02000000 		.4byte	.LVL28
+ 1080 0125 06000000 		.4byte	.LVL29
+ 1081 0129 0200     		.2byte	0x2
+ 1082 012b 30       		.byte	0x30
+ 1083 012c 9F       		.byte	0x9f
+ 1084 012d 06000000 		.4byte	.LVL29
+ 1085 0131 0C000000 		.4byte	.LVL30
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cclKLNZe.s 			page 21
+
+
+ 1086 0135 0100     		.2byte	0x1
+ 1087 0137 53       		.byte	0x53
+ 1088 0138 0C000000 		.4byte	.LVL30
+ 1089 013c 12000000 		.4byte	.LVL31
+ 1090 0140 0300     		.2byte	0x3
+ 1091 0142 74       		.byte	0x74
+ 1092 0143 7F       		.sleb128 -1
+ 1093 0144 9F       		.byte	0x9f
+ 1094 0145 12000000 		.4byte	.LVL31
+ 1095 0149 1E000000 		.4byte	.LFE65
+ 1096 014d 0100     		.2byte	0x1
+ 1097 014f 53       		.byte	0x53
+ 1098 0150 00000000 		.4byte	0
+ 1099 0154 00000000 		.4byte	0
+ 1100              	.LLST9:
+ 1101 0158 00000000 		.4byte	.LVL32
+ 1102 015c 0C000000 		.4byte	.LVL34
+ 1103 0160 0100     		.2byte	0x1
+ 1104 0162 50       		.byte	0x50
+ 1105 0163 0C000000 		.4byte	.LVL34
+ 1106 0167 2E000000 		.4byte	.LFE66
+ 1107 016b 0100     		.2byte	0x1
+ 1108 016d 57       		.byte	0x57
+ 1109 016e 00000000 		.4byte	0
+ 1110 0172 00000000 		.4byte	0
+ 1111              	.LLST10:
+ 1112 0176 00000000 		.4byte	.LVL32
+ 1113 017a 0C000000 		.4byte	.LVL34
+ 1114 017e 0100     		.2byte	0x1
+ 1115 0180 51       		.byte	0x51
+ 1116 0181 0C000000 		.4byte	.LVL34
+ 1117 0185 2E000000 		.4byte	.LFE66
+ 1118 0189 0400     		.2byte	0x4
+ 1119 018b F3       		.byte	0xf3
+ 1120 018c 01       		.uleb128 0x1
+ 1121 018d 51       		.byte	0x51
+ 1122 018e 9F       		.byte	0x9f
+ 1123 018f 00000000 		.4byte	0
+ 1124 0193 00000000 		.4byte	0
+ 1125              	.LLST11:
+ 1126 0197 06000000 		.4byte	.LVL33
+ 1127 019b 0C000000 		.4byte	.LVL34
+ 1128 019f 0600     		.2byte	0x6
+ 1129 01a1 9E       		.byte	0x9e
+ 1130 01a2 04       		.uleb128 0x4
+ 1131 01a3 00000000 		.4byte	0
+ 1132 01a7 0C000000 		.4byte	.LVL34
+ 1133 01ab 18000000 		.4byte	.LVL36
+ 1134 01af 0100     		.2byte	0x1
+ 1135 01b1 56       		.byte	0x56
+ 1136 01b2 18000000 		.4byte	.LVL36
+ 1137 01b6 1A000000 		.4byte	.LVL37
+ 1138 01ba 0100     		.2byte	0x1
+ 1139 01bc 50       		.byte	0x50
+ 1140 01bd 1A000000 		.4byte	.LVL37
+ 1141 01c1 2E000000 		.4byte	.LFE66
+ 1142 01c5 0100     		.2byte	0x1
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cclKLNZe.s 			page 22
+
+
+ 1143 01c7 56       		.byte	0x56
+ 1144 01c8 00000000 		.4byte	0
+ 1145 01cc 00000000 		.4byte	0
+ 1146              	.LLST12:
+ 1147 01d0 06000000 		.4byte	.LVL33
+ 1148 01d4 0C000000 		.4byte	.LVL34
+ 1149 01d8 0200     		.2byte	0x2
+ 1150 01da 30       		.byte	0x30
+ 1151 01db 9F       		.byte	0x9f
+ 1152 01dc 0C000000 		.4byte	.LVL34
+ 1153 01e0 2E000000 		.4byte	.LFE66
+ 1154 01e4 0100     		.2byte	0x1
+ 1155 01e6 54       		.byte	0x54
+ 1156 01e7 00000000 		.4byte	0
+ 1157 01eb 00000000 		.4byte	0
+ 1158              		.section	.debug_aranges,"",%progbits
+ 1159 0000 34000000 		.4byte	0x34
+ 1160 0004 0200     		.2byte	0x2
+ 1161 0006 00000000 		.4byte	.Ldebug_info0
+ 1162 000a 04       		.byte	0x4
+ 1163 000b 00       		.byte	0
+ 1164 000c 0000     		.2byte	0
+ 1165 000e 0000     		.2byte	0
+ 1166 0010 00000000 		.4byte	.LFB63
+ 1167 0014 32000000 		.4byte	.LFE63-.LFB63
+ 1168 0018 00000000 		.4byte	.LFB64
+ 1169 001c 68000000 		.4byte	.LFE64-.LFB64
+ 1170 0020 00000000 		.4byte	.LFB65
+ 1171 0024 1E000000 		.4byte	.LFE65-.LFB65
+ 1172 0028 00000000 		.4byte	.LFB66
+ 1173 002c 2E000000 		.4byte	.LFE66-.LFB66
+ 1174 0030 00000000 		.4byte	0
+ 1175 0034 00000000 		.4byte	0
+ 1176              		.section	.debug_ranges,"",%progbits
+ 1177              	.Ldebug_ranges0:
+ 1178 0000 06000000 		.4byte	.LBB3
+ 1179 0004 08000000 		.4byte	.LBE3
+ 1180 0008 0A000000 		.4byte	.LBB4
+ 1181 000c 20000000 		.4byte	.LBE4
+ 1182 0010 00000000 		.4byte	0
+ 1183 0014 00000000 		.4byte	0
+ 1184 0018 00000000 		.4byte	.LFB63
+ 1185 001c 32000000 		.4byte	.LFE63
+ 1186 0020 00000000 		.4byte	.LFB64
+ 1187 0024 68000000 		.4byte	.LFE64
+ 1188 0028 00000000 		.4byte	.LFB65
+ 1189 002c 1E000000 		.4byte	.LFE65
+ 1190 0030 00000000 		.4byte	.LFB66
+ 1191 0034 2E000000 		.4byte	.LFE66
+ 1192 0038 00000000 		.4byte	0
+ 1193 003c 00000000 		.4byte	0
+ 1194              		.section	.debug_line,"",%progbits
+ 1195              	.Ldebug_line0:
+ 1196 0000 E4010000 		.section	.debug_str,"MS",%progbits,1
+ 1196      02006301 
+ 1196      00000201 
+ 1196      FB0E0D00 
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cclKLNZe.s 			page 23
+
+
+ 1196      01010101 
+ 1197              	.LASF29:
+ 1198 0000 6175785F 		.ascii	"aux_functions.c\000"
+ 1198      66756E63 
+ 1198      74696F6E 
+ 1198      732E6300 
+ 1199              	.LASF24:
+ 1200 0010 6E6F7661 		.ascii	"nova\000"
+ 1200      00
+ 1201              	.LASF10:
+ 1202 0015 5F5F696E 		.ascii	"__int32_t\000"
+ 1202      7433325F 
+ 1202      7400
+ 1203              	.LASF5:
+ 1204 001f 6C6F6E67 		.ascii	"long int\000"
+ 1204      20696E74 
+ 1204      00
+ 1205              	.LASF21:
+ 1206 0028 6D616E74 		.ascii	"mantissa\000"
+ 1206      69737361 
+ 1206      00
+ 1207              	.LASF18:
+ 1208 0031 73747269 		.ascii	"string\000"
+ 1208      6E6700
+ 1209              	.LASF0:
+ 1210 0038 666C6F61 		.ascii	"float\000"
+ 1210      7400
+ 1211              	.LASF25:
+ 1212 003e 706F7766 		.ascii	"powf\000"
+ 1212      00
+ 1213              	.LASF28:
+ 1214 0043 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1214      43313120 
+ 1214      352E342E 
+ 1214      31203230 
+ 1214      31363036 
+ 1215 0076 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1215      20726576 
+ 1215      6973696F 
+ 1215      6E203233 
+ 1215      37373135 
+ 1216 00a9 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1216      66756E63 
+ 1216      74696F6E 
+ 1216      2D736563 
+ 1216      74696F6E 
+ 1217              	.LASF6:
+ 1218 00d1 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1218      20756E73 
+ 1218      69676E65 
+ 1218      6420696E 
+ 1218      7400
+ 1219              	.LASF4:
+ 1220 00e3 73686F72 		.ascii	"short unsigned int\000"
+ 1220      7420756E 
+ 1220      7369676E 
+ 1220      65642069 
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cclKLNZe.s 			page 24
+
+
+ 1220      6E7400
+ 1221              	.LASF32:
+ 1222 00f6 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1222      52784275 
+ 1222      66666572 
+ 1222      00
+ 1223              	.LASF2:
+ 1224 0103 756E7369 		.ascii	"unsigned char\000"
+ 1224      676E6564 
+ 1224      20636861 
+ 1224      7200
+ 1225              	.LASF30:
+ 1226 0111 433A5C55 		.ascii	"C:\\Users\\diego\\source\\repos\\teste_controlador."
+ 1226      73657273 
+ 1226      5C646965 
+ 1226      676F5C73 
+ 1226      6F757263 
+ 1227 013f 63796473 		.ascii	"cydsn\000"
+ 1227      6E00
+ 1228              	.LASF13:
+ 1229 0145 646F7562 		.ascii	"double\000"
+ 1229      6C6500
+ 1230              	.LASF27:
+ 1231 014c 736F6D61 		.ascii	"soma\000"
+ 1231      00
+ 1232              	.LASF9:
+ 1233 0151 756E7369 		.ascii	"unsigned int\000"
+ 1233      676E6564 
+ 1233      20696E74 
+ 1233      00
+ 1234              	.LASF8:
+ 1235 015e 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1235      206C6F6E 
+ 1235      6720756E 
+ 1235      7369676E 
+ 1235      65642069 
+ 1236              	.LASF17:
+ 1237 0175 6E756D62 		.ascii	"number\000"
+ 1237      657200
+ 1238              	.LASF11:
+ 1239 017c 696E7433 		.ascii	"int32_t\000"
+ 1239      325F7400 
+ 1240              	.LASF16:
+ 1241 0184 73697A65 		.ascii	"sizetype\000"
+ 1241      74797065 
+ 1241      00
+ 1242              	.LASF7:
+ 1243 018d 6C6F6E67 		.ascii	"long long int\000"
+ 1243      206C6F6E 
+ 1243      6720696E 
+ 1243      7400
+ 1244              	.LASF19:
+ 1245 019b 70726563 		.ascii	"precision\000"
+ 1245      6973696F 
+ 1245      6E00
+ 1246              	.LASF14:
+ 1247 01a5 63686172 		.ascii	"char\000"
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cclKLNZe.s 			page 25
+
+
+ 1247      00
+ 1248              	.LASF26:
+ 1249 01aa 6D656469 		.ascii	"media\000"
+ 1249      6100
+ 1250              	.LASF3:
+ 1251 01b0 73686F72 		.ascii	"short int\000"
+ 1251      7420696E 
+ 1251      7400
+ 1252              	.LASF12:
+ 1253 01ba 75696E74 		.ascii	"uint8\000"
+ 1253      3800
+ 1254              	.LASF22:
+ 1255 01c0 75696E74 		.ascii	"uint_mantissa\000"
+ 1255      5F6D616E 
+ 1255      74697373 
+ 1255      6100
+ 1256              	.LASF23:
+ 1257 01ce 666C6F61 		.ascii	"float2string\000"
+ 1257      74327374 
+ 1257      72696E67 
+ 1257      00
+ 1258              	.LASF15:
+ 1259 01db 6C6F6E67 		.ascii	"long double\000"
+ 1259      20646F75 
+ 1259      626C6500 
+ 1260              	.LASF1:
+ 1261 01e7 7369676E 		.ascii	"signed char\000"
+ 1261      65642063 
+ 1261      68617200 
+ 1262              	.LASF31:
+ 1263 01f3 73707269 		.ascii	"sprintf\000"
+ 1263      6E746600 
+ 1264              	.LASF20:
+ 1265 01fb 63686172 		.ascii	"characteristic\000"
+ 1265      61637465 
+ 1265      72697374 
+ 1265      696300
+ 1266              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

@@ -1,0 +1,3356 @@
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"controle_cinematico.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	__aeabi_f2d
+  20              		.global	__aeabi_fmul
+  21              		.global	__aeabi_fadd
+  22              		.global	__aeabi_dmul
+  23              		.global	__aeabi_ddiv
+  24              		.global	__aeabi_dadd
+  25              		.global	__aeabi_fdiv
+  26              		.global	__aeabi_dsub
+  27              		.global	__aeabi_d2f
+  28              		.section	.text.acaoControle,"ax",%progbits
+  29              		.align	2
+  30              		.global	acaoControle
+  31              		.thumb
+  32              		.thumb_func
+  33              		.type	acaoControle, %function
+  34              	acaoControle:
+  35              	.LFB63:
+  36              		.file 1 "controle_cinematico.c"
+   1:controle_cinematico.c **** /* ========================================
+   2:controle_cinematico.c ****  *
+   3:controle_cinematico.c ****  * Copyright YOUR COMPANY, THE YEAR
+   4:controle_cinematico.c ****  * All Rights Reserved
+   5:controle_cinematico.c ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:controle_cinematico.c ****  *
+   7:controle_cinematico.c ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:controle_cinematico.c ****  * WHICH IS THE PROPERTY OF your company.
+   9:controle_cinematico.c ****  *
+  10:controle_cinematico.c ****  * ========================================
+  11:controle_cinematico.c **** */
+  12:controle_cinematico.c **** 
+  13:controle_cinematico.c **** #include <math.h>
+  14:controle_cinematico.c **** #include <stdlib.h>
+  15:controle_cinematico.c **** #include <time.h>
+  16:controle_cinematico.c **** 
+  17:controle_cinematico.c **** #include "controle_cinematico.h"
+  18:controle_cinematico.c **** #include "aux_functions.h"
+  19:controle_cinematico.c **** 
+  20:controle_cinematico.c **** #define START_X 0.0f
+  21:controle_cinematico.c **** #define START_Y 0.0f
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 2
+
+
+  22:controle_cinematico.c **** 
+  23:controle_cinematico.c **** float dxAnt, dyAnt, dthetaAnt,
+  24:controle_cinematico.c **** 	  primDet, nVoltas, fator = 1;
+  25:controle_cinematico.c **** 
+  26:controle_cinematico.c **** char xStr[ 10 ],
+  27:controle_cinematico.c ****      yStr[ 10 ],
+  28:controle_cinematico.c ****      thetaStr[ 10 ],
+  29:controle_cinematico.c ****      msgInstintivo[ 60 ],
+  30:controle_cinematico.c ****      msgPlayer[ 64 ] = { 0 },
+  31:controle_cinematico.c ****      msgTeste[ 50 ],
+  32:controle_cinematico.c ****      sonar[ 6 ][ 10 ];
+  33:controle_cinematico.c ****     
+  34:controle_cinematico.c **** ControleCinematico cinematico = {
+  35:controle_cinematico.c ****     .setPoint = { 0, 0, 0 }, // Pode ser uma referencia de posicao ou de velocidade.
+  36:controle_cinematico.c ****     .erro = { 0, 0, 0 },
+  37:controle_cinematico.c ****     .erroAnt = { 0, 0, 0 },
+  38:controle_cinematico.c ****     .iErro = { 0, 0, 0 },
+  39:controle_cinematico.c ****     .acao = { 0, 0, 0 },
+  40:controle_cinematico.c ****     
+  41:controle_cinematico.c ****     .velNavegacao = .2,
+  42:controle_cinematico.c ****     .Kp_p = .1,
+  43:controle_cinematico.c ****     .Ki_p = .015,
+  44:controle_cinematico.c ****     .Kp_v = .1,
+  45:controle_cinematico.c ****     .Ki_v = .015,
+  46:controle_cinematico.c ****     .periodo = .05,
+  47:controle_cinematico.c ****     
+  48:controle_cinematico.c ****     .robo = {
+  49:controle_cinematico.c ****         .L = .09,
+  50:controle_cinematico.c ****         .R = .07,
+  51:controle_cinematico.c ****         
+  52:controle_cinematico.c ****         .x = START_X,
+  53:controle_cinematico.c ****         .y = START_Y,
+  54:controle_cinematico.c ****         .theta = 0,
+  55:controle_cinematico.c ****         
+  56:controle_cinematico.c ****         .dx = 0,
+  57:controle_cinematico.c ****         .dy = 0,
+  58:controle_cinematico.c ****         .dtheta = 0,
+  59:controle_cinematico.c ****         
+  60:controle_cinematico.c ****         .v = 0,
+  61:controle_cinematico.c ****         .vn = 0,
+  62:controle_cinematico.c ****         .w = 0,
+  63:controle_cinematico.c ****         
+  64:controle_cinematico.c ****         .motor = {
+  65:controle_cinematico.c ****             { //motor[ 0 ]
+  66:controle_cinematico.c ****                 .velRad = 0,
+  67:controle_cinematico.c ****                 .velLin = 0,
+  68:controle_cinematico.c ****                 
+  69:controle_cinematico.c ****                 .nPulsosAtual = 0,
+  70:controle_cinematico.c ****                 .nPulsosAnterior = 0,
+  71:controle_cinematico.c ****                 .difPulsos = 0,
+  72:controle_cinematico.c ****                 
+  73:controle_cinematico.c ****                 .pwm = 0,
+  74:controle_cinematico.c ****                 .direcao = 0
+  75:controle_cinematico.c ****             },
+  76:controle_cinematico.c ****             
+  77:controle_cinematico.c ****             { //motor[ 1 ]
+  78:controle_cinematico.c ****                 .velRad = 0,
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 3
+
+
+  79:controle_cinematico.c ****                 .velLin = 0,
+  80:controle_cinematico.c ****                 
+  81:controle_cinematico.c ****                 .nPulsosAtual = 0,
+  82:controle_cinematico.c ****                 .nPulsosAnterior = 0,
+  83:controle_cinematico.c ****                 .difPulsos = 0,
+  84:controle_cinematico.c ****                 
+  85:controle_cinematico.c ****                 .pwm = 0,
+  86:controle_cinematico.c ****                 .direcao = 0
+  87:controle_cinematico.c ****             },
+  88:controle_cinematico.c ****             
+  89:controle_cinematico.c ****             { //motor[ 2 ]
+  90:controle_cinematico.c ****                 .velRad = 0,
+  91:controle_cinematico.c ****                 .velLin = 0,
+  92:controle_cinematico.c ****                 
+  93:controle_cinematico.c ****                 .nPulsosAtual = 0,
+  94:controle_cinematico.c ****                 .nPulsosAnterior = 0,
+  95:controle_cinematico.c ****                 .difPulsos = 0,
+  96:controle_cinematico.c ****                 
+  97:controle_cinematico.c ****                 .pwm = 0,
+  98:controle_cinematico.c ****                 .direcao = 0
+  99:controle_cinematico.c ****             }
+ 100:controle_cinematico.c ****         } // motor
+ 101:controle_cinematico.c ****     } // robo
+ 102:controle_cinematico.c **** };
+ 103:controle_cinematico.c **** 
+ 104:controle_cinematico.c **** float sox = START_X, soy = START_Y;
+ 105:controle_cinematico.c **** float _t = 0.0f;
+ 106:controle_cinematico.c **** float sx = START_X, sy = START_Y;
+ 107:controle_cinematico.c **** 
+ 108:controle_cinematico.c **** void acaoControle(ControleCinematico *cc) {
+  37              		.loc 1 108 0
+  38              		.cfi_startproc
+  39              		@ args = 0, pretend = 0, frame = 72
+  40              		@ frame_needed = 0, uses_anonymous_args = 0
+  41              	.LVL0:
+  42 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+  43              		.cfi_def_cfa_offset 36
+  44              		.cfi_offset 4, -36
+  45              		.cfi_offset 5, -32
+  46              		.cfi_offset 6, -28
+  47              		.cfi_offset 7, -24
+  48              		.cfi_offset 8, -20
+  49              		.cfi_offset 9, -16
+  50              		.cfi_offset 10, -12
+  51              		.cfi_offset 11, -8
+  52              		.cfi_offset 14, -4
+  53 0004 93B0     		sub	sp, sp, #76
+  54              		.cfi_def_cfa_offset 112
+  55 0006 0446     		mov	r4, r0
+ 109:controle_cinematico.c ****     float ex, ey, ew,
+ 110:controle_cinematico.c ****           iex, iey, iew,
+ 111:controle_cinematico.c ****           t;
+ 112:controle_cinematico.c ****     
+ 113:controle_cinematico.c ****     const float Kp_p = cc->Kp_p,
+  56              		.loc 1 113 0
+  57 0008 036C     		ldr	r3, [r0, #64]	@ float
+  58 000a 0893     		str	r3, [sp, #32]	@ float
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 4
+
+
+  59              	.LVL1:
+ 114:controle_cinematico.c ****                 Ki_p = cc->Ki_p,
+  60              		.loc 1 114 0
+  61 000c 426C     		ldr	r2, [r0, #68]	@ float
+  62 000e 0A92     		str	r2, [sp, #40]	@ float
+  63              	.LVL2:
+ 115:controle_cinematico.c ****                 Kp_v = cc->Kp_v,
+  64              		.loc 1 115 0
+  65 0010 866C     		ldr	r6, [r0, #72]	@ float
+  66              	.LVL3:
+ 116:controle_cinematico.c ****                 Ki_v = cc->Ki_v,
+  67              		.loc 1 116 0
+  68 0012 C56C     		ldr	r5, [r0, #76]	@ float
+  69              	.LVL4:
+ 117:controle_cinematico.c ****                 L = cc->robo.L,
+  70              		.loc 1 117 0
+  71 0014 416D     		ldr	r1, [r0, #84]	@ float
+  72 0016 0C91     		str	r1, [sp, #48]	@ float
+  73              	.LVL5:
+ 118:controle_cinematico.c ****                 R = cc->robo.R;
+  74              		.loc 1 118 0
+  75 0018 D0F858A0 		ldr	r10, [r0, #88]	@ float
+  76              	.LVL6:
+ 119:controle_cinematico.c ****     
+ 120:controle_cinematico.c ****     float w1, w2, w3;
+ 121:controle_cinematico.c ****     
+ 122:controle_cinematico.c ****     ex = cc->erro[ 0 ];
+  77              		.loc 1 122 0
+  78 001c D0F80C80 		ldr	r8, [r0, #12]	@ float
+  79              	.LVL7:
+ 123:controle_cinematico.c ****     ey = cc->erro[ 1 ];
+  80              		.loc 1 123 0
+  81 0020 D0F810B0 		ldr	fp, [r0, #16]	@ float
+  82              	.LVL8:
+ 124:controle_cinematico.c ****     ew = cc->erro[ 2 ];
+  83              		.loc 1 124 0
+  84 0024 4769     		ldr	r7, [r0, #20]	@ float
+  85              	.LVL9:
+ 125:controle_cinematico.c **** 	
+ 126:controle_cinematico.c ****     iex = cc->iErro[ 0 ];
+  86              		.loc 1 126 0
+  87 0026 D0F82490 		ldr	r9, [r0, #36]	@ float
+  88              	.LVL10:
+ 127:controle_cinematico.c ****     iey = cc->iErro[ 1 ];
+  89              		.loc 1 127 0
+  90 002a D0F828E0 		ldr	lr, [r0, #40]	@ float
+  91 002e CDF818E0 		str	lr, [sp, #24]	@ float
+  92              	.LVL11:
+ 128:controle_cinematico.c ****     iew = cc->iErro[ 2 ];
+  93              		.loc 1 128 0
+  94 0032 D0F82CC0 		ldr	ip, [r0, #44]	@ float
+  95 0036 CDF83CC0 		str	ip, [sp, #60]	@ float
+  96              	.LVL12:
+ 129:controle_cinematico.c ****     
+ 130:controle_cinematico.c ****     t = cc->robo.theta;
+ 131:controle_cinematico.c ****     
+ 132:controle_cinematico.c ****     w1 = (cos(t)*(Kp_v*ex + Ki_v*iex))/R + (sin(t)*(Kp_v*ey + Ki_v*iey))/R -
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 5
+
+
+  97              		.loc 1 132 0
+  98 003a 406E     		ldr	r0, [r0, #100]	@ float
+  99              	.LVL13:
+ 100 003c FFF7FEFF 		bl	__aeabi_f2d
+ 101              	.LVL14:
+ 102 0040 CDE90201 		strd	r0, [sp, #8]
+ 103 0044 FFF7FEFF 		bl	cos
+ 104              	.LVL15:
+ 105 0048 CDE90001 		strd	r0, [sp]
+ 106 004c 4146     		mov	r1, r8
+ 107 004e 3046     		mov	r0, r6
+ 108 0050 FFF7FEFF 		bl	__aeabi_fmul
+ 109              	.LVL16:
+ 110 0054 8046     		mov	r8, r0
+ 111              	.LVL17:
+ 112 0056 4946     		mov	r1, r9
+ 113 0058 2846     		mov	r0, r5
+ 114 005a FFF7FEFF 		bl	__aeabi_fmul
+ 115              	.LVL18:
+ 116 005e 0146     		mov	r1, r0
+ 117 0060 4046     		mov	r0, r8
+ 118 0062 FFF7FEFF 		bl	__aeabi_fadd
+ 119              	.LVL19:
+ 120 0066 FFF7FEFF 		bl	__aeabi_f2d
+ 121              	.LVL20:
+ 122 006a 0246     		mov	r2, r0
+ 123 006c 0B46     		mov	r3, r1
+ 124 006e CDE90423 		strd	r2, [sp, #16]
+ 125 0072 DDE90001 		ldrd	r0, [sp]
+ 126 0076 FFF7FEFF 		bl	__aeabi_dmul
+ 127              	.LVL21:
+ 128 007a 8046     		mov	r8, r0
+ 129 007c 8946     		mov	r9, r1
+ 130              	.LVL22:
+ 131 007e 5046     		mov	r0, r10
+ 132 0080 FFF7FEFF 		bl	__aeabi_f2d
+ 133              	.LVL23:
+ 134 0084 0246     		mov	r2, r0
+ 135 0086 0B46     		mov	r3, r1
+ 136 0088 CDE91023 		strd	r2, [sp, #64]
+ 137 008c 4046     		mov	r0, r8
+ 138 008e 4946     		mov	r1, r9
+ 139 0090 FFF7FEFF 		bl	__aeabi_ddiv
+ 140              	.LVL24:
+ 141 0094 8046     		mov	r8, r0
+ 142 0096 8946     		mov	r9, r1
+ 143 0098 DDE90201 		ldrd	r0, [sp, #8]
+ 144 009c FFF7FEFF 		bl	sin
+ 145              	.LVL25:
+ 146 00a0 CDE90201 		strd	r0, [sp, #8]
+ 147 00a4 5946     		mov	r1, fp
+ 148 00a6 3046     		mov	r0, r6
+ 149 00a8 FFF7FEFF 		bl	__aeabi_fmul
+ 150              	.LVL26:
+ 151 00ac 0646     		mov	r6, r0
+ 152              	.LVL27:
+ 153 00ae 0699     		ldr	r1, [sp, #24]	@ float
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 6
+
+
+ 154 00b0 2846     		mov	r0, r5
+ 155 00b2 FFF7FEFF 		bl	__aeabi_fmul
+ 156              	.LVL28:
+ 157 00b6 0146     		mov	r1, r0
+ 158 00b8 3046     		mov	r0, r6
+ 159 00ba FFF7FEFF 		bl	__aeabi_fadd
+ 160              	.LVL29:
+ 161 00be FFF7FEFF 		bl	__aeabi_f2d
+ 162              	.LVL30:
+ 163 00c2 0546     		mov	r5, r0
+ 164              	.LVL31:
+ 165 00c4 0E46     		mov	r6, r1
+ 166 00c6 CDE90656 		strd	r5, [sp, #24]
+ 167              	.LVL32:
+ 168 00ca 0246     		mov	r2, r0
+ 169 00cc 0B46     		mov	r3, r1
+ 170 00ce DDE90201 		ldrd	r0, [sp, #8]
+ 171 00d2 FFF7FEFF 		bl	__aeabi_dmul
+ 172              	.LVL33:
+ 173 00d6 DDE91023 		ldrd	r2, [sp, #64]
+ 174 00da FFF7FEFF 		bl	__aeabi_ddiv
+ 175              	.LVL34:
+ 176 00de 0246     		mov	r2, r0
+ 177 00e0 0B46     		mov	r3, r1
+ 178 00e2 4046     		mov	r0, r8
+ 179 00e4 4946     		mov	r1, r9
+ 180 00e6 FFF7FEFF 		bl	__aeabi_dadd
+ 181              	.LVL35:
+ 182 00ea 8046     		mov	r8, r0
+ 183 00ec 8946     		mov	r9, r1
+ 133:controle_cinematico.c ****          (L*(Kp_p*ew + Ki_p*iew))/R;
+ 184              		.loc 1 133 0
+ 185 00ee 3946     		mov	r1, r7
+ 186 00f0 0898     		ldr	r0, [sp, #32]	@ float
+ 187 00f2 FFF7FEFF 		bl	__aeabi_fmul
+ 188              	.LVL36:
+ 189 00f6 0546     		mov	r5, r0
+ 190 00f8 0F99     		ldr	r1, [sp, #60]	@ float
+ 191 00fa 0A98     		ldr	r0, [sp, #40]	@ float
+ 192 00fc FFF7FEFF 		bl	__aeabi_fmul
+ 193              	.LVL37:
+ 194 0100 0146     		mov	r1, r0
+ 195 0102 2846     		mov	r0, r5
+ 196 0104 FFF7FEFF 		bl	__aeabi_fadd
+ 197              	.LVL38:
+ 198 0108 0146     		mov	r1, r0
+ 199 010a 0C98     		ldr	r0, [sp, #48]	@ float
+ 200 010c FFF7FEFF 		bl	__aeabi_fmul
+ 201              	.LVL39:
+ 202 0110 5146     		mov	r1, r10
+ 203 0112 FFF7FEFF 		bl	__aeabi_fdiv
+ 204              	.LVL40:
+ 132:controle_cinematico.c ****          (L*(Kp_p*ew + Ki_p*iew))/R;
+ 205              		.loc 1 132 0
+ 206 0116 FFF7FEFF 		bl	__aeabi_f2d
+ 207              	.LVL41:
+ 208 011a CDE90801 		strd	r0, [sp, #32]
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 7
+
+
+ 209              	.LVL42:
+ 210 011e 0246     		mov	r2, r0
+ 211 0120 0B46     		mov	r3, r1
+ 212 0122 4046     		mov	r0, r8
+ 213 0124 4946     		mov	r1, r9
+ 214 0126 FFF7FEFF 		bl	__aeabi_dsub
+ 215              	.LVL43:
+ 216 012a FFF7FEFF 		bl	__aeabi_d2f
+ 217              	.LVL44:
+ 218 012e 0546     		mov	r5, r0
+ 219              	.LVL45:
+ 134:controle_cinematico.c ****     
+ 135:controle_cinematico.c ****     w2 = (sqrt(3)*(3*sin(t) - sqrt(3)*cos(t))*(Kp_v*ex + Ki_v*iex))/(6*R) -
+ 220              		.loc 1 135 0
+ 221 0130 0022     		movs	r2, #0
+ 222 0132 5F4B     		ldr	r3, .L3+8
+ 223 0134 DDE90201 		ldrd	r0, [sp, #8]
+ 224              	.LVL46:
+ 225 0138 FFF7FEFF 		bl	__aeabi_dmul
+ 226              	.LVL47:
+ 227 013c 0646     		mov	r6, r0
+ 228 013e 0F46     		mov	r7, r1
+ 229              	.LVL48:
+ 230 0140 59A3     		adr	r3, .L3
+ 231 0142 D3E90023 		ldrd	r2, [r3]
+ 232 0146 DDE90001 		ldrd	r0, [sp]
+ 233 014a FFF7FEFF 		bl	__aeabi_dmul
+ 234              	.LVL49:
+ 235 014e 0A46     		mov	r2, r1
+ 236 0150 0146     		mov	r1, r0
+ 237 0152 CDE90C12 		strd	r1, [sp, #48]
+ 238              	.LVL50:
+ 239 0156 1346     		mov	r3, r2
+ 240 0158 0246     		mov	r2, r0
+ 241 015a CDE90A67 		strd	r6, [sp, #40]
+ 242              	.LVL51:
+ 243 015e 3046     		mov	r0, r6
+ 244 0160 3946     		mov	r1, r7
+ 245 0162 FFF7FEFF 		bl	__aeabi_dsub
+ 246              	.LVL52:
+ 247 0166 50A3     		adr	r3, .L3
+ 248 0168 D3E90023 		ldrd	r2, [r3]
+ 249 016c FFF7FEFF 		bl	__aeabi_dmul
+ 250              	.LVL53:
+ 251 0170 0246     		mov	r2, r0
+ 252 0172 0B46     		mov	r3, r1
+ 253 0174 DDE90401 		ldrd	r0, [sp, #16]
+ 254 0178 FFF7FEFF 		bl	__aeabi_dmul
+ 255              	.LVL54:
+ 256 017c 0646     		mov	r6, r0
+ 257 017e 0F46     		mov	r7, r1
+ 258 0180 4C49     		ldr	r1, .L3+12
+ 259 0182 5046     		mov	r0, r10
+ 260 0184 FFF7FEFF 		bl	__aeabi_fmul
+ 261              	.LVL55:
+ 262 0188 FFF7FEFF 		bl	__aeabi_f2d
+ 263              	.LVL56:
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 8
+
+
+ 264 018c 8046     		mov	r8, r0
+ 265 018e 8946     		mov	r9, r1
+ 266 0190 0246     		mov	r2, r0
+ 267 0192 0B46     		mov	r3, r1
+ 268 0194 3046     		mov	r0, r6
+ 269 0196 3946     		mov	r1, r7
+ 270 0198 FFF7FEFF 		bl	__aeabi_ddiv
+ 271              	.LVL57:
+ 272 019c DDE90823 		ldrd	r2, [sp, #32]
+ 273 01a0 FFF7FEFF 		bl	__aeabi_dsub
+ 274              	.LVL58:
+ 275 01a4 8246     		mov	r10, r0
+ 276              	.LVL59:
+ 277 01a6 8B46     		mov	fp, r1
+ 278              	.LVL60:
+ 136:controle_cinematico.c ****          (L*(Kp_p*ew + Ki_p*iew))/R -
+ 137:controle_cinematico.c ****          (sqrt(3)*(3*cos(t) + sqrt(3)*sin(t))*(Kp_v*ey + Ki_v*iey))/(6*R);
+ 279              		.loc 1 137 0
+ 280 01a8 0022     		movs	r2, #0
+ 281 01aa 414B     		ldr	r3, .L3+8
+ 282 01ac DDE90001 		ldrd	r0, [sp]
+ 283 01b0 FFF7FEFF 		bl	__aeabi_dmul
+ 284              	.LVL61:
+ 285 01b4 0646     		mov	r6, r0
+ 286 01b6 0F46     		mov	r7, r1
+ 287 01b8 3BA3     		adr	r3, .L3
+ 288 01ba D3E90023 		ldrd	r2, [r3]
+ 289 01be DDE90201 		ldrd	r0, [sp, #8]
+ 290 01c2 FFF7FEFF 		bl	__aeabi_dmul
+ 291              	.LVL62:
+ 292 01c6 0A46     		mov	r2, r1
+ 293 01c8 0146     		mov	r1, r0
+ 294 01ca CDE90012 		strd	r1, [sp]
+ 295 01ce 1346     		mov	r3, r2
+ 296 01d0 0246     		mov	r2, r0
+ 297 01d2 3046     		mov	r0, r6
+ 298 01d4 3946     		mov	r1, r7
+ 299 01d6 FFF7FEFF 		bl	__aeabi_dadd
+ 300              	.LVL63:
+ 301 01da 33A3     		adr	r3, .L3
+ 302 01dc D3E90023 		ldrd	r2, [r3]
+ 303 01e0 FFF7FEFF 		bl	__aeabi_dmul
+ 304              	.LVL64:
+ 305 01e4 0246     		mov	r2, r0
+ 306 01e6 0B46     		mov	r3, r1
+ 307 01e8 DDE90601 		ldrd	r0, [sp, #24]
+ 308 01ec FFF7FEFF 		bl	__aeabi_dmul
+ 309              	.LVL65:
+ 310 01f0 4246     		mov	r2, r8
+ 311 01f2 4B46     		mov	r3, r9
+ 312 01f4 FFF7FEFF 		bl	__aeabi_ddiv
+ 313              	.LVL66:
+ 136:controle_cinematico.c ****          (L*(Kp_p*ew + Ki_p*iew))/R -
+ 314              		.loc 1 136 0
+ 315 01f8 0246     		mov	r2, r0
+ 316 01fa 0B46     		mov	r3, r1
+ 317 01fc 5046     		mov	r0, r10
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 9
+
+
+ 318 01fe 5946     		mov	r1, fp
+ 319 0200 FFF7FEFF 		bl	__aeabi_dsub
+ 320              	.LVL67:
+ 135:controle_cinematico.c ****          (L*(Kp_p*ew + Ki_p*iew))/R -
+ 321              		.loc 1 135 0
+ 322 0204 FFF7FEFF 		bl	__aeabi_d2f
+ 323              	.LVL68:
+ 324 0208 8246     		mov	r10, r0
+ 325              	.LVL69:
+ 138:controle_cinematico.c ****          
+ 139:controle_cinematico.c ****     w3 = (sqrt(3)*(3*cos(t) - sqrt(3)*sin(t))*(Kp_v*ey + Ki_v*iey))/(6*R) -
+ 326              		.loc 1 139 0
+ 327 020a DDE90023 		ldrd	r2, [sp]
+ 328 020e 3046     		mov	r0, r6
+ 329              	.LVL70:
+ 330 0210 3946     		mov	r1, r7
+ 331 0212 FFF7FEFF 		bl	__aeabi_dsub
+ 332              	.LVL71:
+ 333 0216 24A3     		adr	r3, .L3
+ 334 0218 D3E90023 		ldrd	r2, [r3]
+ 335 021c FFF7FEFF 		bl	__aeabi_dmul
+ 336              	.LVL72:
+ 337 0220 0246     		mov	r2, r0
+ 338 0222 0B46     		mov	r3, r1
+ 339 0224 DDE90601 		ldrd	r0, [sp, #24]
+ 340 0228 FFF7FEFF 		bl	__aeabi_dmul
+ 341              	.LVL73:
+ 342 022c 4246     		mov	r2, r8
+ 343 022e 4B46     		mov	r3, r9
+ 344 0230 FFF7FEFF 		bl	__aeabi_ddiv
+ 345              	.LVL74:
+ 346 0234 0646     		mov	r6, r0
+ 347 0236 0F46     		mov	r7, r1
+ 140:controle_cinematico.c ****          (sqrt(3)*(3*sin(t) + sqrt(3)*cos(t))*(Kp_v*ex + Ki_v*iex))/(6*R) -
+ 348              		.loc 1 140 0
+ 349 0238 DDE90C23 		ldrd	r2, [sp, #48]
+ 350 023c DDE90A01 		ldrd	r0, [sp, #40]
+ 351 0240 FFF7FEFF 		bl	__aeabi_dadd
+ 352              	.LVL75:
+ 353 0244 18A3     		adr	r3, .L3
+ 354 0246 D3E90023 		ldrd	r2, [r3]
+ 355 024a FFF7FEFF 		bl	__aeabi_dmul
+ 356              	.LVL76:
+ 357 024e 0246     		mov	r2, r0
+ 358 0250 0B46     		mov	r3, r1
+ 359 0252 DDE90401 		ldrd	r0, [sp, #16]
+ 360 0256 FFF7FEFF 		bl	__aeabi_dmul
+ 361              	.LVL77:
+ 362 025a 4246     		mov	r2, r8
+ 363 025c 4B46     		mov	r3, r9
+ 364 025e FFF7FEFF 		bl	__aeabi_ddiv
+ 365              	.LVL78:
+ 139:controle_cinematico.c ****          (sqrt(3)*(3*sin(t) + sqrt(3)*cos(t))*(Kp_v*ex + Ki_v*iex))/(6*R) -
+ 366              		.loc 1 139 0
+ 367 0262 0246     		mov	r2, r0
+ 368 0264 0B46     		mov	r3, r1
+ 369 0266 3046     		mov	r0, r6
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 10
+
+
+ 370 0268 3946     		mov	r1, r7
+ 371 026a FFF7FEFF 		bl	__aeabi_dsub
+ 372              	.LVL79:
+ 373              		.loc 1 140 0
+ 374 026e DDE90823 		ldrd	r2, [sp, #32]
+ 375 0272 FFF7FEFF 		bl	__aeabi_dsub
+ 376              	.LVL80:
+ 139:controle_cinematico.c ****          (sqrt(3)*(3*sin(t) + sqrt(3)*cos(t))*(Kp_v*ex + Ki_v*iex))/(6*R) -
+ 377              		.loc 1 139 0
+ 378 0276 FFF7FEFF 		bl	__aeabi_d2f
+ 379              	.LVL81:
+ 141:controle_cinematico.c ****          (L*(Kp_p*ew + Ki_p*iew))/R;
+ 142:controle_cinematico.c ****     
+ 143:controle_cinematico.c ****     // desnecessário?
+ 144:controle_cinematico.c ****     cc->robo.motor[ 0 ].velRad = w1;
+ 380              		.loc 1 144 0
+ 381 027a C4F88050 		str	r5, [r4, #128]	@ float
+ 145:controle_cinematico.c ****     cc->robo.motor[ 1 ].velRad = w2;
+ 382              		.loc 1 145 0
+ 383 027e C4F8A0A0 		str	r10, [r4, #160]	@ float
+ 146:controle_cinematico.c ****     cc->robo.motor[ 2 ].velRad = w3;
+ 384              		.loc 1 146 0
+ 385 0282 C4F8C000 		str	r0, [r4, #192]	@ float
+ 147:controle_cinematico.c ****     
+ 148:controle_cinematico.c ****     cc->acao[ 0 ] = w1;
+ 386              		.loc 1 148 0
+ 387 0286 2563     		str	r5, [r4, #48]	@ float
+ 149:controle_cinematico.c ****     cc->acao[ 1 ] = w2;
+ 388              		.loc 1 149 0
+ 389 0288 C4F834A0 		str	r10, [r4, #52]	@ float
+ 150:controle_cinematico.c ****     cc->acao[ 2 ] = w3;
+ 390              		.loc 1 150 0
+ 391 028c A063     		str	r0, [r4, #56]	@ float
+ 151:controle_cinematico.c **** 	
+ 152:controle_cinematico.c **** 	motor[ 0 ].setPoint = cc->acao[ 0 ];
+ 392              		.loc 1 152 0
+ 393 028e 0A4B     		ldr	r3, .L3+16
+ 394 0290 1D60     		str	r5, [r3]	@ float
+ 153:controle_cinematico.c **** 	motor[ 1 ].setPoint = cc->acao[ 1 ];
+ 395              		.loc 1 153 0
+ 396 0292 C3F84CA0 		str	r10, [r3, #76]	@ float
+ 154:controle_cinematico.c **** 	motor[ 2 ].setPoint = cc->acao[ 2 ];
+ 397              		.loc 1 154 0
+ 398 0296 A26B     		ldr	r2, [r4, #56]	@ float
+ 399 0298 C3F89820 		str	r2, [r3, #152]	@ float
+ 155:controle_cinematico.c **** }
+ 400              		.loc 1 155 0
+ 401 029c 13B0     		add	sp, sp, #76
+ 402              		.cfi_def_cfa_offset 36
+ 403              		@ sp needed
+ 404 029e BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 405              	.LVL82:
+ 406              	.L4:
+ 407 02a2 00BFAFF3 		.align	3
+ 407      0080
+ 408              	.L3:
+ 409 02a8 AA4C58E8 		.word	-396866390
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 11
+
+
+ 410 02ac 7AB6FB3F 		.word	1073460858
+ 411 02b0 00000840 		.word	1074266112
+ 412 02b4 0000C040 		.word	1086324736
+ 413 02b8 00000000 		.word	motor
+ 414              		.cfi_endproc
+ 415              	.LFE63:
+ 416              		.size	acaoControle, .-acaoControle
+ 417              		.section	.text.saidaModelo,"ax",%progbits
+ 418              		.align	2
+ 419              		.global	saidaModelo
+ 420              		.thumb
+ 421              		.thumb_func
+ 422              		.type	saidaModelo, %function
+ 423              	saidaModelo:
+ 424              	.LFB64:
+ 156:controle_cinematico.c **** 
+ 157:controle_cinematico.c **** void saidaModelo( ControleCinematico *cc ) {
+ 425              		.loc 1 157 0
+ 426              		.cfi_startproc
+ 427              		@ args = 0, pretend = 0, frame = 64
+ 428              		@ frame_needed = 0, uses_anonymous_args = 0
+ 429              	.LVL83:
+ 430 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 431              		.cfi_def_cfa_offset 36
+ 432              		.cfi_offset 4, -36
+ 433              		.cfi_offset 5, -32
+ 434              		.cfi_offset 6, -28
+ 435              		.cfi_offset 7, -24
+ 436              		.cfi_offset 8, -20
+ 437              		.cfi_offset 9, -16
+ 438              		.cfi_offset 10, -12
+ 439              		.cfi_offset 11, -8
+ 440              		.cfi_offset 14, -4
+ 441 0004 91B0     		sub	sp, sp, #68
+ 442              		.cfi_def_cfa_offset 104
+ 443 0006 0446     		mov	r4, r0
+ 158:controle_cinematico.c ****     const float R = cc->robo.R,
+ 444              		.loc 1 158 0
+ 445 0008 856D     		ldr	r5, [r0, #88]	@ float
+ 446              	.LVL84:
+ 159:controle_cinematico.c ****                 L = cc->robo.L;
+ 447              		.loc 1 159 0
+ 448 000a D0F85480 		ldr	r8, [r0, #84]	@ float
+ 449              	.LVL85:
+ 160:controle_cinematico.c **** 
+ 161:controle_cinematico.c ****     float w1 = cc->acao[ 0 ],
+ 450              		.loc 1 161 0
+ 451 000e D0F830A0 		ldr	r10, [r0, #48]	@ float
+ 452              	.LVL86:
+ 162:controle_cinematico.c ****           w2 = cc->acao[ 1 ],
+ 453              		.loc 1 162 0
+ 454 0012 D0F83490 		ldr	r9, [r0, #52]	@ float
+ 455              	.LVL87:
+ 163:controle_cinematico.c ****           w3 = cc->acao[ 2 ],
+ 456              		.loc 1 163 0
+ 457 0016 D0F838B0 		ldr	fp, [r0, #56]	@ float
+ 458              	.LVL88:
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 12
+
+
+ 164:controle_cinematico.c ****           t = cc->robo.theta;
+ 459              		.loc 1 164 0
+ 460 001a 466E     		ldr	r6, [r0, #100]	@ float
+ 461              	.LVL89:
+ 165:controle_cinematico.c **** 
+ 166:controle_cinematico.c ****     //*******************************************************************************//
+ 167:controle_cinematico.c ****     //******************************** ATENÇÃO **************************************//
+ 168:controle_cinematico.c ****     //*******************************************************************************//
+ 169:controle_cinematico.c ****     // COMENTAR AS LINHAS ABAIXO IMPLICA EM APLICAR A ACAO DE CONTROLE CALCULADA     //
+ 170:controle_cinematico.c ****     // PELO CONTROLADOR CINEMÁTICO DIRETAMENTE AO MODELO CINEMÁTICO, AO INVÉS DE     //
+ 171:controle_cinematico.c ****     // APLICAR A VELOCIDADE REAL DOS MOTORES. ÚTIL PARA TESTES SEM O ROBÔ            //
+ 172:controle_cinematico.c ****     //*******************************************************************************//
+ 173:controle_cinematico.c **** 	// w1 = motor[ 0 ]._motor.velRad;
+ 174:controle_cinematico.c **** 	// w2 = motor[ 1 ]._motor.velRad;
+ 175:controle_cinematico.c **** 	// w3 = motor[ 2 ]._motor.velRad;
+ 176:controle_cinematico.c **** 
+ 177:controle_cinematico.c ****     cc->robo.dx = w2*((R*cos(t))/3 - (sqrt(3)*R*sin(t))/3) + w3*((R*cos(t))/3 + (sqrt(3)*R*sin(t))/
+ 462              		.loc 1 177 0
+ 463 001c 4846     		mov	r0, r9
+ 464              	.LVL90:
+ 465 001e FFF7FEFF 		bl	__aeabi_f2d
+ 466              	.LVL91:
+ 467 0022 CDE90601 		strd	r0, [sp, #24]
+ 468 0026 2846     		mov	r0, r5
+ 469 0028 FFF7FEFF 		bl	__aeabi_f2d
+ 470              	.LVL92:
+ 471 002c CDE90001 		strd	r0, [sp]
+ 472 0030 3046     		mov	r0, r6
+ 473 0032 FFF7FEFF 		bl	__aeabi_f2d
+ 474              	.LVL93:
+ 475 0036 0646     		mov	r6, r0
+ 476              	.LVL94:
+ 477 0038 0F46     		mov	r7, r1
+ 478 003a FFF7FEFF 		bl	cos
+ 479              	.LVL95:
+ 480 003e CDE90201 		strd	r0, [sp, #8]
+ 481 0042 0246     		mov	r2, r0
+ 482 0044 0B46     		mov	r3, r1
+ 483 0046 DDE90001 		ldrd	r0, [sp]
+ 484 004a FFF7FEFF 		bl	__aeabi_dmul
+ 485              	.LVL96:
+ 486 004e 0022     		movs	r2, #0
+ 487 0050 674B     		ldr	r3, .L7+8
+ 488 0052 FFF7FEFF 		bl	__aeabi_ddiv
+ 489              	.LVL97:
+ 490 0056 CDE90A01 		strd	r0, [sp, #40]
+ 491 005a 63A3     		adr	r3, .L7
+ 492 005c D3E90023 		ldrd	r2, [r3]
+ 493 0060 DDE90001 		ldrd	r0, [sp]
+ 494 0064 FFF7FEFF 		bl	__aeabi_dmul
+ 495              	.LVL98:
+ 496 0068 CDE90C01 		strd	r0, [sp, #48]
+ 497 006c 3046     		mov	r0, r6
+ 498 006e 3946     		mov	r1, r7
+ 499 0070 FFF7FEFF 		bl	sin
+ 500              	.LVL99:
+ 501 0074 CDE90401 		strd	r0, [sp, #16]
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 13
+
+
+ 502 0078 0246     		mov	r2, r0
+ 503 007a 0B46     		mov	r3, r1
+ 504 007c DDE90C01 		ldrd	r0, [sp, #48]
+ 505 0080 FFF7FEFF 		bl	__aeabi_dmul
+ 506              	.LVL100:
+ 507 0084 0022     		movs	r2, #0
+ 508 0086 5A4B     		ldr	r3, .L7+8
+ 509 0088 FFF7FEFF 		bl	__aeabi_ddiv
+ 510              	.LVL101:
+ 511 008c 0646     		mov	r6, r0
+ 512 008e 0F46     		mov	r7, r1
+ 513 0090 0246     		mov	r2, r0
+ 514 0092 0B46     		mov	r3, r1
+ 515 0094 DDE90A01 		ldrd	r0, [sp, #40]
+ 516 0098 FFF7FEFF 		bl	__aeabi_dsub
+ 517              	.LVL102:
+ 518 009c 0246     		mov	r2, r0
+ 519 009e 0B46     		mov	r3, r1
+ 520 00a0 DDE90601 		ldrd	r0, [sp, #24]
+ 521 00a4 FFF7FEFF 		bl	__aeabi_dmul
+ 522              	.LVL103:
+ 523 00a8 CDE90E01 		strd	r0, [sp, #56]
+ 524 00ac 5846     		mov	r0, fp
+ 525 00ae FFF7FEFF 		bl	__aeabi_f2d
+ 526              	.LVL104:
+ 527 00b2 CDE90801 		strd	r0, [sp, #32]
+ 528 00b6 3246     		mov	r2, r6
+ 529 00b8 3B46     		mov	r3, r7
+ 530 00ba DDE90A01 		ldrd	r0, [sp, #40]
+ 531 00be FFF7FEFF 		bl	__aeabi_dadd
+ 532              	.LVL105:
+ 533 00c2 0246     		mov	r2, r0
+ 534 00c4 0B46     		mov	r3, r1
+ 535 00c6 DDE90801 		ldrd	r0, [sp, #32]
+ 536 00ca FFF7FEFF 		bl	__aeabi_dmul
+ 537              	.LVL106:
+ 538 00ce 0246     		mov	r2, r0
+ 539 00d0 0B46     		mov	r3, r1
+ 540 00d2 DDE90E01 		ldrd	r0, [sp, #56]
+ 541 00d6 FFF7FEFF 		bl	__aeabi_dadd
+ 542              	.LVL107:
+ 543 00da 0646     		mov	r6, r0
+ 544 00dc 0F46     		mov	r7, r1
+ 545 00de 2946     		mov	r1, r5
+ 546 00e0 2846     		mov	r0, r5
+ 547 00e2 FFF7FEFF 		bl	__aeabi_fadd
+ 548              	.LVL108:
+ 549 00e6 0146     		mov	r1, r0
+ 550 00e8 5046     		mov	r0, r10
+ 551 00ea FFF7FEFF 		bl	__aeabi_fmul
+ 552              	.LVL109:
+ 553 00ee FFF7FEFF 		bl	__aeabi_f2d
+ 554              	.LVL110:
+ 555 00f2 CDE90A01 		strd	r0, [sp, #40]
+ 556 00f6 0246     		mov	r2, r0
+ 557 00f8 0B46     		mov	r3, r1
+ 558 00fa DDE90201 		ldrd	r0, [sp, #8]
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 14
+
+
+ 559 00fe FFF7FEFF 		bl	__aeabi_dmul
+ 560              	.LVL111:
+ 561 0102 0022     		movs	r2, #0
+ 562 0104 3A4B     		ldr	r3, .L7+8
+ 563 0106 FFF7FEFF 		bl	__aeabi_ddiv
+ 564              	.LVL112:
+ 565 010a 0246     		mov	r2, r0
+ 566 010c 0B46     		mov	r3, r1
+ 567 010e 3046     		mov	r0, r6
+ 568 0110 3946     		mov	r1, r7
+ 569 0112 FFF7FEFF 		bl	__aeabi_dsub
+ 570              	.LVL113:
+ 571 0116 FFF7FEFF 		bl	__aeabi_d2f
+ 572              	.LVL114:
+ 573 011a A066     		str	r0, [r4, #104]	@ float
+ 178:controle_cinematico.c ****     cc->robo.dy = w2*((R*sin(t))/3 + (sqrt(3)*R*cos(t))/3) + w3*((R*sin(t))/3 - (sqrt(3)*R*cos(t))/
+ 574              		.loc 1 178 0
+ 575 011c DDE90423 		ldrd	r2, [sp, #16]
+ 576 0120 DDE90001 		ldrd	r0, [sp]
+ 577 0124 FFF7FEFF 		bl	__aeabi_dmul
+ 578              	.LVL115:
+ 579 0128 0022     		movs	r2, #0
+ 580 012a 314B     		ldr	r3, .L7+8
+ 581 012c FFF7FEFF 		bl	__aeabi_ddiv
+ 582              	.LVL116:
+ 583 0130 CDE90001 		strd	r0, [sp]
+ 584 0134 DDE90C23 		ldrd	r2, [sp, #48]
+ 585 0138 DDE90201 		ldrd	r0, [sp, #8]
+ 586 013c FFF7FEFF 		bl	__aeabi_dmul
+ 587              	.LVL117:
+ 588 0140 0022     		movs	r2, #0
+ 589 0142 2B4B     		ldr	r3, .L7+8
+ 590 0144 FFF7FEFF 		bl	__aeabi_ddiv
+ 591              	.LVL118:
+ 592 0148 0646     		mov	r6, r0
+ 593 014a 0F46     		mov	r7, r1
+ 594 014c 0246     		mov	r2, r0
+ 595 014e 0B46     		mov	r3, r1
+ 596 0150 DDE90001 		ldrd	r0, [sp]
+ 597 0154 FFF7FEFF 		bl	__aeabi_dadd
+ 598              	.LVL119:
+ 599 0158 0246     		mov	r2, r0
+ 600 015a 0B46     		mov	r3, r1
+ 601 015c DDE90601 		ldrd	r0, [sp, #24]
+ 602 0160 FFF7FEFF 		bl	__aeabi_dmul
+ 603              	.LVL120:
+ 604 0164 CDE90201 		strd	r0, [sp, #8]
+ 605 0168 3246     		mov	r2, r6
+ 606 016a 3B46     		mov	r3, r7
+ 607 016c DDE90001 		ldrd	r0, [sp]
+ 608 0170 FFF7FEFF 		bl	__aeabi_dsub
+ 609              	.LVL121:
+ 610 0174 0246     		mov	r2, r0
+ 611 0176 0B46     		mov	r3, r1
+ 612 0178 DDE90801 		ldrd	r0, [sp, #32]
+ 613 017c FFF7FEFF 		bl	__aeabi_dmul
+ 614              	.LVL122:
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 15
+
+
+ 615 0180 0246     		mov	r2, r0
+ 616 0182 0B46     		mov	r3, r1
+ 617 0184 DDE90201 		ldrd	r0, [sp, #8]
+ 618 0188 FFF7FEFF 		bl	__aeabi_dadd
+ 619              	.LVL123:
+ 620 018c 0646     		mov	r6, r0
+ 621 018e 0F46     		mov	r7, r1
+ 622 0190 DDE90A23 		ldrd	r2, [sp, #40]
+ 623 0194 DDE90401 		ldrd	r0, [sp, #16]
+ 624 0198 FFF7FEFF 		bl	__aeabi_dmul
+ 625              	.LVL124:
+ 626 019c 0022     		movs	r2, #0
+ 627 019e 144B     		ldr	r3, .L7+8
+ 628 01a0 FFF7FEFF 		bl	__aeabi_ddiv
+ 629              	.LVL125:
+ 630 01a4 0246     		mov	r2, r0
+ 631 01a6 0B46     		mov	r3, r1
+ 632 01a8 3046     		mov	r0, r6
+ 633 01aa 3946     		mov	r1, r7
+ 634 01ac FFF7FEFF 		bl	__aeabi_dsub
+ 635              	.LVL126:
+ 636 01b0 FFF7FEFF 		bl	__aeabi_d2f
+ 637              	.LVL127:
+ 638 01b4 E066     		str	r0, [r4, #108]	@ float
+ 179:controle_cinematico.c ****     cc->robo.dtheta = (R*(w1 + w2 + w3))/(3*L);
+ 639              		.loc 1 179 0
+ 640 01b6 4946     		mov	r1, r9
+ 641 01b8 5046     		mov	r0, r10
+ 642 01ba FFF7FEFF 		bl	__aeabi_fadd
+ 643              	.LVL128:
+ 644 01be 0146     		mov	r1, r0
+ 645 01c0 5846     		mov	r0, fp
+ 646 01c2 FFF7FEFF 		bl	__aeabi_fadd
+ 647              	.LVL129:
+ 648 01c6 0146     		mov	r1, r0
+ 649 01c8 2846     		mov	r0, r5
+ 650 01ca FFF7FEFF 		bl	__aeabi_fmul
+ 651              	.LVL130:
+ 652 01ce 0546     		mov	r5, r0
+ 653              	.LVL131:
+ 654 01d0 0849     		ldr	r1, .L7+12
+ 655 01d2 4046     		mov	r0, r8
+ 656 01d4 FFF7FEFF 		bl	__aeabi_fmul
+ 657              	.LVL132:
+ 658 01d8 0146     		mov	r1, r0
+ 659 01da 2846     		mov	r0, r5
+ 660 01dc FFF7FEFF 		bl	__aeabi_fdiv
+ 661              	.LVL133:
+ 662 01e0 2067     		str	r0, [r4, #112]	@ float
+ 180:controle_cinematico.c **** }
+ 663              		.loc 1 180 0
+ 664 01e2 11B0     		add	sp, sp, #68
+ 665              		.cfi_def_cfa_offset 36
+ 666              		@ sp needed
+ 667 01e4 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 668              	.LVL134:
+ 669              	.L8:
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 16
+
+
+ 670              		.align	3
+ 671              	.L7:
+ 672 01e8 AA4C58E8 		.word	-396866390
+ 673 01ec 7AB6FB3F 		.word	1073460858
+ 674 01f0 00000840 		.word	1074266112
+ 675 01f4 00004040 		.word	1077936128
+ 676              		.cfi_endproc
+ 677              	.LFE64:
+ 678              		.size	saidaModelo, .-saidaModelo
+ 679              		.global	__aeabi_fcmplt
+ 680              		.global	__aeabi_fsub
+ 681              		.section	.text.controle_cinematico_isr,"ax",%progbits
+ 682              		.align	2
+ 683              		.global	controle_cinematico_isr
+ 684              		.thumb
+ 685              		.thumb_func
+ 686              		.type	controle_cinematico_isr, %function
+ 687              	controle_cinematico_isr:
+ 688              	.LFB65:
+ 181:controle_cinematico.c **** 
+ 182:controle_cinematico.c **** extern int flg_recv;
+ 183:controle_cinematico.c **** 
+ 184:controle_cinematico.c **** void controle_cinematico_isr() {
+ 689              		.loc 1 184 0
+ 690              		.cfi_startproc
+ 691              		@ args = 0, pretend = 0, frame = 0
+ 692              		@ frame_needed = 0, uses_anonymous_args = 0
+ 693 0000 2DE9F84F 		push	{r3, r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 694              		.cfi_def_cfa_offset 40
+ 695              		.cfi_offset 3, -40
+ 696              		.cfi_offset 4, -36
+ 697              		.cfi_offset 5, -32
+ 698              		.cfi_offset 6, -28
+ 699              		.cfi_offset 7, -24
+ 700              		.cfi_offset 8, -20
+ 701              		.cfi_offset 9, -16
+ 702              		.cfi_offset 10, -12
+ 703              		.cfi_offset 11, -8
+ 704              		.cfi_offset 14, -4
+ 185:controle_cinematico.c ****     //if (!POSICAO) {
+ 186:controle_cinematico.c ****     //   cinematico.setPoint[2] =
+ 187:controle_cinematico.c ****     //        atan2(cinematico.setPoint[1], cinematico.setPoint[0]);
+ 188:controle_cinematico.c ****     //}
+ 189:controle_cinematico.c ****     
+ 190:controle_cinematico.c ****     dxAnt = cinematico.robo.dx;
+ 705              		.loc 1 190 0
+ 706 0004 604C     		ldr	r4, .L16+16
+ 707 0006 A26E     		ldr	r2, [r4, #104]	@ float
+ 708 0008 604B     		ldr	r3, .L16+20
+ 709 000a 1A60     		str	r2, [r3]	@ float
+ 191:controle_cinematico.c ****     dyAnt = cinematico.robo.dy;
+ 710              		.loc 1 191 0
+ 711 000c E26E     		ldr	r2, [r4, #108]	@ float
+ 712 000e 604B     		ldr	r3, .L16+24
+ 713 0010 1A60     		str	r2, [r3]	@ float
+ 192:controle_cinematico.c ****     dthetaAnt = cinematico.robo.dtheta;
+ 714              		.loc 1 192 0
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 17
+
+
+ 715 0012 226F     		ldr	r2, [r4, #112]	@ float
+ 716 0014 5F4B     		ldr	r3, .L16+28
+ 717 0016 1A60     		str	r2, [r3]	@ float
+ 193:controle_cinematico.c ****     
+ 194:controle_cinematico.c ****     saidaModelo(&cinematico);
+ 718              		.loc 1 194 0
+ 719 0018 2046     		mov	r0, r4
+ 720 001a FFF7FEFF 		bl	saidaModelo
+ 721              	.LVL135:
+ 195:controle_cinematico.c ****     
+ 196:controle_cinematico.c ****     /*
+ 197:controle_cinematico.c ****     cinematico.robo.x +=
+ 198:controle_cinematico.c ****         (cinematico.periodo / 2) * (cinematico.robo.dx + dxAnt);
+ 199:controle_cinematico.c ****     cinematico.robo.y +=
+ 200:controle_cinematico.c ****         (cinematico.periodo / 2) * (cinematico.robo.dy + dyAnt);
+ 201:controle_cinematico.c ****     cinematico.robo.theta +=
+ 202:controle_cinematico.c ****         (cinematico.periodo / 2) * (cinematico.robo.dtheta + dthetaAnt);
+ 203:controle_cinematico.c ****     */
+ 204:controle_cinematico.c ****     
+ 205:controle_cinematico.c ****     cinematico.robo.x += cinematico.robo.dx;
+ 722              		.loc 1 205 0
+ 723 001e A16E     		ldr	r1, [r4, #104]	@ float
+ 724 0020 E06D     		ldr	r0, [r4, #92]	@ float
+ 725 0022 FFF7FEFF 		bl	__aeabi_fadd
+ 726              	.LVL136:
+ 727 0026 E065     		str	r0, [r4, #92]	@ float
+ 206:controle_cinematico.c ****     cinematico.robo.y += cinematico.robo.dy;
+ 728              		.loc 1 206 0
+ 729 0028 E16E     		ldr	r1, [r4, #108]	@ float
+ 730 002a 206E     		ldr	r0, [r4, #96]	@ float
+ 731 002c FFF7FEFF 		bl	__aeabi_fadd
+ 732              	.LVL137:
+ 733 0030 2066     		str	r0, [r4, #96]	@ float
+ 207:controle_cinematico.c ****     cinematico.robo.theta += cinematico.robo.dtheta;
+ 734              		.loc 1 207 0
+ 735 0032 616E     		ldr	r1, [r4, #100]	@ float
+ 736 0034 206F     		ldr	r0, [r4, #112]	@ float
+ 737 0036 FFF7FEFF 		bl	__aeabi_fadd
+ 738              	.LVL138:
+ 208:controle_cinematico.c ****     
+ 209:controle_cinematico.c **** 	/*nVoltas = cinematico.robo.theta / ( 2 * __PI );
+ 210:controle_cinematico.c **** 
+ 211:controle_cinematico.c **** 	primDet = nVoltas - floor( nVoltas );
+ 212:controle_cinematico.c **** 
+ 213:controle_cinematico.c **** 	if ( primDet < .5 )
+ 214:controle_cinematico.c **** 	    cinematico.robo.theta = 2 * primDet * __PI;
+ 215:controle_cinematico.c **** 	else
+ 216:controle_cinematico.c **** 	    cinematico.robo.theta = -( 2 * __PI - 2 * primDet * __PI );*/
+ 217:controle_cinematico.c **** 	
+ 218:controle_cinematico.c **** 	nVoltas = cinematico.robo.theta / (2 * CY_M_PI);
+ 739              		.loc 1 218 0
+ 740 003a FFF7FEFF 		bl	__aeabi_f2d
+ 741              	.LVL139:
+ 742 003e 4EA3     		adr	r3, .L16
+ 743 0040 D3E90023 		ldrd	r2, [r3]
+ 744 0044 FFF7FEFF 		bl	__aeabi_ddiv
+ 745              	.LVL140:
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 18
+
+
+ 746 0048 FFF7FEFF 		bl	__aeabi_d2f
+ 747              	.LVL141:
+ 748 004c 0446     		mov	r4, r0
+ 749 004e 524B     		ldr	r3, .L16+32
+ 750 0050 1860     		str	r0, [r3]	@ float
+ 219:controle_cinematico.c **** 
+ 220:controle_cinematico.c ****     if (nVoltas < 0) {
+ 751              		.loc 1 220 0
+ 752 0052 0021     		movs	r1, #0
+ 753 0054 FFF7FEFF 		bl	__aeabi_fcmplt
+ 754              	.LVL142:
+ 755 0058 40B1     		cbz	r0, .L14
+ 221:controle_cinematico.c ****         nVoltas *= -1;
+ 756              		.loc 1 221 0
+ 757 005a 04F10044 		add	r4, r4, #-2147483648
+ 758 005e 4E4B     		ldr	r3, .L16+32
+ 759 0060 1C60     		str	r4, [r3]	@ float
+ 222:controle_cinematico.c ****         fator = -1;
+ 760              		.loc 1 222 0
+ 761 0062 4E4A     		ldr	r2, .L16+36
+ 762 0064 484B     		ldr	r3, .L16+16
+ 763 0066 C3F8E020 		str	r2, [r3, #224]	@ float
+ 764 006a 04E0     		b	.L12
+ 765              	.L14:
+ 223:controle_cinematico.c ****     } else
+ 224:controle_cinematico.c ****         fator = 1;
+ 766              		.loc 1 224 0
+ 767 006c 4FF07E52 		mov	r2, #1065353216
+ 768 0070 454B     		ldr	r3, .L16+16
+ 769 0072 C3F8E020 		str	r2, [r3, #224]	@ float
+ 770              	.L12:
+ 225:controle_cinematico.c ****     
+ 226:controle_cinematico.c **** 	primDet = nVoltas - floor(nVoltas);
+ 771              		.loc 1 226 0
+ 772 0076 484B     		ldr	r3, .L16+32
+ 773 0078 1868     		ldr	r0, [r3]	@ float
+ 774 007a FFF7FEFF 		bl	__aeabi_f2d
+ 775              	.LVL143:
+ 776 007e 0446     		mov	r4, r0
+ 777 0080 0D46     		mov	r5, r1
+ 778 0082 FFF7FEFF 		bl	floor
+ 779              	.LVL144:
+ 780 0086 0246     		mov	r2, r0
+ 781 0088 0B46     		mov	r3, r1
+ 782 008a 2046     		mov	r0, r4
+ 783 008c 2946     		mov	r1, r5
+ 784 008e FFF7FEFF 		bl	__aeabi_dsub
+ 785              	.LVL145:
+ 786 0092 FFF7FEFF 		bl	__aeabi_d2f
+ 787              	.LVL146:
+ 788 0096 0146     		mov	r1, r0
+ 789 0098 414B     		ldr	r3, .L16+40
+ 790 009a 1860     		str	r0, [r3]	@ float
+ 227:controle_cinematico.c **** 
+ 228:controle_cinematico.c **** 	cinematico.robo.theta = 2 * primDet * CY_M_PI * fator;
+ 791              		.loc 1 228 0
+ 792 009c FFF7FEFF 		bl	__aeabi_fadd
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 19
+
+
+ 793              	.LVL147:
+ 794 00a0 FFF7FEFF 		bl	__aeabi_f2d
+ 795              	.LVL148:
+ 796 00a4 36A3     		adr	r3, .L16+8
+ 797 00a6 D3E90023 		ldrd	r2, [r3]
+ 798 00aa FFF7FEFF 		bl	__aeabi_dmul
+ 799              	.LVL149:
+ 800 00ae 0646     		mov	r6, r0
+ 801 00b0 0F46     		mov	r7, r1
+ 802 00b2 354C     		ldr	r4, .L16+16
+ 803 00b4 D4F8E000 		ldr	r0, [r4, #224]	@ float
+ 804 00b8 FFF7FEFF 		bl	__aeabi_f2d
+ 805              	.LVL150:
+ 806 00bc 3246     		mov	r2, r6
+ 807 00be 3B46     		mov	r3, r7
+ 808 00c0 FFF7FEFF 		bl	__aeabi_dmul
+ 809              	.LVL151:
+ 810 00c4 FFF7FEFF 		bl	__aeabi_d2f
+ 811              	.LVL152:
+ 812 00c8 0546     		mov	r5, r0
+ 813 00ca 6066     		str	r0, [r4, #100]	@ float
+ 229:controle_cinematico.c **** 	
+ 230:controle_cinematico.c ****     cinematico.erroAnt[0] = cinematico.erro[0];
+ 814              		.loc 1 230 0
+ 815 00cc D4F80CA0 		ldr	r10, [r4, #12]	@ float
+ 816 00d0 C4F818A0 		str	r10, [r4, #24]	@ float
+ 231:controle_cinematico.c ****     cinematico.erroAnt[1] = cinematico.erro[1];
+ 817              		.loc 1 231 0
+ 818 00d4 D4F81080 		ldr	r8, [r4, #16]	@ float
+ 819 00d8 C4F81C80 		str	r8, [r4, #28]	@ float
+ 232:controle_cinematico.c ****     cinematico.erroAnt[2] = cinematico.erro[2];
+ 820              		.loc 1 232 0
+ 821 00dc 6669     		ldr	r6, [r4, #20]	@ float
+ 822 00de 2662     		str	r6, [r4, #32]	@ float
+ 233:controle_cinematico.c ****     
+ 234:controle_cinematico.c ****     // A variável "dados" é atualizada em ambos os casos (controle de posição ou
+ 235:controle_cinematico.c ****     // de velocidade) para que possa ser utilizada depois para mostrar no display
+ 236:controle_cinematico.c ****     // ou enviar via CAN ou UART.
+ 237:controle_cinematico.c ****     if (POSICAO) { // Se for controlador de posicao
+ 238:controle_cinematico.c ****         cinematico.erro[0] = -(cinematico.setPoint[0] - cinematico.robo.x);
+ 239:controle_cinematico.c ****         cinematico.erro[1] = -(cinematico.setPoint[1] - cinematico.robo.y);
+ 240:controle_cinematico.c ****         cinematico.erro[2] = -(cinematico.setPoint[2] - cinematico.robo.theta);
+ 241:controle_cinematico.c ****     } else { // Se for controlador de velocidade.
+ 242:controle_cinematico.c ****         cinematico.erro[0] = -(cinematico.setPoint[0] - cinematico.robo.dx);
+ 823              		.loc 1 242 0
+ 824 00e0 A16E     		ldr	r1, [r4, #104]	@ float
+ 825 00e2 2068     		ldr	r0, [r4]	@ float
+ 826 00e4 FFF7FEFF 		bl	__aeabi_fsub
+ 827              	.LVL153:
+ 828 00e8 00F1004B 		add	fp, r0, #-2147483648
+ 829 00ec C4F80CB0 		str	fp, [r4, #12]	@ float
+ 243:controle_cinematico.c ****         cinematico.erro[1] = -(cinematico.setPoint[1] - cinematico.robo.dy);
+ 830              		.loc 1 243 0
+ 831 00f0 E16E     		ldr	r1, [r4, #108]	@ float
+ 832 00f2 6068     		ldr	r0, [r4, #4]	@ float
+ 833 00f4 FFF7FEFF 		bl	__aeabi_fsub
+ 834              	.LVL154:
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 20
+
+
+ 835 00f8 00F10049 		add	r9, r0, #-2147483648
+ 836 00fc C4F81090 		str	r9, [r4, #16]	@ float
+ 244:controle_cinematico.c ****         cinematico.erro[2] = -(cinematico.setPoint[2] - cinematico.robo.theta); // continua theta.
+ 837              		.loc 1 244 0
+ 838 0100 2946     		mov	r1, r5
+ 839 0102 A068     		ldr	r0, [r4, #8]	@ float
+ 840 0104 FFF7FEFF 		bl	__aeabi_fsub
+ 841              	.LVL155:
+ 842 0108 00F10047 		add	r7, r0, #-2147483648
+ 843 010c 6761     		str	r7, [r4, #20]	@ float
+ 245:controle_cinematico.c ****     }
+ 246:controle_cinematico.c ****     
+ 247:controle_cinematico.c ****     cinematico.iErro[0] +=
+ 248:controle_cinematico.c ****         (cinematico.periodo / 2) * (cinematico.erro[0] + cinematico.erroAnt[0]);
+ 844              		.loc 1 248 0
+ 845 010e 4FF07C51 		mov	r1, #1056964608
+ 846 0112 206D     		ldr	r0, [r4, #80]	@ float
+ 847 0114 FFF7FEFF 		bl	__aeabi_fmul
+ 848              	.LVL156:
+ 849 0118 0546     		mov	r5, r0
+ 850 011a 5946     		mov	r1, fp
+ 851 011c 5046     		mov	r0, r10
+ 852 011e FFF7FEFF 		bl	__aeabi_fadd
+ 853              	.LVL157:
+ 854 0122 0146     		mov	r1, r0
+ 855 0124 2846     		mov	r0, r5
+ 856 0126 FFF7FEFF 		bl	__aeabi_fmul
+ 857              	.LVL158:
+ 247:controle_cinematico.c ****         (cinematico.periodo / 2) * (cinematico.erro[0] + cinematico.erroAnt[0]);
+ 858              		.loc 1 247 0
+ 859 012a 0146     		mov	r1, r0
+ 860 012c 606A     		ldr	r0, [r4, #36]	@ float
+ 861 012e FFF7FEFF 		bl	__aeabi_fadd
+ 862              	.LVL159:
+ 863 0132 6062     		str	r0, [r4, #36]	@ float
+ 249:controle_cinematico.c ****     cinematico.iErro[1] +=
+ 250:controle_cinematico.c ****         (cinematico.periodo / 2) * (cinematico.erro[1] + cinematico.erroAnt[1]);
+ 864              		.loc 1 250 0
+ 865 0134 4946     		mov	r1, r9
+ 866 0136 4046     		mov	r0, r8
+ 867 0138 FFF7FEFF 		bl	__aeabi_fadd
+ 868              	.LVL160:
+ 869 013c 0146     		mov	r1, r0
+ 870 013e 2846     		mov	r0, r5
+ 871 0140 FFF7FEFF 		bl	__aeabi_fmul
+ 872              	.LVL161:
+ 249:controle_cinematico.c ****     cinematico.iErro[1] +=
+ 873              		.loc 1 249 0
+ 874 0144 0146     		mov	r1, r0
+ 875 0146 A06A     		ldr	r0, [r4, #40]	@ float
+ 876 0148 FFF7FEFF 		bl	__aeabi_fadd
+ 877              	.LVL162:
+ 878 014c A062     		str	r0, [r4, #40]	@ float
+ 251:controle_cinematico.c ****     cinematico.iErro[2] +=
+ 252:controle_cinematico.c ****         (cinematico.periodo / 2) * (cinematico.erro[2] + cinematico.erroAnt[2]);
+ 879              		.loc 1 252 0
+ 880 014e 3946     		mov	r1, r7
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 21
+
+
+ 881 0150 3046     		mov	r0, r6
+ 882 0152 FFF7FEFF 		bl	__aeabi_fadd
+ 883              	.LVL163:
+ 884 0156 0146     		mov	r1, r0
+ 885 0158 2846     		mov	r0, r5
+ 886 015a FFF7FEFF 		bl	__aeabi_fmul
+ 887              	.LVL164:
+ 251:controle_cinematico.c ****     cinematico.iErro[2] +=
+ 888              		.loc 1 251 0
+ 889 015e 0146     		mov	r1, r0
+ 890 0160 E06A     		ldr	r0, [r4, #44]	@ float
+ 891 0162 FFF7FEFF 		bl	__aeabi_fadd
+ 892              	.LVL165:
+ 893 0166 E062     		str	r0, [r4, #44]	@ float
+ 253:controle_cinematico.c ****     
+ 254:controle_cinematico.c ****     acaoControle(&cinematico);
+ 894              		.loc 1 254 0
+ 895 0168 2046     		mov	r0, r4
+ 896 016a FFF7FEFF 		bl	acaoControle
+ 897              	.LVL166:
+ 898 016e BDE8F88F 		pop	{r3, r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 899              	.L17:
+ 900 0172 00BFAFF3 		.align	3
+ 900      0080
+ 901              	.L16:
+ 902 0178 182D4454 		.word	1413754136
+ 903 017c FB211940 		.word	1075388923
+ 904 0180 182D4454 		.word	1413754136
+ 905 0184 FB210940 		.word	1074340347
+ 906 0188 00000000 		.word	.LANCHOR0
+ 907 018c 00000000 		.word	dxAnt
+ 908 0190 00000000 		.word	dyAnt
+ 909 0194 00000000 		.word	dthetaAnt
+ 910 0198 00000000 		.word	nVoltas
+ 911 019c 000080BF 		.word	-1082130432
+ 912 01a0 00000000 		.word	primDet
+ 913              		.cfi_endproc
+ 914              	.LFE65:
+ 915              		.size	controle_cinematico_isr, .-controle_cinematico_isr
+ 916              		.global	sy
+ 917              		.global	sx
+ 918              		.global	_t
+ 919              		.global	soy
+ 920              		.global	sox
+ 921              		.global	cinematico
+ 922              		.comm	sonar,60,4
+ 923              		.comm	msgTeste,50,4
+ 924              		.global	msgPlayer
+ 925              		.comm	msgInstintivo,60,4
+ 926              		.comm	thetaStr,10,4
+ 927              		.comm	yStr,10,4
+ 928              		.comm	xStr,10,4
+ 929              		.global	fator
+ 930              		.comm	nVoltas,4,4
+ 931              		.comm	primDet,4,4
+ 932              		.comm	dthetaAnt,4,4
+ 933              		.comm	dyAnt,4,4
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 22
+
+
+ 934              		.comm	dxAnt,4,4
+ 935              		.data
+ 936              		.align	2
+ 937              		.set	.LANCHOR0,. + 0
+ 938              		.type	cinematico, %object
+ 939              		.size	cinematico, 224
+ 940              	cinematico:
+ 941 0000 00000000 		.word	0
+ 942 0004 00000000 		.word	0
+ 943 0008 00000000 		.word	0
+ 944 000c 00000000 		.word	0
+ 945 0010 00000000 		.word	0
+ 946 0014 00000000 		.word	0
+ 947 0018 00000000 		.word	0
+ 948 001c 00000000 		.word	0
+ 949 0020 00000000 		.word	0
+ 950 0024 00000000 		.word	0
+ 951 0028 00000000 		.word	0
+ 952 002c 00000000 		.word	0
+ 953 0030 00000000 		.word	0
+ 954 0034 00000000 		.word	0
+ 955 0038 00000000 		.word	0
+ 956 003c CDCC4C3E 		.word	1045220557
+ 957 0040 CDCCCC3D 		.word	1036831949
+ 958 0044 8FC2753C 		.word	1014350479
+ 959 0048 CDCCCC3D 		.word	1036831949
+ 960 004c 8FC2753C 		.word	1014350479
+ 961 0050 CDCC4C3D 		.word	1028443341
+ 962 0054 EC51B83D 		.word	1035489772
+ 963 0058 295C8F3D 		.word	1032805417
+ 964 005c 00000000 		.word	0
+ 965 0060 00000000 		.word	0
+ 966 0064 00000000 		.word	0
+ 967 0068 00000000 		.word	0
+ 968 006c 00000000 		.word	0
+ 969 0070 00000000 		.word	0
+ 970 0074 00000000 		.word	0
+ 971 0078 00000000 		.word	0
+ 972 007c 00000000 		.word	0
+ 973 0080 00000000 		.word	0
+ 974 0084 00000000 		.space	4
+ 975 0088 00000000 		.word	0
+ 976 008c 0000     		.short	0
+ 977 008e 0000     		.short	0
+ 978 0090 0000     		.short	0
+ 979 0092 0000     		.short	0
+ 980 0094 00       		.byte	0
+ 981 0095 00000000 		.space	11
+ 981      00000000 
+ 981      000000
+ 982 00a0 00000000 		.word	0
+ 983 00a4 00000000 		.space	4
+ 984 00a8 00000000 		.word	0
+ 985 00ac 0000     		.short	0
+ 986 00ae 0000     		.short	0
+ 987 00b0 0000     		.short	0
+ 988 00b2 0000     		.short	0
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 23
+
+
+ 989 00b4 00       		.byte	0
+ 990 00b5 00000000 		.space	11
+ 990      00000000 
+ 990      000000
+ 991 00c0 00000000 		.word	0
+ 992 00c4 00000000 		.space	4
+ 993 00c8 00000000 		.word	0
+ 994 00cc 0000     		.short	0
+ 995 00ce 0000     		.short	0
+ 996 00d0 0000     		.short	0
+ 997 00d2 0000     		.short	0
+ 998 00d4 00       		.byte	0
+ 999 00d5 00000000 		.space	11
+ 999      00000000 
+ 999      000000
+ 1000              		.type	fator, %object
+ 1001              		.size	fator, 4
+ 1002              	fator:
+ 1003 00e0 0000803F 		.word	1065353216
+ 1004              		.bss
+ 1005              		.align	2
+ 1006              		.type	sy, %object
+ 1007              		.size	sy, 4
+ 1008              	sy:
+ 1009 0000 00000000 		.space	4
+ 1010              		.type	sx, %object
+ 1011              		.size	sx, 4
+ 1012              	sx:
+ 1013 0004 00000000 		.space	4
+ 1014              		.type	_t, %object
+ 1015              		.size	_t, 4
+ 1016              	_t:
+ 1017 0008 00000000 		.space	4
+ 1018              		.type	soy, %object
+ 1019              		.size	soy, 4
+ 1020              	soy:
+ 1021 000c 00000000 		.space	4
+ 1022              		.type	sox, %object
+ 1023              		.size	sox, 4
+ 1024              	sox:
+ 1025 0010 00000000 		.space	4
+ 1026              		.type	msgPlayer, %object
+ 1027              		.size	msgPlayer, 64
+ 1028              	msgPlayer:
+ 1029 0014 00000000 		.space	64
+ 1029      00000000 
+ 1029      00000000 
+ 1029      00000000 
+ 1029      00000000 
+ 1030              		.text
+ 1031              	.Letext0:
+ 1032              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 1033              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 1034              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 1035              		.file 5 "motor.h"
+ 1036              		.file 6 "controle_cinematico.h"
+ 1037              		.file 7 "Generated_Source\\PSoC5/core_cm3.h"
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 24
+
+
+ 1038              		.file 8 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 1039              		.section	.debug_info,"",%progbits
+ 1040              	.Ldebug_info0:
+ 1041 0000 49070000 		.4byte	0x749
+ 1042 0004 0400     		.2byte	0x4
+ 1043 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1044 000a 04       		.byte	0x4
+ 1045 000b 01       		.uleb128 0x1
+ 1046 000c BE020000 		.4byte	.LASF69
+ 1047 0010 0C       		.byte	0xc
+ 1048 0011 43020000 		.4byte	.LASF70
+ 1049 0015 FD010000 		.4byte	.LASF71
+ 1050 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 1051 001d 00000000 		.4byte	0
+ 1052 0021 00000000 		.4byte	.Ldebug_line0
+ 1053 0025 02       		.uleb128 0x2
+ 1054 0026 08       		.byte	0x8
+ 1055 0027 04       		.byte	0x4
+ 1056 0028 98020000 		.4byte	.LASF0
+ 1057 002c 03       		.uleb128 0x3
+ 1058 002d 04       		.byte	0x4
+ 1059 002e 05       		.byte	0x5
+ 1060 002f 696E7400 		.ascii	"int\000"
+ 1061 0033 02       		.uleb128 0x2
+ 1062 0034 04       		.byte	0x4
+ 1063 0035 07       		.byte	0x7
+ 1064 0036 A4010000 		.4byte	.LASF1
+ 1065 003a 02       		.uleb128 0x2
+ 1066 003b 08       		.byte	0x8
+ 1067 003c 05       		.byte	0x5
+ 1068 003d DC000000 		.4byte	.LASF2
+ 1069 0041 02       		.uleb128 0x2
+ 1070 0042 08       		.byte	0x8
+ 1071 0043 04       		.byte	0x4
+ 1072 0044 61000000 		.4byte	.LASF3
+ 1073 0048 02       		.uleb128 0x2
+ 1074 0049 01       		.byte	0x1
+ 1075 004a 06       		.byte	0x6
+ 1076 004b 73010000 		.4byte	.LASF4
+ 1077 004f 02       		.uleb128 0x2
+ 1078 0050 01       		.byte	0x1
+ 1079 0051 08       		.byte	0x8
+ 1080 0052 56010000 		.4byte	.LASF5
+ 1081 0056 02       		.uleb128 0x2
+ 1082 0057 02       		.byte	0x2
+ 1083 0058 05       		.byte	0x5
+ 1084 0059 20000000 		.4byte	.LASF6
+ 1085 005d 02       		.uleb128 0x2
+ 1086 005e 02       		.byte	0x2
+ 1087 005f 07       		.byte	0x7
+ 1088 0060 C8010000 		.4byte	.LASF7
+ 1089 0064 04       		.uleb128 0x4
+ 1090 0065 69020000 		.4byte	.LASF14
+ 1091 0069 02       		.byte	0x2
+ 1092 006a 3F       		.byte	0x3f
+ 1093 006b 6F000000 		.4byte	0x6f
+ 1094 006f 02       		.uleb128 0x2
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 25
+
+
+ 1095 0070 04       		.byte	0x4
+ 1096 0071 05       		.byte	0x5
+ 1097 0072 EC010000 		.4byte	.LASF8
+ 1098 0076 02       		.uleb128 0x2
+ 1099 0077 04       		.byte	0x4
+ 1100 0078 07       		.byte	0x7
+ 1101 0079 FA000000 		.4byte	.LASF9
+ 1102 007d 02       		.uleb128 0x2
+ 1103 007e 08       		.byte	0x8
+ 1104 007f 07       		.byte	0x7
+ 1105 0080 84010000 		.4byte	.LASF10
+ 1106 0084 02       		.uleb128 0x2
+ 1107 0085 04       		.byte	0x4
+ 1108 0086 07       		.byte	0x7
+ 1109 0087 36000000 		.4byte	.LASF11
+ 1110 008b 02       		.uleb128 0x2
+ 1111 008c 01       		.byte	0x1
+ 1112 008d 08       		.byte	0x8
+ 1113 008e E7010000 		.4byte	.LASF12
+ 1114 0092 02       		.uleb128 0x2
+ 1115 0093 04       		.byte	0x4
+ 1116 0094 04       		.byte	0x4
+ 1117 0095 D6000000 		.4byte	.LASF13
+ 1118 0099 04       		.uleb128 0x4
+ 1119 009a F5010000 		.4byte	.LASF15
+ 1120 009e 03       		.byte	0x3
+ 1121 009f 2C       		.byte	0x2c
+ 1122 00a0 64000000 		.4byte	0x64
+ 1123 00a4 05       		.uleb128 0x5
+ 1124 00a5 AF000000 		.4byte	.LASF16
+ 1125 00a9 04       		.byte	0x4
+ 1126 00aa E401     		.2byte	0x1e4
+ 1127 00ac 4F000000 		.4byte	0x4f
+ 1128 00b0 05       		.uleb128 0x5
+ 1129 00b1 98000000 		.4byte	.LASF17
+ 1130 00b5 04       		.byte	0x4
+ 1131 00b6 E501     		.2byte	0x1e5
+ 1132 00b8 5D000000 		.4byte	0x5d
+ 1133 00bc 05       		.uleb128 0x5
+ 1134 00bd 9F000000 		.4byte	.LASF18
+ 1135 00c1 04       		.byte	0x4
+ 1136 00c2 E801     		.2byte	0x1e8
+ 1137 00c4 56000000 		.4byte	0x56
+ 1138 00c8 06       		.uleb128 0x6
+ 1139 00c9 20       		.byte	0x20
+ 1140 00ca 05       		.byte	0x5
+ 1141 00cb 21       		.byte	0x21
+ 1142 00cc 49010000 		.4byte	0x149
+ 1143 00d0 07       		.uleb128 0x7
+ 1144 00d1 3C020000 		.4byte	.LASF19
+ 1145 00d5 05       		.byte	0x5
+ 1146 00d6 22       		.byte	0x22
+ 1147 00d7 92000000 		.4byte	0x92
+ 1148 00db 00       		.byte	0
+ 1149 00dc 07       		.uleb128 0x7
+ 1150 00dd 63030000 		.4byte	.LASF20
+ 1151 00e1 05       		.byte	0x5
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 26
+
+
+ 1152 00e2 23       		.byte	0x23
+ 1153 00e3 92000000 		.4byte	0x92
+ 1154 00e7 04       		.byte	0x4
+ 1155 00e8 07       		.uleb128 0x7
+ 1156 00e9 C1010000 		.4byte	.LASF21
+ 1157 00ed 05       		.byte	0x5
+ 1158 00ee 24       		.byte	0x24
+ 1159 00ef 92000000 		.4byte	0x92
+ 1160 00f3 08       		.byte	0x8
+ 1161 00f4 07       		.uleb128 0x7
+ 1162 00f5 C1000000 		.4byte	.LASF22
+ 1163 00f9 05       		.byte	0x5
+ 1164 00fa 26       		.byte	0x26
+ 1165 00fb B0000000 		.4byte	0xb0
+ 1166 00ff 0C       		.byte	0xc
+ 1167 0100 07       		.uleb128 0x7
+ 1168 0101 3B010000 		.4byte	.LASF23
+ 1169 0105 05       		.byte	0x5
+ 1170 0106 27       		.byte	0x27
+ 1171 0107 B0000000 		.4byte	0xb0
+ 1172 010b 0E       		.byte	0xe
+ 1173 010c 07       		.uleb128 0x7
+ 1174 010d 8E020000 		.4byte	.LASF24
+ 1175 0111 05       		.byte	0x5
+ 1176 0112 28       		.byte	0x28
+ 1177 0113 BC000000 		.4byte	0xbc
+ 1178 0117 10       		.byte	0x10
+ 1179 0118 08       		.uleb128 0x8
+ 1180 0119 70776D00 		.ascii	"pwm\000"
+ 1181 011d 05       		.byte	0x5
+ 1182 011e 2A       		.byte	0x2a
+ 1183 011f B0000000 		.4byte	0xb0
+ 1184 0123 12       		.byte	0x12
+ 1185 0124 07       		.uleb128 0x7
+ 1186 0125 B9010000 		.4byte	.LASF25
+ 1187 0129 05       		.byte	0x5
+ 1188 012a 2B       		.byte	0x2b
+ 1189 012b A4000000 		.4byte	0xa4
+ 1190 012f 14       		.byte	0x14
+ 1191 0130 07       		.uleb128 0x7
+ 1192 0131 47000000 		.4byte	.LASF26
+ 1193 0135 05       		.byte	0x5
+ 1194 0136 2D       		.byte	0x2d
+ 1195 0137 49010000 		.4byte	0x149
+ 1196 013b 18       		.byte	0x18
+ 1197 013c 07       		.uleb128 0x7
+ 1198 013d 59030000 		.4byte	.LASF27
+ 1199 0141 05       		.byte	0x5
+ 1200 0142 2E       		.byte	0x2e
+ 1201 0143 49010000 		.4byte	0x149
+ 1202 0147 1C       		.byte	0x1c
+ 1203 0148 00       		.byte	0
+ 1204 0149 09       		.uleb128 0x9
+ 1205 014a 92000000 		.4byte	0x92
+ 1206 014e 04       		.uleb128 0x4
+ 1207 014f 4B010000 		.4byte	.LASF28
+ 1208 0153 05       		.byte	0x5
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 27
+
+
+ 1209 0154 2F       		.byte	0x2f
+ 1210 0155 C8000000 		.4byte	0xc8
+ 1211 0159 06       		.uleb128 0x6
+ 1212 015a 4C       		.byte	0x4c
+ 1213 015b 05       		.byte	0x5
+ 1214 015c 31       		.byte	0x31
+ 1215 015d EF010000 		.4byte	0x1ef
+ 1216 0161 07       		.uleb128 0x7
+ 1217 0162 9B010000 		.4byte	.LASF29
+ 1218 0166 05       		.byte	0x5
+ 1219 0167 32       		.byte	0x32
+ 1220 0168 92000000 		.4byte	0x92
+ 1221 016c 00       		.byte	0
+ 1222 016d 07       		.uleb128 0x7
+ 1223 016e 7F010000 		.4byte	.LASF30
+ 1224 0172 05       		.byte	0x5
+ 1225 0173 33       		.byte	0x33
+ 1226 0174 92000000 		.4byte	0x92
+ 1227 0178 04       		.byte	0x4
+ 1228 0179 07       		.uleb128 0x7
+ 1229 017a 13000000 		.4byte	.LASF31
+ 1230 017e 05       		.byte	0x5
+ 1231 017f 34       		.byte	0x34
+ 1232 0180 92000000 		.4byte	0x92
+ 1233 0184 08       		.byte	0x8
+ 1234 0185 07       		.uleb128 0x7
+ 1235 0186 0C010000 		.4byte	.LASF32
+ 1236 018a 05       		.byte	0x5
+ 1237 018b 35       		.byte	0x35
+ 1238 018c 92000000 		.4byte	0x92
+ 1239 0190 0C       		.byte	0xc
+ 1240 0191 07       		.uleb128 0x7
+ 1241 0192 31020000 		.4byte	.LASF33
+ 1242 0196 05       		.byte	0x5
+ 1243 0197 36       		.byte	0x36
+ 1244 0198 92000000 		.4byte	0x92
+ 1245 019c 10       		.byte	0x10
+ 1246 019d 07       		.uleb128 0x7
+ 1247 019e B1010000 		.4byte	.LASF34
+ 1248 01a2 05       		.byte	0x5
+ 1249 01a3 37       		.byte	0x37
+ 1250 01a4 92000000 		.4byte	0x92
+ 1251 01a8 14       		.byte	0x14
+ 1252 01a9 08       		.uleb128 0x8
+ 1253 01aa 4B7000   		.ascii	"Kp\000"
+ 1254 01ad 05       		.byte	0x5
+ 1255 01ae 39       		.byte	0x39
+ 1256 01af 92000000 		.4byte	0x92
+ 1257 01b3 18       		.byte	0x18
+ 1258 01b4 08       		.uleb128 0x8
+ 1259 01b5 4B6400   		.ascii	"Kd\000"
+ 1260 01b8 05       		.byte	0x5
+ 1261 01b9 3A       		.byte	0x3a
+ 1262 01ba 92000000 		.4byte	0x92
+ 1263 01be 1C       		.byte	0x1c
+ 1264 01bf 08       		.uleb128 0x8
+ 1265 01c0 4B6900   		.ascii	"Ki\000"
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 28
+
+
+ 1266 01c3 05       		.byte	0x5
+ 1267 01c4 3B       		.byte	0x3b
+ 1268 01c5 92000000 		.4byte	0x92
+ 1269 01c9 20       		.byte	0x20
+ 1270 01ca 07       		.uleb128 0x7
+ 1271 01cb 2A000000 		.4byte	.LASF35
+ 1272 01cf 05       		.byte	0x5
+ 1273 01d0 3C       		.byte	0x3c
+ 1274 01d1 92000000 		.4byte	0x92
+ 1275 01d5 24       		.byte	0x24
+ 1276 01d6 07       		.uleb128 0x7
+ 1277 01d7 CE000000 		.4byte	.LASF36
+ 1278 01db 05       		.byte	0x5
+ 1279 01dc 3D       		.byte	0x3d
+ 1280 01dd 92000000 		.4byte	0x92
+ 1281 01e1 28       		.byte	0x28
+ 1282 01e2 07       		.uleb128 0x7
+ 1283 01e3 79020000 		.4byte	.LASF37
+ 1284 01e7 05       		.byte	0x5
+ 1285 01e8 3F       		.byte	0x3f
+ 1286 01e9 4E010000 		.4byte	0x14e
+ 1287 01ed 2C       		.byte	0x2c
+ 1288 01ee 00       		.byte	0
+ 1289 01ef 04       		.uleb128 0x4
+ 1290 01f0 80020000 		.4byte	.LASF38
+ 1291 01f4 05       		.byte	0x5
+ 1292 01f5 40       		.byte	0x40
+ 1293 01f6 59010000 		.4byte	0x159
+ 1294 01fa 06       		.uleb128 0x6
+ 1295 01fb 8C       		.byte	0x8c
+ 1296 01fc 06       		.byte	0x6
+ 1297 01fd 15       		.byte	0x15
+ 1298 01fe 84020000 		.4byte	0x284
+ 1299 0202 08       		.uleb128 0x8
+ 1300 0203 4C00     		.ascii	"L\000"
+ 1301 0205 06       		.byte	0x6
+ 1302 0206 16       		.byte	0x16
+ 1303 0207 49010000 		.4byte	0x149
+ 1304 020b 00       		.byte	0
+ 1305 020c 08       		.uleb128 0x8
+ 1306 020d 5200     		.ascii	"R\000"
+ 1307 020f 06       		.byte	0x6
+ 1308 0210 16       		.byte	0x16
+ 1309 0211 49010000 		.4byte	0x149
+ 1310 0215 04       		.byte	0x4
+ 1311 0216 08       		.uleb128 0x8
+ 1312 0217 7800     		.ascii	"x\000"
+ 1313 0219 06       		.byte	0x6
+ 1314 021a 18       		.byte	0x18
+ 1315 021b 92000000 		.4byte	0x92
+ 1316 021f 08       		.byte	0x8
+ 1317 0220 08       		.uleb128 0x8
+ 1318 0221 7900     		.ascii	"y\000"
+ 1319 0223 06       		.byte	0x6
+ 1320 0224 18       		.byte	0x18
+ 1321 0225 92000000 		.4byte	0x92
+ 1322 0229 0C       		.byte	0xc
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 29
+
+
+ 1323 022a 07       		.uleb128 0x7
+ 1324 022b 73020000 		.4byte	.LASF39
+ 1325 022f 06       		.byte	0x6
+ 1326 0230 18       		.byte	0x18
+ 1327 0231 92000000 		.4byte	0x92
+ 1328 0235 10       		.byte	0x10
+ 1329 0236 08       		.uleb128 0x8
+ 1330 0237 647800   		.ascii	"dx\000"
+ 1331 023a 06       		.byte	0x6
+ 1332 023b 19       		.byte	0x19
+ 1333 023c 92000000 		.4byte	0x92
+ 1334 0240 14       		.byte	0x14
+ 1335 0241 08       		.uleb128 0x8
+ 1336 0242 647900   		.ascii	"dy\000"
+ 1337 0245 06       		.byte	0x6
+ 1338 0246 19       		.byte	0x19
+ 1339 0247 92000000 		.4byte	0x92
+ 1340 024b 18       		.byte	0x18
+ 1341 024c 07       		.uleb128 0x7
+ 1342 024d AA020000 		.4byte	.LASF40
+ 1343 0251 06       		.byte	0x6
+ 1344 0252 19       		.byte	0x19
+ 1345 0253 92000000 		.4byte	0x92
+ 1346 0257 1C       		.byte	0x1c
+ 1347 0258 08       		.uleb128 0x8
+ 1348 0259 7600     		.ascii	"v\000"
+ 1349 025b 06       		.byte	0x6
+ 1350 025c 1A       		.byte	0x1a
+ 1351 025d 92000000 		.4byte	0x92
+ 1352 0261 20       		.byte	0x20
+ 1353 0262 08       		.uleb128 0x8
+ 1354 0263 766E00   		.ascii	"vn\000"
+ 1355 0266 06       		.byte	0x6
+ 1356 0267 1A       		.byte	0x1a
+ 1357 0268 92000000 		.4byte	0x92
+ 1358 026c 24       		.byte	0x24
+ 1359 026d 08       		.uleb128 0x8
+ 1360 026e 7700     		.ascii	"w\000"
+ 1361 0270 06       		.byte	0x6
+ 1362 0271 1A       		.byte	0x1a
+ 1363 0272 92000000 		.4byte	0x92
+ 1364 0276 28       		.byte	0x28
+ 1365 0277 07       		.uleb128 0x7
+ 1366 0278 36020000 		.4byte	.LASF41
+ 1367 027c 06       		.byte	0x6
+ 1368 027d 1C       		.byte	0x1c
+ 1369 027e 84020000 		.4byte	0x284
+ 1370 0282 2C       		.byte	0x2c
+ 1371 0283 00       		.byte	0
+ 1372 0284 0A       		.uleb128 0xa
+ 1373 0285 4E010000 		.4byte	0x14e
+ 1374 0289 94020000 		.4byte	0x294
+ 1375 028d 0B       		.uleb128 0xb
+ 1376 028e 84000000 		.4byte	0x84
+ 1377 0292 02       		.byte	0x2
+ 1378 0293 00       		.byte	0
+ 1379 0294 04       		.uleb128 0x4
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 30
+
+
+ 1380 0295 EA000000 		.4byte	.LASF42
+ 1381 0299 06       		.byte	0x6
+ 1382 029a 1D       		.byte	0x1d
+ 1383 029b FA010000 		.4byte	0x1fa
+ 1384 029f 06       		.uleb128 0x6
+ 1385 02a0 E0       		.byte	0xe0
+ 1386 02a1 06       		.byte	0x6
+ 1387 02a2 1F       		.byte	0x1f
+ 1388 02a3 38030000 		.4byte	0x338
+ 1389 02a7 07       		.uleb128 0x7
+ 1390 02a8 9B010000 		.4byte	.LASF29
+ 1391 02ac 06       		.byte	0x6
+ 1392 02ad 20       		.byte	0x20
+ 1393 02ae 38030000 		.4byte	0x338
+ 1394 02b2 00       		.byte	0
+ 1395 02b3 07       		.uleb128 0x7
+ 1396 02b4 7F010000 		.4byte	.LASF30
+ 1397 02b8 06       		.byte	0x6
+ 1398 02b9 21       		.byte	0x21
+ 1399 02ba 38030000 		.4byte	0x338
+ 1400 02be 0C       		.byte	0xc
+ 1401 02bf 07       		.uleb128 0x7
+ 1402 02c0 13000000 		.4byte	.LASF31
+ 1403 02c4 06       		.byte	0x6
+ 1404 02c5 22       		.byte	0x22
+ 1405 02c6 38030000 		.4byte	0x338
+ 1406 02ca 18       		.byte	0x18
+ 1407 02cb 07       		.uleb128 0x7
+ 1408 02cc 28010000 		.4byte	.LASF43
+ 1409 02d0 06       		.byte	0x6
+ 1410 02d1 23       		.byte	0x23
+ 1411 02d2 38030000 		.4byte	0x338
+ 1412 02d6 24       		.byte	0x24
+ 1413 02d7 07       		.uleb128 0x7
+ 1414 02d8 31020000 		.4byte	.LASF33
+ 1415 02dc 06       		.byte	0x6
+ 1416 02dd 24       		.byte	0x24
+ 1417 02de 38030000 		.4byte	0x338
+ 1418 02e2 30       		.byte	0x30
+ 1419 02e3 07       		.uleb128 0x7
+ 1420 02e4 06000000 		.4byte	.LASF44
+ 1421 02e8 06       		.byte	0x6
+ 1422 02e9 26       		.byte	0x26
+ 1423 02ea 49010000 		.4byte	0x149
+ 1424 02ee 3C       		.byte	0x3c
+ 1425 02ef 07       		.uleb128 0x7
+ 1426 02f0 54030000 		.4byte	.LASF45
+ 1427 02f4 06       		.byte	0x6
+ 1428 02f5 27       		.byte	0x27
+ 1429 02f6 49010000 		.4byte	0x149
+ 1430 02fa 40       		.byte	0x40
+ 1431 02fb 07       		.uleb128 0x7
+ 1432 02fc 5F020000 		.4byte	.LASF46
+ 1433 0300 06       		.byte	0x6
+ 1434 0301 27       		.byte	0x27
+ 1435 0302 49010000 		.4byte	0x149
+ 1436 0306 44       		.byte	0x44
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 31
+
+
+ 1437 0307 07       		.uleb128 0x7
+ 1438 0308 6D030000 		.4byte	.LASF47
+ 1439 030c 06       		.byte	0x6
+ 1440 030d 28       		.byte	0x28
+ 1441 030e 49010000 		.4byte	0x149
+ 1442 0312 48       		.byte	0x48
+ 1443 0313 07       		.uleb128 0x7
+ 1444 0314 64020000 		.4byte	.LASF48
+ 1445 0318 06       		.byte	0x6
+ 1446 0319 28       		.byte	0x28
+ 1447 031a 49010000 		.4byte	0x149
+ 1448 031e 4C       		.byte	0x4c
+ 1449 031f 07       		.uleb128 0x7
+ 1450 0320 B1010000 		.4byte	.LASF34
+ 1451 0324 06       		.byte	0x6
+ 1452 0325 29       		.byte	0x29
+ 1453 0326 49010000 		.4byte	0x149
+ 1454 032a 50       		.byte	0x50
+ 1455 032b 07       		.uleb128 0x7
+ 1456 032c 51010000 		.4byte	.LASF49
+ 1457 0330 06       		.byte	0x6
+ 1458 0331 2B       		.byte	0x2b
+ 1459 0332 94020000 		.4byte	0x294
+ 1460 0336 54       		.byte	0x54
+ 1461 0337 00       		.byte	0
+ 1462 0338 0A       		.uleb128 0xa
+ 1463 0339 92000000 		.4byte	0x92
+ 1464 033d 48030000 		.4byte	0x348
+ 1465 0341 0B       		.uleb128 0xb
+ 1466 0342 84000000 		.4byte	0x84
+ 1467 0346 02       		.byte	0x2
+ 1468 0347 00       		.byte	0
+ 1469 0348 04       		.uleb128 0x4
+ 1470 0349 85000000 		.4byte	.LASF50
+ 1471 034d 06       		.byte	0x6
+ 1472 034e 2C       		.byte	0x2c
+ 1473 034f 9F020000 		.4byte	0x29f
+ 1474 0353 0C       		.uleb128 0xc
+ 1475 0354 2E010000 		.4byte	.LASF51
+ 1476 0358 01       		.byte	0x1
+ 1477 0359 6C       		.byte	0x6c
+ 1478 035a 00000000 		.4byte	.LFB63
+ 1479 035e BC020000 		.4byte	.LFE63-.LFB63
+ 1480 0362 01       		.uleb128 0x1
+ 1481 0363 9C       		.byte	0x9c
+ 1482 0364 8F040000 		.4byte	0x48f
+ 1483 0368 0D       		.uleb128 0xd
+ 1484 0369 636300   		.ascii	"cc\000"
+ 1485 036c 01       		.byte	0x1
+ 1486 036d 6C       		.byte	0x6c
+ 1487 036e 8F040000 		.4byte	0x48f
+ 1488 0372 00000000 		.4byte	.LLST0
+ 1489 0376 0E       		.uleb128 0xe
+ 1490 0377 657800   		.ascii	"ex\000"
+ 1491 037a 01       		.byte	0x1
+ 1492 037b 6D       		.byte	0x6d
+ 1493 037c 92000000 		.4byte	0x92
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 32
+
+
+ 1494 0380 2C000000 		.4byte	.LLST1
+ 1495 0384 0E       		.uleb128 0xe
+ 1496 0385 657900   		.ascii	"ey\000"
+ 1497 0388 01       		.byte	0x1
+ 1498 0389 6D       		.byte	0x6d
+ 1499 038a 92000000 		.4byte	0x92
+ 1500 038e 3F000000 		.4byte	.LLST2
+ 1501 0392 0E       		.uleb128 0xe
+ 1502 0393 657700   		.ascii	"ew\000"
+ 1503 0396 01       		.byte	0x1
+ 1504 0397 6D       		.byte	0x6d
+ 1505 0398 92000000 		.4byte	0x92
+ 1506 039c 52000000 		.4byte	.LLST3
+ 1507 03a0 0E       		.uleb128 0xe
+ 1508 03a1 69657800 		.ascii	"iex\000"
+ 1509 03a5 01       		.byte	0x1
+ 1510 03a6 6E       		.byte	0x6e
+ 1511 03a7 92000000 		.4byte	0x92
+ 1512 03ab 65000000 		.4byte	.LLST4
+ 1513 03af 0E       		.uleb128 0xe
+ 1514 03b0 69657900 		.ascii	"iey\000"
+ 1515 03b4 01       		.byte	0x1
+ 1516 03b5 6E       		.byte	0x6e
+ 1517 03b6 92000000 		.4byte	0x92
+ 1518 03ba 78000000 		.4byte	.LLST5
+ 1519 03be 0E       		.uleb128 0xe
+ 1520 03bf 69657700 		.ascii	"iew\000"
+ 1521 03c3 01       		.byte	0x1
+ 1522 03c4 6E       		.byte	0x6e
+ 1523 03c5 92000000 		.4byte	0x92
+ 1524 03c9 98000000 		.4byte	.LLST6
+ 1525 03cd 0E       		.uleb128 0xe
+ 1526 03ce 7400     		.ascii	"t\000"
+ 1527 03d0 01       		.byte	0x1
+ 1528 03d1 6F       		.byte	0x6f
+ 1529 03d2 92000000 		.4byte	0x92
+ 1530 03d6 C3000000 		.4byte	.LLST7
+ 1531 03da 0F       		.uleb128 0xf
+ 1532 03db 54030000 		.4byte	.LASF45
+ 1533 03df 01       		.byte	0x1
+ 1534 03e0 71       		.byte	0x71
+ 1535 03e1 49010000 		.4byte	0x149
+ 1536 03e5 E3000000 		.4byte	.LLST8
+ 1537 03e9 0F       		.uleb128 0xf
+ 1538 03ea 5F020000 		.4byte	.LASF46
+ 1539 03ee 01       		.byte	0x1
+ 1540 03ef 72       		.byte	0x72
+ 1541 03f0 49010000 		.4byte	0x149
+ 1542 03f4 03010000 		.4byte	.LLST9
+ 1543 03f8 0F       		.uleb128 0xf
+ 1544 03f9 6D030000 		.4byte	.LASF47
+ 1545 03fd 01       		.byte	0x1
+ 1546 03fe 73       		.byte	0x73
+ 1547 03ff 49010000 		.4byte	0x149
+ 1548 0403 23010000 		.4byte	.LLST10
+ 1549 0407 0F       		.uleb128 0xf
+ 1550 0408 64020000 		.4byte	.LASF48
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 33
+
+
+ 1551 040c 01       		.byte	0x1
+ 1552 040d 74       		.byte	0x74
+ 1553 040e 49010000 		.4byte	0x149
+ 1554 0412 36010000 		.4byte	.LLST11
+ 1555 0416 0E       		.uleb128 0xe
+ 1556 0417 4C00     		.ascii	"L\000"
+ 1557 0419 01       		.byte	0x1
+ 1558 041a 75       		.byte	0x75
+ 1559 041b 49010000 		.4byte	0x149
+ 1560 041f 49010000 		.4byte	.LLST12
+ 1561 0423 0E       		.uleb128 0xe
+ 1562 0424 5200     		.ascii	"R\000"
+ 1563 0426 01       		.byte	0x1
+ 1564 0427 76       		.byte	0x76
+ 1565 0428 49010000 		.4byte	0x149
+ 1566 042c 68010000 		.4byte	.LLST13
+ 1567 0430 0E       		.uleb128 0xe
+ 1568 0431 773100   		.ascii	"w1\000"
+ 1569 0434 01       		.byte	0x1
+ 1570 0435 78       		.byte	0x78
+ 1571 0436 92000000 		.4byte	0x92
+ 1572 043a 7B010000 		.4byte	.LLST14
+ 1573 043e 0E       		.uleb128 0xe
+ 1574 043f 773200   		.ascii	"w2\000"
+ 1575 0442 01       		.byte	0x1
+ 1576 0443 78       		.byte	0x78
+ 1577 0444 92000000 		.4byte	0x92
+ 1578 0448 99010000 		.4byte	.LLST15
+ 1579 044c 10       		.uleb128 0x10
+ 1580 044d 773300   		.ascii	"w3\000"
+ 1581 0450 01       		.byte	0x1
+ 1582 0451 78       		.byte	0x78
+ 1583 0452 92000000 		.4byte	0x92
+ 1584 0456 01       		.uleb128 0x1
+ 1585 0457 50       		.byte	0x50
+ 1586 0458 11       		.uleb128 0x11
+ 1587 0459 48000000 		.4byte	.LVL15
+ 1588 045d 2B070000 		.4byte	0x72b
+ 1589 0461 75040000 		.4byte	0x475
+ 1590 0465 12       		.uleb128 0x12
+ 1591 0466 06       		.uleb128 0x6
+ 1592 0467 50       		.byte	0x50
+ 1593 0468 93       		.byte	0x93
+ 1594 0469 04       		.uleb128 0x4
+ 1595 046a 51       		.byte	0x51
+ 1596 046b 93       		.byte	0x93
+ 1597 046c 04       		.uleb128 0x4
+ 1598 046d 06       		.uleb128 0x6
+ 1599 046e 91       		.byte	0x91
+ 1600 046f 987F     		.sleb128 -104
+ 1601 0471 F6       		.byte	0xf6
+ 1602 0472 08       		.byte	0x8
+ 1603 0473 25       		.uleb128 0x25
+ 1604 0474 00       		.byte	0
+ 1605 0475 13       		.uleb128 0x13
+ 1606 0476 A0000000 		.4byte	.LVL25
+ 1607 047a 36070000 		.4byte	0x736
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 34
+
+
+ 1608 047e 12       		.uleb128 0x12
+ 1609 047f 06       		.uleb128 0x6
+ 1610 0480 50       		.byte	0x50
+ 1611 0481 93       		.byte	0x93
+ 1612 0482 04       		.uleb128 0x4
+ 1613 0483 51       		.byte	0x51
+ 1614 0484 93       		.byte	0x93
+ 1615 0485 04       		.uleb128 0x4
+ 1616 0486 06       		.uleb128 0x6
+ 1617 0487 91       		.byte	0x91
+ 1618 0488 987F     		.sleb128 -104
+ 1619 048a F6       		.byte	0xf6
+ 1620 048b 08       		.byte	0x8
+ 1621 048c 25       		.uleb128 0x25
+ 1622 048d 00       		.byte	0
+ 1623 048e 00       		.byte	0
+ 1624 048f 14       		.uleb128 0x14
+ 1625 0490 04       		.byte	0x4
+ 1626 0491 48030000 		.4byte	0x348
+ 1627 0495 0C       		.uleb128 0xc
+ 1628 0496 DB010000 		.4byte	.LASF52
+ 1629 049a 01       		.byte	0x1
+ 1630 049b 9D       		.byte	0x9d
+ 1631 049c 00000000 		.4byte	.LFB64
+ 1632 04a0 F8010000 		.4byte	.LFE64-.LFB64
+ 1633 04a4 01       		.uleb128 0x1
+ 1634 04a5 9C       		.byte	0x9c
+ 1635 04a6 1C050000 		.4byte	0x51c
+ 1636 04aa 0D       		.uleb128 0xd
+ 1637 04ab 636300   		.ascii	"cc\000"
+ 1638 04ae 01       		.byte	0x1
+ 1639 04af 9D       		.byte	0x9d
+ 1640 04b0 8F040000 		.4byte	0x48f
+ 1641 04b4 C7010000 		.4byte	.LLST16
+ 1642 04b8 0E       		.uleb128 0xe
+ 1643 04b9 5200     		.ascii	"R\000"
+ 1644 04bb 01       		.byte	0x1
+ 1645 04bc 9E       		.byte	0x9e
+ 1646 04bd 49010000 		.4byte	0x149
+ 1647 04c1 F3010000 		.4byte	.LLST17
+ 1648 04c5 0E       		.uleb128 0xe
+ 1649 04c6 4C00     		.ascii	"L\000"
+ 1650 04c8 01       		.byte	0x1
+ 1651 04c9 9F       		.byte	0x9f
+ 1652 04ca 49010000 		.4byte	0x149
+ 1653 04ce 06020000 		.4byte	.LLST18
+ 1654 04d2 0E       		.uleb128 0xe
+ 1655 04d3 773100   		.ascii	"w1\000"
+ 1656 04d6 01       		.byte	0x1
+ 1657 04d7 A1       		.byte	0xa1
+ 1658 04d8 92000000 		.4byte	0x92
+ 1659 04dc 19020000 		.4byte	.LLST19
+ 1660 04e0 0E       		.uleb128 0xe
+ 1661 04e1 773200   		.ascii	"w2\000"
+ 1662 04e4 01       		.byte	0x1
+ 1663 04e5 A2       		.byte	0xa2
+ 1664 04e6 92000000 		.4byte	0x92
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 35
+
+
+ 1665 04ea 2C020000 		.4byte	.LLST20
+ 1666 04ee 0E       		.uleb128 0xe
+ 1667 04ef 773300   		.ascii	"w3\000"
+ 1668 04f2 01       		.byte	0x1
+ 1669 04f3 A3       		.byte	0xa3
+ 1670 04f4 92000000 		.4byte	0x92
+ 1671 04f8 3F020000 		.4byte	.LLST21
+ 1672 04fc 0E       		.uleb128 0xe
+ 1673 04fd 7400     		.ascii	"t\000"
+ 1674 04ff 01       		.byte	0x1
+ 1675 0500 A4       		.byte	0xa4
+ 1676 0501 92000000 		.4byte	0x92
+ 1677 0505 52020000 		.4byte	.LLST22
+ 1678 0509 15       		.uleb128 0x15
+ 1679 050a 3E000000 		.4byte	.LVL95
+ 1680 050e 2B070000 		.4byte	0x72b
+ 1681 0512 15       		.uleb128 0x15
+ 1682 0513 74000000 		.4byte	.LVL99
+ 1683 0517 36070000 		.4byte	0x736
+ 1684 051b 00       		.byte	0
+ 1685 051c 16       		.uleb128 0x16
+ 1686 051d 6D000000 		.4byte	.LASF72
+ 1687 0521 01       		.byte	0x1
+ 1688 0522 B8       		.byte	0xb8
+ 1689 0523 00000000 		.4byte	.LFB65
+ 1690 0527 A4010000 		.4byte	.LFE65-.LFB65
+ 1691 052b 01       		.uleb128 0x1
+ 1692 052c 9C       		.byte	0x9c
+ 1693 052d 5F050000 		.4byte	0x55f
+ 1694 0531 11       		.uleb128 0x11
+ 1695 0532 1E000000 		.4byte	.LVL135
+ 1696 0536 95040000 		.4byte	0x495
+ 1697 053a 45050000 		.4byte	0x545
+ 1698 053e 12       		.uleb128 0x12
+ 1699 053f 01       		.uleb128 0x1
+ 1700 0540 50       		.byte	0x50
+ 1701 0541 02       		.uleb128 0x2
+ 1702 0542 74       		.byte	0x74
+ 1703 0543 00       		.sleb128 0
+ 1704 0544 00       		.byte	0
+ 1705 0545 15       		.uleb128 0x15
+ 1706 0546 86000000 		.4byte	.LVL144
+ 1707 054a 41070000 		.4byte	0x741
+ 1708 054e 13       		.uleb128 0x13
+ 1709 054f 6E010000 		.4byte	.LVL166
+ 1710 0553 53030000 		.4byte	0x353
+ 1711 0557 12       		.uleb128 0x12
+ 1712 0558 01       		.uleb128 0x1
+ 1713 0559 50       		.byte	0x50
+ 1714 055a 02       		.uleb128 0x2
+ 1715 055b 74       		.byte	0x74
+ 1716 055c 00       		.sleb128 0
+ 1717 055d 00       		.byte	0
+ 1718 055e 00       		.byte	0
+ 1719 055f 17       		.uleb128 0x17
+ 1720 0560 B1020000 		.4byte	.LASF53
+ 1721 0564 07       		.byte	0x7
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 36
+
+
+ 1722 0565 1207     		.2byte	0x712
+ 1723 0567 6B050000 		.4byte	0x56b
+ 1724 056b 18       		.uleb128 0x18
+ 1725 056c 99000000 		.4byte	0x99
+ 1726 0570 0A       		.uleb128 0xa
+ 1727 0571 80050000 		.4byte	0x580
+ 1728 0575 80050000 		.4byte	0x580
+ 1729 0579 0B       		.uleb128 0xb
+ 1730 057a 84000000 		.4byte	0x84
+ 1731 057e 02       		.byte	0x2
+ 1732 057f 00       		.byte	0
+ 1733 0580 18       		.uleb128 0x18
+ 1734 0581 EF010000 		.4byte	0x1ef
+ 1735 0585 19       		.uleb128 0x19
+ 1736 0586 36020000 		.4byte	.LASF41
+ 1737 058a 05       		.byte	0x5
+ 1738 058b 42       		.byte	0x42
+ 1739 058c 90050000 		.4byte	0x590
+ 1740 0590 18       		.uleb128 0x18
+ 1741 0591 70050000 		.4byte	0x570
+ 1742 0595 1A       		.uleb128 0x1a
+ 1743 0596 5F7400   		.ascii	"_t\000"
+ 1744 0599 01       		.byte	0x1
+ 1745 059a 69       		.byte	0x69
+ 1746 059b 92000000 		.4byte	0x92
+ 1747 059f 05       		.uleb128 0x5
+ 1748 05a0 03       		.byte	0x3
+ 1749 05a1 00000000 		.4byte	_t
+ 1750 05a5 1A       		.uleb128 0x1a
+ 1751 05a6 736F7800 		.ascii	"sox\000"
+ 1752 05aa 01       		.byte	0x1
+ 1753 05ab 68       		.byte	0x68
+ 1754 05ac 92000000 		.4byte	0x92
+ 1755 05b0 05       		.uleb128 0x5
+ 1756 05b1 03       		.byte	0x3
+ 1757 05b2 00000000 		.4byte	sox
+ 1758 05b6 1A       		.uleb128 0x1a
+ 1759 05b7 736F7900 		.ascii	"soy\000"
+ 1760 05bb 01       		.byte	0x1
+ 1761 05bc 68       		.byte	0x68
+ 1762 05bd 92000000 		.4byte	0x92
+ 1763 05c1 05       		.uleb128 0x5
+ 1764 05c2 03       		.byte	0x3
+ 1765 05c3 00000000 		.4byte	soy
+ 1766 05c7 1A       		.uleb128 0x1a
+ 1767 05c8 737800   		.ascii	"sx\000"
+ 1768 05cb 01       		.byte	0x1
+ 1769 05cc 6A       		.byte	0x6a
+ 1770 05cd 92000000 		.4byte	0x92
+ 1771 05d1 05       		.uleb128 0x5
+ 1772 05d2 03       		.byte	0x3
+ 1773 05d3 00000000 		.4byte	sx
+ 1774 05d7 1A       		.uleb128 0x1a
+ 1775 05d8 737900   		.ascii	"sy\000"
+ 1776 05db 01       		.byte	0x1
+ 1777 05dc 6A       		.byte	0x6a
+ 1778 05dd 92000000 		.4byte	0x92
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 37
+
+
+ 1779 05e1 05       		.uleb128 0x5
+ 1780 05e2 03       		.byte	0x3
+ 1781 05e3 00000000 		.4byte	sy
+ 1782 05e7 1B       		.uleb128 0x1b
+ 1783 05e8 9F020000 		.4byte	.LASF54
+ 1784 05ec 01       		.byte	0x1
+ 1785 05ed 22       		.byte	0x22
+ 1786 05ee 48030000 		.4byte	0x348
+ 1787 05f2 05       		.uleb128 0x5
+ 1788 05f3 03       		.byte	0x3
+ 1789 05f4 00000000 		.4byte	cinematico
+ 1790 05f8 1B       		.uleb128 0x1b
+ 1791 05f9 64010000 		.4byte	.LASF55
+ 1792 05fd 01       		.byte	0x1
+ 1793 05fe 17       		.byte	0x17
+ 1794 05ff 92000000 		.4byte	0x92
+ 1795 0603 05       		.uleb128 0x5
+ 1796 0604 03       		.byte	0x3
+ 1797 0605 00000000 		.4byte	dxAnt
+ 1798 0609 1B       		.uleb128 0x1b
+ 1799 060a 59020000 		.4byte	.LASF56
+ 1800 060e 01       		.byte	0x1
+ 1801 060f 17       		.byte	0x17
+ 1802 0610 92000000 		.4byte	0x92
+ 1803 0614 05       		.uleb128 0x5
+ 1804 0615 03       		.byte	0x3
+ 1805 0616 00000000 		.4byte	dyAnt
+ 1806 061a 1B       		.uleb128 0x1b
+ 1807 061b 1E010000 		.4byte	.LASF57
+ 1808 061f 01       		.byte	0x1
+ 1809 0620 17       		.byte	0x17
+ 1810 0621 92000000 		.4byte	0x92
+ 1811 0625 05       		.uleb128 0x5
+ 1812 0626 03       		.byte	0x3
+ 1813 0627 00000000 		.4byte	dthetaAnt
+ 1814 062b 1B       		.uleb128 0x1b
+ 1815 062c 3F000000 		.4byte	.LASF58
+ 1816 0630 01       		.byte	0x1
+ 1817 0631 18       		.byte	0x18
+ 1818 0632 92000000 		.4byte	0x92
+ 1819 0636 05       		.uleb128 0x5
+ 1820 0637 03       		.byte	0x3
+ 1821 0638 00000000 		.4byte	primDet
+ 1822 063c 1B       		.uleb128 0x1b
+ 1823 063d 4C030000 		.4byte	.LASF59
+ 1824 0641 01       		.byte	0x1
+ 1825 0642 18       		.byte	0x18
+ 1826 0643 92000000 		.4byte	0x92
+ 1827 0647 05       		.uleb128 0x5
+ 1828 0648 03       		.byte	0x3
+ 1829 0649 00000000 		.4byte	nVoltas
+ 1830 064d 1B       		.uleb128 0x1b
+ 1831 064e BB000000 		.4byte	.LASF60
+ 1832 0652 01       		.byte	0x1
+ 1833 0653 18       		.byte	0x18
+ 1834 0654 92000000 		.4byte	0x92
+ 1835 0658 05       		.uleb128 0x5
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 38
+
+
+ 1836 0659 03       		.byte	0x3
+ 1837 065a 00000000 		.4byte	fator
+ 1838 065e 0A       		.uleb128 0xa
+ 1839 065f 8B000000 		.4byte	0x8b
+ 1840 0663 6E060000 		.4byte	0x66e
+ 1841 0667 0B       		.uleb128 0xb
+ 1842 0668 84000000 		.4byte	0x84
+ 1843 066c 09       		.byte	0x9
+ 1844 066d 00       		.byte	0
+ 1845 066e 1B       		.uleb128 0x1b
+ 1846 066f 1B000000 		.4byte	.LASF61
+ 1847 0673 01       		.byte	0x1
+ 1848 0674 1A       		.byte	0x1a
+ 1849 0675 5E060000 		.4byte	0x65e
+ 1850 0679 05       		.uleb128 0x5
+ 1851 067a 03       		.byte	0x3
+ 1852 067b 00000000 		.4byte	xStr
+ 1853 067f 1B       		.uleb128 0x1b
+ 1854 0680 F5000000 		.4byte	.LASF62
+ 1855 0684 01       		.byte	0x1
+ 1856 0685 1B       		.byte	0x1b
+ 1857 0686 5E060000 		.4byte	0x65e
+ 1858 068a 05       		.uleb128 0x5
+ 1859 068b 03       		.byte	0x3
+ 1860 068c 00000000 		.4byte	yStr
+ 1861 0690 1B       		.uleb128 0x1b
+ 1862 0691 15010000 		.4byte	.LASF63
+ 1863 0695 01       		.byte	0x1
+ 1864 0696 1C       		.byte	0x1c
+ 1865 0697 5E060000 		.4byte	0x65e
+ 1866 069b 05       		.uleb128 0x5
+ 1867 069c 03       		.byte	0x3
+ 1868 069d 00000000 		.4byte	thetaStr
+ 1869 06a1 0A       		.uleb128 0xa
+ 1870 06a2 8B000000 		.4byte	0x8b
+ 1871 06a6 B1060000 		.4byte	0x6b1
+ 1872 06aa 0B       		.uleb128 0xb
+ 1873 06ab 84000000 		.4byte	0x84
+ 1874 06af 3B       		.byte	0x3b
+ 1875 06b0 00       		.byte	0
+ 1876 06b1 1B       		.uleb128 0x1b
+ 1877 06b2 53000000 		.4byte	.LASF64
+ 1878 06b6 01       		.byte	0x1
+ 1879 06b7 1D       		.byte	0x1d
+ 1880 06b8 A1060000 		.4byte	0x6a1
+ 1881 06bc 05       		.uleb128 0x5
+ 1882 06bd 03       		.byte	0x3
+ 1883 06be 00000000 		.4byte	msgInstintivo
+ 1884 06c2 0A       		.uleb128 0xa
+ 1885 06c3 8B000000 		.4byte	0x8b
+ 1886 06c7 D2060000 		.4byte	0x6d2
+ 1887 06cb 0B       		.uleb128 0xb
+ 1888 06cc 84000000 		.4byte	0x84
+ 1889 06d0 3F       		.byte	0x3f
+ 1890 06d1 00       		.byte	0
+ 1891 06d2 1B       		.uleb128 0x1b
+ 1892 06d3 A5000000 		.4byte	.LASF65
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 39
+
+
+ 1893 06d7 01       		.byte	0x1
+ 1894 06d8 1E       		.byte	0x1e
+ 1895 06d9 C2060000 		.4byte	0x6c2
+ 1896 06dd 05       		.uleb128 0x5
+ 1897 06de 03       		.byte	0x3
+ 1898 06df 00000000 		.4byte	msgPlayer
+ 1899 06e3 0A       		.uleb128 0xa
+ 1900 06e4 8B000000 		.4byte	0x8b
+ 1901 06e8 F3060000 		.4byte	0x6f3
+ 1902 06ec 0B       		.uleb128 0xb
+ 1903 06ed 84000000 		.4byte	0x84
+ 1904 06f1 31       		.byte	0x31
+ 1905 06f2 00       		.byte	0
+ 1906 06f3 1B       		.uleb128 0x1b
+ 1907 06f4 6A010000 		.4byte	.LASF66
+ 1908 06f8 01       		.byte	0x1
+ 1909 06f9 1F       		.byte	0x1f
+ 1910 06fa E3060000 		.4byte	0x6e3
+ 1911 06fe 05       		.uleb128 0x5
+ 1912 06ff 03       		.byte	0x3
+ 1913 0700 00000000 		.4byte	msgTeste
+ 1914 0704 0A       		.uleb128 0xa
+ 1915 0705 8B000000 		.4byte	0x8b
+ 1916 0709 1A070000 		.4byte	0x71a
+ 1917 070d 0B       		.uleb128 0xb
+ 1918 070e 84000000 		.4byte	0x84
+ 1919 0712 05       		.byte	0x5
+ 1920 0713 0B       		.uleb128 0xb
+ 1921 0714 84000000 		.4byte	0x84
+ 1922 0718 09       		.byte	0x9
+ 1923 0719 00       		.byte	0
+ 1924 071a 1B       		.uleb128 0x1b
+ 1925 071b B5000000 		.4byte	.LASF67
+ 1926 071f 01       		.byte	0x1
+ 1927 0720 20       		.byte	0x20
+ 1928 0721 04070000 		.4byte	0x704
+ 1929 0725 05       		.uleb128 0x5
+ 1930 0726 03       		.byte	0x3
+ 1931 0727 00000000 		.4byte	sonar
+ 1932 072b 1C       		.uleb128 0x1c
+ 1933 072c 636F7300 		.ascii	"cos\000"
+ 1934 0730 636F7300 		.ascii	"cos\000"
+ 1935 0734 08       		.byte	0x8
+ 1936 0735 6E       		.byte	0x6e
+ 1937 0736 1C       		.uleb128 0x1c
+ 1938 0737 73696E00 		.ascii	"sin\000"
+ 1939 073b 73696E00 		.ascii	"sin\000"
+ 1940 073f 08       		.byte	0x8
+ 1941 0740 6F       		.byte	0x6f
+ 1942 0741 1D       		.uleb128 0x1d
+ 1943 0742 00000000 		.4byte	.LASF68
+ 1944 0746 00000000 		.4byte	.LASF68
+ 1945 074a 08       		.byte	0x8
+ 1946 074b 76       		.byte	0x76
+ 1947 074c 00       		.byte	0
+ 1948              		.section	.debug_abbrev,"",%progbits
+ 1949              	.Ldebug_abbrev0:
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 40
+
+
+ 1950 0000 01       		.uleb128 0x1
+ 1951 0001 11       		.uleb128 0x11
+ 1952 0002 01       		.byte	0x1
+ 1953 0003 25       		.uleb128 0x25
+ 1954 0004 0E       		.uleb128 0xe
+ 1955 0005 13       		.uleb128 0x13
+ 1956 0006 0B       		.uleb128 0xb
+ 1957 0007 03       		.uleb128 0x3
+ 1958 0008 0E       		.uleb128 0xe
+ 1959 0009 1B       		.uleb128 0x1b
+ 1960 000a 0E       		.uleb128 0xe
+ 1961 000b 55       		.uleb128 0x55
+ 1962 000c 17       		.uleb128 0x17
+ 1963 000d 11       		.uleb128 0x11
+ 1964 000e 01       		.uleb128 0x1
+ 1965 000f 10       		.uleb128 0x10
+ 1966 0010 17       		.uleb128 0x17
+ 1967 0011 00       		.byte	0
+ 1968 0012 00       		.byte	0
+ 1969 0013 02       		.uleb128 0x2
+ 1970 0014 24       		.uleb128 0x24
+ 1971 0015 00       		.byte	0
+ 1972 0016 0B       		.uleb128 0xb
+ 1973 0017 0B       		.uleb128 0xb
+ 1974 0018 3E       		.uleb128 0x3e
+ 1975 0019 0B       		.uleb128 0xb
+ 1976 001a 03       		.uleb128 0x3
+ 1977 001b 0E       		.uleb128 0xe
+ 1978 001c 00       		.byte	0
+ 1979 001d 00       		.byte	0
+ 1980 001e 03       		.uleb128 0x3
+ 1981 001f 24       		.uleb128 0x24
+ 1982 0020 00       		.byte	0
+ 1983 0021 0B       		.uleb128 0xb
+ 1984 0022 0B       		.uleb128 0xb
+ 1985 0023 3E       		.uleb128 0x3e
+ 1986 0024 0B       		.uleb128 0xb
+ 1987 0025 03       		.uleb128 0x3
+ 1988 0026 08       		.uleb128 0x8
+ 1989 0027 00       		.byte	0
+ 1990 0028 00       		.byte	0
+ 1991 0029 04       		.uleb128 0x4
+ 1992 002a 16       		.uleb128 0x16
+ 1993 002b 00       		.byte	0
+ 1994 002c 03       		.uleb128 0x3
+ 1995 002d 0E       		.uleb128 0xe
+ 1996 002e 3A       		.uleb128 0x3a
+ 1997 002f 0B       		.uleb128 0xb
+ 1998 0030 3B       		.uleb128 0x3b
+ 1999 0031 0B       		.uleb128 0xb
+ 2000 0032 49       		.uleb128 0x49
+ 2001 0033 13       		.uleb128 0x13
+ 2002 0034 00       		.byte	0
+ 2003 0035 00       		.byte	0
+ 2004 0036 05       		.uleb128 0x5
+ 2005 0037 16       		.uleb128 0x16
+ 2006 0038 00       		.byte	0
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 41
+
+
+ 2007 0039 03       		.uleb128 0x3
+ 2008 003a 0E       		.uleb128 0xe
+ 2009 003b 3A       		.uleb128 0x3a
+ 2010 003c 0B       		.uleb128 0xb
+ 2011 003d 3B       		.uleb128 0x3b
+ 2012 003e 05       		.uleb128 0x5
+ 2013 003f 49       		.uleb128 0x49
+ 2014 0040 13       		.uleb128 0x13
+ 2015 0041 00       		.byte	0
+ 2016 0042 00       		.byte	0
+ 2017 0043 06       		.uleb128 0x6
+ 2018 0044 13       		.uleb128 0x13
+ 2019 0045 01       		.byte	0x1
+ 2020 0046 0B       		.uleb128 0xb
+ 2021 0047 0B       		.uleb128 0xb
+ 2022 0048 3A       		.uleb128 0x3a
+ 2023 0049 0B       		.uleb128 0xb
+ 2024 004a 3B       		.uleb128 0x3b
+ 2025 004b 0B       		.uleb128 0xb
+ 2026 004c 01       		.uleb128 0x1
+ 2027 004d 13       		.uleb128 0x13
+ 2028 004e 00       		.byte	0
+ 2029 004f 00       		.byte	0
+ 2030 0050 07       		.uleb128 0x7
+ 2031 0051 0D       		.uleb128 0xd
+ 2032 0052 00       		.byte	0
+ 2033 0053 03       		.uleb128 0x3
+ 2034 0054 0E       		.uleb128 0xe
+ 2035 0055 3A       		.uleb128 0x3a
+ 2036 0056 0B       		.uleb128 0xb
+ 2037 0057 3B       		.uleb128 0x3b
+ 2038 0058 0B       		.uleb128 0xb
+ 2039 0059 49       		.uleb128 0x49
+ 2040 005a 13       		.uleb128 0x13
+ 2041 005b 38       		.uleb128 0x38
+ 2042 005c 0B       		.uleb128 0xb
+ 2043 005d 00       		.byte	0
+ 2044 005e 00       		.byte	0
+ 2045 005f 08       		.uleb128 0x8
+ 2046 0060 0D       		.uleb128 0xd
+ 2047 0061 00       		.byte	0
+ 2048 0062 03       		.uleb128 0x3
+ 2049 0063 08       		.uleb128 0x8
+ 2050 0064 3A       		.uleb128 0x3a
+ 2051 0065 0B       		.uleb128 0xb
+ 2052 0066 3B       		.uleb128 0x3b
+ 2053 0067 0B       		.uleb128 0xb
+ 2054 0068 49       		.uleb128 0x49
+ 2055 0069 13       		.uleb128 0x13
+ 2056 006a 38       		.uleb128 0x38
+ 2057 006b 0B       		.uleb128 0xb
+ 2058 006c 00       		.byte	0
+ 2059 006d 00       		.byte	0
+ 2060 006e 09       		.uleb128 0x9
+ 2061 006f 26       		.uleb128 0x26
+ 2062 0070 00       		.byte	0
+ 2063 0071 49       		.uleb128 0x49
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 42
+
+
+ 2064 0072 13       		.uleb128 0x13
+ 2065 0073 00       		.byte	0
+ 2066 0074 00       		.byte	0
+ 2067 0075 0A       		.uleb128 0xa
+ 2068 0076 01       		.uleb128 0x1
+ 2069 0077 01       		.byte	0x1
+ 2070 0078 49       		.uleb128 0x49
+ 2071 0079 13       		.uleb128 0x13
+ 2072 007a 01       		.uleb128 0x1
+ 2073 007b 13       		.uleb128 0x13
+ 2074 007c 00       		.byte	0
+ 2075 007d 00       		.byte	0
+ 2076 007e 0B       		.uleb128 0xb
+ 2077 007f 21       		.uleb128 0x21
+ 2078 0080 00       		.byte	0
+ 2079 0081 49       		.uleb128 0x49
+ 2080 0082 13       		.uleb128 0x13
+ 2081 0083 2F       		.uleb128 0x2f
+ 2082 0084 0B       		.uleb128 0xb
+ 2083 0085 00       		.byte	0
+ 2084 0086 00       		.byte	0
+ 2085 0087 0C       		.uleb128 0xc
+ 2086 0088 2E       		.uleb128 0x2e
+ 2087 0089 01       		.byte	0x1
+ 2088 008a 3F       		.uleb128 0x3f
+ 2089 008b 19       		.uleb128 0x19
+ 2090 008c 03       		.uleb128 0x3
+ 2091 008d 0E       		.uleb128 0xe
+ 2092 008e 3A       		.uleb128 0x3a
+ 2093 008f 0B       		.uleb128 0xb
+ 2094 0090 3B       		.uleb128 0x3b
+ 2095 0091 0B       		.uleb128 0xb
+ 2096 0092 27       		.uleb128 0x27
+ 2097 0093 19       		.uleb128 0x19
+ 2098 0094 11       		.uleb128 0x11
+ 2099 0095 01       		.uleb128 0x1
+ 2100 0096 12       		.uleb128 0x12
+ 2101 0097 06       		.uleb128 0x6
+ 2102 0098 40       		.uleb128 0x40
+ 2103 0099 18       		.uleb128 0x18
+ 2104 009a 9642     		.uleb128 0x2116
+ 2105 009c 19       		.uleb128 0x19
+ 2106 009d 01       		.uleb128 0x1
+ 2107 009e 13       		.uleb128 0x13
+ 2108 009f 00       		.byte	0
+ 2109 00a0 00       		.byte	0
+ 2110 00a1 0D       		.uleb128 0xd
+ 2111 00a2 05       		.uleb128 0x5
+ 2112 00a3 00       		.byte	0
+ 2113 00a4 03       		.uleb128 0x3
+ 2114 00a5 08       		.uleb128 0x8
+ 2115 00a6 3A       		.uleb128 0x3a
+ 2116 00a7 0B       		.uleb128 0xb
+ 2117 00a8 3B       		.uleb128 0x3b
+ 2118 00a9 0B       		.uleb128 0xb
+ 2119 00aa 49       		.uleb128 0x49
+ 2120 00ab 13       		.uleb128 0x13
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 43
+
+
+ 2121 00ac 02       		.uleb128 0x2
+ 2122 00ad 17       		.uleb128 0x17
+ 2123 00ae 00       		.byte	0
+ 2124 00af 00       		.byte	0
+ 2125 00b0 0E       		.uleb128 0xe
+ 2126 00b1 34       		.uleb128 0x34
+ 2127 00b2 00       		.byte	0
+ 2128 00b3 03       		.uleb128 0x3
+ 2129 00b4 08       		.uleb128 0x8
+ 2130 00b5 3A       		.uleb128 0x3a
+ 2131 00b6 0B       		.uleb128 0xb
+ 2132 00b7 3B       		.uleb128 0x3b
+ 2133 00b8 0B       		.uleb128 0xb
+ 2134 00b9 49       		.uleb128 0x49
+ 2135 00ba 13       		.uleb128 0x13
+ 2136 00bb 02       		.uleb128 0x2
+ 2137 00bc 17       		.uleb128 0x17
+ 2138 00bd 00       		.byte	0
+ 2139 00be 00       		.byte	0
+ 2140 00bf 0F       		.uleb128 0xf
+ 2141 00c0 34       		.uleb128 0x34
+ 2142 00c1 00       		.byte	0
+ 2143 00c2 03       		.uleb128 0x3
+ 2144 00c3 0E       		.uleb128 0xe
+ 2145 00c4 3A       		.uleb128 0x3a
+ 2146 00c5 0B       		.uleb128 0xb
+ 2147 00c6 3B       		.uleb128 0x3b
+ 2148 00c7 0B       		.uleb128 0xb
+ 2149 00c8 49       		.uleb128 0x49
+ 2150 00c9 13       		.uleb128 0x13
+ 2151 00ca 02       		.uleb128 0x2
+ 2152 00cb 17       		.uleb128 0x17
+ 2153 00cc 00       		.byte	0
+ 2154 00cd 00       		.byte	0
+ 2155 00ce 10       		.uleb128 0x10
+ 2156 00cf 34       		.uleb128 0x34
+ 2157 00d0 00       		.byte	0
+ 2158 00d1 03       		.uleb128 0x3
+ 2159 00d2 08       		.uleb128 0x8
+ 2160 00d3 3A       		.uleb128 0x3a
+ 2161 00d4 0B       		.uleb128 0xb
+ 2162 00d5 3B       		.uleb128 0x3b
+ 2163 00d6 0B       		.uleb128 0xb
+ 2164 00d7 49       		.uleb128 0x49
+ 2165 00d8 13       		.uleb128 0x13
+ 2166 00d9 02       		.uleb128 0x2
+ 2167 00da 18       		.uleb128 0x18
+ 2168 00db 00       		.byte	0
+ 2169 00dc 00       		.byte	0
+ 2170 00dd 11       		.uleb128 0x11
+ 2171 00de 898201   		.uleb128 0x4109
+ 2172 00e1 01       		.byte	0x1
+ 2173 00e2 11       		.uleb128 0x11
+ 2174 00e3 01       		.uleb128 0x1
+ 2175 00e4 31       		.uleb128 0x31
+ 2176 00e5 13       		.uleb128 0x13
+ 2177 00e6 01       		.uleb128 0x1
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 44
+
+
+ 2178 00e7 13       		.uleb128 0x13
+ 2179 00e8 00       		.byte	0
+ 2180 00e9 00       		.byte	0
+ 2181 00ea 12       		.uleb128 0x12
+ 2182 00eb 8A8201   		.uleb128 0x410a
+ 2183 00ee 00       		.byte	0
+ 2184 00ef 02       		.uleb128 0x2
+ 2185 00f0 18       		.uleb128 0x18
+ 2186 00f1 9142     		.uleb128 0x2111
+ 2187 00f3 18       		.uleb128 0x18
+ 2188 00f4 00       		.byte	0
+ 2189 00f5 00       		.byte	0
+ 2190 00f6 13       		.uleb128 0x13
+ 2191 00f7 898201   		.uleb128 0x4109
+ 2192 00fa 01       		.byte	0x1
+ 2193 00fb 11       		.uleb128 0x11
+ 2194 00fc 01       		.uleb128 0x1
+ 2195 00fd 31       		.uleb128 0x31
+ 2196 00fe 13       		.uleb128 0x13
+ 2197 00ff 00       		.byte	0
+ 2198 0100 00       		.byte	0
+ 2199 0101 14       		.uleb128 0x14
+ 2200 0102 0F       		.uleb128 0xf
+ 2201 0103 00       		.byte	0
+ 2202 0104 0B       		.uleb128 0xb
+ 2203 0105 0B       		.uleb128 0xb
+ 2204 0106 49       		.uleb128 0x49
+ 2205 0107 13       		.uleb128 0x13
+ 2206 0108 00       		.byte	0
+ 2207 0109 00       		.byte	0
+ 2208 010a 15       		.uleb128 0x15
+ 2209 010b 898201   		.uleb128 0x4109
+ 2210 010e 00       		.byte	0
+ 2211 010f 11       		.uleb128 0x11
+ 2212 0110 01       		.uleb128 0x1
+ 2213 0111 31       		.uleb128 0x31
+ 2214 0112 13       		.uleb128 0x13
+ 2215 0113 00       		.byte	0
+ 2216 0114 00       		.byte	0
+ 2217 0115 16       		.uleb128 0x16
+ 2218 0116 2E       		.uleb128 0x2e
+ 2219 0117 01       		.byte	0x1
+ 2220 0118 3F       		.uleb128 0x3f
+ 2221 0119 19       		.uleb128 0x19
+ 2222 011a 03       		.uleb128 0x3
+ 2223 011b 0E       		.uleb128 0xe
+ 2224 011c 3A       		.uleb128 0x3a
+ 2225 011d 0B       		.uleb128 0xb
+ 2226 011e 3B       		.uleb128 0x3b
+ 2227 011f 0B       		.uleb128 0xb
+ 2228 0120 11       		.uleb128 0x11
+ 2229 0121 01       		.uleb128 0x1
+ 2230 0122 12       		.uleb128 0x12
+ 2231 0123 06       		.uleb128 0x6
+ 2232 0124 40       		.uleb128 0x40
+ 2233 0125 18       		.uleb128 0x18
+ 2234 0126 9642     		.uleb128 0x2116
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 45
+
+
+ 2235 0128 19       		.uleb128 0x19
+ 2236 0129 01       		.uleb128 0x1
+ 2237 012a 13       		.uleb128 0x13
+ 2238 012b 00       		.byte	0
+ 2239 012c 00       		.byte	0
+ 2240 012d 17       		.uleb128 0x17
+ 2241 012e 34       		.uleb128 0x34
+ 2242 012f 00       		.byte	0
+ 2243 0130 03       		.uleb128 0x3
+ 2244 0131 0E       		.uleb128 0xe
+ 2245 0132 3A       		.uleb128 0x3a
+ 2246 0133 0B       		.uleb128 0xb
+ 2247 0134 3B       		.uleb128 0x3b
+ 2248 0135 05       		.uleb128 0x5
+ 2249 0136 49       		.uleb128 0x49
+ 2250 0137 13       		.uleb128 0x13
+ 2251 0138 3F       		.uleb128 0x3f
+ 2252 0139 19       		.uleb128 0x19
+ 2253 013a 3C       		.uleb128 0x3c
+ 2254 013b 19       		.uleb128 0x19
+ 2255 013c 00       		.byte	0
+ 2256 013d 00       		.byte	0
+ 2257 013e 18       		.uleb128 0x18
+ 2258 013f 35       		.uleb128 0x35
+ 2259 0140 00       		.byte	0
+ 2260 0141 49       		.uleb128 0x49
+ 2261 0142 13       		.uleb128 0x13
+ 2262 0143 00       		.byte	0
+ 2263 0144 00       		.byte	0
+ 2264 0145 19       		.uleb128 0x19
+ 2265 0146 34       		.uleb128 0x34
+ 2266 0147 00       		.byte	0
+ 2267 0148 03       		.uleb128 0x3
+ 2268 0149 0E       		.uleb128 0xe
+ 2269 014a 3A       		.uleb128 0x3a
+ 2270 014b 0B       		.uleb128 0xb
+ 2271 014c 3B       		.uleb128 0x3b
+ 2272 014d 0B       		.uleb128 0xb
+ 2273 014e 49       		.uleb128 0x49
+ 2274 014f 13       		.uleb128 0x13
+ 2275 0150 3F       		.uleb128 0x3f
+ 2276 0151 19       		.uleb128 0x19
+ 2277 0152 3C       		.uleb128 0x3c
+ 2278 0153 19       		.uleb128 0x19
+ 2279 0154 00       		.byte	0
+ 2280 0155 00       		.byte	0
+ 2281 0156 1A       		.uleb128 0x1a
+ 2282 0157 34       		.uleb128 0x34
+ 2283 0158 00       		.byte	0
+ 2284 0159 03       		.uleb128 0x3
+ 2285 015a 08       		.uleb128 0x8
+ 2286 015b 3A       		.uleb128 0x3a
+ 2287 015c 0B       		.uleb128 0xb
+ 2288 015d 3B       		.uleb128 0x3b
+ 2289 015e 0B       		.uleb128 0xb
+ 2290 015f 49       		.uleb128 0x49
+ 2291 0160 13       		.uleb128 0x13
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 46
+
+
+ 2292 0161 3F       		.uleb128 0x3f
+ 2293 0162 19       		.uleb128 0x19
+ 2294 0163 02       		.uleb128 0x2
+ 2295 0164 18       		.uleb128 0x18
+ 2296 0165 00       		.byte	0
+ 2297 0166 00       		.byte	0
+ 2298 0167 1B       		.uleb128 0x1b
+ 2299 0168 34       		.uleb128 0x34
+ 2300 0169 00       		.byte	0
+ 2301 016a 03       		.uleb128 0x3
+ 2302 016b 0E       		.uleb128 0xe
+ 2303 016c 3A       		.uleb128 0x3a
+ 2304 016d 0B       		.uleb128 0xb
+ 2305 016e 3B       		.uleb128 0x3b
+ 2306 016f 0B       		.uleb128 0xb
+ 2307 0170 49       		.uleb128 0x49
+ 2308 0171 13       		.uleb128 0x13
+ 2309 0172 3F       		.uleb128 0x3f
+ 2310 0173 19       		.uleb128 0x19
+ 2311 0174 02       		.uleb128 0x2
+ 2312 0175 18       		.uleb128 0x18
+ 2313 0176 00       		.byte	0
+ 2314 0177 00       		.byte	0
+ 2315 0178 1C       		.uleb128 0x1c
+ 2316 0179 2E       		.uleb128 0x2e
+ 2317 017a 00       		.byte	0
+ 2318 017b 3F       		.uleb128 0x3f
+ 2319 017c 19       		.uleb128 0x19
+ 2320 017d 3C       		.uleb128 0x3c
+ 2321 017e 19       		.uleb128 0x19
+ 2322 017f 6E       		.uleb128 0x6e
+ 2323 0180 08       		.uleb128 0x8
+ 2324 0181 03       		.uleb128 0x3
+ 2325 0182 08       		.uleb128 0x8
+ 2326 0183 3A       		.uleb128 0x3a
+ 2327 0184 0B       		.uleb128 0xb
+ 2328 0185 3B       		.uleb128 0x3b
+ 2329 0186 0B       		.uleb128 0xb
+ 2330 0187 00       		.byte	0
+ 2331 0188 00       		.byte	0
+ 2332 0189 1D       		.uleb128 0x1d
+ 2333 018a 2E       		.uleb128 0x2e
+ 2334 018b 00       		.byte	0
+ 2335 018c 3F       		.uleb128 0x3f
+ 2336 018d 19       		.uleb128 0x19
+ 2337 018e 3C       		.uleb128 0x3c
+ 2338 018f 19       		.uleb128 0x19
+ 2339 0190 6E       		.uleb128 0x6e
+ 2340 0191 0E       		.uleb128 0xe
+ 2341 0192 03       		.uleb128 0x3
+ 2342 0193 0E       		.uleb128 0xe
+ 2343 0194 3A       		.uleb128 0x3a
+ 2344 0195 0B       		.uleb128 0xb
+ 2345 0196 3B       		.uleb128 0x3b
+ 2346 0197 0B       		.uleb128 0xb
+ 2347 0198 00       		.byte	0
+ 2348 0199 00       		.byte	0
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 47
+
+
+ 2349 019a 00       		.byte	0
+ 2350              		.section	.debug_loc,"",%progbits
+ 2351              	.Ldebug_loc0:
+ 2352              	.LLST0:
+ 2353 0000 00000000 		.4byte	.LVL0
+ 2354 0004 3C000000 		.4byte	.LVL13
+ 2355 0008 0100     		.2byte	0x1
+ 2356 000a 50       		.byte	0x50
+ 2357 000b 3C000000 		.4byte	.LVL13
+ 2358 000f A2020000 		.4byte	.LVL82
+ 2359 0013 0100     		.2byte	0x1
+ 2360 0015 54       		.byte	0x54
+ 2361 0016 A2020000 		.4byte	.LVL82
+ 2362 001a BC020000 		.4byte	.LFE63
+ 2363 001e 0400     		.2byte	0x4
+ 2364 0020 F3       		.byte	0xf3
+ 2365 0021 01       		.uleb128 0x1
+ 2366 0022 50       		.byte	0x50
+ 2367 0023 9F       		.byte	0x9f
+ 2368 0024 00000000 		.4byte	0
+ 2369 0028 00000000 		.4byte	0
+ 2370              	.LLST1:
+ 2371 002c 20000000 		.4byte	.LVL7
+ 2372 0030 56000000 		.4byte	.LVL17
+ 2373 0034 0100     		.2byte	0x1
+ 2374 0036 58       		.byte	0x58
+ 2375 0037 00000000 		.4byte	0
+ 2376 003b 00000000 		.4byte	0
+ 2377              	.LLST2:
+ 2378 003f 24000000 		.4byte	.LVL8
+ 2379 0043 A8010000 		.4byte	.LVL60
+ 2380 0047 0100     		.2byte	0x1
+ 2381 0049 5B       		.byte	0x5b
+ 2382 004a 00000000 		.4byte	0
+ 2383 004e 00000000 		.4byte	0
+ 2384              	.LLST3:
+ 2385 0052 26000000 		.4byte	.LVL9
+ 2386 0056 40010000 		.4byte	.LVL48
+ 2387 005a 0100     		.2byte	0x1
+ 2388 005c 57       		.byte	0x57
+ 2389 005d 00000000 		.4byte	0
+ 2390 0061 00000000 		.4byte	0
+ 2391              	.LLST4:
+ 2392 0065 2A000000 		.4byte	.LVL10
+ 2393 0069 7E000000 		.4byte	.LVL22
+ 2394 006d 0100     		.2byte	0x1
+ 2395 006f 59       		.byte	0x59
+ 2396 0070 00000000 		.4byte	0
+ 2397 0074 00000000 		.4byte	0
+ 2398              	.LLST5:
+ 2399 0078 32000000 		.4byte	.LVL11
+ 2400 007c 3F000000 		.4byte	.LVL14-1
+ 2401 0080 0100     		.2byte	0x1
+ 2402 0082 5E       		.byte	0x5e
+ 2403 0083 3F000000 		.4byte	.LVL14-1
+ 2404 0087 CA000000 		.4byte	.LVL32
+ 2405 008b 0300     		.2byte	0x3
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 48
+
+
+ 2406 008d 91       		.byte	0x91
+ 2407 008e A87F     		.sleb128 -88
+ 2408 0090 00000000 		.4byte	0
+ 2409 0094 00000000 		.4byte	0
+ 2410              	.LLST6:
+ 2411 0098 3A000000 		.4byte	.LVL12
+ 2412 009c 3F000000 		.4byte	.LVL14-1
+ 2413 00a0 0100     		.2byte	0x1
+ 2414 00a2 5C       		.byte	0x5c
+ 2415 00a3 3F000000 		.4byte	.LVL14-1
+ 2416 00a7 A2020000 		.4byte	.LVL82
+ 2417 00ab 0200     		.2byte	0x2
+ 2418 00ad 91       		.byte	0x91
+ 2419 00ae 4C       		.sleb128 -52
+ 2420 00af A2020000 		.4byte	.LVL82
+ 2421 00b3 BC020000 		.4byte	.LFE63
+ 2422 00b7 0200     		.2byte	0x2
+ 2423 00b9 7D       		.byte	0x7d
+ 2424 00ba 4C       		.sleb128 -52
+ 2425 00bb 00000000 		.4byte	0
+ 2426 00bf 00000000 		.4byte	0
+ 2427              	.LLST7:
+ 2428 00c3 3A000000 		.4byte	.LVL12
+ 2429 00c7 3C000000 		.4byte	.LVL13
+ 2430 00cb 0300     		.2byte	0x3
+ 2431 00cd 70       		.byte	0x70
+ 2432 00ce E400     		.sleb128 100
+ 2433 00d0 3C000000 		.4byte	.LVL13
+ 2434 00d4 3F000000 		.4byte	.LVL14-1
+ 2435 00d8 0100     		.2byte	0x1
+ 2436 00da 50       		.byte	0x50
+ 2437 00db 00000000 		.4byte	0
+ 2438 00df 00000000 		.4byte	0
+ 2439              	.LLST8:
+ 2440 00e3 0C000000 		.4byte	.LVL1
+ 2441 00e7 3F000000 		.4byte	.LVL14-1
+ 2442 00eb 0100     		.2byte	0x1
+ 2443 00ed 53       		.byte	0x53
+ 2444 00ee 3F000000 		.4byte	.LVL14-1
+ 2445 00f2 1E010000 		.4byte	.LVL42
+ 2446 00f6 0300     		.2byte	0x3
+ 2447 00f8 91       		.byte	0x91
+ 2448 00f9 B07F     		.sleb128 -80
+ 2449 00fb 00000000 		.4byte	0
+ 2450 00ff 00000000 		.4byte	0
+ 2451              	.LLST9:
+ 2452 0103 10000000 		.4byte	.LVL2
+ 2453 0107 3F000000 		.4byte	.LVL14-1
+ 2454 010b 0100     		.2byte	0x1
+ 2455 010d 52       		.byte	0x52
+ 2456 010e 3F000000 		.4byte	.LVL14-1
+ 2457 0112 5E010000 		.4byte	.LVL51
+ 2458 0116 0300     		.2byte	0x3
+ 2459 0118 91       		.byte	0x91
+ 2460 0119 B87F     		.sleb128 -72
+ 2461 011b 00000000 		.4byte	0
+ 2462 011f 00000000 		.4byte	0
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 49
+
+
+ 2463              	.LLST10:
+ 2464 0123 12000000 		.4byte	.LVL3
+ 2465 0127 AE000000 		.4byte	.LVL27
+ 2466 012b 0100     		.2byte	0x1
+ 2467 012d 56       		.byte	0x56
+ 2468 012e 00000000 		.4byte	0
+ 2469 0132 00000000 		.4byte	0
+ 2470              	.LLST11:
+ 2471 0136 14000000 		.4byte	.LVL4
+ 2472 013a C4000000 		.4byte	.LVL31
+ 2473 013e 0100     		.2byte	0x1
+ 2474 0140 55       		.byte	0x55
+ 2475 0141 00000000 		.4byte	0
+ 2476 0145 00000000 		.4byte	0
+ 2477              	.LLST12:
+ 2478 0149 18000000 		.4byte	.LVL5
+ 2479 014d 3F000000 		.4byte	.LVL14-1
+ 2480 0151 0100     		.2byte	0x1
+ 2481 0153 51       		.byte	0x51
+ 2482 0154 3F000000 		.4byte	.LVL14-1
+ 2483 0158 56010000 		.4byte	.LVL50
+ 2484 015c 0200     		.2byte	0x2
+ 2485 015e 91       		.byte	0x91
+ 2486 015f 40       		.sleb128 -64
+ 2487 0160 00000000 		.4byte	0
+ 2488 0164 00000000 		.4byte	0
+ 2489              	.LLST13:
+ 2490 0168 1C000000 		.4byte	.LVL6
+ 2491 016c A6010000 		.4byte	.LVL59
+ 2492 0170 0100     		.2byte	0x1
+ 2493 0172 5A       		.byte	0x5a
+ 2494 0173 00000000 		.4byte	0
+ 2495 0177 00000000 		.4byte	0
+ 2496              	.LLST14:
+ 2497 017b 30010000 		.4byte	.LVL45
+ 2498 017f 38010000 		.4byte	.LVL46
+ 2499 0183 0100     		.2byte	0x1
+ 2500 0185 50       		.byte	0x50
+ 2501 0186 38010000 		.4byte	.LVL46
+ 2502 018a A2020000 		.4byte	.LVL82
+ 2503 018e 0100     		.2byte	0x1
+ 2504 0190 55       		.byte	0x55
+ 2505 0191 00000000 		.4byte	0
+ 2506 0195 00000000 		.4byte	0
+ 2507              	.LLST15:
+ 2508 0199 0A020000 		.4byte	.LVL69
+ 2509 019d 10020000 		.4byte	.LVL70
+ 2510 01a1 0100     		.2byte	0x1
+ 2511 01a3 50       		.byte	0x50
+ 2512 01a4 10020000 		.4byte	.LVL70
+ 2513 01a8 A2020000 		.4byte	.LVL82
+ 2514 01ac 0100     		.2byte	0x1
+ 2515 01ae 5A       		.byte	0x5a
+ 2516 01af A2020000 		.4byte	.LVL82
+ 2517 01b3 BC020000 		.4byte	.LFE63
+ 2518 01b7 0600     		.2byte	0x6
+ 2519 01b9 F3       		.byte	0xf3
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 50
+
+
+ 2520 01ba 01       		.uleb128 0x1
+ 2521 01bb 50       		.byte	0x50
+ 2522 01bc 23       		.byte	0x23
+ 2523 01bd A001     		.uleb128 0xa0
+ 2524 01bf 00000000 		.4byte	0
+ 2525 01c3 00000000 		.4byte	0
+ 2526              	.LLST16:
+ 2527 01c7 00000000 		.4byte	.LVL83
+ 2528 01cb 1E000000 		.4byte	.LVL90
+ 2529 01cf 0100     		.2byte	0x1
+ 2530 01d1 50       		.byte	0x50
+ 2531 01d2 1E000000 		.4byte	.LVL90
+ 2532 01d6 E8010000 		.4byte	.LVL134
+ 2533 01da 0100     		.2byte	0x1
+ 2534 01dc 54       		.byte	0x54
+ 2535 01dd E8010000 		.4byte	.LVL134
+ 2536 01e1 F8010000 		.4byte	.LFE64
+ 2537 01e5 0400     		.2byte	0x4
+ 2538 01e7 F3       		.byte	0xf3
+ 2539 01e8 01       		.uleb128 0x1
+ 2540 01e9 50       		.byte	0x50
+ 2541 01ea 9F       		.byte	0x9f
+ 2542 01eb 00000000 		.4byte	0
+ 2543 01ef 00000000 		.4byte	0
+ 2544              	.LLST17:
+ 2545 01f3 0A000000 		.4byte	.LVL84
+ 2546 01f7 D0010000 		.4byte	.LVL131
+ 2547 01fb 0100     		.2byte	0x1
+ 2548 01fd 55       		.byte	0x55
+ 2549 01fe 00000000 		.4byte	0
+ 2550 0202 00000000 		.4byte	0
+ 2551              	.LLST18:
+ 2552 0206 0E000000 		.4byte	.LVL85
+ 2553 020a E8010000 		.4byte	.LVL134
+ 2554 020e 0100     		.2byte	0x1
+ 2555 0210 58       		.byte	0x58
+ 2556 0211 00000000 		.4byte	0
+ 2557 0215 00000000 		.4byte	0
+ 2558              	.LLST19:
+ 2559 0219 12000000 		.4byte	.LVL86
+ 2560 021d E8010000 		.4byte	.LVL134
+ 2561 0221 0100     		.2byte	0x1
+ 2562 0223 5A       		.byte	0x5a
+ 2563 0224 00000000 		.4byte	0
+ 2564 0228 00000000 		.4byte	0
+ 2565              	.LLST20:
+ 2566 022c 16000000 		.4byte	.LVL87
+ 2567 0230 E8010000 		.4byte	.LVL134
+ 2568 0234 0100     		.2byte	0x1
+ 2569 0236 59       		.byte	0x59
+ 2570 0237 00000000 		.4byte	0
+ 2571 023b 00000000 		.4byte	0
+ 2572              	.LLST21:
+ 2573 023f 1A000000 		.4byte	.LVL88
+ 2574 0243 E8010000 		.4byte	.LVL134
+ 2575 0247 0100     		.2byte	0x1
+ 2576 0249 5B       		.byte	0x5b
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 51
+
+
+ 2577 024a 00000000 		.4byte	0
+ 2578 024e 00000000 		.4byte	0
+ 2579              	.LLST22:
+ 2580 0252 1C000000 		.4byte	.LVL89
+ 2581 0256 38000000 		.4byte	.LVL94
+ 2582 025a 0100     		.2byte	0x1
+ 2583 025c 56       		.byte	0x56
+ 2584 025d 00000000 		.4byte	0
+ 2585 0261 00000000 		.4byte	0
+ 2586              		.section	.debug_aranges,"",%progbits
+ 2587 0000 2C000000 		.4byte	0x2c
+ 2588 0004 0200     		.2byte	0x2
+ 2589 0006 00000000 		.4byte	.Ldebug_info0
+ 2590 000a 04       		.byte	0x4
+ 2591 000b 00       		.byte	0
+ 2592 000c 0000     		.2byte	0
+ 2593 000e 0000     		.2byte	0
+ 2594 0010 00000000 		.4byte	.LFB63
+ 2595 0014 BC020000 		.4byte	.LFE63-.LFB63
+ 2596 0018 00000000 		.4byte	.LFB64
+ 2597 001c F8010000 		.4byte	.LFE64-.LFB64
+ 2598 0020 00000000 		.4byte	.LFB65
+ 2599 0024 A4010000 		.4byte	.LFE65-.LFB65
+ 2600 0028 00000000 		.4byte	0
+ 2601 002c 00000000 		.4byte	0
+ 2602              		.section	.debug_ranges,"",%progbits
+ 2603              	.Ldebug_ranges0:
+ 2604 0000 00000000 		.4byte	.LFB63
+ 2605 0004 BC020000 		.4byte	.LFE63
+ 2606 0008 00000000 		.4byte	.LFB64
+ 2607 000c F8010000 		.4byte	.LFE64
+ 2608 0010 00000000 		.4byte	.LFB65
+ 2609 0014 A4010000 		.4byte	.LFE65
+ 2610 0018 00000000 		.4byte	0
+ 2611 001c 00000000 		.4byte	0
+ 2612              		.section	.debug_line,"",%progbits
+ 2613              	.Ldebug_line0:
+ 2614 0000 87020000 		.section	.debug_str,"MS",%progbits,1
+ 2614      0200F101 
+ 2614      00000201 
+ 2614      FB0E0D00 
+ 2614      01010101 
+ 2615              	.LASF68:
+ 2616 0000 666C6F6F 		.ascii	"floor\000"
+ 2616      7200
+ 2617              	.LASF44:
+ 2618 0006 76656C4E 		.ascii	"velNavegacao\000"
+ 2618      61766567 
+ 2618      6163616F 
+ 2618      00
+ 2619              	.LASF31:
+ 2620 0013 6572726F 		.ascii	"erroAnt\000"
+ 2620      416E7400 
+ 2621              	.LASF61:
+ 2622 001b 78537472 		.ascii	"xStr\000"
+ 2622      00
+ 2623              	.LASF6:
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 52
+
+
+ 2624 0020 73686F72 		.ascii	"short int\000"
+ 2624      7420696E 
+ 2624      7400
+ 2625              	.LASF35:
+ 2626 002a 6D617849 		.ascii	"maxIntegral\000"
+ 2626      6E746567 
+ 2626      72616C00 
+ 2627              	.LASF11:
+ 2628 0036 73697A65 		.ascii	"sizetype\000"
+ 2628      74797065 
+ 2628      00
+ 2629              	.LASF58:
+ 2630 003f 7072696D 		.ascii	"primDet\000"
+ 2630      44657400 
+ 2631              	.LASF26:
+ 2632 0047 72616450 		.ascii	"radPorPulso\000"
+ 2632      6F725075 
+ 2632      6C736F00 
+ 2633              	.LASF64:
+ 2634 0053 6D736749 		.ascii	"msgInstintivo\000"
+ 2634      6E737469 
+ 2634      6E746976 
+ 2634      6F00
+ 2635              	.LASF3:
+ 2636 0061 6C6F6E67 		.ascii	"long double\000"
+ 2636      20646F75 
+ 2636      626C6500 
+ 2637              	.LASF72:
+ 2638 006d 636F6E74 		.ascii	"controle_cinematico_isr\000"
+ 2638      726F6C65 
+ 2638      5F63696E 
+ 2638      656D6174 
+ 2638      69636F5F 
+ 2639              	.LASF50:
+ 2640 0085 436F6E74 		.ascii	"ControleCinematico\000"
+ 2640      726F6C65 
+ 2640      43696E65 
+ 2640      6D617469 
+ 2640      636F00
+ 2641              	.LASF17:
+ 2642 0098 75696E74 		.ascii	"uint16\000"
+ 2642      313600
+ 2643              	.LASF18:
+ 2644 009f 696E7431 		.ascii	"int16\000"
+ 2644      3600
+ 2645              	.LASF65:
+ 2646 00a5 6D736750 		.ascii	"msgPlayer\000"
+ 2646      6C617965 
+ 2646      7200
+ 2647              	.LASF16:
+ 2648 00af 75696E74 		.ascii	"uint8\000"
+ 2648      3800
+ 2649              	.LASF67:
+ 2650 00b5 736F6E61 		.ascii	"sonar\000"
+ 2650      7200
+ 2651              	.LASF60:
+ 2652 00bb 6661746F 		.ascii	"fator\000"
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 53
+
+
+ 2652      7200
+ 2653              	.LASF22:
+ 2654 00c1 6E50756C 		.ascii	"nPulsosAtual\000"
+ 2654      736F7341 
+ 2654      7475616C 
+ 2654      00
+ 2655              	.LASF36:
+ 2656 00ce 6D617841 		.ascii	"maxAcao\000"
+ 2656      63616F00 
+ 2657              	.LASF13:
+ 2658 00d6 666C6F61 		.ascii	"float\000"
+ 2658      7400
+ 2659              	.LASF2:
+ 2660 00dc 6C6F6E67 		.ascii	"long long int\000"
+ 2660      206C6F6E 
+ 2660      6720696E 
+ 2660      7400
+ 2661              	.LASF42:
+ 2662 00ea 45737461 		.ascii	"EstadoRobo\000"
+ 2662      646F526F 
+ 2662      626F00
+ 2663              	.LASF62:
+ 2664 00f5 79537472 		.ascii	"yStr\000"
+ 2664      00
+ 2665              	.LASF9:
+ 2666 00fa 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2666      20756E73 
+ 2666      69676E65 
+ 2666      6420696E 
+ 2666      7400
+ 2667              	.LASF32:
+ 2668 010c 696E7465 		.ascii	"integral\000"
+ 2668      6772616C 
+ 2668      00
+ 2669              	.LASF63:
+ 2670 0115 74686574 		.ascii	"thetaStr\000"
+ 2670      61537472 
+ 2670      00
+ 2671              	.LASF57:
+ 2672 011e 64746865 		.ascii	"dthetaAnt\000"
+ 2672      7461416E 
+ 2672      7400
+ 2673              	.LASF43:
+ 2674 0128 69457272 		.ascii	"iErro\000"
+ 2674      6F00
+ 2675              	.LASF51:
+ 2676 012e 6163616F 		.ascii	"acaoControle\000"
+ 2676      436F6E74 
+ 2676      726F6C65 
+ 2676      00
+ 2677              	.LASF23:
+ 2678 013b 6E50756C 		.ascii	"nPulsosAnterior\000"
+ 2678      736F7341 
+ 2678      6E746572 
+ 2678      696F7200 
+ 2679              	.LASF28:
+ 2680 014b 4D6F746F 		.ascii	"Motor\000"
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 54
+
+
+ 2680      7200
+ 2681              	.LASF49:
+ 2682 0151 726F626F 		.ascii	"robo\000"
+ 2682      00
+ 2683              	.LASF5:
+ 2684 0156 756E7369 		.ascii	"unsigned char\000"
+ 2684      676E6564 
+ 2684      20636861 
+ 2684      7200
+ 2685              	.LASF55:
+ 2686 0164 6478416E 		.ascii	"dxAnt\000"
+ 2686      7400
+ 2687              	.LASF66:
+ 2688 016a 6D736754 		.ascii	"msgTeste\000"
+ 2688      65737465 
+ 2688      00
+ 2689              	.LASF4:
+ 2690 0173 7369676E 		.ascii	"signed char\000"
+ 2690      65642063 
+ 2690      68617200 
+ 2691              	.LASF30:
+ 2692 017f 6572726F 		.ascii	"erro\000"
+ 2692      00
+ 2693              	.LASF10:
+ 2694 0184 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2694      206C6F6E 
+ 2694      6720756E 
+ 2694      7369676E 
+ 2694      65642069 
+ 2695              	.LASF29:
+ 2696 019b 73657450 		.ascii	"setPoint\000"
+ 2696      6F696E74 
+ 2696      00
+ 2697              	.LASF1:
+ 2698 01a4 756E7369 		.ascii	"unsigned int\000"
+ 2698      676E6564 
+ 2698      20696E74 
+ 2698      00
+ 2699              	.LASF34:
+ 2700 01b1 70657269 		.ascii	"periodo\000"
+ 2700      6F646F00 
+ 2701              	.LASF25:
+ 2702 01b9 64697265 		.ascii	"direcao\000"
+ 2702      63616F00 
+ 2703              	.LASF21:
+ 2704 01c1 76656C4C 		.ascii	"velLin\000"
+ 2704      696E00
+ 2705              	.LASF7:
+ 2706 01c8 73686F72 		.ascii	"short unsigned int\000"
+ 2706      7420756E 
+ 2706      7369676E 
+ 2706      65642069 
+ 2706      6E7400
+ 2707              	.LASF52:
+ 2708 01db 73616964 		.ascii	"saidaModelo\000"
+ 2708      614D6F64 
+ 2708      656C6F00 
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 55
+
+
+ 2709              	.LASF12:
+ 2710 01e7 63686172 		.ascii	"char\000"
+ 2710      00
+ 2711              	.LASF8:
+ 2712 01ec 6C6F6E67 		.ascii	"long int\000"
+ 2712      20696E74 
+ 2712      00
+ 2713              	.LASF15:
+ 2714 01f5 696E7433 		.ascii	"int32_t\000"
+ 2714      325F7400 
+ 2715              	.LASF71:
+ 2716 01fd 433A5C55 		.ascii	"C:\\Users\\diego\\source\\repos\\teste_controlador."
+ 2716      73657273 
+ 2716      5C646965 
+ 2716      676F5C73 
+ 2716      6F757263 
+ 2717 022b 63796473 		.ascii	"cydsn\000"
+ 2717      6E00
+ 2718              	.LASF33:
+ 2719 0231 6163616F 		.ascii	"acao\000"
+ 2719      00
+ 2720              	.LASF41:
+ 2721 0236 6D6F746F 		.ascii	"motor\000"
+ 2721      7200
+ 2722              	.LASF19:
+ 2723 023c 76656C52 		.ascii	"velRad\000"
+ 2723      616400
+ 2724              	.LASF70:
+ 2725 0243 636F6E74 		.ascii	"controle_cinematico.c\000"
+ 2725      726F6C65 
+ 2725      5F63696E 
+ 2725      656D6174 
+ 2725      69636F2E 
+ 2726              	.LASF56:
+ 2727 0259 6479416E 		.ascii	"dyAnt\000"
+ 2727      7400
+ 2728              	.LASF46:
+ 2729 025f 4B695F70 		.ascii	"Ki_p\000"
+ 2729      00
+ 2730              	.LASF48:
+ 2731 0264 4B695F76 		.ascii	"Ki_v\000"
+ 2731      00
+ 2732              	.LASF14:
+ 2733 0269 5F5F696E 		.ascii	"__int32_t\000"
+ 2733      7433325F 
+ 2733      7400
+ 2734              	.LASF39:
+ 2735 0273 74686574 		.ascii	"theta\000"
+ 2735      6100
+ 2736              	.LASF37:
+ 2737 0279 5F6D6F74 		.ascii	"_motor\000"
+ 2737      6F7200
+ 2738              	.LASF38:
+ 2739 0280 436F6E74 		.ascii	"ControleMotor\000"
+ 2739      726F6C65 
+ 2739      4D6F746F 
+ 2739      7200
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpbqRZc.s 			page 56
+
+
+ 2740              	.LASF24:
+ 2741 028e 64696650 		.ascii	"difPulsos\000"
+ 2741      756C736F 
+ 2741      7300
+ 2742              	.LASF0:
+ 2743 0298 646F7562 		.ascii	"double\000"
+ 2743      6C6500
+ 2744              	.LASF54:
+ 2745 029f 63696E65 		.ascii	"cinematico\000"
+ 2745      6D617469 
+ 2745      636F00
+ 2746              	.LASF40:
+ 2747 02aa 64746865 		.ascii	"dtheta\000"
+ 2747      746100
+ 2748              	.LASF53:
+ 2749 02b1 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 2749      52784275 
+ 2749      66666572 
+ 2749      00
+ 2750              	.LASF69:
+ 2751 02be 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 2751      43313120 
+ 2751      352E342E 
+ 2751      31203230 
+ 2751      31363036 
+ 2752 02f1 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 2752      20726576 
+ 2752      6973696F 
+ 2752      6E203233 
+ 2752      37373135 
+ 2753 0324 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2753      66756E63 
+ 2753      74696F6E 
+ 2753      2D736563 
+ 2753      74696F6E 
+ 2754              	.LASF59:
+ 2755 034c 6E566F6C 		.ascii	"nVoltas\000"
+ 2755      74617300 
+ 2756              	.LASF45:
+ 2757 0354 4B705F70 		.ascii	"Kp_p\000"
+ 2757      00
+ 2758              	.LASF27:
+ 2759 0359 6D617856 		.ascii	"maxVelRad\000"
+ 2759      656C5261 
+ 2759      6400
+ 2760              	.LASF20:
+ 2761 0363 76656C52 		.ascii	"velRadMed\000"
+ 2761      61644D65 
+ 2761      6400
+ 2762              	.LASF47:
+ 2763 036d 4B705F76 		.ascii	"Kp_v\000"
+ 2763      00
+ 2764              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

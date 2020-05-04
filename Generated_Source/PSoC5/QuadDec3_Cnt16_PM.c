@@ -1,0 +1,164 @@
+/*******************************************************************************
+* File Name: QuadDec3_Cnt16_PM.c  
+* Version 3.0
+*
+*  Description:
+*    This file provides the power management source code to API for the
+*    Counter.  
+*
+*   Note:
+*     None
+*
+********************************************************************************
+* Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+* You may use this file only in accordance with the license, terms, conditions, 
+* disclaimers, and limitations in the end user license agreement accompanying 
+* the software package with which this file was provided.
+*******************************************************************************/
+
+#include "QuadDec3_Cnt16.h"
+
+static QuadDec3_Cnt16_backupStruct QuadDec3_Cnt16_backup;
+
+
+/*******************************************************************************
+* Function Name: QuadDec3_Cnt16_SaveConfig
+********************************************************************************
+* Summary:
+*     Save the current user configuration
+*
+* Parameters:  
+*  void
+*
+* Return: 
+*  void
+*
+* Global variables:
+*  QuadDec3_Cnt16_backup:  Variables of this global structure are modified to 
+*  store the values of non retention configuration registers when Sleep() API is 
+*  called.
+*
+*******************************************************************************/
+void QuadDec3_Cnt16_SaveConfig(void) 
+{
+    #if (!QuadDec3_Cnt16_UsingFixedFunction)
+
+        QuadDec3_Cnt16_backup.CounterUdb = QuadDec3_Cnt16_ReadCounter();
+
+        #if(!QuadDec3_Cnt16_ControlRegRemoved)
+            QuadDec3_Cnt16_backup.CounterControlRegister = QuadDec3_Cnt16_ReadControlRegister();
+        #endif /* (!QuadDec3_Cnt16_ControlRegRemoved) */
+
+    #endif /* (!QuadDec3_Cnt16_UsingFixedFunction) */
+}
+
+
+/*******************************************************************************
+* Function Name: QuadDec3_Cnt16_RestoreConfig
+********************************************************************************
+*
+* Summary:
+*  Restores the current user configuration.
+*
+* Parameters:  
+*  void
+*
+* Return: 
+*  void
+*
+* Global variables:
+*  QuadDec3_Cnt16_backup:  Variables of this global structure are used to 
+*  restore the values of non retention registers on wakeup from sleep mode.
+*
+*******************************************************************************/
+void QuadDec3_Cnt16_RestoreConfig(void) 
+{      
+    #if (!QuadDec3_Cnt16_UsingFixedFunction)
+
+       QuadDec3_Cnt16_WriteCounter(QuadDec3_Cnt16_backup.CounterUdb);
+
+        #if(!QuadDec3_Cnt16_ControlRegRemoved)
+            QuadDec3_Cnt16_WriteControlRegister(QuadDec3_Cnt16_backup.CounterControlRegister);
+        #endif /* (!QuadDec3_Cnt16_ControlRegRemoved) */
+
+    #endif /* (!QuadDec3_Cnt16_UsingFixedFunction) */
+}
+
+
+/*******************************************************************************
+* Function Name: QuadDec3_Cnt16_Sleep
+********************************************************************************
+* Summary:
+*     Stop and Save the user configuration
+*
+* Parameters:  
+*  void
+*
+* Return: 
+*  void
+*
+* Global variables:
+*  QuadDec3_Cnt16_backup.enableState:  Is modified depending on the enable 
+*  state of the block before entering sleep mode.
+*
+*******************************************************************************/
+void QuadDec3_Cnt16_Sleep(void) 
+{
+    #if(!QuadDec3_Cnt16_ControlRegRemoved)
+        /* Save Counter's enable state */
+        if(QuadDec3_Cnt16_CTRL_ENABLE == (QuadDec3_Cnt16_CONTROL & QuadDec3_Cnt16_CTRL_ENABLE))
+        {
+            /* Counter is enabled */
+            QuadDec3_Cnt16_backup.CounterEnableState = 1u;
+        }
+        else
+        {
+            /* Counter is disabled */
+            QuadDec3_Cnt16_backup.CounterEnableState = 0u;
+        }
+    #else
+        QuadDec3_Cnt16_backup.CounterEnableState = 1u;
+        if(QuadDec3_Cnt16_backup.CounterEnableState != 0u)
+        {
+            QuadDec3_Cnt16_backup.CounterEnableState = 0u;
+        }
+    #endif /* (!QuadDec3_Cnt16_ControlRegRemoved) */
+    
+    QuadDec3_Cnt16_Stop();
+    QuadDec3_Cnt16_SaveConfig();
+}
+
+
+/*******************************************************************************
+* Function Name: QuadDec3_Cnt16_Wakeup
+********************************************************************************
+*
+* Summary:
+*  Restores and enables the user configuration
+*  
+* Parameters:  
+*  void
+*
+* Return: 
+*  void
+*
+* Global variables:
+*  QuadDec3_Cnt16_backup.enableState:  Is used to restore the enable state of 
+*  block on wakeup from sleep mode.
+*
+*******************************************************************************/
+void QuadDec3_Cnt16_Wakeup(void) 
+{
+    QuadDec3_Cnt16_RestoreConfig();
+    #if(!QuadDec3_Cnt16_ControlRegRemoved)
+        if(QuadDec3_Cnt16_backup.CounterEnableState == 1u)
+        {
+            /* Enable Counter's operation */
+            QuadDec3_Cnt16_Enable();
+        } /* Do nothing if Counter was disabled before */    
+    #endif /* (!QuadDec3_Cnt16_ControlRegRemoved) */
+    
+}
+
+
+/* [] END OF FILE */

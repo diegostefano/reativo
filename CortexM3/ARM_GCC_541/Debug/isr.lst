@@ -1,0 +1,1222 @@
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cc4RROBg.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"isr.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.timer_motores_isr_handler,"ax",%progbits
+  20              		.align	2
+  21              		.global	timer_motores_isr_handler
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	timer_motores_isr_handler, %function
+  25              	timer_motores_isr_handler:
+  26              	.LFB63:
+  27              		.file 1 "isr.c"
+   1:isr.c         **** /* ========================================
+   2:isr.c         ****  *
+   3:isr.c         ****  * Copyright YOUR COMPANY, THE YEAR
+   4:isr.c         ****  * All Rights Reserved
+   5:isr.c         ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:isr.c         ****  *
+   7:isr.c         ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:isr.c         ****  * WHICH IS THE PROPERTY OF your company.
+   9:isr.c         ****  *
+  10:isr.c         ****  * ========================================
+  11:isr.c         **** */
+  12:isr.c         **** 
+  13:isr.c         **** #include "isr.h"
+  14:isr.c         **** #include "controle_cinematico.h"
+  15:isr.c         **** 
+  16:isr.c         **** #include <math.h>
+  17:isr.c         **** 
+  18:isr.c         **** CY_ISR(timer_motores_isr_handler) {
+  28              		.loc 1 18 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 08B5     		push	{r3, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 3, -8
+  35              		.cfi_offset 14, -4
+  19:isr.c         ****     TimerMotores_ReadStatusRegister();
+  36              		.loc 1 19 0
+  37 0002 FFF7FEFF 		bl	TimerMotores_ReadStatusRegister
+  38              	.LVL0:
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cc4RROBg.s 			page 2
+
+
+  20:isr.c         ****     
+  21:isr.c         ****     controle_motores_isr();
+  39              		.loc 1 21 0
+  40 0006 FFF7FEFF 		bl	controle_motores_isr
+  41              	.LVL1:
+  42 000a 08BD     		pop	{r3, pc}
+  43              		.cfi_endproc
+  44              	.LFE63:
+  45              		.size	timer_motores_isr_handler, .-timer_motores_isr_handler
+  46              		.global	__aeabi_f2d
+  47              		.global	__aeabi_dadd
+  48              		.global	__aeabi_d2f
+  49              		.global	__aeabi_fmul
+  50              		.global	__aeabi_fadd
+  51              		.section	.text.timer_cinematico_isr_handler,"ax",%progbits
+  52              		.align	2
+  53              		.global	timer_cinematico_isr_handler
+  54              		.thumb
+  55              		.thumb_func
+  56              		.type	timer_cinematico_isr_handler, %function
+  57              	timer_cinematico_isr_handler:
+  58              	.LFB64:
+  22:isr.c         **** }
+  23:isr.c         **** 
+  24:isr.c         **** CY_ISR(timer_cinematico_isr_handler) {
+  59              		.loc 1 24 0
+  60              		.cfi_startproc
+  61              		@ args = 0, pretend = 0, frame = 0
+  62              		@ frame_needed = 0, uses_anonymous_args = 0
+  63 0000 38B5     		push	{r3, r4, r5, lr}
+  64              		.cfi_def_cfa_offset 16
+  65              		.cfi_offset 3, -16
+  66              		.cfi_offset 4, -12
+  67              		.cfi_offset 5, -8
+  68              		.cfi_offset 14, -4
+  25:isr.c         ****     TimerCinematico_ReadStatusRegister();
+  69              		.loc 1 25 0
+  70 0002 FFF7FEFF 		bl	TimerCinematico_ReadStatusRegister
+  71              	.LVL2:
+  26:isr.c         ****     
+  27:isr.c         ****     _t += 0.07;
+  72              		.loc 1 27 0
+  73 0006 144C     		ldr	r4, .L5+8
+  74 0008 2068     		ldr	r0, [r4]	@ float
+  75 000a FFF7FEFF 		bl	__aeabi_f2d
+  76              	.LVL3:
+  77 000e 10A3     		adr	r3, .L5
+  78 0010 D3E90023 		ldrd	r2, [r3]
+  79 0014 FFF7FEFF 		bl	__aeabi_dadd
+  80              	.LVL4:
+  81 0018 FFF7FEFF 		bl	__aeabi_d2f
+  82              	.LVL5:
+  83 001c 2060     		str	r0, [r4]	@ float
+  28:isr.c         ****     
+  29:isr.c         ****     controle_cinematico_isr();
+  84              		.loc 1 29 0
+  85 001e FFF7FEFF 		bl	controle_cinematico_isr
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cc4RROBg.s 			page 3
+
+
+  86              	.LVL6:
+  30:isr.c         ****     //cinematico.robo.x += 1;
+  31:isr.c         ****     
+  32:isr.c         ****     if (!POSICAO) {
+  33:isr.c         ****         sx = sox + _t * cinematico.setPoint[0];
+  87              		.loc 1 33 0
+  88 0022 0E4D     		ldr	r5, .L5+12
+  89 0024 2468     		ldr	r4, [r4]	@ float
+  90 0026 2146     		mov	r1, r4
+  91 0028 2868     		ldr	r0, [r5]	@ float
+  92 002a FFF7FEFF 		bl	__aeabi_fmul
+  93              	.LVL7:
+  94 002e 0C4B     		ldr	r3, .L5+16
+  95 0030 1968     		ldr	r1, [r3]	@ float
+  96 0032 FFF7FEFF 		bl	__aeabi_fadd
+  97              	.LVL8:
+  98 0036 0B4B     		ldr	r3, .L5+20
+  99 0038 1860     		str	r0, [r3]	@ float
+  34:isr.c         ****         sy = soy + _t * cinematico.setPoint[1];
+ 100              		.loc 1 34 0
+ 101 003a 6968     		ldr	r1, [r5, #4]	@ float
+ 102 003c 2046     		mov	r0, r4
+ 103 003e FFF7FEFF 		bl	__aeabi_fmul
+ 104              	.LVL9:
+ 105 0042 094B     		ldr	r3, .L5+24
+ 106 0044 1968     		ldr	r1, [r3]	@ float
+ 107 0046 FFF7FEFF 		bl	__aeabi_fadd
+ 108              	.LVL10:
+ 109 004a 084B     		ldr	r3, .L5+28
+ 110 004c 1860     		str	r0, [r3]	@ float
+ 111 004e 38BD     		pop	{r3, r4, r5, pc}
+ 112              	.L6:
+ 113              		.align	3
+ 114              	.L5:
+ 115 0050 EC51B81E 		.word	515396076
+ 116 0054 85EBB13F 		.word	1068624773
+ 117 0058 00000000 		.word	_t
+ 118 005c 00000000 		.word	cinematico
+ 119 0060 00000000 		.word	sox
+ 120 0064 00000000 		.word	sx
+ 121 0068 00000000 		.word	soy
+ 122 006c 00000000 		.word	sy
+ 123              		.cfi_endproc
+ 124              	.LFE64:
+ 125              		.size	timer_cinematico_isr_handler, .-timer_cinematico_isr_handler
+ 126              		.text
+ 127              	.Letext0:
+ 128              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 129              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 130              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 131              		.file 5 "motor.h"
+ 132              		.file 6 "controle_cinematico.h"
+ 133              		.file 7 "Generated_Source\\PSoC5/core_cm3.h"
+ 134              		.file 8 "Generated_Source\\PSoC5/TimerMotores.h"
+ 135              		.file 9 "Generated_Source\\PSoC5/TimerCinematico.h"
+ 136              		.section	.debug_info,"",%progbits
+ 137              	.Ldebug_info0:
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cc4RROBg.s 			page 4
+
+
+ 138 0000 7B030000 		.4byte	0x37b
+ 139 0004 0400     		.2byte	0x4
+ 140 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 141 000a 04       		.byte	0x4
+ 142 000b 01       		.uleb128 0x1
+ 143 000c 78020000 		.4byte	.LASF54
+ 144 0010 0C       		.byte	0xc
+ 145 0011 3E000000 		.4byte	.LASF55
+ 146 0015 B8010000 		.4byte	.LASF56
+ 147 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 148 001d 00000000 		.4byte	0
+ 149 0021 00000000 		.4byte	.Ldebug_line0
+ 150 0025 02       		.uleb128 0x2
+ 151 0026 01       		.byte	0x1
+ 152 0027 06       		.byte	0x6
+ 153 0028 16010000 		.4byte	.LASF0
+ 154 002c 02       		.uleb128 0x2
+ 155 002d 01       		.byte	0x1
+ 156 002e 08       		.byte	0x8
+ 157 002f 08010000 		.4byte	.LASF1
+ 158 0033 02       		.uleb128 0x2
+ 159 0034 02       		.byte	0x2
+ 160 0035 05       		.byte	0x5
+ 161 0036 1F000000 		.4byte	.LASF2
+ 162 003a 02       		.uleb128 0x2
+ 163 003b 02       		.byte	0x2
+ 164 003c 07       		.byte	0x7
+ 165 003d 62010000 		.4byte	.LASF3
+ 166 0041 03       		.uleb128 0x3
+ 167 0042 38020000 		.4byte	.LASF9
+ 168 0046 02       		.byte	0x2
+ 169 0047 3F       		.byte	0x3f
+ 170 0048 4C000000 		.4byte	0x4c
+ 171 004c 02       		.uleb128 0x2
+ 172 004d 04       		.byte	0x4
+ 173 004e 05       		.byte	0x5
+ 174 004f 8D010000 		.4byte	.LASF4
+ 175 0053 02       		.uleb128 0x2
+ 176 0054 04       		.byte	0x4
+ 177 0055 07       		.byte	0x7
+ 178 0056 1C020000 		.4byte	.LASF5
+ 179 005a 02       		.uleb128 0x2
+ 180 005b 08       		.byte	0x8
+ 181 005c 05       		.byte	0x5
+ 182 005d D2000000 		.4byte	.LASF6
+ 183 0061 02       		.uleb128 0x2
+ 184 0062 08       		.byte	0x8
+ 185 0063 07       		.byte	0x7
+ 186 0064 27010000 		.4byte	.LASF7
+ 187 0068 04       		.uleb128 0x4
+ 188 0069 04       		.byte	0x4
+ 189 006a 05       		.byte	0x5
+ 190 006b 696E7400 		.ascii	"int\000"
+ 191 006f 02       		.uleb128 0x2
+ 192 0070 04       		.byte	0x4
+ 193 0071 07       		.byte	0x7
+ 194 0072 3E010000 		.4byte	.LASF8
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cc4RROBg.s 			page 5
+
+
+ 195 0076 03       		.uleb128 0x3
+ 196 0077 96010000 		.4byte	.LASF10
+ 197 007b 03       		.byte	0x3
+ 198 007c 2C       		.byte	0x2c
+ 199 007d 41000000 		.4byte	0x41
+ 200 0081 05       		.uleb128 0x5
+ 201 0082 A9000000 		.4byte	.LASF11
+ 202 0086 04       		.byte	0x4
+ 203 0087 E401     		.2byte	0x1e4
+ 204 0089 2C000000 		.4byte	0x2c
+ 205 008d 05       		.uleb128 0x5
+ 206 008e 9C000000 		.4byte	.LASF12
+ 207 0092 04       		.byte	0x4
+ 208 0093 E501     		.2byte	0x1e5
+ 209 0095 3A000000 		.4byte	0x3a
+ 210 0099 05       		.uleb128 0x5
+ 211 009a A3000000 		.4byte	.LASF13
+ 212 009e 04       		.byte	0x4
+ 213 009f E801     		.2byte	0x1e8
+ 214 00a1 33000000 		.4byte	0x33
+ 215 00a5 02       		.uleb128 0x2
+ 216 00a6 04       		.byte	0x4
+ 217 00a7 04       		.byte	0x4
+ 218 00a8 CC000000 		.4byte	.LASF14
+ 219 00ac 02       		.uleb128 0x2
+ 220 00ad 08       		.byte	0x8
+ 221 00ae 04       		.byte	0x4
+ 222 00af 52020000 		.4byte	.LASF15
+ 223 00b3 02       		.uleb128 0x2
+ 224 00b4 01       		.byte	0x1
+ 225 00b5 08       		.byte	0x8
+ 226 00b6 88010000 		.4byte	.LASF16
+ 227 00ba 02       		.uleb128 0x2
+ 228 00bb 08       		.byte	0x8
+ 229 00bc 04       		.byte	0x4
+ 230 00bd F1000000 		.4byte	.LASF17
+ 231 00c1 02       		.uleb128 0x2
+ 232 00c2 04       		.byte	0x4
+ 233 00c3 07       		.byte	0x7
+ 234 00c4 29000000 		.4byte	.LASF18
+ 235 00c8 06       		.uleb128 0x6
+ 236 00c9 20       		.byte	0x20
+ 237 00ca 05       		.byte	0x5
+ 238 00cb 21       		.byte	0x21
+ 239 00cc 49010000 		.4byte	0x149
+ 240 00d0 07       		.uleb128 0x7
+ 241 00d1 00020000 		.4byte	.LASF19
+ 242 00d5 05       		.byte	0x5
+ 243 00d6 22       		.byte	0x22
+ 244 00d7 A5000000 		.4byte	0xa5
+ 245 00db 00       		.byte	0
+ 246 00dc 07       		.uleb128 0x7
+ 247 00dd 0B030000 		.4byte	.LASF20
+ 248 00e1 05       		.byte	0x5
+ 249 00e2 23       		.byte	0x23
+ 250 00e3 A5000000 		.4byte	0xa5
+ 251 00e7 04       		.byte	0x4
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cc4RROBg.s 			page 6
+
+
+ 252 00e8 07       		.uleb128 0x7
+ 253 00e9 5B010000 		.4byte	.LASF21
+ 254 00ed 05       		.byte	0x5
+ 255 00ee 24       		.byte	0x24
+ 256 00ef A5000000 		.4byte	0xa5
+ 257 00f3 08       		.byte	0x8
+ 258 00f4 07       		.uleb128 0x7
+ 259 00f5 AF000000 		.4byte	.LASF22
+ 260 00f9 05       		.byte	0x5
+ 261 00fa 26       		.byte	0x26
+ 262 00fb 8D000000 		.4byte	0x8d
+ 263 00ff 0C       		.byte	0xc
+ 264 0100 07       		.uleb128 0x7
+ 265 0101 BC000000 		.4byte	.LASF23
+ 266 0105 05       		.byte	0x5
+ 267 0106 27       		.byte	0x27
+ 268 0107 8D000000 		.4byte	0x8d
+ 269 010b 0E       		.byte	0xe
+ 270 010c 07       		.uleb128 0x7
+ 271 010d 48020000 		.4byte	.LASF24
+ 272 0111 05       		.byte	0x5
+ 273 0112 28       		.byte	0x28
+ 274 0113 99000000 		.4byte	0x99
+ 275 0117 10       		.byte	0x10
+ 276 0118 08       		.uleb128 0x8
+ 277 0119 70776D00 		.ascii	"pwm\000"
+ 278 011d 05       		.byte	0x5
+ 279 011e 2A       		.byte	0x2a
+ 280 011f 8D000000 		.4byte	0x8d
+ 281 0123 12       		.byte	0x12
+ 282 0124 07       		.uleb128 0x7
+ 283 0125 53010000 		.4byte	.LASF25
+ 284 0129 05       		.byte	0x5
+ 285 012a 2B       		.byte	0x2b
+ 286 012b 81000000 		.4byte	0x81
+ 287 012f 14       		.byte	0x14
+ 288 0130 07       		.uleb128 0x7
+ 289 0131 32000000 		.4byte	.LASF26
+ 290 0135 05       		.byte	0x5
+ 291 0136 2D       		.byte	0x2d
+ 292 0137 49010000 		.4byte	0x149
+ 293 013b 18       		.byte	0x18
+ 294 013c 07       		.uleb128 0x7
+ 295 013d 15000000 		.4byte	.LASF27
+ 296 0141 05       		.byte	0x5
+ 297 0142 2E       		.byte	0x2e
+ 298 0143 49010000 		.4byte	0x149
+ 299 0147 1C       		.byte	0x1c
+ 300 0148 00       		.byte	0
+ 301 0149 09       		.uleb128 0x9
+ 302 014a A5000000 		.4byte	0xa5
+ 303 014e 03       		.uleb128 0x3
+ 304 014f FD000000 		.4byte	.LASF28
+ 305 0153 05       		.byte	0x5
+ 306 0154 2F       		.byte	0x2f
+ 307 0155 C8000000 		.4byte	0xc8
+ 308 0159 06       		.uleb128 0x6
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cc4RROBg.s 			page 7
+
+
+ 309 015a 8C       		.byte	0x8c
+ 310 015b 06       		.byte	0x6
+ 311 015c 15       		.byte	0x15
+ 312 015d E3010000 		.4byte	0x1e3
+ 313 0161 08       		.uleb128 0x8
+ 314 0162 4C00     		.ascii	"L\000"
+ 315 0164 06       		.byte	0x6
+ 316 0165 16       		.byte	0x16
+ 317 0166 49010000 		.4byte	0x149
+ 318 016a 00       		.byte	0
+ 319 016b 08       		.uleb128 0x8
+ 320 016c 5200     		.ascii	"R\000"
+ 321 016e 06       		.byte	0x6
+ 322 016f 16       		.byte	0x16
+ 323 0170 49010000 		.4byte	0x149
+ 324 0174 04       		.byte	0x4
+ 325 0175 08       		.uleb128 0x8
+ 326 0176 7800     		.ascii	"x\000"
+ 327 0178 06       		.byte	0x6
+ 328 0179 18       		.byte	0x18
+ 329 017a A5000000 		.4byte	0xa5
+ 330 017e 08       		.byte	0x8
+ 331 017f 08       		.uleb128 0x8
+ 332 0180 7900     		.ascii	"y\000"
+ 333 0182 06       		.byte	0x6
+ 334 0183 18       		.byte	0x18
+ 335 0184 A5000000 		.4byte	0xa5
+ 336 0188 0C       		.byte	0xc
+ 337 0189 07       		.uleb128 0x7
+ 338 018a 42020000 		.4byte	.LASF29
+ 339 018e 06       		.byte	0x6
+ 340 018f 18       		.byte	0x18
+ 341 0190 A5000000 		.4byte	0xa5
+ 342 0194 10       		.byte	0x10
+ 343 0195 08       		.uleb128 0x8
+ 344 0196 647800   		.ascii	"dx\000"
+ 345 0199 06       		.byte	0x6
+ 346 019a 19       		.byte	0x19
+ 347 019b A5000000 		.4byte	0xa5
+ 348 019f 14       		.byte	0x14
+ 349 01a0 08       		.uleb128 0x8
+ 350 01a1 647900   		.ascii	"dy\000"
+ 351 01a4 06       		.byte	0x6
+ 352 01a5 19       		.byte	0x19
+ 353 01a6 A5000000 		.4byte	0xa5
+ 354 01aa 18       		.byte	0x18
+ 355 01ab 07       		.uleb128 0x7
+ 356 01ac 64020000 		.4byte	.LASF30
+ 357 01b0 06       		.byte	0x6
+ 358 01b1 19       		.byte	0x19
+ 359 01b2 A5000000 		.4byte	0xa5
+ 360 01b6 1C       		.byte	0x1c
+ 361 01b7 08       		.uleb128 0x8
+ 362 01b8 7600     		.ascii	"v\000"
+ 363 01ba 06       		.byte	0x6
+ 364 01bb 1A       		.byte	0x1a
+ 365 01bc A5000000 		.4byte	0xa5
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cc4RROBg.s 			page 8
+
+
+ 366 01c0 20       		.byte	0x20
+ 367 01c1 08       		.uleb128 0x8
+ 368 01c2 766E00   		.ascii	"vn\000"
+ 369 01c5 06       		.byte	0x6
+ 370 01c6 1A       		.byte	0x1a
+ 371 01c7 A5000000 		.4byte	0xa5
+ 372 01cb 24       		.byte	0x24
+ 373 01cc 08       		.uleb128 0x8
+ 374 01cd 7700     		.ascii	"w\000"
+ 375 01cf 06       		.byte	0x6
+ 376 01d0 1A       		.byte	0x1a
+ 377 01d1 A5000000 		.4byte	0xa5
+ 378 01d5 28       		.byte	0x28
+ 379 01d6 07       		.uleb128 0x7
+ 380 01d7 F1010000 		.4byte	.LASF31
+ 381 01db 06       		.byte	0x6
+ 382 01dc 1C       		.byte	0x1c
+ 383 01dd E3010000 		.4byte	0x1e3
+ 384 01e1 2C       		.byte	0x2c
+ 385 01e2 00       		.byte	0
+ 386 01e3 0A       		.uleb128 0xa
+ 387 01e4 4E010000 		.4byte	0x14e
+ 388 01e8 F3010000 		.4byte	0x1f3
+ 389 01ec 0B       		.uleb128 0xb
+ 390 01ed C1000000 		.4byte	0xc1
+ 391 01f1 02       		.byte	0x2
+ 392 01f2 00       		.byte	0
+ 393 01f3 03       		.uleb128 0x3
+ 394 01f4 E0000000 		.4byte	.LASF32
+ 395 01f8 06       		.byte	0x6
+ 396 01f9 1D       		.byte	0x1d
+ 397 01fa 59010000 		.4byte	0x159
+ 398 01fe 06       		.uleb128 0x6
+ 399 01ff E0       		.byte	0xe0
+ 400 0200 06       		.byte	0x6
+ 401 0201 1F       		.byte	0x1f
+ 402 0202 97020000 		.4byte	0x297
+ 403 0206 07       		.uleb128 0x7
+ 404 0207 F7010000 		.4byte	.LASF33
+ 405 020b 06       		.byte	0x6
+ 406 020c 20       		.byte	0x20
+ 407 020d 97020000 		.4byte	0x297
+ 408 0211 00       		.byte	0
+ 409 0212 07       		.uleb128 0x7
+ 410 0213 22010000 		.4byte	.LASF34
+ 411 0217 06       		.byte	0x6
+ 412 0218 21       		.byte	0x21
+ 413 0219 97020000 		.4byte	0x297
+ 414 021d 0C       		.byte	0xc
+ 415 021e 07       		.uleb128 0x7
+ 416 021f 0D000000 		.4byte	.LASF35
+ 417 0223 06       		.byte	0x6
+ 418 0224 22       		.byte	0x22
+ 419 0225 97020000 		.4byte	0x297
+ 420 0229 18       		.byte	0x18
+ 421 022a 07       		.uleb128 0x7
+ 422 022b EB000000 		.4byte	.LASF36
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cc4RROBg.s 			page 9
+
+
+ 423 022f 06       		.byte	0x6
+ 424 0230 23       		.byte	0x23
+ 425 0231 97020000 		.4byte	0x297
+ 426 0235 24       		.byte	0x24
+ 427 0236 07       		.uleb128 0x7
+ 428 0237 EC010000 		.4byte	.LASF37
+ 429 023b 06       		.byte	0x6
+ 430 023c 24       		.byte	0x24
+ 431 023d 97020000 		.4byte	0x297
+ 432 0241 30       		.byte	0x30
+ 433 0242 07       		.uleb128 0x7
+ 434 0243 00000000 		.4byte	.LASF38
+ 435 0247 06       		.byte	0x6
+ 436 0248 26       		.byte	0x26
+ 437 0249 49010000 		.4byte	0x149
+ 438 024d 3C       		.byte	0x3c
+ 439 024e 07       		.uleb128 0x7
+ 440 024f 06030000 		.4byte	.LASF39
+ 441 0253 06       		.byte	0x6
+ 442 0254 27       		.byte	0x27
+ 443 0255 49010000 		.4byte	0x149
+ 444 0259 40       		.byte	0x40
+ 445 025a 07       		.uleb128 0x7
+ 446 025b 2E020000 		.4byte	.LASF40
+ 447 025f 06       		.byte	0x6
+ 448 0260 27       		.byte	0x27
+ 449 0261 49010000 		.4byte	0x149
+ 450 0265 44       		.byte	0x44
+ 451 0266 07       		.uleb128 0x7
+ 452 0267 15030000 		.4byte	.LASF41
+ 453 026b 06       		.byte	0x6
+ 454 026c 28       		.byte	0x28
+ 455 026d 49010000 		.4byte	0x149
+ 456 0271 48       		.byte	0x48
+ 457 0272 07       		.uleb128 0x7
+ 458 0273 33020000 		.4byte	.LASF42
+ 459 0277 06       		.byte	0x6
+ 460 0278 28       		.byte	0x28
+ 461 0279 49010000 		.4byte	0x149
+ 462 027d 4C       		.byte	0x4c
+ 463 027e 07       		.uleb128 0x7
+ 464 027f 4B010000 		.4byte	.LASF43
+ 465 0283 06       		.byte	0x6
+ 466 0284 29       		.byte	0x29
+ 467 0285 49010000 		.4byte	0x149
+ 468 0289 50       		.byte	0x50
+ 469 028a 07       		.uleb128 0x7
+ 470 028b 03010000 		.4byte	.LASF44
+ 471 028f 06       		.byte	0x6
+ 472 0290 2B       		.byte	0x2b
+ 473 0291 F3010000 		.4byte	0x1f3
+ 474 0295 54       		.byte	0x54
+ 475 0296 00       		.byte	0
+ 476 0297 0A       		.uleb128 0xa
+ 477 0298 A5000000 		.4byte	0xa5
+ 478 029c A7020000 		.4byte	0x2a7
+ 479 02a0 0B       		.uleb128 0xb
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cc4RROBg.s 			page 10
+
+
+ 480 02a1 C1000000 		.4byte	0xc1
+ 481 02a5 02       		.byte	0x2
+ 482 02a6 00       		.byte	0
+ 483 02a7 03       		.uleb128 0x3
+ 484 02a8 75010000 		.4byte	.LASF45
+ 485 02ac 06       		.byte	0x6
+ 486 02ad 2C       		.byte	0x2c
+ 487 02ae FE010000 		.4byte	0x1fe
+ 488 02b2 0C       		.uleb128 0xc
+ 489 02b3 9E010000 		.4byte	.LASF46
+ 490 02b7 01       		.byte	0x1
+ 491 02b8 12       		.byte	0x12
+ 492 02b9 00000000 		.4byte	.LFB63
+ 493 02bd 0C000000 		.4byte	.LFE63-.LFB63
+ 494 02c1 01       		.uleb128 0x1
+ 495 02c2 9C       		.byte	0x9c
+ 496 02c3 DA020000 		.4byte	0x2da
+ 497 02c7 0D       		.uleb128 0xd
+ 498 02c8 06000000 		.4byte	.LVL0
+ 499 02cc 52030000 		.4byte	0x352
+ 500 02d0 0D       		.uleb128 0xd
+ 501 02d1 0A000000 		.4byte	.LVL1
+ 502 02d5 5D030000 		.4byte	0x35d
+ 503 02d9 00       		.byte	0
+ 504 02da 0E       		.uleb128 0xe
+ 505 02db 44000000 		.4byte	.LASF47
+ 506 02df 01       		.byte	0x1
+ 507 02e0 18       		.byte	0x18
+ 508 02e1 00000000 		.4byte	.LFB64
+ 509 02e5 70000000 		.4byte	.LFE64-.LFB64
+ 510 02e9 01       		.uleb128 0x1
+ 511 02ea 9C       		.byte	0x9c
+ 512 02eb 02030000 		.4byte	0x302
+ 513 02ef 0D       		.uleb128 0xd
+ 514 02f0 06000000 		.4byte	.LVL2
+ 515 02f4 68030000 		.4byte	0x368
+ 516 02f8 0D       		.uleb128 0xd
+ 517 02f9 22000000 		.4byte	.LVL6
+ 518 02fd 73030000 		.4byte	0x373
+ 519 0301 00       		.byte	0
+ 520 0302 0F       		.uleb128 0xf
+ 521 0303 6B020000 		.4byte	.LASF48
+ 522 0307 07       		.byte	0x7
+ 523 0308 1207     		.2byte	0x712
+ 524 030a 0E030000 		.4byte	0x30e
+ 525 030e 10       		.uleb128 0x10
+ 526 030f 76000000 		.4byte	0x76
+ 527 0313 11       		.uleb128 0x11
+ 528 0314 5F7400   		.ascii	"_t\000"
+ 529 0317 06       		.byte	0x6
+ 530 0318 2E       		.byte	0x2e
+ 531 0319 A5000000 		.4byte	0xa5
+ 532 031d 11       		.uleb128 0x11
+ 533 031e 736F7800 		.ascii	"sox\000"
+ 534 0322 06       		.byte	0x6
+ 535 0323 2F       		.byte	0x2f
+ 536 0324 A5000000 		.4byte	0xa5
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cc4RROBg.s 			page 11
+
+
+ 537 0328 11       		.uleb128 0x11
+ 538 0329 736F7900 		.ascii	"soy\000"
+ 539 032d 06       		.byte	0x6
+ 540 032e 2F       		.byte	0x2f
+ 541 032f A5000000 		.4byte	0xa5
+ 542 0333 11       		.uleb128 0x11
+ 543 0334 737800   		.ascii	"sx\000"
+ 544 0337 06       		.byte	0x6
+ 545 0338 30       		.byte	0x30
+ 546 0339 A5000000 		.4byte	0xa5
+ 547 033d 11       		.uleb128 0x11
+ 548 033e 737900   		.ascii	"sy\000"
+ 549 0341 06       		.byte	0x6
+ 550 0342 30       		.byte	0x30
+ 551 0343 A5000000 		.4byte	0xa5
+ 552 0347 12       		.uleb128 0x12
+ 553 0348 59020000 		.4byte	.LASF49
+ 554 034c 06       		.byte	0x6
+ 555 034d 32       		.byte	0x32
+ 556 034e A7020000 		.4byte	0x2a7
+ 557 0352 13       		.uleb128 0x13
+ 558 0353 1A030000 		.4byte	.LASF50
+ 559 0357 1A030000 		.4byte	.LASF50
+ 560 035b 08       		.byte	0x8
+ 561 035c 5E       		.byte	0x5e
+ 562 035d 13       		.uleb128 0x13
+ 563 035e 07020000 		.4byte	.LASF51
+ 564 0362 07020000 		.4byte	.LASF51
+ 565 0366 05       		.byte	0x5
+ 566 0367 44       		.byte	0x44
+ 567 0368 13       		.uleb128 0x13
+ 568 0369 79000000 		.4byte	.LASF52
+ 569 036d 79000000 		.4byte	.LASF52
+ 570 0371 09       		.byte	0x9
+ 571 0372 5E       		.byte	0x5e
+ 572 0373 13       		.uleb128 0x13
+ 573 0374 61000000 		.4byte	.LASF53
+ 574 0378 61000000 		.4byte	.LASF53
+ 575 037c 06       		.byte	0x6
+ 576 037d 46       		.byte	0x46
+ 577 037e 00       		.byte	0
+ 578              		.section	.debug_abbrev,"",%progbits
+ 579              	.Ldebug_abbrev0:
+ 580 0000 01       		.uleb128 0x1
+ 581 0001 11       		.uleb128 0x11
+ 582 0002 01       		.byte	0x1
+ 583 0003 25       		.uleb128 0x25
+ 584 0004 0E       		.uleb128 0xe
+ 585 0005 13       		.uleb128 0x13
+ 586 0006 0B       		.uleb128 0xb
+ 587 0007 03       		.uleb128 0x3
+ 588 0008 0E       		.uleb128 0xe
+ 589 0009 1B       		.uleb128 0x1b
+ 590 000a 0E       		.uleb128 0xe
+ 591 000b 55       		.uleb128 0x55
+ 592 000c 17       		.uleb128 0x17
+ 593 000d 11       		.uleb128 0x11
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cc4RROBg.s 			page 12
+
+
+ 594 000e 01       		.uleb128 0x1
+ 595 000f 10       		.uleb128 0x10
+ 596 0010 17       		.uleb128 0x17
+ 597 0011 00       		.byte	0
+ 598 0012 00       		.byte	0
+ 599 0013 02       		.uleb128 0x2
+ 600 0014 24       		.uleb128 0x24
+ 601 0015 00       		.byte	0
+ 602 0016 0B       		.uleb128 0xb
+ 603 0017 0B       		.uleb128 0xb
+ 604 0018 3E       		.uleb128 0x3e
+ 605 0019 0B       		.uleb128 0xb
+ 606 001a 03       		.uleb128 0x3
+ 607 001b 0E       		.uleb128 0xe
+ 608 001c 00       		.byte	0
+ 609 001d 00       		.byte	0
+ 610 001e 03       		.uleb128 0x3
+ 611 001f 16       		.uleb128 0x16
+ 612 0020 00       		.byte	0
+ 613 0021 03       		.uleb128 0x3
+ 614 0022 0E       		.uleb128 0xe
+ 615 0023 3A       		.uleb128 0x3a
+ 616 0024 0B       		.uleb128 0xb
+ 617 0025 3B       		.uleb128 0x3b
+ 618 0026 0B       		.uleb128 0xb
+ 619 0027 49       		.uleb128 0x49
+ 620 0028 13       		.uleb128 0x13
+ 621 0029 00       		.byte	0
+ 622 002a 00       		.byte	0
+ 623 002b 04       		.uleb128 0x4
+ 624 002c 24       		.uleb128 0x24
+ 625 002d 00       		.byte	0
+ 626 002e 0B       		.uleb128 0xb
+ 627 002f 0B       		.uleb128 0xb
+ 628 0030 3E       		.uleb128 0x3e
+ 629 0031 0B       		.uleb128 0xb
+ 630 0032 03       		.uleb128 0x3
+ 631 0033 08       		.uleb128 0x8
+ 632 0034 00       		.byte	0
+ 633 0035 00       		.byte	0
+ 634 0036 05       		.uleb128 0x5
+ 635 0037 16       		.uleb128 0x16
+ 636 0038 00       		.byte	0
+ 637 0039 03       		.uleb128 0x3
+ 638 003a 0E       		.uleb128 0xe
+ 639 003b 3A       		.uleb128 0x3a
+ 640 003c 0B       		.uleb128 0xb
+ 641 003d 3B       		.uleb128 0x3b
+ 642 003e 05       		.uleb128 0x5
+ 643 003f 49       		.uleb128 0x49
+ 644 0040 13       		.uleb128 0x13
+ 645 0041 00       		.byte	0
+ 646 0042 00       		.byte	0
+ 647 0043 06       		.uleb128 0x6
+ 648 0044 13       		.uleb128 0x13
+ 649 0045 01       		.byte	0x1
+ 650 0046 0B       		.uleb128 0xb
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cc4RROBg.s 			page 13
+
+
+ 651 0047 0B       		.uleb128 0xb
+ 652 0048 3A       		.uleb128 0x3a
+ 653 0049 0B       		.uleb128 0xb
+ 654 004a 3B       		.uleb128 0x3b
+ 655 004b 0B       		.uleb128 0xb
+ 656 004c 01       		.uleb128 0x1
+ 657 004d 13       		.uleb128 0x13
+ 658 004e 00       		.byte	0
+ 659 004f 00       		.byte	0
+ 660 0050 07       		.uleb128 0x7
+ 661 0051 0D       		.uleb128 0xd
+ 662 0052 00       		.byte	0
+ 663 0053 03       		.uleb128 0x3
+ 664 0054 0E       		.uleb128 0xe
+ 665 0055 3A       		.uleb128 0x3a
+ 666 0056 0B       		.uleb128 0xb
+ 667 0057 3B       		.uleb128 0x3b
+ 668 0058 0B       		.uleb128 0xb
+ 669 0059 49       		.uleb128 0x49
+ 670 005a 13       		.uleb128 0x13
+ 671 005b 38       		.uleb128 0x38
+ 672 005c 0B       		.uleb128 0xb
+ 673 005d 00       		.byte	0
+ 674 005e 00       		.byte	0
+ 675 005f 08       		.uleb128 0x8
+ 676 0060 0D       		.uleb128 0xd
+ 677 0061 00       		.byte	0
+ 678 0062 03       		.uleb128 0x3
+ 679 0063 08       		.uleb128 0x8
+ 680 0064 3A       		.uleb128 0x3a
+ 681 0065 0B       		.uleb128 0xb
+ 682 0066 3B       		.uleb128 0x3b
+ 683 0067 0B       		.uleb128 0xb
+ 684 0068 49       		.uleb128 0x49
+ 685 0069 13       		.uleb128 0x13
+ 686 006a 38       		.uleb128 0x38
+ 687 006b 0B       		.uleb128 0xb
+ 688 006c 00       		.byte	0
+ 689 006d 00       		.byte	0
+ 690 006e 09       		.uleb128 0x9
+ 691 006f 26       		.uleb128 0x26
+ 692 0070 00       		.byte	0
+ 693 0071 49       		.uleb128 0x49
+ 694 0072 13       		.uleb128 0x13
+ 695 0073 00       		.byte	0
+ 696 0074 00       		.byte	0
+ 697 0075 0A       		.uleb128 0xa
+ 698 0076 01       		.uleb128 0x1
+ 699 0077 01       		.byte	0x1
+ 700 0078 49       		.uleb128 0x49
+ 701 0079 13       		.uleb128 0x13
+ 702 007a 01       		.uleb128 0x1
+ 703 007b 13       		.uleb128 0x13
+ 704 007c 00       		.byte	0
+ 705 007d 00       		.byte	0
+ 706 007e 0B       		.uleb128 0xb
+ 707 007f 21       		.uleb128 0x21
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cc4RROBg.s 			page 14
+
+
+ 708 0080 00       		.byte	0
+ 709 0081 49       		.uleb128 0x49
+ 710 0082 13       		.uleb128 0x13
+ 711 0083 2F       		.uleb128 0x2f
+ 712 0084 0B       		.uleb128 0xb
+ 713 0085 00       		.byte	0
+ 714 0086 00       		.byte	0
+ 715 0087 0C       		.uleb128 0xc
+ 716 0088 2E       		.uleb128 0x2e
+ 717 0089 01       		.byte	0x1
+ 718 008a 3F       		.uleb128 0x3f
+ 719 008b 19       		.uleb128 0x19
+ 720 008c 03       		.uleb128 0x3
+ 721 008d 0E       		.uleb128 0xe
+ 722 008e 3A       		.uleb128 0x3a
+ 723 008f 0B       		.uleb128 0xb
+ 724 0090 3B       		.uleb128 0x3b
+ 725 0091 0B       		.uleb128 0xb
+ 726 0092 27       		.uleb128 0x27
+ 727 0093 19       		.uleb128 0x19
+ 728 0094 11       		.uleb128 0x11
+ 729 0095 01       		.uleb128 0x1
+ 730 0096 12       		.uleb128 0x12
+ 731 0097 06       		.uleb128 0x6
+ 732 0098 40       		.uleb128 0x40
+ 733 0099 18       		.uleb128 0x18
+ 734 009a 9742     		.uleb128 0x2117
+ 735 009c 19       		.uleb128 0x19
+ 736 009d 01       		.uleb128 0x1
+ 737 009e 13       		.uleb128 0x13
+ 738 009f 00       		.byte	0
+ 739 00a0 00       		.byte	0
+ 740 00a1 0D       		.uleb128 0xd
+ 741 00a2 898201   		.uleb128 0x4109
+ 742 00a5 00       		.byte	0
+ 743 00a6 11       		.uleb128 0x11
+ 744 00a7 01       		.uleb128 0x1
+ 745 00a8 31       		.uleb128 0x31
+ 746 00a9 13       		.uleb128 0x13
+ 747 00aa 00       		.byte	0
+ 748 00ab 00       		.byte	0
+ 749 00ac 0E       		.uleb128 0xe
+ 750 00ad 2E       		.uleb128 0x2e
+ 751 00ae 01       		.byte	0x1
+ 752 00af 3F       		.uleb128 0x3f
+ 753 00b0 19       		.uleb128 0x19
+ 754 00b1 03       		.uleb128 0x3
+ 755 00b2 0E       		.uleb128 0xe
+ 756 00b3 3A       		.uleb128 0x3a
+ 757 00b4 0B       		.uleb128 0xb
+ 758 00b5 3B       		.uleb128 0x3b
+ 759 00b6 0B       		.uleb128 0xb
+ 760 00b7 27       		.uleb128 0x27
+ 761 00b8 19       		.uleb128 0x19
+ 762 00b9 11       		.uleb128 0x11
+ 763 00ba 01       		.uleb128 0x1
+ 764 00bb 12       		.uleb128 0x12
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cc4RROBg.s 			page 15
+
+
+ 765 00bc 06       		.uleb128 0x6
+ 766 00bd 40       		.uleb128 0x40
+ 767 00be 18       		.uleb128 0x18
+ 768 00bf 9642     		.uleb128 0x2116
+ 769 00c1 19       		.uleb128 0x19
+ 770 00c2 01       		.uleb128 0x1
+ 771 00c3 13       		.uleb128 0x13
+ 772 00c4 00       		.byte	0
+ 773 00c5 00       		.byte	0
+ 774 00c6 0F       		.uleb128 0xf
+ 775 00c7 34       		.uleb128 0x34
+ 776 00c8 00       		.byte	0
+ 777 00c9 03       		.uleb128 0x3
+ 778 00ca 0E       		.uleb128 0xe
+ 779 00cb 3A       		.uleb128 0x3a
+ 780 00cc 0B       		.uleb128 0xb
+ 781 00cd 3B       		.uleb128 0x3b
+ 782 00ce 05       		.uleb128 0x5
+ 783 00cf 49       		.uleb128 0x49
+ 784 00d0 13       		.uleb128 0x13
+ 785 00d1 3F       		.uleb128 0x3f
+ 786 00d2 19       		.uleb128 0x19
+ 787 00d3 3C       		.uleb128 0x3c
+ 788 00d4 19       		.uleb128 0x19
+ 789 00d5 00       		.byte	0
+ 790 00d6 00       		.byte	0
+ 791 00d7 10       		.uleb128 0x10
+ 792 00d8 35       		.uleb128 0x35
+ 793 00d9 00       		.byte	0
+ 794 00da 49       		.uleb128 0x49
+ 795 00db 13       		.uleb128 0x13
+ 796 00dc 00       		.byte	0
+ 797 00dd 00       		.byte	0
+ 798 00de 11       		.uleb128 0x11
+ 799 00df 34       		.uleb128 0x34
+ 800 00e0 00       		.byte	0
+ 801 00e1 03       		.uleb128 0x3
+ 802 00e2 08       		.uleb128 0x8
+ 803 00e3 3A       		.uleb128 0x3a
+ 804 00e4 0B       		.uleb128 0xb
+ 805 00e5 3B       		.uleb128 0x3b
+ 806 00e6 0B       		.uleb128 0xb
+ 807 00e7 49       		.uleb128 0x49
+ 808 00e8 13       		.uleb128 0x13
+ 809 00e9 3F       		.uleb128 0x3f
+ 810 00ea 19       		.uleb128 0x19
+ 811 00eb 3C       		.uleb128 0x3c
+ 812 00ec 19       		.uleb128 0x19
+ 813 00ed 00       		.byte	0
+ 814 00ee 00       		.byte	0
+ 815 00ef 12       		.uleb128 0x12
+ 816 00f0 34       		.uleb128 0x34
+ 817 00f1 00       		.byte	0
+ 818 00f2 03       		.uleb128 0x3
+ 819 00f3 0E       		.uleb128 0xe
+ 820 00f4 3A       		.uleb128 0x3a
+ 821 00f5 0B       		.uleb128 0xb
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cc4RROBg.s 			page 16
+
+
+ 822 00f6 3B       		.uleb128 0x3b
+ 823 00f7 0B       		.uleb128 0xb
+ 824 00f8 49       		.uleb128 0x49
+ 825 00f9 13       		.uleb128 0x13
+ 826 00fa 3F       		.uleb128 0x3f
+ 827 00fb 19       		.uleb128 0x19
+ 828 00fc 3C       		.uleb128 0x3c
+ 829 00fd 19       		.uleb128 0x19
+ 830 00fe 00       		.byte	0
+ 831 00ff 00       		.byte	0
+ 832 0100 13       		.uleb128 0x13
+ 833 0101 2E       		.uleb128 0x2e
+ 834 0102 00       		.byte	0
+ 835 0103 3F       		.uleb128 0x3f
+ 836 0104 19       		.uleb128 0x19
+ 837 0105 3C       		.uleb128 0x3c
+ 838 0106 19       		.uleb128 0x19
+ 839 0107 6E       		.uleb128 0x6e
+ 840 0108 0E       		.uleb128 0xe
+ 841 0109 03       		.uleb128 0x3
+ 842 010a 0E       		.uleb128 0xe
+ 843 010b 3A       		.uleb128 0x3a
+ 844 010c 0B       		.uleb128 0xb
+ 845 010d 3B       		.uleb128 0x3b
+ 846 010e 0B       		.uleb128 0xb
+ 847 010f 00       		.byte	0
+ 848 0110 00       		.byte	0
+ 849 0111 00       		.byte	0
+ 850              		.section	.debug_aranges,"",%progbits
+ 851 0000 24000000 		.4byte	0x24
+ 852 0004 0200     		.2byte	0x2
+ 853 0006 00000000 		.4byte	.Ldebug_info0
+ 854 000a 04       		.byte	0x4
+ 855 000b 00       		.byte	0
+ 856 000c 0000     		.2byte	0
+ 857 000e 0000     		.2byte	0
+ 858 0010 00000000 		.4byte	.LFB63
+ 859 0014 0C000000 		.4byte	.LFE63-.LFB63
+ 860 0018 00000000 		.4byte	.LFB64
+ 861 001c 70000000 		.4byte	.LFE64-.LFB64
+ 862 0020 00000000 		.4byte	0
+ 863 0024 00000000 		.4byte	0
+ 864              		.section	.debug_ranges,"",%progbits
+ 865              	.Ldebug_ranges0:
+ 866 0000 00000000 		.4byte	.LFB63
+ 867 0004 0C000000 		.4byte	.LFE63
+ 868 0008 00000000 		.4byte	.LFB64
+ 869 000c 70000000 		.4byte	.LFE64
+ 870 0010 00000000 		.4byte	0
+ 871 0014 00000000 		.4byte	0
+ 872              		.section	.debug_line,"",%progbits
+ 873              	.Ldebug_line0:
+ 874 0000 C1010000 		.section	.debug_str,"MS",%progbits,1
+ 874      02009601 
+ 874      00000201 
+ 874      FB0E0D00 
+ 874      01010101 
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cc4RROBg.s 			page 17
+
+
+ 875              	.LASF38:
+ 876 0000 76656C4E 		.ascii	"velNavegacao\000"
+ 876      61766567 
+ 876      6163616F 
+ 876      00
+ 877              	.LASF35:
+ 878 000d 6572726F 		.ascii	"erroAnt\000"
+ 878      416E7400 
+ 879              	.LASF27:
+ 880 0015 6D617856 		.ascii	"maxVelRad\000"
+ 880      656C5261 
+ 880      6400
+ 881              	.LASF2:
+ 882 001f 73686F72 		.ascii	"short int\000"
+ 882      7420696E 
+ 882      7400
+ 883              	.LASF18:
+ 884 0029 73697A65 		.ascii	"sizetype\000"
+ 884      74797065 
+ 884      00
+ 885              	.LASF26:
+ 886 0032 72616450 		.ascii	"radPorPulso\000"
+ 886      6F725075 
+ 886      6C736F00 
+ 887              	.LASF55:
+ 888 003e 6973722E 		.ascii	"isr.c\000"
+ 888      6300
+ 889              	.LASF47:
+ 890 0044 74696D65 		.ascii	"timer_cinematico_isr_handler\000"
+ 890      725F6369 
+ 890      6E656D61 
+ 890      7469636F 
+ 890      5F697372 
+ 891              	.LASF53:
+ 892 0061 636F6E74 		.ascii	"controle_cinematico_isr\000"
+ 892      726F6C65 
+ 892      5F63696E 
+ 892      656D6174 
+ 892      69636F5F 
+ 893              	.LASF52:
+ 894 0079 54696D65 		.ascii	"TimerCinematico_ReadStatusRegister\000"
+ 894      7243696E 
+ 894      656D6174 
+ 894      69636F5F 
+ 894      52656164 
+ 895              	.LASF12:
+ 896 009c 75696E74 		.ascii	"uint16\000"
+ 896      313600
+ 897              	.LASF13:
+ 898 00a3 696E7431 		.ascii	"int16\000"
+ 898      3600
+ 899              	.LASF11:
+ 900 00a9 75696E74 		.ascii	"uint8\000"
+ 900      3800
+ 901              	.LASF22:
+ 902 00af 6E50756C 		.ascii	"nPulsosAtual\000"
+ 902      736F7341 
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cc4RROBg.s 			page 18
+
+
+ 902      7475616C 
+ 902      00
+ 903              	.LASF23:
+ 904 00bc 6E50756C 		.ascii	"nPulsosAnterior\000"
+ 904      736F7341 
+ 904      6E746572 
+ 904      696F7200 
+ 905              	.LASF14:
+ 906 00cc 666C6F61 		.ascii	"float\000"
+ 906      7400
+ 907              	.LASF6:
+ 908 00d2 6C6F6E67 		.ascii	"long long int\000"
+ 908      206C6F6E 
+ 908      6720696E 
+ 908      7400
+ 909              	.LASF32:
+ 910 00e0 45737461 		.ascii	"EstadoRobo\000"
+ 910      646F526F 
+ 910      626F00
+ 911              	.LASF36:
+ 912 00eb 69457272 		.ascii	"iErro\000"
+ 912      6F00
+ 913              	.LASF17:
+ 914 00f1 6C6F6E67 		.ascii	"long double\000"
+ 914      20646F75 
+ 914      626C6500 
+ 915              	.LASF28:
+ 916 00fd 4D6F746F 		.ascii	"Motor\000"
+ 916      7200
+ 917              	.LASF44:
+ 918 0103 726F626F 		.ascii	"robo\000"
+ 918      00
+ 919              	.LASF1:
+ 920 0108 756E7369 		.ascii	"unsigned char\000"
+ 920      676E6564 
+ 920      20636861 
+ 920      7200
+ 921              	.LASF0:
+ 922 0116 7369676E 		.ascii	"signed char\000"
+ 922      65642063 
+ 922      68617200 
+ 923              	.LASF34:
+ 924 0122 6572726F 		.ascii	"erro\000"
+ 924      00
+ 925              	.LASF7:
+ 926 0127 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 926      206C6F6E 
+ 926      6720756E 
+ 926      7369676E 
+ 926      65642069 
+ 927              	.LASF8:
+ 928 013e 756E7369 		.ascii	"unsigned int\000"
+ 928      676E6564 
+ 928      20696E74 
+ 928      00
+ 929              	.LASF43:
+ 930 014b 70657269 		.ascii	"periodo\000"
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cc4RROBg.s 			page 19
+
+
+ 930      6F646F00 
+ 931              	.LASF25:
+ 932 0153 64697265 		.ascii	"direcao\000"
+ 932      63616F00 
+ 933              	.LASF21:
+ 934 015b 76656C4C 		.ascii	"velLin\000"
+ 934      696E00
+ 935              	.LASF3:
+ 936 0162 73686F72 		.ascii	"short unsigned int\000"
+ 936      7420756E 
+ 936      7369676E 
+ 936      65642069 
+ 936      6E7400
+ 937              	.LASF45:
+ 938 0175 436F6E74 		.ascii	"ControleCinematico\000"
+ 938      726F6C65 
+ 938      43696E65 
+ 938      6D617469 
+ 938      636F00
+ 939              	.LASF16:
+ 940 0188 63686172 		.ascii	"char\000"
+ 940      00
+ 941              	.LASF4:
+ 942 018d 6C6F6E67 		.ascii	"long int\000"
+ 942      20696E74 
+ 942      00
+ 943              	.LASF10:
+ 944 0196 696E7433 		.ascii	"int32_t\000"
+ 944      325F7400 
+ 945              	.LASF46:
+ 946 019e 74696D65 		.ascii	"timer_motores_isr_handler\000"
+ 946      725F6D6F 
+ 946      746F7265 
+ 946      735F6973 
+ 946      725F6861 
+ 947              	.LASF56:
+ 948 01b8 433A5C55 		.ascii	"C:\\Users\\diego\\source\\repos\\teste_controlador."
+ 948      73657273 
+ 948      5C646965 
+ 948      676F5C73 
+ 948      6F757263 
+ 949 01e6 63796473 		.ascii	"cydsn\000"
+ 949      6E00
+ 950              	.LASF37:
+ 951 01ec 6163616F 		.ascii	"acao\000"
+ 951      00
+ 952              	.LASF31:
+ 953 01f1 6D6F746F 		.ascii	"motor\000"
+ 953      7200
+ 954              	.LASF33:
+ 955 01f7 73657450 		.ascii	"setPoint\000"
+ 955      6F696E74 
+ 955      00
+ 956              	.LASF19:
+ 957 0200 76656C52 		.ascii	"velRad\000"
+ 957      616400
+ 958              	.LASF51:
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cc4RROBg.s 			page 20
+
+
+ 959 0207 636F6E74 		.ascii	"controle_motores_isr\000"
+ 959      726F6C65 
+ 959      5F6D6F74 
+ 959      6F726573 
+ 959      5F697372 
+ 960              	.LASF5:
+ 961 021c 6C6F6E67 		.ascii	"long unsigned int\000"
+ 961      20756E73 
+ 961      69676E65 
+ 961      6420696E 
+ 961      7400
+ 962              	.LASF40:
+ 963 022e 4B695F70 		.ascii	"Ki_p\000"
+ 963      00
+ 964              	.LASF42:
+ 965 0233 4B695F76 		.ascii	"Ki_v\000"
+ 965      00
+ 966              	.LASF9:
+ 967 0238 5F5F696E 		.ascii	"__int32_t\000"
+ 967      7433325F 
+ 967      7400
+ 968              	.LASF29:
+ 969 0242 74686574 		.ascii	"theta\000"
+ 969      6100
+ 970              	.LASF24:
+ 971 0248 64696650 		.ascii	"difPulsos\000"
+ 971      756C736F 
+ 971      7300
+ 972              	.LASF15:
+ 973 0252 646F7562 		.ascii	"double\000"
+ 973      6C6500
+ 974              	.LASF49:
+ 975 0259 63696E65 		.ascii	"cinematico\000"
+ 975      6D617469 
+ 975      636F00
+ 976              	.LASF30:
+ 977 0264 64746865 		.ascii	"dtheta\000"
+ 977      746100
+ 978              	.LASF48:
+ 979 026b 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 979      52784275 
+ 979      66666572 
+ 979      00
+ 980              	.LASF54:
+ 981 0278 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 981      43313120 
+ 981      352E342E 
+ 981      31203230 
+ 981      31363036 
+ 982 02ab 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 982      20726576 
+ 982      6973696F 
+ 982      6E203233 
+ 982      37373135 
+ 983 02de 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 983      66756E63 
+ 983      74696F6E 
+ARM GAS  C:\Users\diego\AppData\Local\Temp\cc4RROBg.s 			page 21
+
+
+ 983      2D736563 
+ 983      74696F6E 
+ 984              	.LASF39:
+ 985 0306 4B705F70 		.ascii	"Kp_p\000"
+ 985      00
+ 986              	.LASF20:
+ 987 030b 76656C52 		.ascii	"velRadMed\000"
+ 987      61644D65 
+ 987      6400
+ 988              	.LASF41:
+ 989 0315 4B705F76 		.ascii	"Kp_v\000"
+ 989      00
+ 990              	.LASF50:
+ 991 031a 54696D65 		.ascii	"TimerMotores_ReadStatusRegister\000"
+ 991      724D6F74 
+ 991      6F726573 
+ 991      5F526561 
+ 991      64537461 
+ 992              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

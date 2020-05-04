@@ -1,0 +1,4984 @@
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"cymetadata.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	cy_metadata
+  20              		.global	cy_meta_flashprotect
+  21              		.global	cy_meta_wonvl
+  22              		.global	cy_meta_custnvl
+  23              		.global	cy_meta_configecc
+  24              		.section	.cyconfigecc,"a",%progbits
+  25              		.align	2
+  26              		.type	cy_meta_configecc, %object
+  27              		.size	cy_meta_configecc, 4256
+  28              	cy_meta_configecc:
+  29 0000 08       		.byte	8
+  30 0001 52       		.byte	82
+  31 0002 00       		.byte	0
+  32 0003 40       		.byte	64
+  33 0004 0A       		.byte	10
+  34 0005 64       		.byte	100
+  35 0006 00       		.byte	0
+  36 0007 40       		.byte	64
+  37 0008 04       		.byte	4
+  38 0009 65       		.byte	101
+  39 000a 00       		.byte	0
+  40 000b 40       		.byte	64
+  41 000c 54       		.byte	84
+  42 000d 00       		.byte	0
+  43 000e 01       		.byte	1
+  44 000f 40       		.byte	64
+  45 0010 32       		.byte	50
+  46 0011 01       		.byte	1
+  47 0012 01       		.byte	1
+  48 0013 40       		.byte	64
+  49 0014 5E       		.byte	94
+  50 0015 02       		.byte	2
+  51 0016 01       		.byte	1
+  52 0017 40       		.byte	64
+  53 0018 4B       		.byte	75
+  54 0019 03       		.byte	3
+  55 001a 01       		.byte	1
+  56 001b 40       		.byte	64
+  57 001c 6E       		.byte	110
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 2
+
+
+  58 001d 04       		.byte	4
+  59 001e 01       		.byte	1
+  60 001f 40       		.byte	64
+  61 0020 44       		.byte	68
+  62 0021 05       		.byte	5
+  63 0022 01       		.byte	1
+  64 0023 40       		.byte	64
+  65 0024 54       		.byte	84
+  66 0025 06       		.byte	6
+  67 0026 01       		.byte	1
+  68 0027 40       		.byte	64
+  69 0028 4B       		.byte	75
+  70 0029 07       		.byte	7
+  71 002a 01       		.byte	1
+  72 002b 40       		.byte	64
+  73 002c 4E       		.byte	78
+  74 002d 08       		.byte	8
+  75 002e 01       		.byte	1
+  76 002f 40       		.byte	64
+  77 0030 40       		.byte	64
+  78 0031 09       		.byte	9
+  79 0032 01       		.byte	1
+  80 0033 40       		.byte	64
+  81 0034 5F       		.byte	95
+  82 0035 0A       		.byte	10
+  83 0036 01       		.byte	1
+  84 0037 40       		.byte	64
+  85 0038 4F       		.byte	79
+  86 0039 0B       		.byte	11
+  87 003a 01       		.byte	1
+  88 003b 40       		.byte	64
+  89 003c 60       		.byte	96
+  90 003d 0C       		.byte	12
+  91 003e 01       		.byte	1
+  92 003f 40       		.byte	64
+  93 0040 45       		.byte	69
+  94 0041 0D       		.byte	13
+  95 0042 01       		.byte	1
+  96 0043 40       		.byte	64
+  97 0044 4F       		.byte	79
+  98 0045 0E       		.byte	14
+  99 0046 01       		.byte	1
+ 100 0047 40       		.byte	64
+ 101 0048 2E       		.byte	46
+ 102 0049 0F       		.byte	15
+ 103 004a 01       		.byte	1
+ 104 004b 40       		.byte	64
+ 105 004c 53       		.byte	83
+ 106 004d 14       		.byte	20
+ 107 004e 01       		.byte	1
+ 108 004f 40       		.byte	64
+ 109 0050 4F       		.byte	79
+ 110 0051 15       		.byte	21
+ 111 0052 01       		.byte	1
+ 112 0053 40       		.byte	64
+ 113 0054 5E       		.byte	94
+ 114 0055 16       		.byte	22
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 3
+
+
+ 115 0056 01       		.byte	1
+ 116 0057 40       		.byte	64
+ 117 0058 42       		.byte	66
+ 118 0059 17       		.byte	23
+ 119 005a 01       		.byte	1
+ 120 005b 40       		.byte	64
+ 121 005c 70       		.byte	112
+ 122 005d 18       		.byte	24
+ 123 005e 01       		.byte	1
+ 124 005f 40       		.byte	64
+ 125 0060 3D       		.byte	61
+ 126 0061 19       		.byte	25
+ 127 0062 01       		.byte	1
+ 128 0063 40       		.byte	64
+ 129 0064 0E       		.byte	14
+ 130 0065 1A       		.byte	26
+ 131 0066 01       		.byte	1
+ 132 0067 40       		.byte	64
+ 133 0068 4B       		.byte	75
+ 134 0069 1B       		.byte	27
+ 135 006a 01       		.byte	1
+ 136 006b 40       		.byte	64
+ 137 006c 09       		.byte	9
+ 138 006d 40       		.byte	64
+ 139 006e 01       		.byte	1
+ 140 006f 40       		.byte	64
+ 141 0070 0E       		.byte	14
+ 142 0071 41       		.byte	65
+ 143 0072 01       		.byte	1
+ 144 0073 40       		.byte	64
+ 145 0074 0A       		.byte	10
+ 146 0075 42       		.byte	66
+ 147 0076 01       		.byte	1
+ 148 0077 40       		.byte	64
+ 149 0078 06       		.byte	6
+ 150 0079 43       		.byte	67
+ 151 007a 01       		.byte	1
+ 152 007b 40       		.byte	64
+ 153 007c 0A       		.byte	10
+ 154 007d 45       		.byte	69
+ 155 007e 01       		.byte	1
+ 156 007f 40       		.byte	64
+ 157 0080 05       		.byte	5
+ 158 0081 46       		.byte	70
+ 159 0082 01       		.byte	1
+ 160 0083 40       		.byte	64
+ 161 0084 07       		.byte	7
+ 162 0085 48       		.byte	72
+ 163 0086 01       		.byte	1
+ 164 0087 40       		.byte	64
+ 165 0088 0F       		.byte	15
+ 166 0089 49       		.byte	73
+ 167 008a 01       		.byte	1
+ 168 008b 40       		.byte	64
+ 169 008c 04       		.byte	4
+ 170 008d 4C       		.byte	76
+ 171 008e 01       		.byte	1
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 4
+
+
+ 172 008f 40       		.byte	64
+ 173 0090 0D       		.byte	13
+ 174 0091 4D       		.byte	77
+ 175 0092 01       		.byte	1
+ 176 0093 40       		.byte	64
+ 177 0094 08       		.byte	8
+ 178 0095 50       		.byte	80
+ 179 0096 01       		.byte	1
+ 180 0097 40       		.byte	64
+ 181 0098 02       		.byte	2
+ 182 0099 51       		.byte	81
+ 183 009a 01       		.byte	1
+ 184 009b 40       		.byte	64
+ 185 009c 00       		.byte	0
+ 186 009d 08       		.byte	8
+ 187 009e 01       		.byte	1
+ 188 009f 0C       		.byte	12
+ 189 00a0 08       		.byte	8
+ 190 00a1 20       		.byte	32
+ 191 00a2 10       		.byte	16
+ 192 00a3 20       		.byte	32
+ 193 00a4 11       		.byte	17
+ 194 00a5 20       		.byte	32
+ 195 00a6 19       		.byte	25
+ 196 00a7 80       		.byte	-128
+ 197 00a8 78       		.byte	120
+ 198 00a9 01       		.byte	1
+ 199 00aa 79       		.byte	121
+ 200 00ab 01       		.byte	1
+ 201 00ac 81       		.byte	-127
+ 202 00ad 0F       		.byte	15
+ 203 00ae 82       		.byte	-126
+ 204 00af 6F       		.byte	111
+ 205 00b0 83       		.byte	-125
+ 206 00b1 0D       		.byte	13
+ 207 00b2 87       		.byte	-121
+ 208 00b3 0F       		.byte	15
+ 209 00b4 88       		.byte	-120
+ 210 00b5 0D       		.byte	13
+ 211 00b6 89       		.byte	-119
+ 212 00b7 0D       		.byte	13
+ 213 00b8 8A       		.byte	-118
+ 214 00b9 38       		.byte	56
+ 215 00ba 8B       		.byte	-117
+ 216 00bb 6F       		.byte	111
+ 217 00bc 8C       		.byte	-116
+ 218 00bd 0F       		.byte	15
+ 219 00be 8D       		.byte	-115
+ 220 00bf 0D       		.byte	13
+ 221 00c0 84       		.byte	-124
+ 222 00c1 0F       		.byte	15
+ 223 00c2 86       		.byte	-122
+ 224 00c3 0D       		.byte	13
+ 225 00c4 87       		.byte	-121
+ 226 00c5 6F       		.byte	111
+ 227 00c6 8A       		.byte	-118
+ 228 00c7 72       		.byte	114
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 5
+
+
+ 229 00c8 00       		.byte	0
+ 230 00c9 08       		.byte	8
+ 231 00ca 02       		.byte	2
+ 232 00cb 01       		.byte	1
+ 233 00cc 03       		.byte	3
+ 234 00cd 01       		.byte	1
+ 235 00ce 04       		.byte	4
+ 236 00cf 0B       		.byte	11
+ 237 00d0 05       		.byte	5
+ 238 00d1 30       		.byte	48
+ 239 00d2 06       		.byte	6
+ 240 00d3 04       		.byte	4
+ 241 00d4 07       		.byte	7
+ 242 00d5 08       		.byte	8
+ 243 00d6 09       		.byte	9
+ 244 00d7 30       		.byte	48
+ 245 00d8 0D       		.byte	13
+ 246 00d9 02       		.byte	2
+ 247 00da 0F       		.byte	15
+ 248 00db 04       		.byte	4
+ 249 00dc 11       		.byte	17
+ 250 00dd 38       		.byte	56
+ 251 00de 15       		.byte	21
+ 252 00df 04       		.byte	4
+ 253 00e0 16       		.byte	22
+ 254 00e1 0F       		.byte	15
+ 255 00e2 17       		.byte	23
+ 256 00e3 02       		.byte	2
+ 257 00e4 18       		.byte	24
+ 258 00e5 0C       		.byte	12
+ 259 00e6 19       		.byte	25
+ 260 00e7 28       		.byte	40
+ 261 00e8 1A       		.byte	26
+ 262 00e9 02       		.byte	2
+ 263 00ea 1B       		.byte	27
+ 264 00eb 10       		.byte	16
+ 265 00ec 1D       		.byte	29
+ 266 00ed 02       		.byte	2
+ 267 00ee 1E       		.byte	30
+ 268 00ef 20       		.byte	32
+ 269 00f0 1F       		.byte	31
+ 270 00f1 04       		.byte	4
+ 271 00f2 20       		.byte	32
+ 272 00f3 07       		.byte	7
+ 273 00f4 21       		.byte	33
+ 274 00f5 18       		.byte	24
+ 275 00f6 25       		.byte	37
+ 276 00f7 02       		.byte	2
+ 277 00f8 26       		.byte	38
+ 278 00f9 10       		.byte	16
+ 279 00fa 27       		.byte	39
+ 280 00fb 04       		.byte	4
+ 281 00fc 29       		.byte	41
+ 282 00fd 10       		.byte	16
+ 283 00fe 2B       		.byte	43
+ 284 00ff 20       		.byte	32
+ 285 0100 2C       		.byte	44
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 6
+
+
+ 286 0101 0C       		.byte	12
+ 287 0102 2E       		.byte	46
+ 288 0103 01       		.byte	1
+ 289 0104 2F       		.byte	47
+ 290 0105 08       		.byte	8
+ 291 0106 30       		.byte	48
+ 292 0107 20       		.byte	32
+ 293 0108 31       		.byte	49
+ 294 0109 01       		.byte	1
+ 295 010a 33       		.byte	51
+ 296 010b 06       		.byte	6
+ 297 010c 34       		.byte	52
+ 298 010d 0F       		.byte	15
+ 299 010e 35       		.byte	53
+ 300 010f 38       		.byte	56
+ 301 0110 36       		.byte	54
+ 302 0111 10       		.byte	16
+ 303 0112 3B       		.byte	59
+ 304 0113 08       		.byte	8
+ 305 0114 40       		.byte	64
+ 306 0115 03       		.byte	3
+ 307 0116 46       		.byte	70
+ 308 0117 40       		.byte	64
+ 309 0118 49       		.byte	73
+ 310 0119 FF       		.byte	-1
+ 311 011a 4A       		.byte	74
+ 312 011b 07       		.byte	7
+ 313 011c 4B       		.byte	75
+ 314 011d FF       		.byte	-1
+ 315 011e 4C       		.byte	76
+ 316 011f 40       		.byte	64
+ 317 0120 4D       		.byte	77
+ 318 0121 20       		.byte	32
+ 319 0122 4E       		.byte	78
+ 320 0123 F0       		.byte	-16
+ 321 0124 4F       		.byte	79
+ 322 0125 05       		.byte	5
+ 323 0126 50       		.byte	80
+ 324 0127 08       		.byte	8
+ 325 0128 58       		.byte	88
+ 326 0129 04       		.byte	4
+ 327 012a 59       		.byte	89
+ 328 012b 04       		.byte	4
+ 329 012c 5A       		.byte	90
+ 330 012d 04       		.byte	4
+ 331 012e 5C       		.byte	92
+ 332 012f 11       		.byte	17
+ 333 0130 5D       		.byte	93
+ 334 0131 02       		.byte	2
+ 335 0132 5F       		.byte	95
+ 336 0133 01       		.byte	1
+ 337 0134 60       		.byte	96
+ 338 0135 40       		.byte	64
+ 339 0136 61       		.byte	97
+ 340 0137 A8       		.byte	-88
+ 341 0138 62       		.byte	98
+ 342 0139 40       		.byte	64
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 7
+
+
+ 343 013a 63       		.byte	99
+ 344 013b 20       		.byte	32
+ 345 013c 80       		.byte	-128
+ 346 013d 01       		.byte	1
+ 347 013e 86       		.byte	-122
+ 348 013f 04       		.byte	4
+ 349 0140 8E       		.byte	-114
+ 350 0141 02       		.byte	2
+ 351 0142 93       		.byte	-109
+ 352 0143 02       		.byte	2
+ 353 0144 94       		.byte	-108
+ 354 0145 04       		.byte	4
+ 355 0146 95       		.byte	-107
+ 356 0147 02       		.byte	2
+ 357 0148 99       		.byte	-103
+ 358 0149 02       		.byte	2
+ 359 014a 9E       		.byte	-98
+ 360 014b 04       		.byte	4
+ 361 014c A4       		.byte	-92
+ 362 014d 01       		.byte	1
+ 363 014e AB       		.byte	-85
+ 364 014f 01       		.byte	1
+ 365 0150 B2       		.byte	-78
+ 366 0151 02       		.byte	2
+ 367 0152 B3       		.byte	-77
+ 368 0153 02       		.byte	2
+ 369 0154 B4       		.byte	-76
+ 370 0155 04       		.byte	4
+ 371 0156 B6       		.byte	-74
+ 372 0157 01       		.byte	1
+ 373 0158 B7       		.byte	-73
+ 374 0159 01       		.byte	1
+ 375 015a B8       		.byte	-72
+ 376 015b 80       		.byte	-128
+ 377 015c BE       		.byte	-66
+ 378 015d 10       		.byte	16
+ 379 015e BF       		.byte	-65
+ 380 015f 04       		.byte	4
+ 381 0160 D4       		.byte	-44
+ 382 0161 0F       		.byte	15
+ 383 0162 D6       		.byte	-42
+ 384 0163 04       		.byte	4
+ 385 0164 D8       		.byte	-40
+ 386 0165 04       		.byte	4
+ 387 0166 D9       		.byte	-39
+ 388 0167 04       		.byte	4
+ 389 0168 DB       		.byte	-37
+ 390 0169 04       		.byte	4
+ 391 016a DC       		.byte	-36
+ 392 016b 11       		.byte	17
+ 393 016c DD       		.byte	-35
+ 394 016d 10       		.byte	16
+ 395 016e DF       		.byte	-33
+ 396 016f 01       		.byte	1
+ 397 0170 00       		.byte	0
+ 398 0171 02       		.byte	2
+ 399 0172 01       		.byte	1
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 8
+
+
+ 400 0173 06       		.byte	6
+ 401 0174 05       		.byte	5
+ 402 0175 04       		.byte	4
+ 403 0176 06       		.byte	6
+ 404 0177 42       		.byte	66
+ 405 0178 08       		.byte	8
+ 406 0179 04       		.byte	4
+ 407 017a 0A       		.byte	10
+ 408 017b 05       		.byte	5
+ 409 017c 0B       		.byte	11
+ 410 017d 20       		.byte	32
+ 411 017e 0E       		.byte	14
+ 412 017f 22       		.byte	34
+ 413 0180 10       		.byte	16
+ 414 0181 51       		.byte	81
+ 415 0182 16       		.byte	22
+ 416 0183 20       		.byte	32
+ 417 0184 18       		.byte	24
+ 418 0185 40       		.byte	64
+ 419 0186 19       		.byte	25
+ 420 0187 40       		.byte	64
+ 421 0188 1A       		.byte	26
+ 422 0189 05       		.byte	5
+ 423 018a 1B       		.byte	27
+ 424 018b 20       		.byte	32
+ 425 018c 1C       		.byte	28
+ 426 018d 08       		.byte	8
+ 427 018e 1E       		.byte	30
+ 428 018f 22       		.byte	34
+ 429 0190 20       		.byte	32
+ 430 0191 04       		.byte	4
+ 431 0192 22       		.byte	34
+ 432 0193 0A       		.byte	10
+ 433 0194 27       		.byte	39
+ 434 0195 21       		.byte	33
+ 435 0196 28       		.byte	40
+ 436 0197 54       		.byte	84
+ 437 0198 2A       		.byte	42
+ 438 0199 08       		.byte	8
+ 439 019a 2B       		.byte	43
+ 440 019b 02       		.byte	2
+ 441 019c 2E       		.byte	46
+ 442 019d 20       		.byte	32
+ 443 019e 30       		.byte	48
+ 444 019f 01       		.byte	1
+ 445 01a0 31       		.byte	49
+ 446 01a1 40       		.byte	64
+ 447 01a2 32       		.byte	50
+ 448 01a3 08       		.byte	8
+ 449 01a4 33       		.byte	51
+ 450 01a5 20       		.byte	32
+ 451 01a6 35       		.byte	53
+ 452 01a7 04       		.byte	4
+ 453 01a8 36       		.byte	54
+ 454 01a9 11       		.byte	17
+ 455 01aa 38       		.byte	56
+ 456 01ab 40       		.byte	64
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 9
+
+
+ 457 01ac 39       		.byte	57
+ 458 01ad 15       		.byte	21
+ 459 01ae 42       		.byte	66
+ 460 01af 10       		.byte	16
+ 461 01b0 50       		.byte	80
+ 462 01b1 80       		.byte	-128
+ 463 01b2 51       		.byte	81
+ 464 01b3 10       		.byte	16
+ 465 01b4 5C       		.byte	92
+ 466 01b5 8A       		.byte	-118
+ 467 01b6 5F       		.byte	95
+ 468 01b7 20       		.byte	32
+ 469 01b8 67       		.byte	103
+ 470 01b9 40       		.byte	64
+ 471 01ba 82       		.byte	-126
+ 472 01bb 02       		.byte	2
+ 473 01bc 84       		.byte	-124
+ 474 01bd 48       		.byte	72
+ 475 01be 87       		.byte	-121
+ 476 01bf 40       		.byte	64
+ 477 01c0 C0       		.byte	-64
+ 478 01c1 BC       		.byte	-68
+ 479 01c2 C2       		.byte	-62
+ 480 01c3 A7       		.byte	-89
+ 481 01c4 C4       		.byte	-60
+ 482 01c5 2D       		.byte	45
+ 483 01c6 CA       		.byte	-54
+ 484 01c7 2F       		.byte	47
+ 485 01c8 CC       		.byte	-52
+ 486 01c9 EF       		.byte	-17
+ 487 01ca CE       		.byte	-50
+ 488 01cb 0F       		.byte	15
+ 489 01cc D0       		.byte	-48
+ 490 01cd 02       		.byte	2
+ 491 01ce D6       		.byte	-42
+ 492 01cf F0       		.byte	-16
+ 493 01d0 D8       		.byte	-40
+ 494 01d1 80       		.byte	-128
+ 495 01d2 E0       		.byte	-32
+ 496 01d3 01       		.byte	1
+ 497 01d4 03       		.byte	3
+ 498 01d5 01       		.byte	1
+ 499 01d6 04       		.byte	4
+ 500 01d7 04       		.byte	4
+ 501 01d8 06       		.byte	6
+ 502 01d9 08       		.byte	8
+ 503 01da 0B       		.byte	11
+ 504 01db 02       		.byte	2
+ 505 01dc 0E       		.byte	14
+ 506 01dd 01       		.byte	1
+ 507 01de 11       		.byte	17
+ 508 01df 02       		.byte	2
+ 509 01e0 14       		.byte	20
+ 510 01e1 01       		.byte	1
+ 511 01e2 18       		.byte	24
+ 512 01e3 08       		.byte	8
+ 513 01e4 1A       		.byte	26
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 10
+
+
+ 514 01e5 04       		.byte	4
+ 515 01e6 1C       		.byte	28
+ 516 01e7 04       		.byte	4
+ 517 01e8 1E       		.byte	30
+ 518 01e9 08       		.byte	8
+ 519 01ea 1F       		.byte	31
+ 520 01eb 08       		.byte	8
+ 521 01ec 23       		.byte	35
+ 522 01ed 04       		.byte	4
+ 523 01ee 26       		.byte	38
+ 524 01ef 02       		.byte	2
+ 525 01f0 29       		.byte	41
+ 526 01f1 01       		.byte	1
+ 527 01f2 2C       		.byte	44
+ 528 01f3 04       		.byte	4
+ 529 01f4 2E       		.byte	46
+ 530 01f5 08       		.byte	8
+ 531 01f6 31       		.byte	49
+ 532 01f7 04       		.byte	4
+ 533 01f8 32       		.byte	50
+ 534 01f9 01       		.byte	1
+ 535 01fa 33       		.byte	51
+ 536 01fb 08       		.byte	8
+ 537 01fc 34       		.byte	52
+ 538 01fd 0C       		.byte	12
+ 539 01fe 35       		.byte	53
+ 540 01ff 01       		.byte	1
+ 541 0200 36       		.byte	54
+ 542 0201 02       		.byte	2
+ 543 0202 37       		.byte	55
+ 544 0203 02       		.byte	2
+ 545 0204 3A       		.byte	58
+ 546 0205 20       		.byte	32
+ 547 0206 3E       		.byte	62
+ 548 0207 04       		.byte	4
+ 549 0208 3F       		.byte	63
+ 550 0209 50       		.byte	80
+ 551 020a 40       		.byte	64
+ 552 020b 60       		.byte	96
+ 553 020c 41       		.byte	65
+ 554 020d 02       		.byte	2
+ 555 020e 49       		.byte	73
+ 556 020f FF       		.byte	-1
+ 557 0210 4A       		.byte	74
+ 558 0211 FF       		.byte	-1
+ 559 0212 4B       		.byte	75
+ 560 0213 FF       		.byte	-1
+ 561 0214 4D       		.byte	77
+ 562 0215 A0       		.byte	-96
+ 563 0216 4F       		.byte	79
+ 564 0217 04       		.byte	4
+ 565 0218 50       		.byte	80
+ 566 0219 18       		.byte	24
+ 567 021a 54       		.byte	84
+ 568 021b 0F       		.byte	15
+ 569 021c 58       		.byte	88
+ 570 021d 04       		.byte	4
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 11
+
+
+ 571 021e 59       		.byte	89
+ 572 021f 04       		.byte	4
+ 573 0220 5A       		.byte	90
+ 574 0221 04       		.byte	4
+ 575 0222 5B       		.byte	91
+ 576 0223 04       		.byte	4
+ 577 0224 5C       		.byte	92
+ 578 0225 11       		.byte	17
+ 579 0226 5D       		.byte	93
+ 580 0227 11       		.byte	17
+ 581 0228 5F       		.byte	95
+ 582 0229 05       		.byte	5
+ 583 022a 60       		.byte	96
+ 584 022b 40       		.byte	64
+ 585 022c 62       		.byte	98
+ 586 022d C0       		.byte	-64
+ 587 022e 64       		.byte	100
+ 588 022f 40       		.byte	64
+ 589 0230 65       		.byte	101
+ 590 0231 40       		.byte	64
+ 591 0232 66       		.byte	102
+ 592 0233 C0       		.byte	-64
+ 593 0234 68       		.byte	104
+ 594 0235 C0       		.byte	-64
+ 595 0236 6A       		.byte	106
+ 596 0237 C0       		.byte	-64
+ 597 0238 6C       		.byte	108
+ 598 0239 C0       		.byte	-64
+ 599 023a 6E       		.byte	110
+ 600 023b C0       		.byte	-64
+ 601 023c 87       		.byte	-121
+ 602 023d 04       		.byte	4
+ 603 023e 8A       		.byte	-118
+ 604 023f 02       		.byte	2
+ 605 0240 8F       		.byte	-113
+ 606 0241 02       		.byte	2
+ 607 0242 9B       		.byte	-101
+ 608 0243 01       		.byte	1
+ 609 0244 A5       		.byte	-91
+ 610 0245 01       		.byte	1
+ 611 0246 A6       		.byte	-90
+ 612 0247 03       		.byte	3
+ 613 0248 AB       		.byte	-85
+ 614 0249 04       		.byte	4
+ 615 024a B2       		.byte	-78
+ 616 024b 01       		.byte	1
+ 617 024c B3       		.byte	-77
+ 618 024d 04       		.byte	4
+ 619 024e B5       		.byte	-75
+ 620 024f 02       		.byte	2
+ 621 0250 B6       		.byte	-74
+ 622 0251 02       		.byte	2
+ 623 0252 B7       		.byte	-73
+ 624 0253 01       		.byte	1
+ 625 0254 BF       		.byte	-65
+ 626 0255 04       		.byte	4
+ 627 0256 C0       		.byte	-64
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 12
+
+
+ 628 0257 60       		.byte	96
+ 629 0258 C1       		.byte	-63
+ 630 0259 03       		.byte	3
+ 631 025a C5       		.byte	-59
+ 632 025b D1       		.byte	-47
+ 633 025c C7       		.byte	-57
+ 634 025d 02       		.byte	2
+ 635 025e C8       		.byte	-56
+ 636 025f 13       		.byte	19
+ 637 0260 C9       		.byte	-55
+ 638 0261 FF       		.byte	-1
+ 639 0262 CA       		.byte	-54
+ 640 0263 FF       		.byte	-1
+ 641 0264 CB       		.byte	-53
+ 642 0265 FF       		.byte	-1
+ 643 0266 CD       		.byte	-51
+ 644 0267 AF       		.byte	-81
+ 645 0268 CE       		.byte	-50
+ 646 0269 0F       		.byte	15
+ 647 026a CF       		.byte	-49
+ 648 026b 04       		.byte	4
+ 649 026c D0       		.byte	-48
+ 650 026d 18       		.byte	24
+ 651 026e D4       		.byte	-44
+ 652 026f 05       		.byte	5
+ 653 0270 D8       		.byte	-40
+ 654 0271 04       		.byte	4
+ 655 0272 D9       		.byte	-39
+ 656 0273 04       		.byte	4
+ 657 0274 DA       		.byte	-38
+ 658 0275 04       		.byte	4
+ 659 0276 DB       		.byte	-37
+ 660 0277 04       		.byte	4
+ 661 0278 DC       		.byte	-36
+ 662 0279 11       		.byte	17
+ 663 027a DD       		.byte	-35
+ 664 027b 11       		.byte	17
+ 665 027c DF       		.byte	-33
+ 666 027d 01       		.byte	1
+ 667 027e E0       		.byte	-32
+ 668 027f 40       		.byte	64
+ 669 0280 E2       		.byte	-30
+ 670 0281 C0       		.byte	-64
+ 671 0282 E4       		.byte	-28
+ 672 0283 40       		.byte	64
+ 673 0284 E5       		.byte	-27
+ 674 0285 40       		.byte	64
+ 675 0286 E6       		.byte	-26
+ 676 0287 C0       		.byte	-64
+ 677 0288 E8       		.byte	-24
+ 678 0289 C0       		.byte	-64
+ 679 028a EA       		.byte	-22
+ 680 028b C0       		.byte	-64
+ 681 028c EC       		.byte	-20
+ 682 028d C0       		.byte	-64
+ 683 028e EE       		.byte	-18
+ 684 028f C0       		.byte	-64
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 13
+
+
+ 685 0290 01       		.byte	1
+ 686 0291 20       		.byte	32
+ 687 0292 06       		.byte	6
+ 688 0293 02       		.byte	2
+ 689 0294 07       		.byte	7
+ 690 0295 10       		.byte	16
+ 691 0296 0E       		.byte	14
+ 692 0297 2A       		.byte	42
+ 693 0298 10       		.byte	16
+ 694 0299 20       		.byte	32
+ 695 029a 16       		.byte	22
+ 696 029b 10       		.byte	16
+ 697 029c 17       		.byte	23
+ 698 029d 40       		.byte	64
+ 699 029e 19       		.byte	25
+ 700 029f 08       		.byte	8
+ 701 02a0 1A       		.byte	26
+ 702 02a1 02       		.byte	2
+ 703 02a2 1E       		.byte	30
+ 704 02a3 0B       		.byte	11
+ 705 02a4 1F       		.byte	31
+ 706 02a5 18       		.byte	24
+ 707 02a6 20       		.byte	32
+ 708 02a7 08       		.byte	8
+ 709 02a8 22       		.byte	34
+ 710 02a9 44       		.byte	68
+ 711 02aa 24       		.byte	36
+ 712 02ab 04       		.byte	4
+ 713 02ac 27       		.byte	39
+ 714 02ad 52       		.byte	82
+ 715 02ae 29       		.byte	41
+ 716 02af 28       		.byte	40
+ 717 02b0 2E       		.byte	46
+ 718 02b1 01       		.byte	1
+ 719 02b2 2F       		.byte	47
+ 720 02b3 04       		.byte	4
+ 721 02b4 30       		.byte	48
+ 722 02b5 20       		.byte	32
+ 723 02b6 37       		.byte	55
+ 724 02b7 41       		.byte	65
+ 725 02b8 3A       		.byte	58
+ 726 02b9 84       		.byte	-124
+ 727 02ba 3E       		.byte	62
+ 728 02bb 20       		.byte	32
+ 729 02bc 3F       		.byte	63
+ 730 02bd 12       		.byte	18
+ 731 02be 41       		.byte	65
+ 732 02bf 04       		.byte	4
+ 733 02c0 46       		.byte	70
+ 734 02c1 04       		.byte	4
+ 735 02c2 48       		.byte	72
+ 736 02c3 20       		.byte	32
+ 737 02c4 49       		.byte	73
+ 738 02c5 22       		.byte	34
+ 739 02c6 4D       		.byte	77
+ 740 02c7 20       		.byte	32
+ 741 02c8 51       		.byte	81
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 14
+
+
+ 742 02c9 04       		.byte	4
+ 743 02ca 52       		.byte	82
+ 744 02cb 04       		.byte	4
+ 745 02cc 59       		.byte	89
+ 746 02cd 02       		.byte	2
+ 747 02ce 5A       		.byte	90
+ 748 02cf 88       		.byte	-120
+ 749 02d0 5C       		.byte	92
+ 750 02d1 04       		.byte	4
+ 751 02d2 5F       		.byte	95
+ 752 02d3 52       		.byte	82
+ 753 02d4 62       		.byte	98
+ 754 02d5 40       		.byte	64
+ 755 02d6 63       		.byte	99
+ 756 02d7 02       		.byte	2
+ 757 02d8 66       		.byte	102
+ 758 02d9 08       		.byte	8
+ 759 02da 67       		.byte	103
+ 760 02db 04       		.byte	4
+ 761 02dc 7E       		.byte	126
+ 762 02dd 80       		.byte	-128
+ 763 02de 8B       		.byte	-117
+ 764 02df 48       		.byte	72
+ 765 02e0 91       		.byte	-111
+ 766 02e1 20       		.byte	32
+ 767 02e2 92       		.byte	-110
+ 768 02e3 04       		.byte	4
+ 769 02e4 95       		.byte	-107
+ 770 02e5 05       		.byte	5
+ 771 02e6 96       		.byte	-106
+ 772 02e7 10       		.byte	16
+ 773 02e8 97       		.byte	-105
+ 774 02e9 20       		.byte	32
+ 775 02ea 9B       		.byte	-101
+ 776 02eb 01       		.byte	1
+ 777 02ec 9C       		.byte	-100
+ 778 02ed 41       		.byte	65
+ 779 02ee 9D       		.byte	-99
+ 780 02ef 04       		.byte	4
+ 781 02f0 9E       		.byte	-98
+ 782 02f1 62       		.byte	98
+ 783 02f2 A0       		.byte	-96
+ 784 02f3 88       		.byte	-120
+ 785 02f4 A2       		.byte	-94
+ 786 02f5 10       		.byte	16
+ 787 02f6 A4       		.byte	-92
+ 788 02f7 01       		.byte	1
+ 789 02f8 A8       		.byte	-88
+ 790 02f9 08       		.byte	8
+ 791 02fa AA       		.byte	-86
+ 792 02fb 08       		.byte	8
+ 793 02fc AC       		.byte	-84
+ 794 02fd 84       		.byte	-124
+ 795 02fe B0       		.byte	-80
+ 796 02ff 02       		.byte	2
+ 797 0300 B1       		.byte	-79
+ 798 0301 16       		.byte	22
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 15
+
+
+ 799 0302 B2       		.byte	-78
+ 800 0303 08       		.byte	8
+ 801 0304 B4       		.byte	-76
+ 802 0305 04       		.byte	4
+ 803 0306 B7       		.byte	-73
+ 804 0307 02       		.byte	2
+ 805 0308 C0       		.byte	-64
+ 806 0309 A2       		.byte	-94
+ 807 030a C2       		.byte	-62
+ 808 030b E0       		.byte	-32
+ 809 030c C4       		.byte	-60
+ 810 030d A4       		.byte	-92
+ 811 030e CA       		.byte	-54
+ 812 030f A6       		.byte	-90
+ 813 0310 CC       		.byte	-52
+ 814 0311 94       		.byte	-108
+ 815 0312 CE       		.byte	-50
+ 816 0313 AA       		.byte	-86
+ 817 0314 D0       		.byte	-48
+ 818 0315 22       		.byte	34
+ 819 0316 D2       		.byte	-46
+ 820 0317 24       		.byte	36
+ 821 0318 D6       		.byte	-42
+ 822 0319 FB       		.byte	-5
+ 823 031a D8       		.byte	-40
+ 824 031b 60       		.byte	96
+ 825 031c DE       		.byte	-34
+ 826 031d 80       		.byte	-128
+ 827 031e E2       		.byte	-30
+ 828 031f 10       		.byte	16
+ 829 0320 E6       		.byte	-26
+ 830 0321 08       		.byte	8
+ 831 0322 EA       		.byte	-22
+ 832 0323 01       		.byte	1
+ 833 0324 EE       		.byte	-18
+ 834 0325 01       		.byte	1
+ 835 0326 04       		.byte	4
+ 836 0327 03       		.byte	3
+ 837 0328 06       		.byte	6
+ 838 0329 44       		.byte	68
+ 839 032a 07       		.byte	7
+ 840 032b 1C       		.byte	28
+ 841 032c 0A       		.byte	10
+ 842 032d 08       		.byte	8
+ 843 032e 0B       		.byte	11
+ 844 032f 08       		.byte	8
+ 845 0330 15       		.byte	21
+ 846 0331 01       		.byte	1
+ 847 0332 17       		.byte	23
+ 848 0333 0E       		.byte	14
+ 849 0334 18       		.byte	24
+ 850 0335 73       		.byte	115
+ 851 0336 19       		.byte	25
+ 852 0337 1C       		.byte	28
+ 853 0338 1A       		.byte	26
+ 854 0339 0C       		.byte	12
+ 855 033a 1B       		.byte	27
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 16
+
+
+ 856 033b 03       		.byte	3
+ 857 033c 1F       		.byte	31
+ 858 033d 03       		.byte	3
+ 859 033e 22       		.byte	34
+ 860 033f 55       		.byte	85
+ 861 0340 24       		.byte	36
+ 862 0341 2A       		.byte	42
+ 863 0342 25       		.byte	37
+ 864 0343 01       		.byte	1
+ 865 0344 26       		.byte	38
+ 866 0345 44       		.byte	68
+ 867 0346 27       		.byte	39
+ 868 0347 16       		.byte	22
+ 869 0348 28       		.byte	40
+ 870 0349 73       		.byte	115
+ 871 034a 2A       		.byte	42
+ 872 034b 04       		.byte	4
+ 873 034c 32       		.byte	50
+ 874 034d 30       		.byte	48
+ 875 034e 33       		.byte	51
+ 876 034f 1A       		.byte	26
+ 877 0350 34       		.byte	52
+ 878 0351 0F       		.byte	15
+ 879 0352 35       		.byte	53
+ 880 0353 0F       		.byte	15
+ 881 0354 36       		.byte	54
+ 882 0355 40       		.byte	64
+ 883 0356 38       		.byte	56
+ 884 0357 08       		.byte	8
+ 885 0358 3A       		.byte	58
+ 886 0359 20       		.byte	32
+ 887 035a 3B       		.byte	59
+ 888 035b 28       		.byte	40
+ 889 035c 3E       		.byte	62
+ 890 035d 44       		.byte	68
+ 891 035e 40       		.byte	64
+ 892 035f 62       		.byte	98
+ 893 0360 41       		.byte	65
+ 894 0361 05       		.byte	5
+ 895 0362 49       		.byte	73
+ 896 0363 FF       		.byte	-1
+ 897 0364 4A       		.byte	74
+ 898 0365 FF       		.byte	-1
+ 899 0366 4B       		.byte	75
+ 900 0367 FF       		.byte	-1
+ 901 0368 4D       		.byte	77
+ 902 0369 A0       		.byte	-96
+ 903 036a 4F       		.byte	79
+ 904 036b 01       		.byte	1
+ 905 036c 50       		.byte	80
+ 906 036d 18       		.byte	24
+ 907 036e 52       		.byte	82
+ 908 036f 80       		.byte	-128
+ 909 0370 58       		.byte	88
+ 910 0371 04       		.byte	4
+ 911 0372 59       		.byte	89
+ 912 0373 04       		.byte	4
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 17
+
+
+ 913 0374 5A       		.byte	90
+ 914 0375 04       		.byte	4
+ 915 0376 5B       		.byte	91
+ 916 0377 04       		.byte	4
+ 917 0378 5C       		.byte	92
+ 918 0379 22       		.byte	34
+ 919 037a 5D       		.byte	93
+ 920 037b 11       		.byte	17
+ 921 037c 5F       		.byte	95
+ 922 037d 01       		.byte	1
+ 923 037e 60       		.byte	96
+ 924 037f 40       		.byte	64
+ 925 0380 62       		.byte	98
+ 926 0381 80       		.byte	-128
+ 927 0382 64       		.byte	100
+ 928 0383 40       		.byte	64
+ 929 0384 65       		.byte	101
+ 930 0385 40       		.byte	64
+ 931 0386 66       		.byte	102
+ 932 0387 80       		.byte	-128
+ 933 0388 68       		.byte	104
+ 934 0389 40       		.byte	64
+ 935 038a 6A       		.byte	106
+ 936 038b 80       		.byte	-128
+ 937 038c 6C       		.byte	108
+ 938 038d 40       		.byte	64
+ 939 038e 6D       		.byte	109
+ 940 038f 20       		.byte	32
+ 941 0390 6E       		.byte	110
+ 942 0391 80       		.byte	-128
+ 943 0392 81       		.byte	-127
+ 944 0393 01       		.byte	1
+ 945 0394 85       		.byte	-123
+ 946 0395 0C       		.byte	12
+ 947 0396 86       		.byte	-122
+ 948 0397 10       		.byte	16
+ 949 0398 88       		.byte	-120
+ 950 0399 01       		.byte	1
+ 951 039a 89       		.byte	-119
+ 952 039b 01       		.byte	1
+ 953 039c 8A       		.byte	-118
+ 954 039d 02       		.byte	2
+ 955 039e 8C       		.byte	-116
+ 956 039f 01       		.byte	1
+ 957 03a0 8E       		.byte	-114
+ 958 03a1 02       		.byte	2
+ 959 03a2 8F       		.byte	-113
+ 960 03a3 10       		.byte	16
+ 961 03a4 91       		.byte	-111
+ 962 03a5 0C       		.byte	12
+ 963 03a6 94       		.byte	-108
+ 964 03a7 02       		.byte	2
+ 965 03a8 96       		.byte	-106
+ 966 03a9 01       		.byte	1
+ 967 03aa 98       		.byte	-104
+ 968 03ab 01       		.byte	1
+ 969 03ac 9A       		.byte	-102
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 18
+
+
+ 970 03ad 0A       		.byte	10
+ 971 03ae 9D       		.byte	-99
+ 972 03af 07       		.byte	7
+ 973 03b0 9E       		.byte	-98
+ 974 03b1 04       		.byte	4
+ 975 03b2 A5       		.byte	-91
+ 976 03b3 0A       		.byte	10
+ 977 03b4 B0       		.byte	-80
+ 978 03b5 08       		.byte	8
+ 979 03b6 B2       		.byte	-78
+ 980 03b7 04       		.byte	4
+ 981 03b8 B3       		.byte	-77
+ 982 03b9 01       		.byte	1
+ 983 03ba B4       		.byte	-76
+ 984 03bb 10       		.byte	16
+ 985 03bc B5       		.byte	-75
+ 986 03bd 10       		.byte	16
+ 987 03be B6       		.byte	-74
+ 988 03bf 03       		.byte	3
+ 989 03c0 B7       		.byte	-73
+ 990 03c1 0E       		.byte	14
+ 991 03c2 B9       		.byte	-71
+ 992 03c3 88       		.byte	-120
+ 993 03c4 BA       		.byte	-70
+ 994 03c5 80       		.byte	-128
+ 995 03c6 BF       		.byte	-65
+ 996 03c7 04       		.byte	4
+ 997 03c8 C0       		.byte	-64
+ 998 03c9 62       		.byte	98
+ 999 03ca C1       		.byte	-63
+ 1000 03cb 05       		.byte	5
+ 1001 03cc C5       		.byte	-59
+ 1002 03cd 3C       		.byte	60
+ 1003 03ce C6       		.byte	-58
+ 1004 03cf 20       		.byte	32
+ 1005 03d0 C7       		.byte	-57
+ 1006 03d1 4E       		.byte	78
+ 1007 03d2 C8       		.byte	-56
+ 1008 03d3 3B       		.byte	59
+ 1009 03d4 C9       		.byte	-55
+ 1010 03d5 FF       		.byte	-1
+ 1011 03d6 CA       		.byte	-54
+ 1012 03d7 FF       		.byte	-1
+ 1013 03d8 CB       		.byte	-53
+ 1014 03d9 FF       		.byte	-1
+ 1015 03da CD       		.byte	-51
+ 1016 03db AF       		.byte	-81
+ 1017 03dc CE       		.byte	-50
+ 1018 03dd 07       		.byte	7
+ 1019 03de CF       		.byte	-49
+ 1020 03df 01       		.byte	1
+ 1021 03e0 D0       		.byte	-48
+ 1022 03e1 18       		.byte	24
+ 1023 03e2 D8       		.byte	-40
+ 1024 03e3 04       		.byte	4
+ 1025 03e4 D9       		.byte	-39
+ 1026 03e5 04       		.byte	4
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 19
+
+
+ 1027 03e6 DA       		.byte	-38
+ 1028 03e7 04       		.byte	4
+ 1029 03e8 DC       		.byte	-36
+ 1030 03e9 11       		.byte	17
+ 1031 03ea DD       		.byte	-35
+ 1032 03eb 01       		.byte	1
+ 1033 03ec DF       		.byte	-33
+ 1034 03ed 01       		.byte	1
+ 1035 03ee E0       		.byte	-32
+ 1036 03ef 40       		.byte	64
+ 1037 03f0 E2       		.byte	-30
+ 1038 03f1 80       		.byte	-128
+ 1039 03f2 E4       		.byte	-28
+ 1040 03f3 40       		.byte	64
+ 1041 03f4 E5       		.byte	-27
+ 1042 03f5 40       		.byte	64
+ 1043 03f6 E6       		.byte	-26
+ 1044 03f7 80       		.byte	-128
+ 1045 03f8 E8       		.byte	-24
+ 1046 03f9 40       		.byte	64
+ 1047 03fa EA       		.byte	-22
+ 1048 03fb 80       		.byte	-128
+ 1049 03fc EC       		.byte	-20
+ 1050 03fd 40       		.byte	64
+ 1051 03fe ED       		.byte	-19
+ 1052 03ff 20       		.byte	32
+ 1053 0400 EE       		.byte	-18
+ 1054 0401 80       		.byte	-128
+ 1055 0402 00       		.byte	0
+ 1056 0403 20       		.byte	32
+ 1057 0404 02       		.byte	2
+ 1058 0405 14       		.byte	20
+ 1059 0406 04       		.byte	4
+ 1060 0407 40       		.byte	64
+ 1061 0408 07       		.byte	7
+ 1062 0409 28       		.byte	40
+ 1063 040a 08       		.byte	8
+ 1064 040b 20       		.byte	32
+ 1065 040c 0A       		.byte	10
+ 1066 040d 08       		.byte	8
+ 1067 040e 0D       		.byte	13
+ 1068 040f 20       		.byte	32
+ 1069 0410 0E       		.byte	14
+ 1070 0411 20       		.byte	32
+ 1071 0412 0F       		.byte	15
+ 1072 0413 02       		.byte	2
+ 1073 0414 10       		.byte	16
+ 1074 0415 80       		.byte	-128
+ 1075 0416 12       		.byte	18
+ 1076 0417 28       		.byte	40
+ 1077 0418 19       		.byte	25
+ 1078 0419 40       		.byte	64
+ 1079 041a 1A       		.byte	26
+ 1080 041b 18       		.byte	24
+ 1081 041c 1C       		.byte	28
+ 1082 041d 42       		.byte	66
+ 1083 041e 1D       		.byte	29
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 20
+
+
+ 1084 041f 20       		.byte	32
+ 1085 0420 1F       		.byte	31
+ 1086 0421 04       		.byte	4
+ 1087 0422 22       		.byte	34
+ 1088 0423 28       		.byte	40
+ 1089 0424 26       		.byte	38
+ 1090 0425 80       		.byte	-128
+ 1091 0426 27       		.byte	39
+ 1092 0427 18       		.byte	24
+ 1093 0428 28       		.byte	40
+ 1094 0429 20       		.byte	32
+ 1095 042a 2D       		.byte	45
+ 1096 042b 04       		.byte	4
+ 1097 042c 30       		.byte	48
+ 1098 042d 80       		.byte	-128
+ 1099 042e 32       		.byte	50
+ 1100 042f 28       		.byte	40
+ 1101 0430 33       		.byte	51
+ 1102 0431 40       		.byte	64
+ 1103 0432 34       		.byte	52
+ 1104 0433 41       		.byte	65
+ 1105 0434 36       		.byte	54
+ 1106 0435 80       		.byte	-128
+ 1107 0436 39       		.byte	57
+ 1108 0437 20       		.byte	32
+ 1109 0438 3A       		.byte	58
+ 1110 0439 04       		.byte	4
+ 1111 043a 3C       		.byte	60
+ 1112 043b 40       		.byte	64
+ 1113 043c 3E       		.byte	62
+ 1114 043d 24       		.byte	36
+ 1115 043e 3F       		.byte	63
+ 1116 043f 02       		.byte	2
+ 1117 0440 43       		.byte	67
+ 1118 0441 10       		.byte	16
+ 1119 0442 47       		.byte	71
+ 1120 0443 10       		.byte	16
+ 1121 0444 48       		.byte	72
+ 1122 0445 08       		.byte	8
+ 1123 0446 4A       		.byte	74
+ 1124 0447 01       		.byte	1
+ 1125 0448 4B       		.byte	75
+ 1126 0449 40       		.byte	64
+ 1127 044a 4C       		.byte	76
+ 1128 044b 08       		.byte	8
+ 1129 044c 4F       		.byte	79
+ 1130 044d 46       		.byte	70
+ 1131 044e 56       		.byte	86
+ 1132 044f 2A       		.byte	42
+ 1133 0450 70       		.byte	112
+ 1134 0451 02       		.byte	2
+ 1135 0452 81       		.byte	-127
+ 1136 0453 04       		.byte	4
+ 1137 0454 82       		.byte	-126
+ 1138 0455 01       		.byte	1
+ 1139 0456 8F       		.byte	-113
+ 1140 0457 20       		.byte	32
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 21
+
+
+ 1141 0458 91       		.byte	-111
+ 1142 0459 20       		.byte	32
+ 1143 045a 92       		.byte	-110
+ 1144 045b 04       		.byte	4
+ 1145 045c 95       		.byte	-107
+ 1146 045d 05       		.byte	5
+ 1147 045e 96       		.byte	-106
+ 1148 045f 10       		.byte	16
+ 1149 0460 97       		.byte	-105
+ 1150 0461 0C       		.byte	12
+ 1151 0462 9C       		.byte	-100
+ 1152 0463 41       		.byte	65
+ 1153 0464 9D       		.byte	-99
+ 1154 0465 24       		.byte	36
+ 1155 0466 9E       		.byte	-98
+ 1156 0467 AA       		.byte	-86
+ 1157 0468 A0       		.byte	-96
+ 1158 0469 88       		.byte	-120
+ 1159 046a A2       		.byte	-94
+ 1160 046b 04       		.byte	4
+ 1161 046c A4       		.byte	-92
+ 1162 046d 01       		.byte	1
+ 1163 046e A6       		.byte	-90
+ 1164 046f 80       		.byte	-128
+ 1165 0470 A7       		.byte	-89
+ 1166 0471 01       		.byte	1
+ 1167 0472 AE       		.byte	-82
+ 1168 0473 11       		.byte	17
+ 1169 0474 B0       		.byte	-80
+ 1170 0475 04       		.byte	4
+ 1171 0476 C0       		.byte	-64
+ 1172 0477 E6       		.byte	-26
+ 1173 0478 C2       		.byte	-62
+ 1174 0479 E2       		.byte	-30
+ 1175 047a C4       		.byte	-60
+ 1176 047b 0E       		.byte	14
+ 1177 047c CA       		.byte	-54
+ 1178 047d 42       		.byte	66
+ 1179 047e CC       		.byte	-52
+ 1180 047f 9E       		.byte	-98
+ 1181 0480 CE       		.byte	-50
+ 1182 0481 F6       		.byte	-10
+ 1183 0482 D0       		.byte	-48
+ 1184 0483 24       		.byte	36
+ 1185 0484 D2       		.byte	-46
+ 1186 0485 3C       		.byte	60
+ 1187 0486 E4       		.byte	-28
+ 1188 0487 10       		.byte	16
+ 1189 0488 E8       		.byte	-24
+ 1190 0489 40       		.byte	64
+ 1191 048a 01       		.byte	1
+ 1192 048b 94       		.byte	-108
+ 1193 048c 03       		.byte	3
+ 1194 048d 60       		.byte	96
+ 1195 048e 05       		.byte	5
+ 1196 048f 9E       		.byte	-98
+ 1197 0490 07       		.byte	7
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 22
+
+
+ 1198 0491 60       		.byte	96
+ 1199 0492 08       		.byte	8
+ 1200 0493 45       		.byte	69
+ 1201 0494 0A       		.byte	10
+ 1202 0495 0A       		.byte	10
+ 1203 0496 0C       		.byte	12
+ 1204 0497 0C       		.byte	12
+ 1205 0498 0E       		.byte	14
+ 1206 0499 43       		.byte	67
+ 1207 049a 15       		.byte	21
+ 1208 049b 30       		.byte	48
+ 1209 049c 16       		.byte	22
+ 1210 049d 70       		.byte	112
+ 1211 049e 17       		.byte	23
+ 1212 049f C9       		.byte	-55
+ 1213 04a0 18       		.byte	24
+ 1214 04a1 1A       		.byte	26
+ 1215 04a2 1A       		.byte	26
+ 1216 04a3 25       		.byte	37
+ 1217 04a4 1D       		.byte	29
+ 1218 04a5 73       		.byte	115
+ 1219 04a6 20       		.byte	32
+ 1220 04a7 77       		.byte	119
+ 1221 04a8 24       		.byte	36
+ 1222 04a9 7F       		.byte	127
+ 1223 04aa 25       		.byte	37
+ 1224 04ab FD       		.byte	-3
+ 1225 04ac 27       		.byte	39
+ 1226 04ad 02       		.byte	2
+ 1227 04ae 2A       		.byte	42
+ 1228 04af 80       		.byte	-128
+ 1229 04b0 2B       		.byte	43
+ 1230 04b1 0F       		.byte	15
+ 1231 04b2 2C       		.byte	44
+ 1232 04b3 13       		.byte	19
+ 1233 04b4 2D       		.byte	45
+ 1234 04b5 CF       		.byte	-49
+ 1235 04b6 2E       		.byte	46
+ 1236 04b7 2C       		.byte	44
+ 1237 04b8 2F       		.byte	47
+ 1238 04b9 30       		.byte	48
+ 1239 04ba 32       		.byte	50
+ 1240 04bb F0       		.byte	-16
+ 1241 04bc 33       		.byte	51
+ 1242 04bd FF       		.byte	-1
+ 1243 04be 34       		.byte	52
+ 1244 04bf 0F       		.byte	15
+ 1245 04c0 3F       		.byte	63
+ 1246 04c1 04       		.byte	4
+ 1247 04c2 58       		.byte	88
+ 1248 04c3 04       		.byte	4
+ 1249 04c4 59       		.byte	89
+ 1250 04c5 04       		.byte	4
+ 1251 04c6 5C       		.byte	92
+ 1252 04c7 01       		.byte	1
+ 1253 04c8 5F       		.byte	95
+ 1254 04c9 01       		.byte	1
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 23
+
+
+ 1255 04ca 80       		.byte	-128
+ 1256 04cb 0E       		.byte	14
+ 1257 04cc 85       		.byte	-123
+ 1258 04cd 09       		.byte	9
+ 1259 04ce 86       		.byte	-122
+ 1260 04cf 01       		.byte	1
+ 1261 04d0 87       		.byte	-121
+ 1262 04d1 10       		.byte	16
+ 1263 04d2 88       		.byte	-120
+ 1264 04d3 10       		.byte	16
+ 1265 04d4 89       		.byte	-119
+ 1266 04d5 10       		.byte	16
+ 1267 04d6 8A       		.byte	-118
+ 1268 04d7 02       		.byte	2
+ 1269 04d8 8C       		.byte	-116
+ 1270 04d9 18       		.byte	24
+ 1271 04da 8D       		.byte	-115
+ 1272 04db 14       		.byte	20
+ 1273 04dc 8E       		.byte	-114
+ 1274 04dd 04       		.byte	4
+ 1275 04de 92       		.byte	-110
+ 1276 04df 1E       		.byte	30
+ 1277 04e0 94       		.byte	-108
+ 1278 04e1 16       		.byte	22
+ 1279 04e2 95       		.byte	-107
+ 1280 04e3 2C       		.byte	44
+ 1281 04e4 96       		.byte	-106
+ 1282 04e5 08       		.byte	8
+ 1283 04e6 97       		.byte	-105
+ 1284 04e7 11       		.byte	17
+ 1285 04e8 98       		.byte	-104
+ 1286 04e9 18       		.byte	24
+ 1287 04ea 99       		.byte	-103
+ 1288 04eb 1C       		.byte	28
+ 1289 04ec 9A       		.byte	-102
+ 1290 04ed 02       		.byte	2
+ 1291 04ee 9B       		.byte	-101
+ 1292 04ef 22       		.byte	34
+ 1293 04f0 9F       		.byte	-97
+ 1294 04f1 03       		.byte	3
+ 1295 04f2 A5       		.byte	-91
+ 1296 04f3 30       		.byte	48
+ 1297 04f4 A7       		.byte	-89
+ 1298 04f5 0C       		.byte	12
+ 1299 04f6 AD       		.byte	-83
+ 1300 04f7 40       		.byte	64
+ 1301 04f8 AE       		.byte	-82
+ 1302 04f9 20       		.byte	32
+ 1303 04fa B0       		.byte	-80
+ 1304 04fb 1E       		.byte	30
+ 1305 04fc B3       		.byte	-77
+ 1306 04fd 60       		.byte	96
+ 1307 04fe B4       		.byte	-76
+ 1308 04ff 20       		.byte	32
+ 1309 0500 B6       		.byte	-74
+ 1310 0501 01       		.byte	1
+ 1311 0502 B7       		.byte	-73
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 24
+
+
+ 1312 0503 1F       		.byte	31
+ 1313 0504 B9       		.byte	-71
+ 1314 0505 08       		.byte	8
+ 1315 0506 C0       		.byte	-64
+ 1316 0507 31       		.byte	49
+ 1317 0508 C1       		.byte	-63
+ 1318 0509 06       		.byte	6
+ 1319 050a C6       		.byte	-58
+ 1320 050b CB       		.byte	-53
+ 1321 050c C7       		.byte	-57
+ 1322 050d 0E       		.byte	14
+ 1323 050e C8       		.byte	-56
+ 1324 050f 1C       		.byte	28
+ 1325 0510 C9       		.byte	-55
+ 1326 0511 FF       		.byte	-1
+ 1327 0512 CA       		.byte	-54
+ 1328 0513 FF       		.byte	-1
+ 1329 0514 CB       		.byte	-53
+ 1330 0515 FF       		.byte	-1
+ 1331 0516 CE       		.byte	-50
+ 1332 0517 F0       		.byte	-16
+ 1333 0518 CF       		.byte	-49
+ 1334 0519 44       		.byte	68
+ 1335 051a D0       		.byte	-48
+ 1336 051b 0C       		.byte	12
+ 1337 051c D4       		.byte	-44
+ 1338 051d 01       		.byte	1
+ 1339 051e D8       		.byte	-40
+ 1340 051f 04       		.byte	4
+ 1341 0520 D9       		.byte	-39
+ 1342 0521 04       		.byte	4
+ 1343 0522 DA       		.byte	-38
+ 1344 0523 04       		.byte	4
+ 1345 0524 DB       		.byte	-37
+ 1346 0525 04       		.byte	4
+ 1347 0526 DC       		.byte	-36
+ 1348 0527 21       		.byte	33
+ 1349 0528 DD       		.byte	-35
+ 1350 0529 22       		.byte	34
+ 1351 052a DF       		.byte	-33
+ 1352 052b 01       		.byte	1
+ 1353 052c E6       		.byte	-26
+ 1354 052d C0       		.byte	-64
+ 1355 052e EA       		.byte	-22
+ 1356 052f 40       		.byte	64
+ 1357 0530 EB       		.byte	-21
+ 1358 0531 02       		.byte	2
+ 1359 0532 00       		.byte	0
+ 1360 0533 48       		.byte	72
+ 1361 0534 02       		.byte	2
+ 1362 0535 80       		.byte	-128
+ 1363 0536 03       		.byte	3
+ 1364 0537 04       		.byte	4
+ 1365 0538 04       		.byte	4
+ 1366 0539 40       		.byte	64
+ 1367 053a 07       		.byte	7
+ 1368 053b 04       		.byte	4
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 25
+
+
+ 1369 053c 09       		.byte	9
+ 1370 053d 01       		.byte	1
+ 1371 053e 0A       		.byte	10
+ 1372 053f 04       		.byte	4
+ 1373 0540 0B       		.byte	11
+ 1374 0541 20       		.byte	32
+ 1375 0542 0D       		.byte	13
+ 1376 0543 08       		.byte	8
+ 1377 0544 0E       		.byte	14
+ 1378 0545 04       		.byte	4
+ 1379 0546 10       		.byte	16
+ 1380 0547 02       		.byte	2
+ 1381 0548 14       		.byte	20
+ 1382 0549 40       		.byte	64
+ 1383 054a 15       		.byte	21
+ 1384 054b 04       		.byte	4
+ 1385 054c 16       		.byte	22
+ 1386 054d 02       		.byte	2
+ 1387 054e 17       		.byte	23
+ 1388 054f 10       		.byte	16
+ 1389 0550 18       		.byte	24
+ 1390 0551 40       		.byte	64
+ 1391 0552 19       		.byte	25
+ 1392 0553 20       		.byte	32
+ 1393 0554 1A       		.byte	26
+ 1394 0555 01       		.byte	1
+ 1395 0556 1B       		.byte	27
+ 1396 0557 02       		.byte	2
+ 1397 0558 1D       		.byte	29
+ 1398 0559 0C       		.byte	12
+ 1399 055a 1F       		.byte	31
+ 1400 055b 14       		.byte	20
+ 1401 055c 20       		.byte	32
+ 1402 055d 20       		.byte	32
+ 1403 055e 21       		.byte	33
+ 1404 055f 04       		.byte	4
+ 1405 0560 22       		.byte	34
+ 1406 0561 40       		.byte	64
+ 1407 0562 27       		.byte	39
+ 1408 0563 10       		.byte	16
+ 1409 0564 28       		.byte	40
+ 1410 0565 22       		.byte	34
+ 1411 0566 2C       		.byte	44
+ 1412 0567 01       		.byte	1
+ 1413 0568 2D       		.byte	45
+ 1414 0569 04       		.byte	4
+ 1415 056a 2F       		.byte	47
+ 1416 056b 16       		.byte	22
+ 1417 056c 32       		.byte	50
+ 1418 056d 68       		.byte	104
+ 1419 056e 36       		.byte	54
+ 1420 056f 84       		.byte	-124
+ 1421 0570 37       		.byte	55
+ 1422 0571 04       		.byte	4
+ 1423 0572 38       		.byte	56
+ 1424 0573 80       		.byte	-128
+ 1425 0574 39       		.byte	57
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 26
+
+
+ 1426 0575 28       		.byte	40
+ 1427 0576 3C       		.byte	60
+ 1428 0577 02       		.byte	2
+ 1429 0578 3D       		.byte	61
+ 1430 0579 02       		.byte	2
+ 1431 057a 3E       		.byte	62
+ 1432 057b 06       		.byte	6
+ 1433 057c 40       		.byte	64
+ 1434 057d 22       		.byte	34
+ 1435 057e 43       		.byte	67
+ 1436 057f 40       		.byte	64
+ 1437 0580 4A       		.byte	74
+ 1438 0581 08       		.byte	8
+ 1439 0582 50       		.byte	80
+ 1440 0583 48       		.byte	72
+ 1441 0584 52       		.byte	82
+ 1442 0585 10       		.byte	16
+ 1443 0586 58       		.byte	88
+ 1444 0587 08       		.byte	8
+ 1445 0588 59       		.byte	89
+ 1446 0589 50       		.byte	80
+ 1447 058a 5B       		.byte	91
+ 1448 058b 01       		.byte	1
+ 1449 058c 61       		.byte	97
+ 1450 058d 10       		.byte	16
+ 1451 058e 62       		.byte	98
+ 1452 058f 10       		.byte	16
+ 1453 0590 82       		.byte	-126
+ 1454 0591 40       		.byte	64
+ 1455 0592 88       		.byte	-120
+ 1456 0593 08       		.byte	8
+ 1457 0594 89       		.byte	-119
+ 1458 0595 01       		.byte	1
+ 1459 0596 91       		.byte	-111
+ 1460 0597 20       		.byte	32
+ 1461 0598 92       		.byte	-110
+ 1462 0599 04       		.byte	4
+ 1463 059a 95       		.byte	-107
+ 1464 059b 05       		.byte	5
+ 1465 059c 98       		.byte	-104
+ 1466 059d 60       		.byte	96
+ 1467 059e 99       		.byte	-103
+ 1468 059f 40       		.byte	64
+ 1469 05a0 9B       		.byte	-101
+ 1470 05a1 40       		.byte	64
+ 1471 05a2 9C       		.byte	-100
+ 1472 05a3 01       		.byte	1
+ 1473 05a4 9D       		.byte	-99
+ 1474 05a5 24       		.byte	36
+ 1475 05a6 9E       		.byte	-98
+ 1476 05a7 90       		.byte	-112
+ 1477 05a8 A0       		.byte	-96
+ 1478 05a9 03       		.byte	3
+ 1479 05aa A2       		.byte	-94
+ 1480 05ab AC       		.byte	-84
+ 1481 05ac A4       		.byte	-92
+ 1482 05ad 10       		.byte	16
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 27
+
+
+ 1483 05ae AC       		.byte	-84
+ 1484 05af 01       		.byte	1
+ 1485 05b0 AE       		.byte	-82
+ 1486 05b1 10       		.byte	16
+ 1487 05b2 C0       		.byte	-64
+ 1488 05b3 CF       		.byte	-49
+ 1489 05b4 C2       		.byte	-62
+ 1490 05b5 6E       		.byte	110
+ 1491 05b6 C4       		.byte	-60
+ 1492 05b7 F1       		.byte	-15
+ 1493 05b8 CA       		.byte	-54
+ 1494 05b9 7A       		.byte	122
+ 1495 05ba CC       		.byte	-52
+ 1496 05bb 5E       		.byte	94
+ 1497 05bc CE       		.byte	-50
+ 1498 05bd CE       		.byte	-50
+ 1499 05be D0       		.byte	-48
+ 1500 05bf 0A       		.byte	10
+ 1501 05c0 D2       		.byte	-46
+ 1502 05c1 04       		.byte	4
+ 1503 05c2 D6       		.byte	-42
+ 1504 05c3 0F       		.byte	15
+ 1505 05c4 E2       		.byte	-30
+ 1506 05c5 02       		.byte	2
+ 1507 05c6 E4       		.byte	-28
+ 1508 05c7 81       		.byte	-127
+ 1509 05c8 03       		.byte	3
+ 1510 05c9 01       		.byte	1
+ 1511 05ca 05       		.byte	5
+ 1512 05cb 0A       		.byte	10
+ 1513 05cc 0F       		.byte	15
+ 1514 05cd 01       		.byte	1
+ 1515 05ce 10       		.byte	16
+ 1516 05cf 02       		.byte	2
+ 1517 05d0 11       		.byte	17
+ 1518 05d1 0C       		.byte	12
+ 1519 05d2 15       		.byte	21
+ 1520 05d3 06       		.byte	6
+ 1521 05d4 18       		.byte	24
+ 1522 05d5 01       		.byte	1
+ 1523 05d6 1B       		.byte	27
+ 1524 05d7 10       		.byte	16
+ 1525 05d8 22       		.byte	34
+ 1526 05d9 0A       		.byte	10
+ 1527 05da 25       		.byte	37
+ 1528 05db 0C       		.byte	12
+ 1529 05dc 26       		.byte	38
+ 1530 05dd 04       		.byte	4
+ 1531 05de 2A       		.byte	42
+ 1532 05df 04       		.byte	4
+ 1533 05e0 30       		.byte	48
+ 1534 05e1 08       		.byte	8
+ 1535 05e2 31       		.byte	49
+ 1536 05e3 01       		.byte	1
+ 1537 05e4 32       		.byte	50
+ 1538 05e5 04       		.byte	4
+ 1539 05e6 34       		.byte	52
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 28
+
+
+ 1540 05e7 02       		.byte	2
+ 1541 05e8 35       		.byte	53
+ 1542 05e9 0E       		.byte	14
+ 1543 05ea 36       		.byte	54
+ 1544 05eb 01       		.byte	1
+ 1545 05ec 37       		.byte	55
+ 1546 05ed 10       		.byte	16
+ 1547 05ee 39       		.byte	57
+ 1548 05ef 20       		.byte	32
+ 1549 05f0 3E       		.byte	62
+ 1550 05f1 50       		.byte	80
+ 1551 05f2 3F       		.byte	63
+ 1552 05f3 01       		.byte	1
+ 1553 05f4 40       		.byte	64
+ 1554 05f5 15       		.byte	21
+ 1555 05f6 45       		.byte	69
+ 1556 05f7 EC       		.byte	-20
+ 1557 05f8 46       		.byte	70
+ 1558 05f9 02       		.byte	2
+ 1559 05fa 48       		.byte	72
+ 1560 05fb 07       		.byte	7
+ 1561 05fc 49       		.byte	73
+ 1562 05fd FF       		.byte	-1
+ 1563 05fe 4A       		.byte	74
+ 1564 05ff FF       		.byte	-1
+ 1565 0600 4B       		.byte	75
+ 1566 0601 FF       		.byte	-1
+ 1567 0602 4F       		.byte	79
+ 1568 0603 01       		.byte	1
+ 1569 0604 50       		.byte	80
+ 1570 0605 18       		.byte	24
+ 1571 0606 52       		.byte	82
+ 1572 0607 80       		.byte	-128
+ 1573 0608 54       		.byte	84
+ 1574 0609 01       		.byte	1
+ 1575 060a 56       		.byte	86
+ 1576 060b 04       		.byte	4
+ 1577 060c 58       		.byte	88
+ 1578 060d 04       		.byte	4
+ 1579 060e 59       		.byte	89
+ 1580 060f 04       		.byte	4
+ 1581 0610 5A       		.byte	90
+ 1582 0611 04       		.byte	4
+ 1583 0612 5B       		.byte	91
+ 1584 0613 04       		.byte	4
+ 1585 0614 5C       		.byte	92
+ 1586 0615 11       		.byte	17
+ 1587 0616 5F       		.byte	95
+ 1588 0617 01       		.byte	1
+ 1589 0618 60       		.byte	96
+ 1590 0619 40       		.byte	64
+ 1591 061a 62       		.byte	98
+ 1592 061b 40       		.byte	64
+ 1593 061c 64       		.byte	100
+ 1594 061d 40       		.byte	64
+ 1595 061e 65       		.byte	101
+ 1596 061f 40       		.byte	64
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 29
+
+
+ 1597 0620 66       		.byte	102
+ 1598 0621 80       		.byte	-128
+ 1599 0622 68       		.byte	104
+ 1600 0623 80       		.byte	-128
+ 1601 0624 6A       		.byte	106
+ 1602 0625 80       		.byte	-128
+ 1603 0626 6C       		.byte	108
+ 1604 0627 80       		.byte	-128
+ 1605 0628 6E       		.byte	110
+ 1606 0629 80       		.byte	-128
+ 1607 062a 81       		.byte	-127
+ 1608 062b 18       		.byte	24
+ 1609 062c 83       		.byte	-125
+ 1610 062d 04       		.byte	4
+ 1611 062e 85       		.byte	-123
+ 1612 062f 10       		.byte	16
+ 1613 0630 87       		.byte	-121
+ 1614 0631 02       		.byte	2
+ 1615 0632 90       		.byte	-112
+ 1616 0633 02       		.byte	2
+ 1617 0634 95       		.byte	-107
+ 1618 0635 16       		.byte	22
+ 1619 0636 96       		.byte	-106
+ 1620 0637 01       		.byte	1
+ 1621 0638 97       		.byte	-105
+ 1622 0639 08       		.byte	8
+ 1623 063a 98       		.byte	-104
+ 1624 063b 02       		.byte	2
+ 1625 063c 99       		.byte	-103
+ 1626 063d 0E       		.byte	14
+ 1627 063e 9D       		.byte	-99
+ 1628 063f 01       		.byte	1
+ 1629 0640 A2       		.byte	-94
+ 1630 0641 01       		.byte	1
+ 1631 0642 A3       		.byte	-93
+ 1632 0643 1E       		.byte	30
+ 1633 0644 A7       		.byte	-89
+ 1634 0645 01       		.byte	1
+ 1635 0646 A8       		.byte	-88
+ 1636 0647 02       		.byte	2
+ 1637 0648 A9       		.byte	-87
+ 1638 0649 18       		.byte	24
+ 1639 064a AB       		.byte	-85
+ 1640 064b 02       		.byte	2
+ 1641 064c B1       		.byte	-79
+ 1642 064d 1E       		.byte	30
+ 1643 064e B2       		.byte	-78
+ 1644 064f 02       		.byte	2
+ 1645 0650 B4       		.byte	-76
+ 1646 0651 01       		.byte	1
+ 1647 0652 B7       		.byte	-73
+ 1648 0653 01       		.byte	1
+ 1649 0654 BE       		.byte	-66
+ 1650 0655 10       		.byte	16
+ 1651 0656 D4       		.byte	-44
+ 1652 0657 05       		.byte	5
+ 1653 0658 D8       		.byte	-40
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 30
+
+
+ 1654 0659 04       		.byte	4
+ 1655 065a D9       		.byte	-39
+ 1656 065b 04       		.byte	4
+ 1657 065c DB       		.byte	-37
+ 1658 065d 04       		.byte	4
+ 1659 065e DC       		.byte	-36
+ 1660 065f 12       		.byte	18
+ 1661 0660 DD       		.byte	-35
+ 1662 0661 10       		.byte	16
+ 1663 0662 DF       		.byte	-33
+ 1664 0663 01       		.byte	1
+ 1665 0664 0A       		.byte	10
+ 1666 0665 54       		.byte	84
+ 1667 0666 0C       		.byte	12
+ 1668 0667 20       		.byte	32
+ 1669 0668 0E       		.byte	14
+ 1670 0669 80       		.byte	-128
+ 1671 066a 11       		.byte	17
+ 1672 066b 10       		.byte	16
+ 1673 066c 12       		.byte	18
+ 1674 066d 40       		.byte	64
+ 1675 066e 14       		.byte	20
+ 1676 066f 10       		.byte	16
+ 1677 0670 15       		.byte	21
+ 1678 0671 01       		.byte	1
+ 1679 0672 17       		.byte	23
+ 1680 0673 10       		.byte	16
+ 1681 0674 18       		.byte	24
+ 1682 0675 14       		.byte	20
+ 1683 0676 1D       		.byte	29
+ 1684 0677 08       		.byte	8
+ 1685 0678 1E       		.byte	30
+ 1686 0679 88       		.byte	-120
+ 1687 067a 1F       		.byte	31
+ 1688 067b 80       		.byte	-128
+ 1689 067c 20       		.byte	32
+ 1690 067d 80       		.byte	-128
+ 1691 067e 21       		.byte	33
+ 1692 067f 01       		.byte	1
+ 1693 0680 22       		.byte	34
+ 1694 0681 40       		.byte	64
+ 1695 0682 25       		.byte	37
+ 1696 0683 80       		.byte	-128
+ 1697 0684 27       		.byte	39
+ 1698 0685 88       		.byte	-120
+ 1699 0686 28       		.byte	40
+ 1700 0687 64       		.byte	100
+ 1701 0688 2F       		.byte	47
+ 1702 0689 10       		.byte	16
+ 1703 068a 31       		.byte	49
+ 1704 068b 90       		.byte	-112
+ 1705 068c 32       		.byte	50
+ 1706 068d 04       		.byte	4
+ 1707 068e 34       		.byte	52
+ 1708 068f 20       		.byte	32
+ 1709 0690 36       		.byte	54
+ 1710 0691 20       		.byte	32
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 31
+
+
+ 1711 0692 37       		.byte	55
+ 1712 0693 19       		.byte	25
+ 1713 0694 39       		.byte	57
+ 1714 0695 06       		.byte	6
+ 1715 0696 3C       		.byte	60
+ 1716 0697 02       		.byte	2
+ 1717 0698 3D       		.byte	61
+ 1718 0699 08       		.byte	8
+ 1719 069a 3E       		.byte	62
+ 1720 069b 02       		.byte	2
+ 1721 069c 3F       		.byte	63
+ 1722 069d 80       		.byte	-128
+ 1723 069e 46       		.byte	70
+ 1724 069f 02       		.byte	2
+ 1725 06a0 4D       		.byte	77
+ 1726 06a1 08       		.byte	8
+ 1727 06a2 4F       		.byte	79
+ 1728 06a3 81       		.byte	-127
+ 1729 06a4 57       		.byte	87
+ 1730 06a5 40       		.byte	64
+ 1731 06a6 59       		.byte	89
+ 1732 06a7 01       		.byte	1
+ 1733 06a8 5A       		.byte	90
+ 1734 06a9 80       		.byte	-128
+ 1735 06aa 5B       		.byte	91
+ 1736 06ab 04       		.byte	4
+ 1737 06ac 5D       		.byte	93
+ 1738 06ad 08       		.byte	8
+ 1739 06ae 5F       		.byte	95
+ 1740 06af 81       		.byte	-127
+ 1741 06b0 64       		.byte	100
+ 1742 06b1 80       		.byte	-128
+ 1743 06b2 74       		.byte	116
+ 1744 06b3 01       		.byte	1
+ 1745 06b4 83       		.byte	-125
+ 1746 06b5 40       		.byte	64
+ 1747 06b6 85       		.byte	-123
+ 1748 06b7 08       		.byte	8
+ 1749 06b8 8B       		.byte	-117
+ 1750 06b9 80       		.byte	-128
+ 1751 06ba 91       		.byte	-111
+ 1752 06bb 05       		.byte	5
+ 1753 06bc 92       		.byte	-110
+ 1754 06bd 08       		.byte	8
+ 1755 06be 94       		.byte	-108
+ 1756 06bf 04       		.byte	4
+ 1757 06c0 96       		.byte	-106
+ 1758 06c1 02       		.byte	2
+ 1759 06c2 98       		.byte	-104
+ 1760 06c3 54       		.byte	84
+ 1761 06c4 99       		.byte	-103
+ 1762 06c5 10       		.byte	16
+ 1763 06c6 9C       		.byte	-100
+ 1764 06c7 80       		.byte	-128
+ 1765 06c8 9D       		.byte	-99
+ 1766 06c9 40       		.byte	64
+ 1767 06ca A0       		.byte	-96
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 32
+
+
+ 1768 06cb 10       		.byte	16
+ 1769 06cc A4       		.byte	-92
+ 1770 06cd 40       		.byte	64
+ 1771 06ce A6       		.byte	-90
+ 1772 06cf 04       		.byte	4
+ 1773 06d0 C2       		.byte	-62
+ 1774 06d1 5E       		.byte	94
+ 1775 06d2 C4       		.byte	-60
+ 1776 06d3 7A       		.byte	122
+ 1777 06d4 CA       		.byte	-54
+ 1778 06d5 47       		.byte	71
+ 1779 06d6 CC       		.byte	-52
+ 1780 06d7 EE       		.byte	-18
+ 1781 06d8 CE       		.byte	-50
+ 1782 06d9 D3       		.byte	-45
+ 1783 06da D0       		.byte	-48
+ 1784 06db 10       		.byte	16
+ 1785 06dc D2       		.byte	-46
+ 1786 06dd 10       		.byte	16
+ 1787 06de D6       		.byte	-42
+ 1788 06df DB       		.byte	-37
+ 1789 06e0 D8       		.byte	-40
+ 1790 06e1 80       		.byte	-128
+ 1791 06e2 E2       		.byte	-30
+ 1792 06e3 80       		.byte	-128
+ 1793 06e4 00       		.byte	0
+ 1794 06e5 30       		.byte	48
+ 1795 06e6 02       		.byte	2
+ 1796 06e7 C9       		.byte	-55
+ 1797 06e8 0A       		.byte	10
+ 1798 06e9 0F       		.byte	15
+ 1799 06ea 0C       		.byte	12
+ 1800 06eb 9E       		.byte	-98
+ 1801 06ec 0E       		.byte	14
+ 1802 06ed 60       		.byte	96
+ 1803 06ee 14       		.byte	20
+ 1804 06ef 73       		.byte	115
+ 1805 06f0 18       		.byte	24
+ 1806 06f1 FD       		.byte	-3
+ 1807 06f2 1A       		.byte	26
+ 1808 06f3 02       		.byte	2
+ 1809 06f4 24       		.byte	36
+ 1810 06f5 94       		.byte	-108
+ 1811 06f6 26       		.byte	38
+ 1812 06f7 60       		.byte	96
+ 1813 06f8 28       		.byte	40
+ 1814 06f9 CF       		.byte	-49
+ 1815 06fa 2A       		.byte	42
+ 1816 06fb 30       		.byte	48
+ 1817 06fc 32       		.byte	50
+ 1818 06fd FF       		.byte	-1
+ 1819 06fe 3E       		.byte	62
+ 1820 06ff 04       		.byte	4
+ 1821 0700 40       		.byte	64
+ 1822 0701 26       		.byte	38
+ 1823 0702 41       		.byte	65
+ 1824 0703 03       		.byte	3
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 33
+
+
+ 1825 0704 49       		.byte	73
+ 1826 0705 FF       		.byte	-1
+ 1827 0706 4A       		.byte	74
+ 1828 0707 FF       		.byte	-1
+ 1829 0708 4B       		.byte	75
+ 1830 0709 FF       		.byte	-1
+ 1831 070a 4D       		.byte	77
+ 1832 070b A0       		.byte	-96
+ 1833 070c 4F       		.byte	79
+ 1834 070d 01       		.byte	1
+ 1835 070e 50       		.byte	80
+ 1836 070f 18       		.byte	24
+ 1837 0710 54       		.byte	84
+ 1838 0711 18       		.byte	24
+ 1839 0712 58       		.byte	88
+ 1840 0713 04       		.byte	4
+ 1841 0714 5A       		.byte	90
+ 1842 0715 04       		.byte	4
+ 1843 0716 5B       		.byte	91
+ 1844 0717 04       		.byte	4
+ 1845 0718 5D       		.byte	93
+ 1846 0719 21       		.byte	33
+ 1847 071a 5F       		.byte	95
+ 1848 071b 01       		.byte	1
+ 1849 071c 60       		.byte	96
+ 1850 071d 40       		.byte	64
+ 1851 071e 62       		.byte	98
+ 1852 071f 80       		.byte	-128
+ 1853 0720 64       		.byte	100
+ 1854 0721 40       		.byte	64
+ 1855 0722 65       		.byte	101
+ 1856 0723 40       		.byte	64
+ 1857 0724 66       		.byte	102
+ 1858 0725 80       		.byte	-128
+ 1859 0726 68       		.byte	104
+ 1860 0727 40       		.byte	64
+ 1861 0728 6A       		.byte	106
+ 1862 0729 80       		.byte	-128
+ 1863 072a 6C       		.byte	108
+ 1864 072b 40       		.byte	64
+ 1865 072c 6D       		.byte	109
+ 1866 072d 20       		.byte	32
+ 1867 072e 6E       		.byte	110
+ 1868 072f 80       		.byte	-128
+ 1869 0730 80       		.byte	-128
+ 1870 0731 06       		.byte	6
+ 1871 0732 85       		.byte	-123
+ 1872 0733 0B       		.byte	11
+ 1873 0734 87       		.byte	-121
+ 1874 0735 04       		.byte	4
+ 1875 0736 88       		.byte	-120
+ 1876 0737 18       		.byte	24
+ 1877 0738 8C       		.byte	-116
+ 1878 0739 30       		.byte	48
+ 1879 073a 8D       		.byte	-115
+ 1880 073b 0C       		.byte	12
+ 1881 073c 8F       		.byte	-113
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 34
+
+
+ 1882 073d 01       		.byte	1
+ 1883 073e 94       		.byte	-108
+ 1884 073f 30       		.byte	48
+ 1885 0740 97       		.byte	-105
+ 1886 0741 0F       		.byte	15
+ 1887 0742 98       		.byte	-104
+ 1888 0743 28       		.byte	40
+ 1889 0744 9E       		.byte	-98
+ 1890 0745 05       		.byte	5
+ 1891 0746 A1       		.byte	-95
+ 1892 0747 08       		.byte	8
+ 1893 0748 A2       		.byte	-94
+ 1894 0749 02       		.byte	2
+ 1895 074a A3       		.byte	-93
+ 1896 074b 01       		.byte	1
+ 1897 074c A5       		.byte	-91
+ 1898 074d 07       		.byte	7
+ 1899 074e A9       		.byte	-87
+ 1900 074f 0C       		.byte	12
+ 1901 0750 AA       		.byte	-86
+ 1902 0751 02       		.byte	2
+ 1903 0752 AB       		.byte	-85
+ 1904 0753 02       		.byte	2
+ 1905 0754 B0       		.byte	-80
+ 1906 0755 01       		.byte	1
+ 1907 0756 B2       		.byte	-78
+ 1908 0757 04       		.byte	4
+ 1909 0758 B3       		.byte	-77
+ 1910 0759 0F       		.byte	15
+ 1911 075a B4       		.byte	-76
+ 1912 075b 38       		.byte	56
+ 1913 075c B6       		.byte	-74
+ 1914 075d 02       		.byte	2
+ 1915 075e B8       		.byte	-72
+ 1916 075f 20       		.byte	32
+ 1917 0760 BE       		.byte	-66
+ 1918 0761 44       		.byte	68
+ 1919 0762 C0       		.byte	-64
+ 1920 0763 23       		.byte	35
+ 1921 0764 C1       		.byte	-63
+ 1922 0765 06       		.byte	6
+ 1923 0766 C5       		.byte	-59
+ 1924 0767 30       		.byte	48
+ 1925 0768 C6       		.byte	-58
+ 1926 0769 C2       		.byte	-62
+ 1927 076a C7       		.byte	-57
+ 1928 076b 4E       		.byte	78
+ 1929 076c C8       		.byte	-56
+ 1930 076d 3E       		.byte	62
+ 1931 076e C9       		.byte	-55
+ 1932 076f FF       		.byte	-1
+ 1933 0770 CA       		.byte	-54
+ 1934 0771 FF       		.byte	-1
+ 1935 0772 CB       		.byte	-53
+ 1936 0773 FF       		.byte	-1
+ 1937 0774 CD       		.byte	-51
+ 1938 0775 AF       		.byte	-81
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 35
+
+
+ 1939 0776 CE       		.byte	-50
+ 1940 0777 07       		.byte	7
+ 1941 0778 CF       		.byte	-49
+ 1942 0779 01       		.byte	1
+ 1943 077a D0       		.byte	-48
+ 1944 077b 18       		.byte	24
+ 1945 077c D2       		.byte	-46
+ 1946 077d 80       		.byte	-128
+ 1947 077e D4       		.byte	-44
+ 1948 077f 0F       		.byte	15
+ 1949 0780 D8       		.byte	-40
+ 1950 0781 04       		.byte	4
+ 1951 0782 D9       		.byte	-39
+ 1952 0783 04       		.byte	4
+ 1953 0784 DA       		.byte	-38
+ 1954 0785 04       		.byte	4
+ 1955 0786 DB       		.byte	-37
+ 1956 0787 04       		.byte	4
+ 1957 0788 DC       		.byte	-36
+ 1958 0789 11       		.byte	17
+ 1959 078a DD       		.byte	-35
+ 1960 078b 11       		.byte	17
+ 1961 078c DF       		.byte	-33
+ 1962 078d 05       		.byte	5
+ 1963 078e E0       		.byte	-32
+ 1964 078f 40       		.byte	64
+ 1965 0790 E2       		.byte	-30
+ 1966 0791 80       		.byte	-128
+ 1967 0792 E4       		.byte	-28
+ 1968 0793 40       		.byte	64
+ 1969 0794 E5       		.byte	-27
+ 1970 0795 40       		.byte	64
+ 1971 0796 E6       		.byte	-26
+ 1972 0797 80       		.byte	-128
+ 1973 0798 E8       		.byte	-24
+ 1974 0799 40       		.byte	64
+ 1975 079a EA       		.byte	-22
+ 1976 079b 80       		.byte	-128
+ 1977 079c EC       		.byte	-20
+ 1978 079d 40       		.byte	64
+ 1979 079e ED       		.byte	-19
+ 1980 079f 20       		.byte	32
+ 1981 07a0 EE       		.byte	-18
+ 1982 07a1 80       		.byte	-128
+ 1983 07a2 00       		.byte	0
+ 1984 07a3 98       		.byte	-104
+ 1985 07a4 01       		.byte	1
+ 1986 07a5 20       		.byte	32
+ 1987 07a6 02       		.byte	2
+ 1988 07a7 15       		.byte	21
+ 1989 07a8 03       		.byte	3
+ 1990 07a9 80       		.byte	-128
+ 1991 07aa 05       		.byte	5
+ 1992 07ab 11       		.byte	17
+ 1993 07ac 06       		.byte	6
+ 1994 07ad 01       		.byte	1
+ 1995 07ae 0A       		.byte	10
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 36
+
+
+ 1996 07af 08       		.byte	8
+ 1997 07b0 0B       		.byte	11
+ 1998 07b1 24       		.byte	36
+ 1999 07b2 0C       		.byte	12
+ 2000 07b3 04       		.byte	4
+ 2001 07b4 0F       		.byte	15
+ 2002 07b5 06       		.byte	6
+ 2003 07b6 10       		.byte	16
+ 2004 07b7 04       		.byte	4
+ 2005 07b8 11       		.byte	17
+ 2006 07b9 04       		.byte	4
+ 2007 07ba 12       		.byte	18
+ 2008 07bb 08       		.byte	8
+ 2009 07bc 13       		.byte	19
+ 2010 07bd 08       		.byte	8
+ 2011 07be 16       		.byte	22
+ 2012 07bf 04       		.byte	4
+ 2013 07c0 17       		.byte	23
+ 2014 07c1 01       		.byte	1
+ 2015 07c2 1A       		.byte	26
+ 2016 07c3 20       		.byte	32
+ 2017 07c4 1C       		.byte	28
+ 2018 07c5 02       		.byte	2
+ 2019 07c6 1D       		.byte	29
+ 2020 07c7 11       		.byte	17
+ 2021 07c8 1F       		.byte	31
+ 2022 07c9 19       		.byte	25
+ 2023 07ca 26       		.byte	38
+ 2024 07cb 08       		.byte	8
+ 2025 07cc 28       		.byte	40
+ 2026 07cd 40       		.byte	64
+ 2027 07ce 2B       		.byte	43
+ 2028 07cf 80       		.byte	-128
+ 2029 07d0 2C       		.byte	44
+ 2030 07d1 04       		.byte	4
+ 2031 07d2 2F       		.byte	47
+ 2032 07d3 90       		.byte	-112
+ 2033 07d4 37       		.byte	55
+ 2034 07d5 08       		.byte	8
+ 2035 07d6 3C       		.byte	60
+ 2036 07d7 80       		.byte	-128
+ 2037 07d8 3F       		.byte	63
+ 2038 07d9 04       		.byte	4
+ 2039 07da 40       		.byte	64
+ 2040 07db 10       		.byte	16
+ 2041 07dc 41       		.byte	65
+ 2042 07dd 20       		.byte	32
+ 2043 07de 45       		.byte	69
+ 2044 07df 20       		.byte	32
+ 2045 07e0 46       		.byte	70
+ 2046 07e1 10       		.byte	16
+ 2047 07e2 48       		.byte	72
+ 2048 07e3 05       		.byte	5
+ 2049 07e4 49       		.byte	73
+ 2050 07e5 80       		.byte	-128
+ 2051 07e6 4C       		.byte	76
+ 2052 07e7 80       		.byte	-128
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 37
+
+
+ 2053 07e8 4D       		.byte	77
+ 2054 07e9 21       		.byte	33
+ 2055 07ea 56       		.byte	86
+ 2056 07eb 68       		.byte	104
+ 2057 07ec 57       		.byte	87
+ 2058 07ed 01       		.byte	1
+ 2059 07ee 5A       		.byte	90
+ 2060 07ef 02       		.byte	2
+ 2061 07f0 5E       		.byte	94
+ 2062 07f1 0A       		.byte	10
+ 2063 07f2 5F       		.byte	95
+ 2064 07f3 50       		.byte	80
+ 2065 07f4 60       		.byte	96
+ 2066 07f5 04       		.byte	4
+ 2067 07f6 61       		.byte	97
+ 2068 07f7 40       		.byte	64
+ 2069 07f8 66       		.byte	102
+ 2070 07f9 28       		.byte	40
+ 2071 07fa 76       		.byte	118
+ 2072 07fb 80       		.byte	-128
+ 2073 07fc 7F       		.byte	127
+ 2074 07fd 10       		.byte	16
+ 2075 07fe 89       		.byte	-119
+ 2076 07ff 02       		.byte	2
+ 2077 0800 8A       		.byte	-118
+ 2078 0801 44       		.byte	68
+ 2079 0802 8B       		.byte	-117
+ 2080 0803 58       		.byte	88
+ 2081 0804 93       		.byte	-109
+ 2082 0805 04       		.byte	4
+ 2083 0806 96       		.byte	-106
+ 2084 0807 20       		.byte	32
+ 2085 0808 97       		.byte	-105
+ 2086 0809 22       		.byte	34
+ 2087 080a 98       		.byte	-104
+ 2088 080b 10       		.byte	16
+ 2089 080c 99       		.byte	-103
+ 2090 080d 20       		.byte	32
+ 2091 080e 9B       		.byte	-101
+ 2092 080f 09       		.byte	9
+ 2093 0810 9C       		.byte	-100
+ 2094 0811 84       		.byte	-124
+ 2095 0812 9D       		.byte	-99
+ 2096 0813 92       		.byte	-110
+ 2097 0814 9E       		.byte	-98
+ 2098 0815 C1       		.byte	-63
+ 2099 0816 A0       		.byte	-96
+ 2100 0817 14       		.byte	20
+ 2101 0818 A1       		.byte	-95
+ 2102 0819 20       		.byte	32
+ 2103 081a A2       		.byte	-94
+ 2104 081b 01       		.byte	1
+ 2105 081c A3       		.byte	-93
+ 2106 081d 80       		.byte	-128
+ 2107 081e A4       		.byte	-92
+ 2108 081f 80       		.byte	-128
+ 2109 0820 AD       		.byte	-83
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 38
+
+
+ 2110 0821 40       		.byte	64
+ 2111 0822 B0       		.byte	-80
+ 2112 0823 10       		.byte	16
+ 2113 0824 B5       		.byte	-75
+ 2114 0825 04       		.byte	4
+ 2115 0826 C0       		.byte	-64
+ 2116 0827 DB       		.byte	-37
+ 2117 0828 C2       		.byte	-62
+ 2118 0829 E6       		.byte	-26
+ 2119 082a C4       		.byte	-60
+ 2120 082b 56       		.byte	86
+ 2121 082c CA       		.byte	-54
+ 2122 082d E0       		.byte	-32
+ 2123 082e CC       		.byte	-52
+ 2124 082f 40       		.byte	64
+ 2125 0830 CE       		.byte	-50
+ 2126 0831 50       		.byte	80
+ 2127 0832 D0       		.byte	-48
+ 2128 0833 66       		.byte	102
+ 2129 0834 D2       		.byte	-46
+ 2130 0835 24       		.byte	36
+ 2131 0836 D6       		.byte	-42
+ 2132 0837 F1       		.byte	-15
+ 2133 0838 D8       		.byte	-40
+ 2134 0839 6C       		.byte	108
+ 2135 083a DE       		.byte	-34
+ 2136 083b 40       		.byte	64
+ 2137 083c E8       		.byte	-24
+ 2138 083d 60       		.byte	96
+ 2139 083e EC       		.byte	-20
+ 2140 083f 08       		.byte	8
+ 2141 0840 02       		.byte	2
+ 2142 0841 01       		.byte	1
+ 2143 0842 10       		.byte	16
+ 2144 0843 08       		.byte	8
+ 2145 0844 13       		.byte	19
+ 2146 0845 01       		.byte	1
+ 2147 0846 14       		.byte	20
+ 2148 0847 01       		.byte	1
+ 2149 0848 19       		.byte	25
+ 2150 0849 01       		.byte	1
+ 2151 084a 1E       		.byte	30
+ 2152 084b 03       		.byte	3
+ 2153 084c 1F       		.byte	31
+ 2154 084d 02       		.byte	2
+ 2155 084e 22       		.byte	34
+ 2156 084f 0C       		.byte	12
+ 2157 0850 2D       		.byte	45
+ 2158 0851 01       		.byte	1
+ 2159 0852 30       		.byte	48
+ 2160 0853 04       		.byte	4
+ 2161 0854 31       		.byte	49
+ 2162 0855 02       		.byte	2
+ 2163 0856 32       		.byte	50
+ 2164 0857 02       		.byte	2
+ 2165 0858 33       		.byte	51
+ 2166 0859 01       		.byte	1
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 39
+
+
+ 2167 085a 34       		.byte	52
+ 2168 085b 01       		.byte	1
+ 2169 085c 36       		.byte	54
+ 2170 085d 08       		.byte	8
+ 2171 085e 3E       		.byte	62
+ 2172 085f 50       		.byte	80
+ 2173 0860 3F       		.byte	63
+ 2174 0861 04       		.byte	4
+ 2175 0862 40       		.byte	64
+ 2176 0863 10       		.byte	16
+ 2177 0864 41       		.byte	65
+ 2178 0865 06       		.byte	6
+ 2179 0866 49       		.byte	73
+ 2180 0867 FF       		.byte	-1
+ 2181 0868 4A       		.byte	74
+ 2182 0869 FF       		.byte	-1
+ 2183 086a 4B       		.byte	75
+ 2184 086b FF       		.byte	-1
+ 2185 086c 4D       		.byte	77
+ 2186 086d A0       		.byte	-96
+ 2187 086e 4F       		.byte	79
+ 2188 086f 04       		.byte	4
+ 2189 0870 50       		.byte	80
+ 2190 0871 18       		.byte	24
+ 2191 0872 52       		.byte	82
+ 2192 0873 80       		.byte	-128
+ 2193 0874 54       		.byte	84
+ 2194 0875 0F       		.byte	15
+ 2195 0876 56       		.byte	86
+ 2196 0877 04       		.byte	4
+ 2197 0878 58       		.byte	88
+ 2198 0879 04       		.byte	4
+ 2199 087a 59       		.byte	89
+ 2200 087b 04       		.byte	4
+ 2201 087c 5A       		.byte	90
+ 2202 087d 04       		.byte	4
+ 2203 087e 5B       		.byte	91
+ 2204 087f 04       		.byte	4
+ 2205 0880 5C       		.byte	92
+ 2206 0881 11       		.byte	17
+ 2207 0882 5D       		.byte	93
+ 2208 0883 11       		.byte	17
+ 2209 0884 5F       		.byte	95
+ 2210 0885 01       		.byte	1
+ 2211 0886 60       		.byte	96
+ 2212 0887 40       		.byte	64
+ 2213 0888 62       		.byte	98
+ 2214 0889 C0       		.byte	-64
+ 2215 088a 64       		.byte	100
+ 2216 088b 40       		.byte	64
+ 2217 088c 65       		.byte	101
+ 2218 088d 40       		.byte	64
+ 2219 088e 66       		.byte	102
+ 2220 088f C0       		.byte	-64
+ 2221 0890 68       		.byte	104
+ 2222 0891 C0       		.byte	-64
+ 2223 0892 6A       		.byte	106
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 40
+
+
+ 2224 0893 C0       		.byte	-64
+ 2225 0894 6C       		.byte	108
+ 2226 0895 C0       		.byte	-64
+ 2227 0896 6E       		.byte	110
+ 2228 0897 C0       		.byte	-64
+ 2229 0898 82       		.byte	-126
+ 2230 0899 08       		.byte	8
+ 2231 089a 85       		.byte	-123
+ 2232 089b 01       		.byte	1
+ 2233 089c 86       		.byte	-122
+ 2234 089d 18       		.byte	24
+ 2235 089e 8B       		.byte	-117
+ 2236 089f 01       		.byte	1
+ 2237 08a0 8C       		.byte	-116
+ 2238 08a1 05       		.byte	5
+ 2239 08a2 8E       		.byte	-114
+ 2240 08a3 02       		.byte	2
+ 2241 08a4 94       		.byte	-108
+ 2242 08a5 03       		.byte	3
+ 2243 08a6 97       		.byte	-105
+ 2244 08a7 02       		.byte	2
+ 2245 08a8 98       		.byte	-104
+ 2246 08a9 06       		.byte	6
+ 2247 08aa 9A       		.byte	-102
+ 2248 08ab 01       		.byte	1
+ 2249 08ac 9E       		.byte	-98
+ 2250 08ad 01       		.byte	1
+ 2251 08ae 9F       		.byte	-97
+ 2252 08af 02       		.byte	2
+ 2253 08b0 A0       		.byte	-96
+ 2254 08b1 02       		.byte	2
+ 2255 08b2 A2       		.byte	-94
+ 2256 08b3 04       		.byte	4
+ 2257 08b4 A4       		.byte	-92
+ 2258 08b5 06       		.byte	6
+ 2259 08b6 A8       		.byte	-88
+ 2260 08b7 07       		.byte	7
+ 2261 08b8 B0       		.byte	-80
+ 2262 08b9 07       		.byte	7
+ 2263 08ba B3       		.byte	-77
+ 2264 08bb 02       		.byte	2
+ 2265 08bc B4       		.byte	-76
+ 2266 08bd 10       		.byte	16
+ 2267 08be B6       		.byte	-74
+ 2268 08bf 08       		.byte	8
+ 2269 08c0 B7       		.byte	-73
+ 2270 08c1 01       		.byte	1
+ 2271 08c2 BF       		.byte	-65
+ 2272 08c3 04       		.byte	4
+ 2273 08c4 C0       		.byte	-64
+ 2274 08c5 10       		.byte	16
+ 2275 08c6 C1       		.byte	-63
+ 2276 08c7 06       		.byte	6
+ 2277 08c8 C5       		.byte	-59
+ 2278 08c9 D0       		.byte	-48
+ 2279 08ca C6       		.byte	-58
+ 2280 08cb 10       		.byte	16
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 41
+
+
+ 2281 08cc C7       		.byte	-57
+ 2282 08cd 02       		.byte	2
+ 2283 08ce C8       		.byte	-56
+ 2284 08cf 1A       		.byte	26
+ 2285 08d0 C9       		.byte	-55
+ 2286 08d1 FF       		.byte	-1
+ 2287 08d2 CA       		.byte	-54
+ 2288 08d3 FF       		.byte	-1
+ 2289 08d4 CB       		.byte	-53
+ 2290 08d5 FF       		.byte	-1
+ 2291 08d6 CD       		.byte	-51
+ 2292 08d7 AF       		.byte	-81
+ 2293 08d8 CE       		.byte	-50
+ 2294 08d9 0F       		.byte	15
+ 2295 08da CF       		.byte	-49
+ 2296 08db 04       		.byte	4
+ 2297 08dc D0       		.byte	-48
+ 2298 08dd 18       		.byte	24
+ 2299 08de D4       		.byte	-44
+ 2300 08df 05       		.byte	5
+ 2301 08e0 D8       		.byte	-40
+ 2302 08e1 04       		.byte	4
+ 2303 08e2 D9       		.byte	-39
+ 2304 08e3 04       		.byte	4
+ 2305 08e4 DA       		.byte	-38
+ 2306 08e5 04       		.byte	4
+ 2307 08e6 DB       		.byte	-37
+ 2308 08e7 04       		.byte	4
+ 2309 08e8 DC       		.byte	-36
+ 2310 08e9 11       		.byte	17
+ 2311 08ea DD       		.byte	-35
+ 2312 08eb 11       		.byte	17
+ 2313 08ec DF       		.byte	-33
+ 2314 08ed 01       		.byte	1
+ 2315 08ee E0       		.byte	-32
+ 2316 08ef 40       		.byte	64
+ 2317 08f0 E2       		.byte	-30
+ 2318 08f1 C0       		.byte	-64
+ 2319 08f2 E4       		.byte	-28
+ 2320 08f3 40       		.byte	64
+ 2321 08f4 E5       		.byte	-27
+ 2322 08f5 40       		.byte	64
+ 2323 08f6 E6       		.byte	-26
+ 2324 08f7 C0       		.byte	-64
+ 2325 08f8 E8       		.byte	-24
+ 2326 08f9 C0       		.byte	-64
+ 2327 08fa EA       		.byte	-22
+ 2328 08fb C0       		.byte	-64
+ 2329 08fc EC       		.byte	-20
+ 2330 08fd C0       		.byte	-64
+ 2331 08fe EE       		.byte	-18
+ 2332 08ff C0       		.byte	-64
+ 2333 0900 02       		.byte	2
+ 2334 0901 11       		.byte	17
+ 2335 0902 03       		.byte	3
+ 2336 0903 40       		.byte	64
+ 2337 0904 06       		.byte	6
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 42
+
+
+ 2338 0905 80       		.byte	-128
+ 2339 0906 08       		.byte	8
+ 2340 0907 08       		.byte	8
+ 2341 0908 0A       		.byte	10
+ 2342 0909 01       		.byte	1
+ 2343 090a 0B       		.byte	11
+ 2344 090b 24       		.byte	36
+ 2345 090c 0D       		.byte	13
+ 2346 090d 02       		.byte	2
+ 2347 090e 0E       		.byte	14
+ 2348 090f 21       		.byte	33
+ 2349 0910 0F       		.byte	15
+ 2350 0911 02       		.byte	2
+ 2351 0912 10       		.byte	16
+ 2352 0913 04       		.byte	4
+ 2353 0914 11       		.byte	17
+ 2354 0915 01       		.byte	1
+ 2355 0916 13       		.byte	19
+ 2356 0917 08       		.byte	8
+ 2357 0918 16       		.byte	22
+ 2358 0919 40       		.byte	64
+ 2359 091a 18       		.byte	24
+ 2360 091b 08       		.byte	8
+ 2361 091c 19       		.byte	25
+ 2362 091d 40       		.byte	64
+ 2363 091e 1B       		.byte	27
+ 2364 091f 01       		.byte	1
+ 2365 0920 1D       		.byte	29
+ 2366 0921 22       		.byte	34
+ 2367 0922 1E       		.byte	30
+ 2368 0923 22       		.byte	34
+ 2369 0924 22       		.byte	34
+ 2370 0925 44       		.byte	68
+ 2371 0926 27       		.byte	39
+ 2372 0927 60       		.byte	96
+ 2373 0928 2D       		.byte	45
+ 2374 0929 01       		.byte	1
+ 2375 092a 2F       		.byte	47
+ 2376 092b 81       		.byte	-127
+ 2377 092c 32       		.byte	50
+ 2378 092d 08       		.byte	8
+ 2379 092e 33       		.byte	51
+ 2380 092f 40       		.byte	64
+ 2381 0930 35       		.byte	53
+ 2382 0931 20       		.byte	32
+ 2383 0932 37       		.byte	55
+ 2384 0933 81       		.byte	-127
+ 2385 0934 38       		.byte	56
+ 2386 0935 28       		.byte	40
+ 2387 0936 43       		.byte	67
+ 2388 0937 40       		.byte	64
+ 2389 0938 47       		.byte	71
+ 2390 0939 40       		.byte	64
+ 2391 093a 49       		.byte	73
+ 2392 093b 01       		.byte	1
+ 2393 093c 4A       		.byte	74
+ 2394 093d 08       		.byte	8
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 43
+
+
+ 2395 093e 4E       		.byte	78
+ 2396 093f 08       		.byte	8
+ 2397 0940 50       		.byte	80
+ 2398 0941 10       		.byte	16
+ 2399 0942 52       		.byte	82
+ 2400 0943 18       		.byte	24
+ 2401 0944 59       		.byte	89
+ 2402 0945 01       		.byte	1
+ 2403 0946 5A       		.byte	90
+ 2404 0947 88       		.byte	-120
+ 2405 0948 5C       		.byte	92
+ 2406 0949 08       		.byte	8
+ 2407 094a 5D       		.byte	93
+ 2408 094b 82       		.byte	-126
+ 2409 094c 5F       		.byte	95
+ 2410 094d 20       		.byte	32
+ 2411 094e 64       		.byte	100
+ 2412 094f 40       		.byte	64
+ 2413 0950 77       		.byte	119
+ 2414 0951 80       		.byte	-128
+ 2415 0952 84       		.byte	-124
+ 2416 0953 40       		.byte	64
+ 2417 0954 8C       		.byte	-116
+ 2418 0955 80       		.byte	-128
+ 2419 0956 93       		.byte	-109
+ 2420 0957 04       		.byte	4
+ 2421 0958 96       		.byte	-106
+ 2422 0959 20       		.byte	32
+ 2423 095a 99       		.byte	-103
+ 2424 095b 20       		.byte	32
+ 2425 095c 9B       		.byte	-101
+ 2426 095d 09       		.byte	9
+ 2427 095e 9C       		.byte	-100
+ 2428 095f 04       		.byte	4
+ 2429 0960 9D       		.byte	-99
+ 2430 0961 14       		.byte	20
+ 2431 0962 9E       		.byte	-98
+ 2432 0963 41       		.byte	65
+ 2433 0964 A0       		.byte	-96
+ 2434 0965 14       		.byte	20
+ 2435 0966 A3       		.byte	-93
+ 2436 0967 80       		.byte	-128
+ 2437 0968 A4       		.byte	-92
+ 2438 0969 80       		.byte	-128
+ 2439 096a AB       		.byte	-85
+ 2440 096b 0C       		.byte	12
+ 2441 096c B3       		.byte	-77
+ 2442 096d 48       		.byte	72
+ 2443 096e B4       		.byte	-76
+ 2444 096f 04       		.byte	4
+ 2445 0970 B5       		.byte	-75
+ 2446 0971 80       		.byte	-128
+ 2447 0972 C0       		.byte	-64
+ 2448 0973 1D       		.byte	29
+ 2449 0974 C2       		.byte	-62
+ 2450 0975 B7       		.byte	-73
+ 2451 0976 C4       		.byte	-60
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 44
+
+
+ 2452 0977 1E       		.byte	30
+ 2453 0978 CA       		.byte	-54
+ 2454 0979 10       		.byte	16
+ 2455 097a CC       		.byte	-52
+ 2456 097b BA       		.byte	-70
+ 2457 097c CE       		.byte	-50
+ 2458 097d 06       		.byte	6
+ 2459 097e D0       		.byte	-48
+ 2460 097f 18       		.byte	24
+ 2461 0980 D2       		.byte	-46
+ 2462 0981 24       		.byte	36
+ 2463 0982 D6       		.byte	-42
+ 2464 0983 FB       		.byte	-5
+ 2465 0984 D8       		.byte	-40
+ 2466 0985 80       		.byte	-128
+ 2467 0986 E2       		.byte	-30
+ 2468 0987 10       		.byte	16
+ 2469 0988 EC       		.byte	-20
+ 2470 0989 C0       		.byte	-64
+ 2471 098a 00       		.byte	0
+ 2472 098b 08       		.byte	8
+ 2473 098c 01       		.byte	1
+ 2474 098d A0       		.byte	-96
+ 2475 098e 03       		.byte	3
+ 2476 098f 50       		.byte	80
+ 2477 0990 05       		.byte	5
+ 2478 0991 01       		.byte	1
+ 2479 0992 07       		.byte	7
+ 2480 0993 0A       		.byte	10
+ 2481 0994 09       		.byte	9
+ 2482 0995 F0       		.byte	-16
+ 2483 0996 0A       		.byte	10
+ 2484 0997 0E       		.byte	14
+ 2485 0998 0C       		.byte	12
+ 2486 0999 02       		.byte	2
+ 2487 099a 0D       		.byte	13
+ 2488 099b 30       		.byte	48
+ 2489 099c 0E       		.byte	14
+ 2490 099d 04       		.byte	4
+ 2491 099e 0F       		.byte	15
+ 2492 099f C0       		.byte	-64
+ 2493 09a0 10       		.byte	16
+ 2494 09a1 02       		.byte	2
+ 2495 09a2 11       		.byte	17
+ 2496 09a3 01       		.byte	1
+ 2497 09a4 12       		.byte	18
+ 2498 09a5 04       		.byte	4
+ 2499 09a6 13       		.byte	19
+ 2500 09a7 02       		.byte	2
+ 2501 09a8 15       		.byte	21
+ 2502 09a9 02       		.byte	2
+ 2503 09aa 16       		.byte	22
+ 2504 09ab 10       		.byte	16
+ 2505 09ac 17       		.byte	23
+ 2506 09ad 01       		.byte	1
+ 2507 09ae 18       		.byte	24
+ 2508 09af 0E       		.byte	14
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 45
+
+
+ 2509 09b0 19       		.byte	25
+ 2510 09b1 70       		.byte	112
+ 2511 09b2 1D       		.byte	29
+ 2512 09b3 01       		.byte	1
+ 2513 09b4 1E       		.byte	30
+ 2514 09b5 01       		.byte	1
+ 2515 09b6 1F       		.byte	31
+ 2516 09b7 02       		.byte	2
+ 2517 09b8 21       		.byte	33
+ 2518 09b9 50       		.byte	80
+ 2519 09ba 23       		.byte	35
+ 2520 09bb A0       		.byte	-96
+ 2521 09bc 24       		.byte	36
+ 2522 09bd 0E       		.byte	14
+ 2523 09be 27       		.byte	39
+ 2524 09bf 04       		.byte	4
+ 2525 09c0 29       		.byte	41
+ 2526 09c1 C0       		.byte	-64
+ 2527 09c2 2A       		.byte	42
+ 2528 09c3 08       		.byte	8
+ 2529 09c4 2B       		.byte	43
+ 2530 09c5 30       		.byte	48
+ 2531 09c6 30       		.byte	48
+ 2532 09c7 01       		.byte	1
+ 2533 09c8 31       		.byte	49
+ 2534 09c9 08       		.byte	8
+ 2535 09ca 33       		.byte	51
+ 2536 09cb 03       		.byte	3
+ 2537 09cc 34       		.byte	52
+ 2538 09cd 1E       		.byte	30
+ 2539 09ce 35       		.byte	53
+ 2540 09cf F0       		.byte	-16
+ 2541 09d0 37       		.byte	55
+ 2542 09d1 04       		.byte	4
+ 2543 09d2 3B       		.byte	59
+ 2544 09d3 08       		.byte	8
+ 2545 09d4 58       		.byte	88
+ 2546 09d5 04       		.byte	4
+ 2547 09d6 59       		.byte	89
+ 2548 09d7 04       		.byte	4
+ 2549 09d8 5C       		.byte	92
+ 2550 09d9 11       		.byte	17
+ 2551 09da 5F       		.byte	95
+ 2552 09db 01       		.byte	1
+ 2553 09dc 80       		.byte	-128
+ 2554 09dd 02       		.byte	2
+ 2555 09de 82       		.byte	-126
+ 2556 09df 01       		.byte	1
+ 2557 09e0 83       		.byte	-125
+ 2558 09e1 04       		.byte	4
+ 2559 09e2 86       		.byte	-122
+ 2560 09e3 08       		.byte	8
+ 2561 09e4 88       		.byte	-120
+ 2562 09e5 04       		.byte	4
+ 2563 09e6 8C       		.byte	-116
+ 2564 09e7 01       		.byte	1
+ 2565 09e8 8D       		.byte	-115
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 46
+
+
+ 2566 09e9 04       		.byte	4
+ 2567 09ea 8E       		.byte	-114
+ 2568 09eb 02       		.byte	2
+ 2569 09ec 90       		.byte	-112
+ 2570 09ed 01       		.byte	1
+ 2571 09ee 92       		.byte	-110
+ 2572 09ef 02       		.byte	2
+ 2573 09f0 93       		.byte	-109
+ 2574 09f1 01       		.byte	1
+ 2575 09f2 9C       		.byte	-100
+ 2576 09f3 04       		.byte	4
+ 2577 09f4 9D       		.byte	-99
+ 2578 09f5 08       		.byte	8
+ 2579 09f6 A0       		.byte	-96
+ 2580 09f7 04       		.byte	4
+ 2581 09f8 A1       		.byte	-95
+ 2582 09f9 08       		.byte	8
+ 2583 09fa A8       		.byte	-88
+ 2584 09fb 01       		.byte	1
+ 2585 09fc AA       		.byte	-86
+ 2586 09fd 12       		.byte	18
+ 2587 09fe AF       		.byte	-81
+ 2588 09ff 06       		.byte	6
+ 2589 0a00 B0       		.byte	-80
+ 2590 0a01 10       		.byte	16
+ 2591 0a02 B1       		.byte	-79
+ 2592 0a03 02       		.byte	2
+ 2593 0a04 B2       		.byte	-78
+ 2594 0a05 08       		.byte	8
+ 2595 0a06 B3       		.byte	-77
+ 2596 0a07 01       		.byte	1
+ 2597 0a08 B4       		.byte	-76
+ 2598 0a09 04       		.byte	4
+ 2599 0a0a B5       		.byte	-75
+ 2600 0a0b 04       		.byte	4
+ 2601 0a0c B6       		.byte	-74
+ 2602 0a0d 03       		.byte	3
+ 2603 0a0e B7       		.byte	-73
+ 2604 0a0f 08       		.byte	8
+ 2605 0a10 B8       		.byte	-72
+ 2606 0a11 20       		.byte	32
+ 2607 0a12 B9       		.byte	-71
+ 2608 0a13 80       		.byte	-128
+ 2609 0a14 BA       		.byte	-70
+ 2610 0a15 80       		.byte	-128
+ 2611 0a16 BE       		.byte	-66
+ 2612 0a17 10       		.byte	16
+ 2613 0a18 BF       		.byte	-65
+ 2614 0a19 10       		.byte	16
+ 2615 0a1a D2       		.byte	-46
+ 2616 0a1b 80       		.byte	-128
+ 2617 0a1c D8       		.byte	-40
+ 2618 0a1d 04       		.byte	4
+ 2619 0a1e D9       		.byte	-39
+ 2620 0a1f 04       		.byte	4
+ 2621 0a20 DB       		.byte	-37
+ 2622 0a21 04       		.byte	4
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 47
+
+
+ 2623 0a22 DC       		.byte	-36
+ 2624 0a23 11       		.byte	17
+ 2625 0a24 DD       		.byte	-35
+ 2626 0a25 10       		.byte	16
+ 2627 0a26 DF       		.byte	-33
+ 2628 0a27 01       		.byte	1
+ 2629 0a28 00       		.byte	0
+ 2630 0a29 01       		.byte	1
+ 2631 0a2a 01       		.byte	1
+ 2632 0a2b 20       		.byte	32
+ 2633 0a2c 02       		.byte	2
+ 2634 0a2d 01       		.byte	1
+ 2635 0a2e 04       		.byte	4
+ 2636 0a2f 09       		.byte	9
+ 2637 0a30 05       		.byte	5
+ 2638 0a31 10       		.byte	16
+ 2639 0a32 07       		.byte	7
+ 2640 0a33 02       		.byte	2
+ 2641 0a34 0A       		.byte	10
+ 2642 0a35 22       		.byte	34
+ 2643 0a36 0B       		.byte	11
+ 2644 0a37 84       		.byte	-124
+ 2645 0a38 0C       		.byte	12
+ 2646 0a39 C0       		.byte	-64
+ 2647 0a3a 0E       		.byte	14
+ 2648 0a3b 40       		.byte	64
+ 2649 0a3c 10       		.byte	16
+ 2650 0a3d 14       		.byte	20
+ 2651 0a3e 15       		.byte	21
+ 2652 0a3f 01       		.byte	1
+ 2653 0a40 16       		.byte	22
+ 2654 0a41 40       		.byte	64
+ 2655 0a42 17       		.byte	23
+ 2656 0a43 20       		.byte	32
+ 2657 0a44 19       		.byte	25
+ 2658 0a45 20       		.byte	32
+ 2659 0a46 1A       		.byte	26
+ 2660 0a47 80       		.byte	-128
+ 2661 0a48 1C       		.byte	28
+ 2662 0a49 09       		.byte	9
+ 2663 0a4a 1E       		.byte	30
+ 2664 0a4b 40       		.byte	64
+ 2665 0a4c 1F       		.byte	31
+ 2666 0a4d 88       		.byte	-120
+ 2667 0a4e 20       		.byte	32
+ 2668 0a4f 20       		.byte	32
+ 2669 0a50 21       		.byte	33
+ 2670 0a51 18       		.byte	24
+ 2671 0a52 22       		.byte	34
+ 2672 0a53 01       		.byte	1
+ 2673 0a54 23       		.byte	35
+ 2674 0a55 06       		.byte	6
+ 2675 0a56 24       		.byte	36
+ 2676 0a57 40       		.byte	64
+ 2677 0a58 27       		.byte	39
+ 2678 0a59 25       		.byte	37
+ 2679 0a5a 28       		.byte	40
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 48
+
+
+ 2680 0a5b 04       		.byte	4
+ 2681 0a5c 29       		.byte	41
+ 2682 0a5d 04       		.byte	4
+ 2683 0a5e 2B       		.byte	43
+ 2684 0a5f 80       		.byte	-128
+ 2685 0a60 2D       		.byte	45
+ 2686 0a61 81       		.byte	-127
+ 2687 0a62 30       		.byte	48
+ 2688 0a63 10       		.byte	16
+ 2689 0a64 31       		.byte	49
+ 2690 0a65 18       		.byte	24
+ 2691 0a66 32       		.byte	50
+ 2692 0a67 41       		.byte	65
+ 2693 0a68 34       		.byte	52
+ 2694 0a69 40       		.byte	64
+ 2695 0a6a 37       		.byte	55
+ 2696 0a6b 02       		.byte	2
+ 2697 0a6c 39       		.byte	57
+ 2698 0a6d 20       		.byte	32
+ 2699 0a6e 3A       		.byte	58
+ 2700 0a6f 05       		.byte	5
+ 2701 0a70 3B       		.byte	59
+ 2702 0a71 80       		.byte	-128
+ 2703 0a72 3C       		.byte	60
+ 2704 0a73 42       		.byte	66
+ 2705 0a74 74       		.byte	116
+ 2706 0a75 01       		.byte	1
+ 2707 0a76 82       		.byte	-126
+ 2708 0a77 04       		.byte	4
+ 2709 0a78 C0       		.byte	-64
+ 2710 0a79 FB       		.byte	-5
+ 2711 0a7a C2       		.byte	-62
+ 2712 0a7b 9F       		.byte	-97
+ 2713 0a7c C4       		.byte	-60
+ 2714 0a7d 56       		.byte	86
+ 2715 0a7e CA       		.byte	-54
+ 2716 0a7f 97       		.byte	-105
+ 2717 0a80 CC       		.byte	-52
+ 2718 0a81 9F       		.byte	-97
+ 2719 0a82 CE       		.byte	-50
+ 2720 0a83 9F       		.byte	-97
+ 2721 0a84 01       		.byte	1
+ 2722 0a85 1C       		.byte	28
+ 2723 0a86 02       		.byte	2
+ 2724 0a87 04       		.byte	4
+ 2725 0a88 04       		.byte	4
+ 2726 0a89 08       		.byte	8
+ 2727 0a8a 05       		.byte	5
+ 2728 0a8b 20       		.byte	32
+ 2729 0a8c 06       		.byte	6
+ 2730 0a8d 10       		.byte	16
+ 2731 0a8e 07       		.byte	7
+ 2732 0a8f 04       		.byte	4
+ 2733 0a90 08       		.byte	8
+ 2734 0a91 08       		.byte	8
+ 2735 0a92 09       		.byte	9
+ 2736 0a93 02       		.byte	2
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 49
+
+
+ 2737 0a94 0A       		.byte	10
+ 2738 0a95 10       		.byte	16
+ 2739 0a96 0C       		.byte	12
+ 2740 0a97 05       		.byte	5
+ 2741 0a98 0F       		.byte	15
+ 2742 0a99 02       		.byte	2
+ 2743 0a9a 11       		.byte	17
+ 2744 0a9b 02       		.byte	2
+ 2745 0a9c 12       		.byte	18
+ 2746 0a9d 01       		.byte	1
+ 2747 0a9e 17       		.byte	23
+ 2748 0a9f 3C       		.byte	60
+ 2749 0aa0 1B       		.byte	27
+ 2750 0aa1 40       		.byte	64
+ 2751 0aa2 1C       		.byte	28
+ 2752 0aa3 08       		.byte	8
+ 2753 0aa4 1E       		.byte	30
+ 2754 0aa5 10       		.byte	16
+ 2755 0aa6 1F       		.byte	31
+ 2756 0aa7 01       		.byte	1
+ 2757 0aa8 20       		.byte	32
+ 2758 0aa9 10       		.byte	16
+ 2759 0aaa 21       		.byte	33
+ 2760 0aab 2C       		.byte	44
+ 2761 0aac 22       		.byte	34
+ 2762 0aad 08       		.byte	8
+ 2763 0aae 23       		.byte	35
+ 2764 0aaf 10       		.byte	16
+ 2765 0ab0 25       		.byte	37
+ 2766 0ab1 40       		.byte	64
+ 2767 0ab2 26       		.byte	38
+ 2768 0ab3 02       		.byte	2
+ 2769 0ab4 29       		.byte	41
+ 2770 0ab5 30       		.byte	48
+ 2771 0ab6 2A       		.byte	42
+ 2772 0ab7 01       		.byte	1
+ 2773 0ab8 2B       		.byte	43
+ 2774 0ab9 04       		.byte	4
+ 2775 0aba 2D       		.byte	45
+ 2776 0abb 30       		.byte	48
+ 2777 0abc 2F       		.byte	47
+ 2778 0abd 08       		.byte	8
+ 2779 0abe 30       		.byte	48
+ 2780 0abf 01       		.byte	1
+ 2781 0ac0 31       		.byte	49
+ 2782 0ac1 01       		.byte	1
+ 2783 0ac2 32       		.byte	50
+ 2784 0ac3 02       		.byte	2
+ 2785 0ac4 33       		.byte	51
+ 2786 0ac5 3C       		.byte	60
+ 2787 0ac6 34       		.byte	52
+ 2788 0ac7 18       		.byte	24
+ 2789 0ac8 35       		.byte	53
+ 2790 0ac9 02       		.byte	2
+ 2791 0aca 36       		.byte	54
+ 2792 0acb 04       		.byte	4
+ 2793 0acc 37       		.byte	55
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 50
+
+
+ 2794 0acd 40       		.byte	64
+ 2795 0ace 3A       		.byte	58
+ 2796 0acf 20       		.byte	32
+ 2797 0ad0 3E       		.byte	62
+ 2798 0ad1 41       		.byte	65
+ 2799 0ad2 3F       		.byte	63
+ 2800 0ad3 50       		.byte	80
+ 2801 0ad4 52       		.byte	82
+ 2802 0ad5 80       		.byte	-128
+ 2803 0ad6 54       		.byte	84
+ 2804 0ad7 0F       		.byte	15
+ 2805 0ad8 56       		.byte	86
+ 2806 0ad9 04       		.byte	4
+ 2807 0ada 58       		.byte	88
+ 2808 0adb 04       		.byte	4
+ 2809 0adc 59       		.byte	89
+ 2810 0add 04       		.byte	4
+ 2811 0ade 5B       		.byte	91
+ 2812 0adf 04       		.byte	4
+ 2813 0ae0 5C       		.byte	92
+ 2814 0ae1 11       		.byte	17
+ 2815 0ae2 5D       		.byte	93
+ 2816 0ae3 10       		.byte	16
+ 2817 0ae4 5F       		.byte	95
+ 2818 0ae5 01       		.byte	1
+ 2819 0ae6 83       		.byte	-125
+ 2820 0ae7 01       		.byte	1
+ 2821 0ae8 8B       		.byte	-117
+ 2822 0ae9 01       		.byte	1
+ 2823 0aea 96       		.byte	-106
+ 2824 0aeb 01       		.byte	1
+ 2825 0aec AA       		.byte	-86
+ 2826 0aed 02       		.byte	2
+ 2827 0aee B2       		.byte	-78
+ 2828 0aef 02       		.byte	2
+ 2829 0af0 B4       		.byte	-76
+ 2830 0af1 01       		.byte	1
+ 2831 0af2 B7       		.byte	-73
+ 2832 0af3 01       		.byte	1
+ 2833 0af4 BB       		.byte	-69
+ 2834 0af5 20       		.byte	32
+ 2835 0af6 BF       		.byte	-65
+ 2836 0af7 40       		.byte	64
+ 2837 0af8 C0       		.byte	-64
+ 2838 0af9 13       		.byte	19
+ 2839 0afa C5       		.byte	-59
+ 2840 0afb EC       		.byte	-20
+ 2841 0afc C6       		.byte	-58
+ 2842 0afd 20       		.byte	32
+ 2843 0afe C8       		.byte	-56
+ 2844 0aff 0B       		.byte	11
+ 2845 0b00 C9       		.byte	-55
+ 2846 0b01 FF       		.byte	-1
+ 2847 0b02 CA       		.byte	-54
+ 2848 0b03 FF       		.byte	-1
+ 2849 0b04 CB       		.byte	-53
+ 2850 0b05 FF       		.byte	-1
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 51
+
+
+ 2851 0b06 CF       		.byte	-49
+ 2852 0b07 01       		.byte	1
+ 2853 0b08 D0       		.byte	-48
+ 2854 0b09 18       		.byte	24
+ 2855 0b0a D2       		.byte	-46
+ 2856 0b0b 80       		.byte	-128
+ 2857 0b0c D8       		.byte	-40
+ 2858 0b0d 04       		.byte	4
+ 2859 0b0e D9       		.byte	-39
+ 2860 0b0f 04       		.byte	4
+ 2861 0b10 DA       		.byte	-38
+ 2862 0b11 04       		.byte	4
+ 2863 0b12 DB       		.byte	-37
+ 2864 0b13 04       		.byte	4
+ 2865 0b14 DC       		.byte	-36
+ 2866 0b15 21       		.byte	33
+ 2867 0b16 DF       		.byte	-33
+ 2868 0b17 01       		.byte	1
+ 2869 0b18 E0       		.byte	-32
+ 2870 0b19 40       		.byte	64
+ 2871 0b1a E2       		.byte	-30
+ 2872 0b1b 40       		.byte	64
+ 2873 0b1c E4       		.byte	-28
+ 2874 0b1d 40       		.byte	64
+ 2875 0b1e E5       		.byte	-27
+ 2876 0b1f 40       		.byte	64
+ 2877 0b20 E6       		.byte	-26
+ 2878 0b21 80       		.byte	-128
+ 2879 0b22 E8       		.byte	-24
+ 2880 0b23 80       		.byte	-128
+ 2881 0b24 EA       		.byte	-22
+ 2882 0b25 80       		.byte	-128
+ 2883 0b26 EC       		.byte	-20
+ 2884 0b27 80       		.byte	-128
+ 2885 0b28 EE       		.byte	-18
+ 2886 0b29 80       		.byte	-128
+ 2887 0b2a 00       		.byte	0
+ 2888 0b2b 68       		.byte	104
+ 2889 0b2c 02       		.byte	2
+ 2890 0b2d 80       		.byte	-128
+ 2891 0b2e 0A       		.byte	10
+ 2892 0b2f 81       		.byte	-127
+ 2893 0b30 0B       		.byte	11
+ 2894 0b31 40       		.byte	64
+ 2895 0b32 0E       		.byte	14
+ 2896 0b33 20       		.byte	32
+ 2897 0b34 10       		.byte	16
+ 2898 0b35 A0       		.byte	-96
+ 2899 0b36 11       		.byte	17
+ 2900 0b37 30       		.byte	48
+ 2901 0b38 17       		.byte	23
+ 2902 0b39 20       		.byte	32
+ 2903 0b3a 18       		.byte	24
+ 2904 0b3b 04       		.byte	4
+ 2905 0b3c 19       		.byte	25
+ 2906 0b3d 54       		.byte	84
+ 2907 0b3e 1A       		.byte	26
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 52
+
+
+ 2908 0b3f 40       		.byte	64
+ 2909 0b40 1C       		.byte	28
+ 2910 0b41 28       		.byte	40
+ 2911 0b42 1E       		.byte	30
+ 2912 0b43 20       		.byte	32
+ 2913 0b44 20       		.byte	32
+ 2914 0b45 40       		.byte	64
+ 2915 0b46 21       		.byte	33
+ 2916 0b47 08       		.byte	8
+ 2917 0b48 22       		.byte	34
+ 2918 0b49 12       		.byte	18
+ 2919 0b4a 23       		.byte	35
+ 2920 0b4b 12       		.byte	18
+ 2921 0b4c 24       		.byte	36
+ 2922 0b4d 08       		.byte	8
+ 2923 0b4e 26       		.byte	38
+ 2924 0b4f 40       		.byte	64
+ 2925 0b50 28       		.byte	40
+ 2926 0b51 01       		.byte	1
+ 2927 0b52 29       		.byte	41
+ 2928 0b53 05       		.byte	5
+ 2929 0b54 2B       		.byte	43
+ 2930 0b55 08       		.byte	8
+ 2931 0b56 30       		.byte	48
+ 2932 0b57 20       		.byte	32
+ 2933 0b58 32       		.byte	50
+ 2934 0b59 8A       		.byte	-118
+ 2935 0b5a 38       		.byte	56
+ 2936 0b5b 04       		.byte	4
+ 2937 0b5c 39       		.byte	57
+ 2938 0b5d 10       		.byte	16
+ 2939 0b5e 3B       		.byte	59
+ 2940 0b5f 41       		.byte	65
+ 2941 0b60 3C       		.byte	60
+ 2942 0b61 02       		.byte	2
+ 2943 0b62 3E       		.byte	62
+ 2944 0b63 20       		.byte	32
+ 2945 0b64 46       		.byte	70
+ 2946 0b65 20       		.byte	32
+ 2947 0b66 47       		.byte	71
+ 2948 0b67 40       		.byte	64
+ 2949 0b68 4D       		.byte	77
+ 2950 0b69 01       		.byte	1
+ 2951 0b6a 4F       		.byte	79
+ 2952 0b6b 04       		.byte	4
+ 2953 0b6c 56       		.byte	86
+ 2954 0b6d 20       		.byte	32
+ 2955 0b6e 58       		.byte	88
+ 2956 0b6f 04       		.byte	4
+ 2957 0b70 59       		.byte	89
+ 2958 0b71 01       		.byte	1
+ 2959 0b72 5A       		.byte	90
+ 2960 0b73 60       		.byte	96
+ 2961 0b74 60       		.byte	96
+ 2962 0b75 80       		.byte	-128
+ 2963 0b76 72       		.byte	114
+ 2964 0b77 80       		.byte	-128
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 53
+
+
+ 2965 0b78 74       		.byte	116
+ 2966 0b79 01       		.byte	1
+ 2967 0b7a 77       		.byte	119
+ 2968 0b7b 40       		.byte	64
+ 2969 0b7c 80       		.byte	-128
+ 2970 0b7d 04       		.byte	4
+ 2971 0b7e 83       		.byte	-125
+ 2972 0b7f 20       		.byte	32
+ 2973 0b80 84       		.byte	-124
+ 2974 0b81 80       		.byte	-128
+ 2975 0b82 88       		.byte	-120
+ 2976 0b83 01       		.byte	1
+ 2977 0b84 89       		.byte	-119
+ 2978 0b85 08       		.byte	8
+ 2979 0b86 8C       		.byte	-116
+ 2980 0b87 84       		.byte	-124
+ 2981 0b88 92       		.byte	-110
+ 2982 0b89 81       		.byte	-127
+ 2983 0b8a 93       		.byte	-109
+ 2984 0b8b 01       		.byte	1
+ 2985 0b8c 95       		.byte	-107
+ 2986 0b8d 01       		.byte	1
+ 2987 0b8e 97       		.byte	-105
+ 2988 0b8f 14       		.byte	20
+ 2989 0b90 98       		.byte	-104
+ 2990 0b91 04       		.byte	4
+ 2991 0b92 99       		.byte	-103
+ 2992 0b93 01       		.byte	1
+ 2993 0b94 9D       		.byte	-99
+ 2994 0b95 50       		.byte	80
+ 2995 0b96 9E       		.byte	-98
+ 2996 0b97 80       		.byte	-128
+ 2997 0b98 9F       		.byte	-97
+ 2998 0b99 02       		.byte	2
+ 2999 0b9a A0       		.byte	-96
+ 3000 0b9b 20       		.byte	32
+ 3001 0b9c A1       		.byte	-95
+ 3002 0b9d 10       		.byte	16
+ 3003 0b9e A2       		.byte	-94
+ 3004 0b9f 88       		.byte	-120
+ 3005 0ba0 A3       		.byte	-93
+ 3006 0ba1 08       		.byte	8
+ 3007 0ba2 A4       		.byte	-92
+ 3008 0ba3 04       		.byte	4
+ 3009 0ba4 A6       		.byte	-90
+ 3010 0ba5 40       		.byte	64
+ 3011 0ba6 AA       		.byte	-86
+ 3012 0ba7 04       		.byte	4
+ 3013 0ba8 AB       		.byte	-85
+ 3014 0ba9 01       		.byte	1
+ 3015 0baa AE       		.byte	-82
+ 3016 0bab 08       		.byte	8
+ 3017 0bac B4       		.byte	-76
+ 3018 0bad 04       		.byte	4
+ 3019 0bae B5       		.byte	-75
+ 3020 0baf 01       		.byte	1
+ 3021 0bb0 C0       		.byte	-64
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 54
+
+
+ 3022 0bb1 0F       		.byte	15
+ 3023 0bb2 C2       		.byte	-62
+ 3024 0bb3 29       		.byte	41
+ 3025 0bb4 C4       		.byte	-60
+ 3026 0bb5 4E       		.byte	78
+ 3027 0bb6 CA       		.byte	-54
+ 3028 0bb7 0F       		.byte	15
+ 3029 0bb8 CC       		.byte	-52
+ 3030 0bb9 0F       		.byte	15
+ 3031 0bba CE       		.byte	-50
+ 3032 0bbb AF       		.byte	-81
+ 3033 0bbc D0       		.byte	-48
+ 3034 0bbd 50       		.byte	80
+ 3035 0bbe D6       		.byte	-42
+ 3036 0bbf 0F       		.byte	15
+ 3037 0bc0 D8       		.byte	-40
+ 3038 0bc1 01       		.byte	1
+ 3039 0bc2 E4       		.byte	-28
+ 3040 0bc3 01       		.byte	1
+ 3041 0bc4 E6       		.byte	-26
+ 3042 0bc5 04       		.byte	4
+ 3043 0bc6 EE       		.byte	-18
+ 3044 0bc7 02       		.byte	2
+ 3045 0bc8 1E       		.byte	30
+ 3046 0bc9 01       		.byte	1
+ 3047 0bca 23       		.byte	35
+ 3048 0bcb 01       		.byte	1
+ 3049 0bcc 28       		.byte	40
+ 3050 0bcd 01       		.byte	1
+ 3051 0bce 33       		.byte	51
+ 3052 0bcf 01       		.byte	1
+ 3053 0bd0 34       		.byte	52
+ 3054 0bd1 01       		.byte	1
+ 3055 0bd2 3E       		.byte	62
+ 3056 0bd3 10       		.byte	16
+ 3057 0bd4 40       		.byte	64
+ 3058 0bd5 56       		.byte	86
+ 3059 0bd6 41       		.byte	65
+ 3060 0bd7 02       		.byte	2
+ 3061 0bd8 49       		.byte	73
+ 3062 0bd9 FF       		.byte	-1
+ 3063 0bda 4A       		.byte	74
+ 3064 0bdb FF       		.byte	-1
+ 3065 0bdc 4B       		.byte	75
+ 3066 0bdd FF       		.byte	-1
+ 3067 0bde 4D       		.byte	77
+ 3068 0bdf A0       		.byte	-96
+ 3069 0be0 4F       		.byte	79
+ 3070 0be1 01       		.byte	1
+ 3071 0be2 50       		.byte	80
+ 3072 0be3 18       		.byte	24
+ 3073 0be4 54       		.byte	84
+ 3074 0be5 01       		.byte	1
+ 3075 0be6 56       		.byte	86
+ 3076 0be7 04       		.byte	4
+ 3077 0be8 58       		.byte	88
+ 3078 0be9 04       		.byte	4
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 55
+
+
+ 3079 0bea 59       		.byte	89
+ 3080 0beb 04       		.byte	4
+ 3081 0bec 5A       		.byte	90
+ 3082 0bed 04       		.byte	4
+ 3083 0bee 5B       		.byte	91
+ 3084 0bef 04       		.byte	4
+ 3085 0bf0 5C       		.byte	92
+ 3086 0bf1 10       		.byte	16
+ 3087 0bf2 5D       		.byte	93
+ 3088 0bf3 01       		.byte	1
+ 3089 0bf4 5F       		.byte	95
+ 3090 0bf5 01       		.byte	1
+ 3091 0bf6 60       		.byte	96
+ 3092 0bf7 40       		.byte	64
+ 3093 0bf8 62       		.byte	98
+ 3094 0bf9 80       		.byte	-128
+ 3095 0bfa 64       		.byte	100
+ 3096 0bfb 40       		.byte	64
+ 3097 0bfc 65       		.byte	101
+ 3098 0bfd 40       		.byte	64
+ 3099 0bfe 66       		.byte	102
+ 3100 0bff 80       		.byte	-128
+ 3101 0c00 68       		.byte	104
+ 3102 0c01 40       		.byte	64
+ 3103 0c02 6A       		.byte	106
+ 3104 0c03 80       		.byte	-128
+ 3105 0c04 6C       		.byte	108
+ 3106 0c05 40       		.byte	64
+ 3107 0c06 6D       		.byte	109
+ 3108 0c07 20       		.byte	32
+ 3109 0c08 6E       		.byte	110
+ 3110 0c09 80       		.byte	-128
+ 3111 0c0a 87       		.byte	-121
+ 3112 0c0b 20       		.byte	32
+ 3113 0c0c 89       		.byte	-119
+ 3114 0c0d B4       		.byte	-76
+ 3115 0c0e 8B       		.byte	-117
+ 3116 0c0f 4A       		.byte	74
+ 3117 0c10 92       		.byte	-110
+ 3118 0c11 02       		.byte	2
+ 3119 0c12 94       		.byte	-108
+ 3120 0c13 02       		.byte	2
+ 3121 0c14 95       		.byte	-107
+ 3122 0c15 F8       		.byte	-8
+ 3123 0c16 97       		.byte	-105
+ 3124 0c17 06       		.byte	6
+ 3125 0c18 99       		.byte	-103
+ 3126 0c19 01       		.byte	1
+ 3127 0c1a 9A       		.byte	-102
+ 3128 0c1b 06       		.byte	6
+ 3129 0c1c 9D       		.byte	-99
+ 3130 0c1d 01       		.byte	1
+ 3131 0c1e A0       		.byte	-96
+ 3132 0c1f 01       		.byte	1
+ 3133 0c20 A1       		.byte	-95
+ 3134 0c21 DE       		.byte	-34
+ 3135 0c22 A3       		.byte	-93
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 56
+
+
+ 3136 0c23 20       		.byte	32
+ 3137 0c24 A4       		.byte	-92
+ 3138 0c25 01       		.byte	1
+ 3139 0c26 A5       		.byte	-91
+ 3140 0c27 6E       		.byte	110
+ 3141 0c28 A8       		.byte	-88
+ 3142 0c29 01       		.byte	1
+ 3143 0c2a A9       		.byte	-87
+ 3144 0c2b C6       		.byte	-58
+ 3145 0c2c AB       		.byte	-85
+ 3146 0c2d 18       		.byte	24
+ 3147 0c2e AD       		.byte	-83
+ 3148 0c2f 4A       		.byte	74
+ 3149 0c30 AF       		.byte	-81
+ 3150 0c31 94       		.byte	-108
+ 3151 0c32 B2       		.byte	-78
+ 3152 0c33 04       		.byte	4
+ 3153 0c34 B3       		.byte	-77
+ 3154 0c35 E0       		.byte	-32
+ 3155 0c36 B4       		.byte	-76
+ 3156 0c37 01       		.byte	1
+ 3157 0c38 B5       		.byte	-75
+ 3158 0c39 1E       		.byte	30
+ 3159 0c3a B6       		.byte	-74
+ 3160 0c3b 02       		.byte	2
+ 3161 0c3c B7       		.byte	-73
+ 3162 0c3d 01       		.byte	1
+ 3163 0c3e B8       		.byte	-72
+ 3164 0c3f 20       		.byte	32
+ 3165 0c40 B9       		.byte	-71
+ 3166 0c41 80       		.byte	-128
+ 3167 0c42 BE       		.byte	-66
+ 3168 0c43 50       		.byte	80
+ 3169 0c44 C0       		.byte	-64
+ 3170 0c45 56       		.byte	86
+ 3171 0c46 C1       		.byte	-63
+ 3172 0c47 02       		.byte	2
+ 3173 0c48 C5       		.byte	-59
+ 3174 0c49 32       		.byte	50
+ 3175 0c4a C6       		.byte	-58
+ 3176 0c4b C4       		.byte	-60
+ 3177 0c4c C7       		.byte	-57
+ 3178 0c4d 0E       		.byte	14
+ 3179 0c4e C8       		.byte	-56
+ 3180 0c4f 1F       		.byte	31
+ 3181 0c50 C9       		.byte	-55
+ 3182 0c51 FF       		.byte	-1
+ 3183 0c52 CA       		.byte	-54
+ 3184 0c53 FF       		.byte	-1
+ 3185 0c54 CB       		.byte	-53
+ 3186 0c55 FF       		.byte	-1
+ 3187 0c56 CD       		.byte	-51
+ 3188 0c57 AF       		.byte	-81
+ 3189 0c58 CE       		.byte	-50
+ 3190 0c59 07       		.byte	7
+ 3191 0c5a CF       		.byte	-49
+ 3192 0c5b 01       		.byte	1
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 57
+
+
+ 3193 0c5c D0       		.byte	-48
+ 3194 0c5d 18       		.byte	24
+ 3195 0c5e D2       		.byte	-46
+ 3196 0c5f 80       		.byte	-128
+ 3197 0c60 D4       		.byte	-44
+ 3198 0c61 0F       		.byte	15
+ 3199 0c62 D8       		.byte	-40
+ 3200 0c63 04       		.byte	4
+ 3201 0c64 D9       		.byte	-39
+ 3202 0c65 04       		.byte	4
+ 3203 0c66 DA       		.byte	-38
+ 3204 0c67 04       		.byte	4
+ 3205 0c68 DB       		.byte	-37
+ 3206 0c69 04       		.byte	4
+ 3207 0c6a DC       		.byte	-36
+ 3208 0c6b 11       		.byte	17
+ 3209 0c6c DD       		.byte	-35
+ 3210 0c6d 11       		.byte	17
+ 3211 0c6e DF       		.byte	-33
+ 3212 0c6f 05       		.byte	5
+ 3213 0c70 E0       		.byte	-32
+ 3214 0c71 40       		.byte	64
+ 3215 0c72 E2       		.byte	-30
+ 3216 0c73 80       		.byte	-128
+ 3217 0c74 E4       		.byte	-28
+ 3218 0c75 40       		.byte	64
+ 3219 0c76 E5       		.byte	-27
+ 3220 0c77 40       		.byte	64
+ 3221 0c78 E6       		.byte	-26
+ 3222 0c79 80       		.byte	-128
+ 3223 0c7a E8       		.byte	-24
+ 3224 0c7b 40       		.byte	64
+ 3225 0c7c EA       		.byte	-22
+ 3226 0c7d 80       		.byte	-128
+ 3227 0c7e EC       		.byte	-20
+ 3228 0c7f 40       		.byte	64
+ 3229 0c80 ED       		.byte	-19
+ 3230 0c81 20       		.byte	32
+ 3231 0c82 EE       		.byte	-18
+ 3232 0c83 80       		.byte	-128
+ 3233 0c84 0A       		.byte	10
+ 3234 0c85 58       		.byte	88
+ 3235 0c86 0C       		.byte	12
+ 3236 0c87 80       		.byte	-128
+ 3237 0c88 10       		.byte	16
+ 3238 0c89 A4       		.byte	-92
+ 3239 0c8a 12       		.byte	18
+ 3240 0c8b 04       		.byte	4
+ 3241 0c8c 17       		.byte	23
+ 3242 0c8d 20       		.byte	32
+ 3243 0c8e 19       		.byte	25
+ 3244 0c8f 20       		.byte	32
+ 3245 0c90 1A       		.byte	26
+ 3246 0c91 10       		.byte	16
+ 3247 0c92 1B       		.byte	27
+ 3248 0c93 40       		.byte	64
+ 3249 0c94 1E       		.byte	30
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 58
+
+
+ 3250 0c95 04       		.byte	4
+ 3251 0c96 20       		.byte	32
+ 3252 0c97 04       		.byte	4
+ 3253 0c98 21       		.byte	33
+ 3254 0c99 04       		.byte	4
+ 3255 0c9a 22       		.byte	34
+ 3256 0c9b 44       		.byte	68
+ 3257 0c9c 27       		.byte	39
+ 3258 0c9d 20       		.byte	32
+ 3259 0c9e 29       		.byte	41
+ 3260 0c9f 11       		.byte	17
+ 3261 0ca0 2A       		.byte	42
+ 3262 0ca1 44       		.byte	68
+ 3263 0ca2 2C       		.byte	44
+ 3264 0ca3 80       		.byte	-128
+ 3265 0ca4 30       		.byte	48
+ 3266 0ca5 B0       		.byte	-80
+ 3267 0ca6 33       		.byte	51
+ 3268 0ca7 08       		.byte	8
+ 3269 0ca8 39       		.byte	57
+ 3270 0ca9 08       		.byte	8
+ 3271 0caa 3B       		.byte	59
+ 3272 0cab 10       		.byte	16
+ 3273 0cac 42       		.byte	66
+ 3274 0cad 08       		.byte	8
+ 3275 0cae 45       		.byte	69
+ 3276 0caf 10       		.byte	16
+ 3277 0cb0 46       		.byte	70
+ 3278 0cb1 08       		.byte	8
+ 3279 0cb2 48       		.byte	72
+ 3280 0cb3 A0       		.byte	-96
+ 3281 0cb4 49       		.byte	73
+ 3282 0cb5 20       		.byte	32
+ 3283 0cb6 4A       		.byte	74
+ 3284 0cb7 02       		.byte	2
+ 3285 0cb8 4D       		.byte	77
+ 3286 0cb9 20       		.byte	32
+ 3287 0cba 4E       		.byte	78
+ 3288 0cbb 02       		.byte	2
+ 3289 0cbc 4F       		.byte	79
+ 3290 0cbd 80       		.byte	-128
+ 3291 0cbe 51       		.byte	81
+ 3292 0cbf 08       		.byte	8
+ 3293 0cc0 52       		.byte	82
+ 3294 0cc1 90       		.byte	-112
+ 3295 0cc2 58       		.byte	88
+ 3296 0cc3 10       		.byte	16
+ 3297 0cc4 59       		.byte	89
+ 3298 0cc5 40       		.byte	64
+ 3299 0cc6 5A       		.byte	90
+ 3300 0cc7 04       		.byte	4
+ 3301 0cc8 5B       		.byte	91
+ 3302 0cc9 02       		.byte	2
+ 3303 0cca 5D       		.byte	93
+ 3304 0ccb 01       		.byte	1
+ 3305 0ccc 5E       		.byte	94
+ 3306 0ccd 80       		.byte	-128
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 59
+
+
+ 3307 0cce 5F       		.byte	95
+ 3308 0ccf 04       		.byte	4
+ 3309 0cd0 61       		.byte	97
+ 3310 0cd1 08       		.byte	8
+ 3311 0cd2 62       		.byte	98
+ 3312 0cd3 10       		.byte	16
+ 3313 0cd4 64       		.byte	100
+ 3314 0cd5 80       		.byte	-128
+ 3315 0cd6 72       		.byte	114
+ 3316 0cd7 40       		.byte	64
+ 3317 0cd8 78       		.byte	120
+ 3318 0cd9 04       		.byte	4
+ 3319 0cda 86       		.byte	-122
+ 3320 0cdb 48       		.byte	72
+ 3321 0cdc 87       		.byte	-121
+ 3322 0cdd 08       		.byte	8
+ 3323 0cde 88       		.byte	-120
+ 3324 0cdf 80       		.byte	-128
+ 3325 0ce0 92       		.byte	-110
+ 3326 0ce1 01       		.byte	1
+ 3327 0ce2 98       		.byte	-104
+ 3328 0ce3 04       		.byte	4
+ 3329 0ce4 9E       		.byte	-98
+ 3330 0ce5 80       		.byte	-128
+ 3331 0ce6 A4       		.byte	-92
+ 3332 0ce7 04       		.byte	4
+ 3333 0ce8 AC       		.byte	-84
+ 3334 0ce9 04       		.byte	4
+ 3335 0cea B0       		.byte	-80
+ 3336 0ceb 08       		.byte	8
+ 3337 0cec B3       		.byte	-77
+ 3338 0ced 01       		.byte	1
+ 3339 0cee C2       		.byte	-62
+ 3340 0cef 8E       		.byte	-114
+ 3341 0cf0 C4       		.byte	-60
+ 3342 0cf1 4E       		.byte	78
+ 3343 0cf2 CA       		.byte	-54
+ 3344 0cf3 8F       		.byte	-113
+ 3345 0cf4 CC       		.byte	-52
+ 3346 0cf5 0E       		.byte	14
+ 3347 0cf6 CE       		.byte	-50
+ 3348 0cf7 06       		.byte	6
+ 3349 0cf8 D0       		.byte	-48
+ 3350 0cf9 24       		.byte	36
+ 3351 0cfa D2       		.byte	-46
+ 3352 0cfb 3C       		.byte	60
+ 3353 0cfc D6       		.byte	-42
+ 3354 0cfd DF       		.byte	-33
+ 3355 0cfe D8       		.byte	-40
+ 3356 0cff 86       		.byte	-122
+ 3357 0d00 DE       		.byte	-34
+ 3358 0d01 02       		.byte	2
+ 3359 0d02 E2       		.byte	-30
+ 3360 0d03 28       		.byte	40
+ 3361 0d04 E6       		.byte	-26
+ 3362 0d05 02       		.byte	2
+ 3363 0d06 EA       		.byte	-22
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 60
+
+
+ 3364 0d07 08       		.byte	8
+ 3365 0d08 04       		.byte	4
+ 3366 0d09 48       		.byte	72
+ 3367 0d0a 06       		.byte	6
+ 3368 0d0b 01       		.byte	1
+ 3369 0d0c 08       		.byte	8
+ 3370 0d0d 77       		.byte	119
+ 3371 0d0e 09       		.byte	9
+ 3372 0d0f 30       		.byte	48
+ 3373 0d10 0B       		.byte	11
+ 3374 0d11 C9       		.byte	-55
+ 3375 0d12 0C       		.byte	12
+ 3376 0d13 10       		.byte	16
+ 3377 0d14 0D       		.byte	13
+ 3378 0d15 FD       		.byte	-3
+ 3379 0d16 0E       		.byte	14
+ 3380 0d17 2F       		.byte	47
+ 3381 0d18 0F       		.byte	15
+ 3382 0d19 02       		.byte	2
+ 3383 0d1a 10       		.byte	16
+ 3384 0d1b 7B       		.byte	123
+ 3385 0d1c 11       		.byte	17
+ 3386 0d1d 9E       		.byte	-98
+ 3387 0d1e 12       		.byte	18
+ 3388 0d1f 04       		.byte	4
+ 3389 0d20 13       		.byte	19
+ 3390 0d21 60       		.byte	96
+ 3391 0d22 15       		.byte	21
+ 3392 0d23 73       		.byte	115
+ 3393 0d24 16       		.byte	22
+ 3394 0d25 70       		.byte	112
+ 3395 0d26 18       		.byte	24
+ 3396 0d27 0C       		.byte	12
+ 3397 0d28 1A       		.byte	26
+ 3398 0d29 42       		.byte	66
+ 3399 0d2a 1D       		.byte	29
+ 3400 0d2b 94       		.byte	-108
+ 3401 0d2c 1F       		.byte	31
+ 3402 0d2d 60       		.byte	96
+ 3403 0d2e 20       		.byte	32
+ 3404 0d2f 1C       		.byte	28
+ 3405 0d30 22       		.byte	34
+ 3406 0d31 21       		.byte	33
+ 3407 0d32 25       		.byte	37
+ 3408 0d33 CF       		.byte	-49
+ 3409 0d34 27       		.byte	39
+ 3410 0d35 30       		.byte	48
+ 3411 0d36 2A       		.byte	42
+ 3412 0d37 80       		.byte	-128
+ 3413 0d38 2B       		.byte	43
+ 3414 0d39 0F       		.byte	15
+ 3415 0d3a 32       		.byte	50
+ 3416 0d3b F0       		.byte	-16
+ 3417 0d3c 33       		.byte	51
+ 3418 0d3d FF       		.byte	-1
+ 3419 0d3e 34       		.byte	52
+ 3420 0d3f 0F       		.byte	15
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 61
+
+
+ 3421 0d40 3F       		.byte	63
+ 3422 0d41 04       		.byte	4
+ 3423 0d42 40       		.byte	64
+ 3424 0d43 30       		.byte	48
+ 3425 0d44 41       		.byte	65
+ 3426 0d45 06       		.byte	6
+ 3427 0d46 49       		.byte	73
+ 3428 0d47 FF       		.byte	-1
+ 3429 0d48 4A       		.byte	74
+ 3430 0d49 FF       		.byte	-1
+ 3431 0d4a 4B       		.byte	75
+ 3432 0d4b FF       		.byte	-1
+ 3433 0d4c 4D       		.byte	77
+ 3434 0d4d A0       		.byte	-96
+ 3435 0d4e 4F       		.byte	79
+ 3436 0d4f 04       		.byte	4
+ 3437 0d50 50       		.byte	80
+ 3438 0d51 18       		.byte	24
+ 3439 0d52 58       		.byte	88
+ 3440 0d53 04       		.byte	4
+ 3441 0d54 59       		.byte	89
+ 3442 0d55 04       		.byte	4
+ 3443 0d56 5A       		.byte	90
+ 3444 0d57 04       		.byte	4
+ 3445 0d58 5C       		.byte	92
+ 3446 0d59 01       		.byte	1
+ 3447 0d5a 5D       		.byte	93
+ 3448 0d5b 01       		.byte	1
+ 3449 0d5c 5F       		.byte	95
+ 3450 0d5d 01       		.byte	1
+ 3451 0d5e 60       		.byte	96
+ 3452 0d5f 40       		.byte	64
+ 3453 0d60 62       		.byte	98
+ 3454 0d61 C0       		.byte	-64
+ 3455 0d62 64       		.byte	100
+ 3456 0d63 40       		.byte	64
+ 3457 0d64 65       		.byte	101
+ 3458 0d65 40       		.byte	64
+ 3459 0d66 66       		.byte	102
+ 3460 0d67 C0       		.byte	-64
+ 3461 0d68 68       		.byte	104
+ 3462 0d69 C0       		.byte	-64
+ 3463 0d6a 6A       		.byte	106
+ 3464 0d6b C0       		.byte	-64
+ 3465 0d6c 6C       		.byte	108
+ 3466 0d6d C0       		.byte	-64
+ 3467 0d6e 6E       		.byte	110
+ 3468 0d6f C0       		.byte	-64
+ 3469 0d70 84       		.byte	-124
+ 3470 0d71 0C       		.byte	12
+ 3471 0d72 86       		.byte	-122
+ 3472 0d73 03       		.byte	3
+ 3473 0d74 87       		.byte	-121
+ 3474 0d75 60       		.byte	96
+ 3475 0d76 89       		.byte	-119
+ 3476 0d77 1F       		.byte	31
+ 3477 0d78 8A       		.byte	-118
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 62
+
+
+ 3478 0d79 02       		.byte	2
+ 3479 0d7a 8C       		.byte	-116
+ 3480 0d7b 03       		.byte	3
+ 3481 0d7c 8D       		.byte	-115
+ 3482 0d7d 60       		.byte	96
+ 3483 0d7e 8E       		.byte	-114
+ 3484 0d7f 0C       		.byte	12
+ 3485 0d80 90       		.byte	-112
+ 3486 0d81 0F       		.byte	15
+ 3487 0d82 94       		.byte	-108
+ 3488 0d83 0C       		.byte	12
+ 3489 0d84 95       		.byte	-107
+ 3490 0d85 54       		.byte	84
+ 3491 0d86 97       		.byte	-105
+ 3492 0d87 09       		.byte	9
+ 3493 0d88 99       		.byte	-103
+ 3494 0d89 61       		.byte	97
+ 3495 0d8a 9B       		.byte	-101
+ 3496 0d8b 06       		.byte	6
+ 3497 0d8c 9C       		.byte	-100
+ 3498 0d8d 08       		.byte	8
+ 3499 0d8e 9D       		.byte	-99
+ 3500 0d8f 60       		.byte	96
+ 3501 0d90 A0       		.byte	-96
+ 3502 0d91 0C       		.byte	12
+ 3503 0d92 A2       		.byte	-94
+ 3504 0d93 03       		.byte	3
+ 3505 0d94 A3       		.byte	-93
+ 3506 0d95 60       		.byte	96
+ 3507 0d96 A4       		.byte	-92
+ 3508 0d97 04       		.byte	4
+ 3509 0d98 A7       		.byte	-89
+ 3510 0d99 60       		.byte	96
+ 3511 0d9a A9       		.byte	-87
+ 3512 0d9b 2A       		.byte	42
+ 3513 0d9c AB       		.byte	-85
+ 3514 0d9d 91       		.byte	-111
+ 3515 0d9e AD       		.byte	-83
+ 3516 0d9f 1F       		.byte	31
+ 3517 0da0 B1       		.byte	-79
+ 3518 0da1 60       		.byte	96
+ 3519 0da2 B2       		.byte	-78
+ 3520 0da3 01       		.byte	1
+ 3521 0da4 B3       		.byte	-77
+ 3522 0da5 18       		.byte	24
+ 3523 0da6 B4       		.byte	-76
+ 3524 0da7 0E       		.byte	14
+ 3525 0da8 B5       		.byte	-75
+ 3526 0da9 07       		.byte	7
+ 3527 0daa B7       		.byte	-73
+ 3528 0dab 80       		.byte	-128
+ 3529 0dac B8       		.byte	-72
+ 3530 0dad 08       		.byte	8
+ 3531 0dae BA       		.byte	-70
+ 3532 0daf 20       		.byte	32
+ 3533 0db0 C0       		.byte	-64
+ 3534 0db1 30       		.byte	48
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 63
+
+
+ 3535 0db2 C1       		.byte	-63
+ 3536 0db3 06       		.byte	6
+ 3537 0db4 C5       		.byte	-59
+ 3538 0db5 D0       		.byte	-48
+ 3539 0db6 C6       		.byte	-58
+ 3540 0db7 10       		.byte	16
+ 3541 0db8 C7       		.byte	-57
+ 3542 0db9 02       		.byte	2
+ 3543 0dba C8       		.byte	-56
+ 3544 0dbb 1A       		.byte	26
+ 3545 0dbc C9       		.byte	-55
+ 3546 0dbd FF       		.byte	-1
+ 3547 0dbe CA       		.byte	-54
+ 3548 0dbf FF       		.byte	-1
+ 3549 0dc0 CB       		.byte	-53
+ 3550 0dc1 FF       		.byte	-1
+ 3551 0dc2 CD       		.byte	-51
+ 3552 0dc3 AF       		.byte	-81
+ 3553 0dc4 CE       		.byte	-50
+ 3554 0dc5 0F       		.byte	15
+ 3555 0dc6 CF       		.byte	-49
+ 3556 0dc7 04       		.byte	4
+ 3557 0dc8 D0       		.byte	-48
+ 3558 0dc9 18       		.byte	24
+ 3559 0dca D8       		.byte	-40
+ 3560 0dcb 04       		.byte	4
+ 3561 0dcc D9       		.byte	-39
+ 3562 0dcd 04       		.byte	4
+ 3563 0dce DA       		.byte	-38
+ 3564 0dcf 04       		.byte	4
+ 3565 0dd0 DC       		.byte	-36
+ 3566 0dd1 22       		.byte	34
+ 3567 0dd2 DD       		.byte	-35
+ 3568 0dd3 01       		.byte	1
+ 3569 0dd4 DF       		.byte	-33
+ 3570 0dd5 01       		.byte	1
+ 3571 0dd6 E0       		.byte	-32
+ 3572 0dd7 40       		.byte	64
+ 3573 0dd8 E2       		.byte	-30
+ 3574 0dd9 C0       		.byte	-64
+ 3575 0dda E4       		.byte	-28
+ 3576 0ddb 40       		.byte	64
+ 3577 0ddc E5       		.byte	-27
+ 3578 0ddd 40       		.byte	64
+ 3579 0dde E6       		.byte	-26
+ 3580 0ddf C0       		.byte	-64
+ 3581 0de0 E8       		.byte	-24
+ 3582 0de1 C0       		.byte	-64
+ 3583 0de2 EA       		.byte	-22
+ 3584 0de3 C0       		.byte	-64
+ 3585 0de4 EC       		.byte	-20
+ 3586 0de5 C0       		.byte	-64
+ 3587 0de6 EE       		.byte	-18
+ 3588 0de7 C0       		.byte	-64
+ 3589 0de8 00       		.byte	0
+ 3590 0de9 54       		.byte	84
+ 3591 0dea 02       		.byte	2
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 64
+
+
+ 3592 0deb 04       		.byte	4
+ 3593 0dec 05       		.byte	5
+ 3594 0ded 80       		.byte	-128
+ 3595 0dee 06       		.byte	6
+ 3596 0def 20       		.byte	32
+ 3597 0df0 07       		.byte	7
+ 3598 0df1 08       		.byte	8
+ 3599 0df2 08       		.byte	8
+ 3600 0df3 02       		.byte	2
+ 3601 0df4 09       		.byte	9
+ 3602 0df5 08       		.byte	8
+ 3603 0df6 0A       		.byte	10
+ 3604 0df7 81       		.byte	-127
+ 3605 0df8 0E       		.byte	14
+ 3606 0df9 28       		.byte	40
+ 3607 0dfa 0F       		.byte	15
+ 3608 0dfb 80       		.byte	-128
+ 3609 0dfc 10       		.byte	16
+ 3610 0dfd 60       		.byte	96
+ 3611 0dfe 17       		.byte	23
+ 3612 0dff 21       		.byte	33
+ 3613 0e00 18       		.byte	24
+ 3614 0e01 04       		.byte	4
+ 3615 0e02 1A       		.byte	26
+ 3616 0e03 10       		.byte	16
+ 3617 0e04 1E       		.byte	30
+ 3618 0e05 28       		.byte	40
+ 3619 0e06 1F       		.byte	31
+ 3620 0e07 18       		.byte	24
+ 3621 0e08 22       		.byte	34
+ 3622 0e09 95       		.byte	-107
+ 3623 0e0a 27       		.byte	39
+ 3624 0e0b 20       		.byte	32
+ 3625 0e0c 28       		.byte	40
+ 3626 0e0d 40       		.byte	64
+ 3627 0e0e 2A       		.byte	42
+ 3628 0e0f 84       		.byte	-124
+ 3629 0e10 2B       		.byte	43
+ 3630 0e11 04       		.byte	4
+ 3631 0e12 2F       		.byte	47
+ 3632 0e13 18       		.byte	24
+ 3633 0e14 32       		.byte	50
+ 3634 0e15 54       		.byte	84
+ 3635 0e16 35       		.byte	53
+ 3636 0e17 80       		.byte	-128
+ 3637 0e18 37       		.byte	55
+ 3638 0e19 09       		.byte	9
+ 3639 0e1a 38       		.byte	56
+ 3640 0e1b 44       		.byte	68
+ 3641 0e1c 39       		.byte	57
+ 3642 0e1d 10       		.byte	16
+ 3643 0e1e 3C       		.byte	60
+ 3644 0e1f 20       		.byte	32
+ 3645 0e20 3E       		.byte	62
+ 3646 0e21 20       		.byte	32
+ 3647 0e22 3F       		.byte	63
+ 3648 0e23 80       		.byte	-128
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 65
+
+
+ 3649 0e24 40       		.byte	64
+ 3650 0e25 20       		.byte	32
+ 3651 0e26 44       		.byte	68
+ 3652 0e27 30       		.byte	48
+ 3653 0e28 49       		.byte	73
+ 3654 0e29 01       		.byte	1
+ 3655 0e2a 4A       		.byte	74
+ 3656 0e2b 08       		.byte	8
+ 3657 0e2c 4E       		.byte	78
+ 3658 0e2d 08       		.byte	8
+ 3659 0e2e 52       		.byte	82
+ 3660 0e2f 28       		.byte	40
+ 3661 0e30 84       		.byte	-124
+ 3662 0e31 10       		.byte	16
+ 3663 0e32 87       		.byte	-121
+ 3664 0e33 10       		.byte	16
+ 3665 0e34 90       		.byte	-112
+ 3666 0e35 10       		.byte	16
+ 3667 0e36 95       		.byte	-107
+ 3668 0e37 10       		.byte	16
+ 3669 0e38 96       		.byte	-106
+ 3670 0e39 56       		.byte	86
+ 3671 0e3a 97       		.byte	-105
+ 3672 0e3b 20       		.byte	32
+ 3673 0e3c 98       		.byte	-104
+ 3674 0e3d 10       		.byte	16
+ 3675 0e3e 9B       		.byte	-101
+ 3676 0e3f 48       		.byte	72
+ 3677 0e40 9D       		.byte	-99
+ 3678 0e41 41       		.byte	65
+ 3679 0e42 9E       		.byte	-98
+ 3680 0e43 40       		.byte	64
+ 3681 0e44 9F       		.byte	-97
+ 3682 0e45 05       		.byte	5
+ 3683 0e46 A0       		.byte	-96
+ 3684 0e47 10       		.byte	16
+ 3685 0e48 A5       		.byte	-91
+ 3686 0e49 04       		.byte	4
+ 3687 0e4a A6       		.byte	-90
+ 3688 0e4b 20       		.byte	32
+ 3689 0e4c AF       		.byte	-81
+ 3690 0e4d 08       		.byte	8
+ 3691 0e4e B0       		.byte	-80
+ 3692 0e4f 20       		.byte	32
+ 3693 0e50 C0       		.byte	-64
+ 3694 0e51 E7       		.byte	-25
+ 3695 0e52 C2       		.byte	-62
+ 3696 0e53 7D       		.byte	125
+ 3697 0e54 C4       		.byte	-60
+ 3698 0e55 5C       		.byte	92
+ 3699 0e56 CA       		.byte	-54
+ 3700 0e57 6F       		.byte	111
+ 3701 0e58 CC       		.byte	-52
+ 3702 0e59 DE       		.byte	-34
+ 3703 0e5a CE       		.byte	-50
+ 3704 0e5b 3E       		.byte	62
+ 3705 0e5c D0       		.byte	-48
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 66
+
+
+ 3706 0e5d 42       		.byte	66
+ 3707 0e5e D2       		.byte	-46
+ 3708 0e5f 24       		.byte	36
+ 3709 0e60 EC       		.byte	-20
+ 3710 0e61 20       		.byte	32
+ 3711 0e62 96       		.byte	-106
+ 3712 0e63 01       		.byte	1
+ 3713 0e64 97       		.byte	-105
+ 3714 0e65 02       		.byte	2
+ 3715 0e66 9B       		.byte	-101
+ 3716 0e67 02       		.byte	2
+ 3717 0e68 9D       		.byte	-99
+ 3718 0e69 01       		.byte	1
+ 3719 0e6a A6       		.byte	-90
+ 3720 0e6b 01       		.byte	1
+ 3721 0e6c B1       		.byte	-79
+ 3722 0e6d 01       		.byte	1
+ 3723 0e6e B5       		.byte	-75
+ 3724 0e6f 02       		.byte	2
+ 3725 0e70 B6       		.byte	-74
+ 3726 0e71 01       		.byte	1
+ 3727 0e72 B8       		.byte	-72
+ 3728 0e73 02       		.byte	2
+ 3729 0e74 BE       		.byte	-66
+ 3730 0e75 41       		.byte	65
+ 3731 0e76 BF       		.byte	-65
+ 3732 0e77 11       		.byte	17
+ 3733 0e78 D8       		.byte	-40
+ 3734 0e79 04       		.byte	4
+ 3735 0e7a D9       		.byte	-39
+ 3736 0e7b 04       		.byte	4
+ 3737 0e7c DF       		.byte	-33
+ 3738 0e7d 01       		.byte	1
+ 3739 0e7e 00       		.byte	0
+ 3740 0e7f 54       		.byte	84
+ 3741 0e80 02       		.byte	2
+ 3742 0e81 10       		.byte	16
+ 3743 0e82 08       		.byte	8
+ 3744 0e83 42       		.byte	66
+ 3745 0e84 0A       		.byte	10
+ 3746 0e85 2A       		.byte	42
+ 3747 0e86 0E       		.byte	14
+ 3748 0e87 10       		.byte	16
+ 3749 0e88 0F       		.byte	15
+ 3750 0e89 10       		.byte	16
+ 3751 0e8a 10       		.byte	16
+ 3752 0e8b A0       		.byte	-96
+ 3753 0e8c 11       		.byte	17
+ 3754 0e8d 40       		.byte	64
+ 3755 0e8e 13       		.byte	19
+ 3756 0e8f 20       		.byte	32
+ 3757 0e90 15       		.byte	21
+ 3758 0e91 08       		.byte	8
+ 3759 0e92 18       		.byte	24
+ 3760 0e93 40       		.byte	64
+ 3761 0e94 19       		.byte	25
+ 3762 0e95 10       		.byte	16
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 67
+
+
+ 3763 0e96 1A       		.byte	26
+ 3764 0e97 10       		.byte	16
+ 3765 0e98 1D       		.byte	29
+ 3766 0e99 40       		.byte	64
+ 3767 0e9a 1F       		.byte	31
+ 3768 0e9b 01       		.byte	1
+ 3769 0e9c 20       		.byte	32
+ 3770 0e9d 01       		.byte	1
+ 3771 0e9e 22       		.byte	34
+ 3772 0e9f 01       		.byte	1
+ 3773 0ea0 25       		.byte	37
+ 3774 0ea1 01       		.byte	1
+ 3775 0ea2 27       		.byte	39
+ 3776 0ea3 04       		.byte	4
+ 3777 0ea4 28       		.byte	40
+ 3778 0ea5 22       		.byte	34
+ 3779 0ea6 2A       		.byte	42
+ 3780 0ea7 12       		.byte	18
+ 3781 0ea8 32       		.byte	50
+ 3782 0ea9 95       		.byte	-107
+ 3783 0eaa 34       		.byte	52
+ 3784 0eab 10       		.byte	16
+ 3785 0eac 36       		.byte	54
+ 3786 0ead 08       		.byte	8
+ 3787 0eae 37       		.byte	55
+ 3788 0eaf 40       		.byte	64
+ 3789 0eb0 38       		.byte	56
+ 3790 0eb1 6A       		.byte	106
+ 3791 0eb2 40       		.byte	64
+ 3792 0eb3 71       		.byte	113
+ 3793 0eb4 4A       		.byte	74
+ 3794 0eb5 01       		.byte	1
+ 3795 0eb6 4B       		.byte	75
+ 3796 0eb7 10       		.byte	16
+ 3797 0eb8 51       		.byte	81
+ 3798 0eb9 04       		.byte	4
+ 3799 0eba 52       		.byte	82
+ 3800 0ebb 40       		.byte	64
+ 3801 0ebc 59       		.byte	89
+ 3802 0ebd 10       		.byte	16
+ 3803 0ebe 69       		.byte	105
+ 3804 0ebf 10       		.byte	16
+ 3805 0ec0 6A       		.byte	106
+ 3806 0ec1 44       		.byte	68
+ 3807 0ec2 70       		.byte	112
+ 3808 0ec3 B4       		.byte	-76
+ 3809 0ec4 71       		.byte	113
+ 3810 0ec5 08       		.byte	8
+ 3811 0ec6 72       		.byte	114
+ 3812 0ec7 03       		.byte	3
+ 3813 0ec8 73       		.byte	115
+ 3814 0ec9 20       		.byte	32
+ 3815 0eca 80       		.byte	-128
+ 3816 0ecb 02       		.byte	2
+ 3817 0ecc 82       		.byte	-126
+ 3818 0ecd 01       		.byte	1
+ 3819 0ece 83       		.byte	-125
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 68
+
+
+ 3820 0ecf 01       		.byte	1
+ 3821 0ed0 8B       		.byte	-117
+ 3822 0ed1 01       		.byte	1
+ 3823 0ed2 8C       		.byte	-116
+ 3824 0ed3 01       		.byte	1
+ 3825 0ed4 8D       		.byte	-115
+ 3826 0ed5 C1       		.byte	-63
+ 3827 0ed6 8F       		.byte	-113
+ 3828 0ed7 04       		.byte	4
+ 3829 0ed8 90       		.byte	-112
+ 3830 0ed9 14       		.byte	20
+ 3831 0eda 92       		.byte	-110
+ 3832 0edb 28       		.byte	40
+ 3833 0edc 94       		.byte	-108
+ 3834 0edd 40       		.byte	64
+ 3835 0ede 95       		.byte	-107
+ 3836 0edf 10       		.byte	16
+ 3837 0ee0 96       		.byte	-106
+ 3838 0ee1 45       		.byte	69
+ 3839 0ee2 98       		.byte	-104
+ 3840 0ee3 10       		.byte	16
+ 3841 0ee4 9B       		.byte	-101
+ 3842 0ee5 40       		.byte	64
+ 3843 0ee6 9C       		.byte	-100
+ 3844 0ee7 42       		.byte	66
+ 3845 0ee8 9D       		.byte	-99
+ 3846 0ee9 C0       		.byte	-64
+ 3847 0eea 9E       		.byte	-98
+ 3848 0eeb 40       		.byte	64
+ 3849 0eec 9F       		.byte	-97
+ 3850 0eed 05       		.byte	5
+ 3851 0eee A2       		.byte	-94
+ 3852 0eef 88       		.byte	-120
+ 3853 0ef0 A4       		.byte	-92
+ 3854 0ef1 20       		.byte	32
+ 3855 0ef2 A5       		.byte	-91
+ 3856 0ef3 08       		.byte	8
+ 3857 0ef4 A7       		.byte	-89
+ 3858 0ef5 04       		.byte	4
+ 3859 0ef6 AF       		.byte	-81
+ 3860 0ef7 08       		.byte	8
+ 3861 0ef8 B2       		.byte	-78
+ 3862 0ef9 84       		.byte	-124
+ 3863 0efa B5       		.byte	-75
+ 3864 0efb 04       		.byte	4
+ 3865 0efc B7       		.byte	-73
+ 3866 0efd 40       		.byte	64
+ 3867 0efe C0       		.byte	-64
+ 3868 0eff 07       		.byte	7
+ 3869 0f00 C2       		.byte	-62
+ 3870 0f01 2F       		.byte	47
+ 3871 0f02 C4       		.byte	-60
+ 3872 0f03 2F       		.byte	47
+ 3873 0f04 CA       		.byte	-54
+ 3874 0f05 0F       		.byte	15
+ 3875 0f06 CC       		.byte	-52
+ 3876 0f07 7F       		.byte	127
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 69
+
+
+ 3877 0f08 CE       		.byte	-50
+ 3878 0f09 0F       		.byte	15
+ 3879 0f0a D0       		.byte	-48
+ 3880 0f0b 0B       		.byte	11
+ 3881 0f0c D2       		.byte	-46
+ 3882 0f0d 0C       		.byte	12
+ 3883 0f0e D6       		.byte	-42
+ 3884 0f0f 04       		.byte	4
+ 3885 0f10 E4       		.byte	-28
+ 3886 0f11 60       		.byte	96
+ 3887 0f12 EC       		.byte	-20
+ 3888 0f13 40       		.byte	64
+ 3889 0f14 30       		.byte	48
+ 3890 0f15 10       		.byte	16
+ 3891 0f16 32       		.byte	50
+ 3892 0f17 04       		.byte	4
+ 3893 0f18 36       		.byte	54
+ 3894 0f19 40       		.byte	64
+ 3895 0f1a 37       		.byte	55
+ 3896 0f1b 02       		.byte	2
+ 3897 0f1c 3B       		.byte	59
+ 3898 0f1d 40       		.byte	64
+ 3899 0f1e 86       		.byte	-122
+ 3900 0f1f 40       		.byte	64
+ 3901 0f20 CC       		.byte	-52
+ 3902 0f21 F0       		.byte	-16
+ 3903 0f22 CE       		.byte	-50
+ 3904 0f23 10       		.byte	16
+ 3905 0f24 E6       		.byte	-26
+ 3906 0f25 40       		.byte	64
+ 3907 0f26 0A       		.byte	10
+ 3908 0f27 04       		.byte	4
+ 3909 0f28 0E       		.byte	14
+ 3910 0f29 10       		.byte	16
+ 3911 0f2a 51       		.byte	81
+ 3912 0f2b 01       		.byte	1
+ 3913 0f2c 5C       		.byte	92
+ 3914 0f2d 40       		.byte	64
+ 3915 0f2e 86       		.byte	-122
+ 3916 0f2f 04       		.byte	4
+ 3917 0f30 8F       		.byte	-113
+ 3918 0f31 02       		.byte	2
+ 3919 0f32 96       		.byte	-106
+ 3920 0f33 08       		.byte	8
+ 3921 0f34 97       		.byte	-105
+ 3922 0f35 40       		.byte	64
+ 3923 0f36 9C       		.byte	-100
+ 3924 0f37 10       		.byte	16
+ 3925 0f38 9F       		.byte	-97
+ 3926 0f39 02       		.byte	2
+ 3927 0f3a C2       		.byte	-62
+ 3928 0f3b 60       		.byte	96
+ 3929 0f3c D4       		.byte	-44
+ 3930 0f3d 80       		.byte	-128
+ 3931 0f3e D6       		.byte	-42
+ 3932 0f3f 20       		.byte	32
+ 3933 0f40 E6       		.byte	-26
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 70
+
+
+ 3934 0f41 10       		.byte	16
+ 3935 0f42 8E       		.byte	-114
+ 3936 0f43 10       		.byte	16
+ 3937 0f44 92       		.byte	-110
+ 3938 0f45 10       		.byte	16
+ 3939 0f46 94       		.byte	-108
+ 3940 0f47 40       		.byte	64
+ 3941 0f48 97       		.byte	-105
+ 3942 0f49 40       		.byte	64
+ 3943 0f4a 9C       		.byte	-100
+ 3944 0f4b 10       		.byte	16
+ 3945 0f4c AD       		.byte	-83
+ 3946 0f4d 01       		.byte	1
+ 3947 0f4e AE       		.byte	-82
+ 3948 0f4f 04       		.byte	4
+ 3949 0f50 B4       		.byte	-76
+ 3950 0f51 40       		.byte	64
+ 3951 0f52 E8       		.byte	-24
+ 3952 0f53 40       		.byte	64
+ 3953 0f54 EE       		.byte	-18
+ 3954 0f55 40       		.byte	64
+ 3955 0f56 86       		.byte	-122
+ 3956 0f57 02       		.byte	2
+ 3957 0f58 8B       		.byte	-117
+ 3958 0f59 40       		.byte	64
+ 3959 0f5a 94       		.byte	-108
+ 3960 0f5b 40       		.byte	64
+ 3961 0f5c 97       		.byte	-105
+ 3962 0f5d 40       		.byte	64
+ 3963 0f5e 9C       		.byte	-100
+ 3964 0f5f 10       		.byte	16
+ 3965 0f60 E2       		.byte	-30
+ 3966 0f61 40       		.byte	64
+ 3967 0f62 00       		.byte	0
+ 3968 0f63 10       		.byte	16
+ 3969 0f64 05       		.byte	5
+ 3970 0f65 20       		.byte	32
+ 3971 0f66 63       		.byte	99
+ 3972 0f67 02       		.byte	2
+ 3973 0f68 66       		.byte	102
+ 3974 0f69 02       		.byte	2
+ 3975 0f6a 94       		.byte	-108
+ 3976 0f6b 10       		.byte	16
+ 3977 0f6c B4       		.byte	-76
+ 3978 0f6d 10       		.byte	16
+ 3979 0f6e C0       		.byte	-64
+ 3980 0f6f 03       		.byte	3
+ 3981 0f70 D6       		.byte	-42
+ 3982 0f71 02       		.byte	2
+ 3983 0f72 D8       		.byte	-40
+ 3984 0f73 01       		.byte	1
+ 3985 0f74 EA       		.byte	-22
+ 3986 0f75 08       		.byte	8
+ 3987 0f76 AF       		.byte	-81
+ 3988 0f77 01       		.byte	1
+ 3989 0f78 B5       		.byte	-75
+ 3990 0f79 20       		.byte	32
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 71
+
+
+ 3991 0f7a B6       		.byte	-74
+ 3992 0f7b 02       		.byte	2
+ 3993 0f7c E8       		.byte	-24
+ 3994 0f7d 02       		.byte	2
+ 3995 0f7e EA       		.byte	-22
+ 3996 0f7f 08       		.byte	8
+ 3997 0f80 5C       		.byte	92
+ 3998 0f81 40       		.byte	64
+ 3999 0f82 8B       		.byte	-117
+ 4000 0f83 40       		.byte	64
+ 4001 0f84 94       		.byte	-108
+ 4002 0f85 40       		.byte	64
+ 4003 0f86 97       		.byte	-105
+ 4004 0f87 C0       		.byte	-64
+ 4005 0f88 9C       		.byte	-100
+ 4006 0f89 10       		.byte	16
+ 4007 0f8a A2       		.byte	-94
+ 4008 0f8b 02       		.byte	2
+ 4009 0f8c D6       		.byte	-42
+ 4010 0f8d 20       		.byte	32
+ 4011 0f8e 07       		.byte	7
+ 4012 0f8f 04       		.byte	4
+ 4013 0f90 0B       		.byte	11
+ 4014 0f91 80       		.byte	-128
+ 4015 0f92 62       		.byte	98
+ 4016 0f93 02       		.byte	2
+ 4017 0f94 80       		.byte	-128
+ 4018 0f95 40       		.byte	64
+ 4019 0f96 83       		.byte	-125
+ 4020 0f97 04       		.byte	4
+ 4021 0f98 84       		.byte	-124
+ 4022 0f99 10       		.byte	16
+ 4023 0f9a 94       		.byte	-108
+ 4024 0f9b 40       		.byte	64
+ 4025 0f9c 97       		.byte	-105
+ 4026 0f9d 80       		.byte	-128
+ 4027 0f9e 9C       		.byte	-100
+ 4028 0f9f 10       		.byte	16
+ 4029 0fa0 A2       		.byte	-94
+ 4030 0fa1 02       		.byte	2
+ 4031 0fa2 C0       		.byte	-64
+ 4032 0fa3 80       		.byte	-128
+ 4033 0fa4 C2       		.byte	-62
+ 4034 0fa5 10       		.byte	16
+ 4035 0fa6 D8       		.byte	-40
+ 4036 0fa7 40       		.byte	64
+ 4037 0fa8 E0       		.byte	-32
+ 4038 0fa9 80       		.byte	-128
+ 4039 0faa E6       		.byte	-26
+ 4040 0fab 60       		.byte	96
+ 4041 0fac 08       		.byte	8
+ 4042 0fad 10       		.byte	16
+ 4043 0fae 5D       		.byte	93
+ 4044 0faf 02       		.byte	2
+ 4045 0fb0 C2       		.byte	-62
+ 4046 0fb1 02       		.byte	2
+ 4047 0fb2 D6       		.byte	-42
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 72
+
+
+ 4048 0fb3 01       		.byte	1
+ 4049 0fb4 12       		.byte	18
+ 4050 0fb5 80       		.byte	-128
+ 4051 0fb6 19       		.byte	25
+ 4052 0fb7 02       		.byte	2
+ 4053 0fb8 75       		.byte	117
+ 4054 0fb9 04       		.byte	4
+ 4055 0fba 78       		.byte	120
+ 4056 0fbb 10       		.byte	16
+ 4057 0fbc 8D       		.byte	-115
+ 4058 0fbd 04       		.byte	4
+ 4059 0fbe 8E       		.byte	-114
+ 4060 0fbf 80       		.byte	-128
+ 4061 0fc0 98       		.byte	-104
+ 4062 0fc1 10       		.byte	16
+ 4063 0fc2 9D       		.byte	-99
+ 4064 0fc3 02       		.byte	2
+ 4065 0fc4 C4       		.byte	-60
+ 4066 0fc5 08       		.byte	8
+ 4067 0fc6 C6       		.byte	-58
+ 4068 0fc7 08       		.byte	8
+ 4069 0fc8 DE       		.byte	-34
+ 4070 0fc9 06       		.byte	6
+ 4071 0fca E0       		.byte	-32
+ 4072 0fcb 08       		.byte	8
+ 4073 0fcc E2       		.byte	-30
+ 4074 0fcd 02       		.byte	2
+ 4075 0fce 00       		.byte	0
+ 4076 0fcf 07       		.byte	7
+ 4077 0fd0 08       		.byte	8
+ 4078 0fd1 06       		.byte	6
+ 4079 0fd2 0A       		.byte	10
+ 4080 0fd3 06       		.byte	6
+ 4081 0fd4 0C       		.byte	12
+ 4082 0fd5 07       		.byte	7
+ 4083 0fd6 0E       		.byte	14
+ 4084 0fd7 02       		.byte	2
+ 4085 0fd8 10       		.byte	16
+ 4086 0fd9 07       		.byte	7
+ 4087 0fda 1A       		.byte	26
+ 4088 0fdb 07       		.byte	7
+ 4089 0fdc 1C       		.byte	28
+ 4090 0fdd 06       		.byte	6
+ 4091 0fde 00       		.byte	0
+ 4092 0fdf FF       		.byte	-1
+ 4093 0fe0 01       		.byte	1
+ 4094 0fe1 03       		.byte	3
+ 4095 0fe2 00       		.byte	0
+ 4096 0fe3 00       		.byte	0
+ 4097 0fe4 80       		.byte	-128
+ 4098 0fe5 80       		.byte	-128
+ 4099 0fe6 00       		.byte	0
+ 4100 0fe7 00       		.byte	0
+ 4101 0fe8 40       		.byte	64
+ 4102 0fe9 00       		.byte	0
+ 4103 0fea 00       		.byte	0
+ 4104 0feb 00       		.byte	0
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 73
+
+
+ 4105 0fec 00       		.byte	0
+ 4106 0fed 04       		.byte	4
+ 4107 0fee 00       		.byte	0
+ 4108 0fef 40       		.byte	64
+ 4109 0ff0 1F       		.byte	31
+ 4110 0ff1 18       		.byte	24
+ 4111 0ff2 20       		.byte	32
+ 4112 0ff3 00       		.byte	0
+ 4113 0ff4 00       		.byte	0
+ 4114 0ff5 08       		.byte	8
+ 4115 0ff6 23       		.byte	35
+ 4116 0ff7 00       		.byte	0
+ 4117 0ff8 33       		.byte	51
+ 4118 0ff9 07       		.byte	7
+ 4119 0ffa 0C       		.byte	12
+ 4120 0ffb 18       		.byte	24
+ 4121 0ffc 3F       		.byte	63
+ 4122 0ffd 1C       		.byte	28
+ 4123 0ffe 00       		.byte	0
+ 4124 0fff 02       		.byte	2
+ 4125 1000 03       		.byte	3
+ 4126 1001 00       		.byte	0
+ 4127 1002 00       		.byte	0
+ 4128 1003 40       		.byte	64
+ 4129 1004 02       		.byte	2
+ 4130 1005 00       		.byte	0
+ 4131 1006 00       		.byte	0
+ 4132 1007 20       		.byte	32
+ 4133 1008 3C       		.byte	60
+ 4134 1009 00       		.byte	0
+ 4135 100a 03       		.byte	3
+ 4136 100b 04       		.byte	4
+ 4137 100c 08       		.byte	8
+ 4138 100d 10       		.byte	16
+ 4139 100e 00       		.byte	0
+ 4140 100f 00       		.byte	0
+ 4141 1010 04       		.byte	4
+ 4142 1011 00       		.byte	0
+ 4143 1012 00       		.byte	0
+ 4144 1013 03       		.byte	3
+ 4145 1014 0C       		.byte	12
+ 4146 1015 1C       		.byte	28
+ 4147 1016 00       		.byte	0
+ 4148 1017 01       		.byte	1
+ 4149 1018 01       		.byte	1
+ 4150 1019 1F       		.byte	31
+ 4151 101a 00       		.byte	0
+ 4152 101b 00       		.byte	0
+ 4153 101c 0F       		.byte	15
+ 4154 101d 1F       		.byte	31
+ 4155 101e 2C       		.byte	44
+ 4156 101f 00       		.byte	0
+ 4157 1020 10       		.byte	16
+ 4158 1021 00       		.byte	0
+ 4159 1022 00       		.byte	0
+ 4160 1023 60       		.byte	96
+ 4161 1024 00       		.byte	0
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 74
+
+
+ 4162 1025 00       		.byte	0
+ 4163 1026 02       		.byte	2
+ 4164 1027 02       		.byte	2
+ 4165 1028 00       		.byte	0
+ 4166 1029 00       		.byte	0
+ 4167 102a 10       		.byte	16
+ 4168 102b 40       		.byte	64
+ 4169 102c 43       		.byte	67
+ 4170 102d 05       		.byte	5
+ 4171 102e 06       		.byte	6
+ 4172 102f 00       		.byte	0
+ 4173 1030 01       		.byte	1
+ 4174 1031 00       		.byte	0
+ 4175 1032 0E       		.byte	14
+ 4176 1033 0C       		.byte	12
+ 4177 1034 14       		.byte	20
+ 4178 1035 FF       		.byte	-1
+ 4179 1036 FF       		.byte	-1
+ 4180 1037 FF       		.byte	-1
+ 4181 1038 62       		.byte	98
+ 4182 1039 A0       		.byte	-96
+ 4183 103a F0       		.byte	-16
+ 4184 103b 41       		.byte	65
+ 4185 103c 0C       		.byte	12
+ 4186 103d 00       		.byte	0
+ 4187 103e 00       		.byte	0
+ 4188 103f 00       		.byte	0
+ 4189 1040 00       		.byte	0
+ 4190 1041 00       		.byte	0
+ 4191 1042 02       		.byte	2
+ 4192 1043 11       		.byte	17
+ 4193 1044 04       		.byte	4
+ 4194 1045 04       		.byte	4
+ 4195 1046 04       		.byte	4
+ 4196 1047 04       		.byte	4
+ 4197 1048 22       		.byte	34
+ 4198 1049 22       		.byte	34
+ 4199 104a 00       		.byte	0
+ 4200 104b 01       		.byte	1
+ 4201 104c 00       		.byte	0
+ 4202 104d 00       		.byte	0
+ 4203 104e 00       		.byte	0
+ 4204 104f 00       		.byte	0
+ 4205 1050 00       		.byte	0
+ 4206 1051 00       		.byte	0
+ 4207 1052 40       		.byte	64
+ 4208 1053 02       		.byte	2
+ 4209 1054 00       		.byte	0
+ 4210 1055 10       		.byte	16
+ 4211 1056 30       		.byte	48
+ 4212 1057 10       		.byte	16
+ 4213 1058 00       		.byte	0
+ 4214 1059 10       		.byte	16
+ 4215 105a 10       		.byte	16
+ 4216 105b 12       		.byte	18
+ 4217 105c 00       		.byte	0
+ 4218 105d 00       		.byte	0
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 75
+
+
+ 4219 105e 00       		.byte	0
+ 4220 105f 00       		.byte	0
+ 4221 1060 00       		.byte	0
+ 4222 1061 00       		.byte	0
+ 4223 1062 00       		.byte	0
+ 4224 1063 00       		.byte	0
+ 4225 1064 00       		.byte	0
+ 4226 1065 00       		.byte	0
+ 4227 1066 00       		.byte	0
+ 4228 1067 00       		.byte	0
+ 4229 1068 00       		.byte	0
+ 4230 1069 00       		.byte	0
+ 4231 106a 00       		.byte	0
+ 4232 106b 00       		.byte	0
+ 4233 106c 60       		.byte	96
+ 4234 106d 0E       		.byte	14
+ 4235 106e 0E       		.byte	14
+ 4236 106f 00       		.byte	0
+ 4237 1070 0C       		.byte	12
+ 4238 1071 00       		.byte	0
+ 4239 1072 00       		.byte	0
+ 4240 1073 00       		.byte	0
+ 4241 1074 80       		.byte	-128
+ 4242 1075 00       		.byte	0
+ 4243 1076 40       		.byte	64
+ 4244 1077 80       		.byte	-128
+ 4245 1078 80       		.byte	-128
+ 4246 1079 00       		.byte	0
+ 4247 107a 80       		.byte	-128
+ 4248 107b 00       		.byte	0
+ 4249 107c 00       		.byte	0
+ 4250 107d 00       		.byte	0
+ 4251 107e 00       		.byte	0
+ 4252 107f 00       		.byte	0
+ 4253 1080 00       		.byte	0
+ 4254 1081 01       		.byte	1
+ 4255 1082 01       		.byte	1
+ 4256 1083 00       		.byte	0
+ 4257 1084 01       		.byte	1
+ 4258 1085 00       		.byte	0
+ 4259 1086 00       		.byte	0
+ 4260 1087 00       		.byte	0
+ 4261 1088 40       		.byte	64
+ 4262 1089 2B       		.byte	43
+ 4263 108a 2B       		.byte	43
+ 4264 108b 00       		.byte	0
+ 4265 108c 20       		.byte	32
+ 4266 108d 00       		.byte	0
+ 4267 108e 00       		.byte	0
+ 4268 108f 00       		.byte	0
+ 4269 1090 0C       		.byte	12
+ 4270 1091 E2       		.byte	-30
+ 4271 1092 E2       		.byte	-30
+ 4272 1093 00       		.byte	0
+ 4273 1094 60       		.byte	96
+ 4274 1095 00       		.byte	0
+ 4275 1096 00       		.byte	0
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 76
+
+
+ 4276 1097 00       		.byte	0
+ 4277 1098 18       		.byte	24
+ 4278 1099 C0       		.byte	-64
+ 4279 109a C0       		.byte	-64
+ 4280 109b 00       		.byte	0
+ 4281 109c 80       		.byte	-128
+ 4282 109d 00       		.byte	0
+ 4283 109e 00       		.byte	0
+ 4284 109f 00       		.byte	0
+ 4285              		.section	.cywolatch,"a",%progbits
+ 4286              		.align	2
+ 4287              		.type	cy_meta_wonvl, %object
+ 4288              		.size	cy_meta_wonvl, 4
+ 4289              	cy_meta_wonvl:
+ 4290 0000 BC       		.byte	-68
+ 4291 0001 90       		.byte	-112
+ 4292 0002 AC       		.byte	-84
+ 4293 0003 AF       		.byte	-81
+ 4294              		.section	.cycustnvl,"a",%progbits
+ 4295              		.align	2
+ 4296              		.type	cy_meta_custnvl, %object
+ 4297              		.size	cy_meta_custnvl, 4
+ 4298              	cy_meta_custnvl:
+ 4299 0000 00       		.byte	0
+ 4300 0001 00       		.byte	0
+ 4301 0002 40       		.byte	64
+ 4302 0003 05       		.byte	5
+ 4303              		.section	.cymeta,"a",%progbits
+ 4304              		.align	2
+ 4305              		.type	cy_metadata, %object
+ 4306              		.size	cy_metadata, 12
+ 4307              	cy_metadata:
+ 4308 0000 00       		.byte	0
+ 4309 0001 01       		.byte	1
+ 4310 0002 2E       		.byte	46
+ 4311 0003 16       		.byte	22
+ 4312 0004 10       		.byte	16
+ 4313 0005 69       		.byte	105
+ 4314 0006 00       		.byte	0
+ 4315 0007 01       		.byte	1
+ 4316 0008 00       		.byte	0
+ 4317 0009 00       		.byte	0
+ 4318 000a 00       		.byte	0
+ 4319 000b 00       		.byte	0
+ 4320              		.section	.cyflashprotect,"a",%progbits
+ 4321              		.align	2
+ 4322              		.type	cy_meta_flashprotect, %object
+ 4323              		.size	cy_meta_flashprotect, 256
+ 4324              	cy_meta_flashprotect:
+ 4325 0000 00000000 		.space	256
+ 4325      00000000 
+ 4325      00000000 
+ 4325      00000000 
+ 4325      00000000 
+ 4326              		.text
+ 4327              	.Letext0:
+ 4328              		.file 1 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 77
+
+
+ 4329              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 4330              		.file 3 "Generated_Source\\PSoC5\\cymetadata.c"
+ 4331              		.section	.debug_info,"",%progbits
+ 4332              	.Ldebug_info0:
+ 4333 0000 35010000 		.4byte	0x135
+ 4334 0004 0400     		.2byte	0x4
+ 4335 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 4336 000a 04       		.byte	0x4
+ 4337 000b 01       		.uleb128 0x1
+ 4338 000c 24000000 		.4byte	.LASF17
+ 4339 0010 0C       		.byte	0xc
+ 4340 0011 B2010000 		.4byte	.LASF18
+ 4341 0015 D7000000 		.4byte	.LASF19
+ 4342 0019 00000000 		.4byte	.Ldebug_line0
+ 4343 001d 02       		.uleb128 0x2
+ 4344 001e 01       		.byte	0x1
+ 4345 001f 06       		.byte	0x6
+ 4346 0020 A6010000 		.4byte	.LASF0
+ 4347 0024 03       		.uleb128 0x3
+ 4348 0025 00000000 		.4byte	.LASF9
+ 4349 0029 01       		.byte	0x1
+ 4350 002a 1D       		.byte	0x1d
+ 4351 002b 2F000000 		.4byte	0x2f
+ 4352 002f 02       		.uleb128 0x2
+ 4353 0030 01       		.byte	0x1
+ 4354 0031 08       		.byte	0x8
+ 4355 0032 16000000 		.4byte	.LASF1
+ 4356 0036 02       		.uleb128 0x2
+ 4357 0037 02       		.byte	0x2
+ 4358 0038 05       		.byte	0x5
+ 4359 0039 93010000 		.4byte	.LASF2
+ 4360 003d 02       		.uleb128 0x2
+ 4361 003e 02       		.byte	0x2
+ 4362 003f 07       		.byte	0x7
+ 4363 0040 C4000000 		.4byte	.LASF3
+ 4364 0044 02       		.uleb128 0x2
+ 4365 0045 04       		.byte	0x4
+ 4366 0046 05       		.byte	0x5
+ 4367 0047 9D010000 		.4byte	.LASF4
+ 4368 004b 02       		.uleb128 0x2
+ 4369 004c 04       		.byte	0x4
+ 4370 004d 07       		.byte	0x7
+ 4371 004e B2000000 		.4byte	.LASF5
+ 4372 0052 02       		.uleb128 0x2
+ 4373 0053 08       		.byte	0x8
+ 4374 0054 05       		.byte	0x5
+ 4375 0055 85010000 		.4byte	.LASF6
+ 4376 0059 02       		.uleb128 0x2
+ 4377 005a 08       		.byte	0x8
+ 4378 005b 07       		.byte	0x7
+ 4379 005c 3A010000 		.4byte	.LASF7
+ 4380 0060 04       		.uleb128 0x4
+ 4381 0061 04       		.byte	0x4
+ 4382 0062 05       		.byte	0x5
+ 4383 0063 696E7400 		.ascii	"int\000"
+ 4384 0067 02       		.uleb128 0x2
+ 4385 0068 04       		.byte	0x4
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 78
+
+
+ 4386 0069 07       		.byte	0x7
+ 4387 006a 2D010000 		.4byte	.LASF8
+ 4388 006e 03       		.uleb128 0x3
+ 4389 006f 51010000 		.4byte	.LASF10
+ 4390 0073 02       		.byte	0x2
+ 4391 0074 18       		.byte	0x18
+ 4392 0075 24000000 		.4byte	0x24
+ 4393 0079 05       		.uleb128 0x5
+ 4394 007a 91000000 		.4byte	0x91
+ 4395 007e 8A000000 		.4byte	0x8a
+ 4396 0082 06       		.uleb128 0x6
+ 4397 0083 8A000000 		.4byte	0x8a
+ 4398 0087 9F10     		.2byte	0x109f
+ 4399 0089 00       		.byte	0
+ 4400 008a 02       		.uleb128 0x2
+ 4401 008b 04       		.byte	0x4
+ 4402 008c 07       		.byte	0x7
+ 4403 008d 7C010000 		.4byte	.LASF11
+ 4404 0091 07       		.uleb128 0x7
+ 4405 0092 6E000000 		.4byte	0x6e
+ 4406 0096 08       		.uleb128 0x8
+ 4407 0097 1B010000 		.4byte	.LASF12
+ 4408 009b 03       		.byte	0x3
+ 4409 009c 1F       		.byte	0x1f
+ 4410 009d A7000000 		.4byte	0xa7
+ 4411 00a1 05       		.uleb128 0x5
+ 4412 00a2 03       		.byte	0x3
+ 4413 00a3 00000000 		.4byte	cy_meta_configecc
+ 4414 00a7 07       		.uleb128 0x7
+ 4415 00a8 79000000 		.4byte	0x79
+ 4416 00ac 05       		.uleb128 0x5
+ 4417 00ad 91000000 		.4byte	0x91
+ 4418 00b1 BC000000 		.4byte	0xbc
+ 4419 00b5 09       		.uleb128 0x9
+ 4420 00b6 8A000000 		.4byte	0x8a
+ 4421 00ba 03       		.byte	0x3
+ 4422 00bb 00       		.byte	0
+ 4423 00bc 0A       		.uleb128 0xa
+ 4424 00bd 0B010000 		.4byte	.LASF13
+ 4425 00c1 03       		.byte	0x3
+ 4426 00c2 4002     		.2byte	0x240
+ 4427 00c4 CE000000 		.4byte	0xce
+ 4428 00c8 05       		.uleb128 0x5
+ 4429 00c9 03       		.byte	0x3
+ 4430 00ca 00000000 		.4byte	cy_meta_custnvl
+ 4431 00ce 07       		.uleb128 0x7
+ 4432 00cf AC000000 		.4byte	0xac
+ 4433 00d3 0A       		.uleb128 0xa
+ 4434 00d4 6E010000 		.4byte	.LASF14
+ 4435 00d8 03       		.byte	0x3
+ 4436 00d9 4E02     		.2byte	0x24e
+ 4437 00db E5000000 		.4byte	0xe5
+ 4438 00df 05       		.uleb128 0x5
+ 4439 00e0 03       		.byte	0x3
+ 4440 00e1 00000000 		.4byte	cy_meta_wonvl
+ 4441 00e5 07       		.uleb128 0x7
+ 4442 00e6 AC000000 		.4byte	0xac
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 79
+
+
+ 4443 00ea 05       		.uleb128 0x5
+ 4444 00eb 91000000 		.4byte	0x91
+ 4445 00ef FA000000 		.4byte	0xfa
+ 4446 00f3 09       		.uleb128 0x9
+ 4447 00f4 8A000000 		.4byte	0x8a
+ 4448 00f8 FF       		.byte	0xff
+ 4449 00f9 00       		.byte	0
+ 4450 00fa 0A       		.uleb128 0xa
+ 4451 00fb 59010000 		.4byte	.LASF15
+ 4452 00ff 03       		.byte	0x3
+ 4453 0100 5C02     		.2byte	0x25c
+ 4454 0102 0C010000 		.4byte	0x10c
+ 4455 0106 05       		.uleb128 0x5
+ 4456 0107 03       		.byte	0x3
+ 4457 0108 00000000 		.4byte	cy_meta_flashprotect
+ 4458 010c 07       		.uleb128 0x7
+ 4459 010d EA000000 		.4byte	0xea
+ 4460 0111 05       		.uleb128 0x5
+ 4461 0112 91000000 		.4byte	0x91
+ 4462 0116 21010000 		.4byte	0x121
+ 4463 011a 09       		.uleb128 0x9
+ 4464 011b 8A000000 		.4byte	0x8a
+ 4465 011f 0B       		.byte	0xb
+ 4466 0120 00       		.byte	0
+ 4467 0121 0A       		.uleb128 0xa
+ 4468 0122 0A000000 		.4byte	.LASF16
+ 4469 0126 03       		.byte	0x3
+ 4470 0127 8902     		.2byte	0x289
+ 4471 0129 33010000 		.4byte	0x133
+ 4472 012d 05       		.uleb128 0x5
+ 4473 012e 03       		.byte	0x3
+ 4474 012f 00000000 		.4byte	cy_metadata
+ 4475 0133 07       		.uleb128 0x7
+ 4476 0134 11010000 		.4byte	0x111
+ 4477 0138 00       		.byte	0
+ 4478              		.section	.debug_abbrev,"",%progbits
+ 4479              	.Ldebug_abbrev0:
+ 4480 0000 01       		.uleb128 0x1
+ 4481 0001 11       		.uleb128 0x11
+ 4482 0002 01       		.byte	0x1
+ 4483 0003 25       		.uleb128 0x25
+ 4484 0004 0E       		.uleb128 0xe
+ 4485 0005 13       		.uleb128 0x13
+ 4486 0006 0B       		.uleb128 0xb
+ 4487 0007 03       		.uleb128 0x3
+ 4488 0008 0E       		.uleb128 0xe
+ 4489 0009 1B       		.uleb128 0x1b
+ 4490 000a 0E       		.uleb128 0xe
+ 4491 000b 10       		.uleb128 0x10
+ 4492 000c 17       		.uleb128 0x17
+ 4493 000d 00       		.byte	0
+ 4494 000e 00       		.byte	0
+ 4495 000f 02       		.uleb128 0x2
+ 4496 0010 24       		.uleb128 0x24
+ 4497 0011 00       		.byte	0
+ 4498 0012 0B       		.uleb128 0xb
+ 4499 0013 0B       		.uleb128 0xb
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 80
+
+
+ 4500 0014 3E       		.uleb128 0x3e
+ 4501 0015 0B       		.uleb128 0xb
+ 4502 0016 03       		.uleb128 0x3
+ 4503 0017 0E       		.uleb128 0xe
+ 4504 0018 00       		.byte	0
+ 4505 0019 00       		.byte	0
+ 4506 001a 03       		.uleb128 0x3
+ 4507 001b 16       		.uleb128 0x16
+ 4508 001c 00       		.byte	0
+ 4509 001d 03       		.uleb128 0x3
+ 4510 001e 0E       		.uleb128 0xe
+ 4511 001f 3A       		.uleb128 0x3a
+ 4512 0020 0B       		.uleb128 0xb
+ 4513 0021 3B       		.uleb128 0x3b
+ 4514 0022 0B       		.uleb128 0xb
+ 4515 0023 49       		.uleb128 0x49
+ 4516 0024 13       		.uleb128 0x13
+ 4517 0025 00       		.byte	0
+ 4518 0026 00       		.byte	0
+ 4519 0027 04       		.uleb128 0x4
+ 4520 0028 24       		.uleb128 0x24
+ 4521 0029 00       		.byte	0
+ 4522 002a 0B       		.uleb128 0xb
+ 4523 002b 0B       		.uleb128 0xb
+ 4524 002c 3E       		.uleb128 0x3e
+ 4525 002d 0B       		.uleb128 0xb
+ 4526 002e 03       		.uleb128 0x3
+ 4527 002f 08       		.uleb128 0x8
+ 4528 0030 00       		.byte	0
+ 4529 0031 00       		.byte	0
+ 4530 0032 05       		.uleb128 0x5
+ 4531 0033 01       		.uleb128 0x1
+ 4532 0034 01       		.byte	0x1
+ 4533 0035 49       		.uleb128 0x49
+ 4534 0036 13       		.uleb128 0x13
+ 4535 0037 01       		.uleb128 0x1
+ 4536 0038 13       		.uleb128 0x13
+ 4537 0039 00       		.byte	0
+ 4538 003a 00       		.byte	0
+ 4539 003b 06       		.uleb128 0x6
+ 4540 003c 21       		.uleb128 0x21
+ 4541 003d 00       		.byte	0
+ 4542 003e 49       		.uleb128 0x49
+ 4543 003f 13       		.uleb128 0x13
+ 4544 0040 2F       		.uleb128 0x2f
+ 4545 0041 05       		.uleb128 0x5
+ 4546 0042 00       		.byte	0
+ 4547 0043 00       		.byte	0
+ 4548 0044 07       		.uleb128 0x7
+ 4549 0045 26       		.uleb128 0x26
+ 4550 0046 00       		.byte	0
+ 4551 0047 49       		.uleb128 0x49
+ 4552 0048 13       		.uleb128 0x13
+ 4553 0049 00       		.byte	0
+ 4554 004a 00       		.byte	0
+ 4555 004b 08       		.uleb128 0x8
+ 4556 004c 34       		.uleb128 0x34
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 81
+
+
+ 4557 004d 00       		.byte	0
+ 4558 004e 03       		.uleb128 0x3
+ 4559 004f 0E       		.uleb128 0xe
+ 4560 0050 3A       		.uleb128 0x3a
+ 4561 0051 0B       		.uleb128 0xb
+ 4562 0052 3B       		.uleb128 0x3b
+ 4563 0053 0B       		.uleb128 0xb
+ 4564 0054 49       		.uleb128 0x49
+ 4565 0055 13       		.uleb128 0x13
+ 4566 0056 3F       		.uleb128 0x3f
+ 4567 0057 19       		.uleb128 0x19
+ 4568 0058 02       		.uleb128 0x2
+ 4569 0059 18       		.uleb128 0x18
+ 4570 005a 00       		.byte	0
+ 4571 005b 00       		.byte	0
+ 4572 005c 09       		.uleb128 0x9
+ 4573 005d 21       		.uleb128 0x21
+ 4574 005e 00       		.byte	0
+ 4575 005f 49       		.uleb128 0x49
+ 4576 0060 13       		.uleb128 0x13
+ 4577 0061 2F       		.uleb128 0x2f
+ 4578 0062 0B       		.uleb128 0xb
+ 4579 0063 00       		.byte	0
+ 4580 0064 00       		.byte	0
+ 4581 0065 0A       		.uleb128 0xa
+ 4582 0066 34       		.uleb128 0x34
+ 4583 0067 00       		.byte	0
+ 4584 0068 03       		.uleb128 0x3
+ 4585 0069 0E       		.uleb128 0xe
+ 4586 006a 3A       		.uleb128 0x3a
+ 4587 006b 0B       		.uleb128 0xb
+ 4588 006c 3B       		.uleb128 0x3b
+ 4589 006d 05       		.uleb128 0x5
+ 4590 006e 49       		.uleb128 0x49
+ 4591 006f 13       		.uleb128 0x13
+ 4592 0070 3F       		.uleb128 0x3f
+ 4593 0071 19       		.uleb128 0x19
+ 4594 0072 02       		.uleb128 0x2
+ 4595 0073 18       		.uleb128 0x18
+ 4596 0074 00       		.byte	0
+ 4597 0075 00       		.byte	0
+ 4598 0076 00       		.byte	0
+ 4599              		.section	.debug_aranges,"",%progbits
+ 4600 0000 14000000 		.4byte	0x14
+ 4601 0004 0200     		.2byte	0x2
+ 4602 0006 00000000 		.4byte	.Ldebug_info0
+ 4603 000a 04       		.byte	0x4
+ 4604 000b 00       		.byte	0
+ 4605 000c 0000     		.2byte	0
+ 4606 000e 0000     		.2byte	0
+ 4607 0010 00000000 		.4byte	0
+ 4608 0014 00000000 		.4byte	0
+ 4609              		.section	.debug_line,"",%progbits
+ 4610              	.Ldebug_line0:
+ 4611 0000 3D010000 		.section	.debug_str,"MS",%progbits,1
+ 4611      02003701 
+ 4611      00000201 
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 82
+
+
+ 4611      FB0E0D00 
+ 4611      01010101 
+ 4612              	.LASF9:
+ 4613 0000 5F5F7569 		.ascii	"__uint8_t\000"
+ 4613      6E74385F 
+ 4613      7400
+ 4614              	.LASF16:
+ 4615 000a 63795F6D 		.ascii	"cy_metadata\000"
+ 4615      65746164 
+ 4615      61746100 
+ 4616              	.LASF1:
+ 4617 0016 756E7369 		.ascii	"unsigned char\000"
+ 4617      676E6564 
+ 4617      20636861 
+ 4617      7200
+ 4618              	.LASF17:
+ 4619 0024 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 4619      43313120 
+ 4619      352E342E 
+ 4619      31203230 
+ 4619      31363036 
+ 4620 0057 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 4620      20726576 
+ 4620      6973696F 
+ 4620      6E203233 
+ 4620      37373135 
+ 4621 008a 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 4621      66756E63 
+ 4621      74696F6E 
+ 4621      2D736563 
+ 4621      74696F6E 
+ 4622              	.LASF5:
+ 4623 00b2 6C6F6E67 		.ascii	"long unsigned int\000"
+ 4623      20756E73 
+ 4623      69676E65 
+ 4623      6420696E 
+ 4623      7400
+ 4624              	.LASF3:
+ 4625 00c4 73686F72 		.ascii	"short unsigned int\000"
+ 4625      7420756E 
+ 4625      7369676E 
+ 4625      65642069 
+ 4625      6E7400
+ 4626              	.LASF19:
+ 4627 00d7 433A5C55 		.ascii	"C:\\Users\\diego\\source\\repos\\teste_controlador."
+ 4627      73657273 
+ 4627      5C646965 
+ 4627      676F5C73 
+ 4627      6F757263 
+ 4628 0105 63796473 		.ascii	"cydsn\000"
+ 4628      6E00
+ 4629              	.LASF13:
+ 4630 010b 63795F6D 		.ascii	"cy_meta_custnvl\000"
+ 4630      6574615F 
+ 4630      63757374 
+ 4630      6E766C00 
+ 4631              	.LASF12:
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 83
+
+
+ 4632 011b 63795F6D 		.ascii	"cy_meta_configecc\000"
+ 4632      6574615F 
+ 4632      636F6E66 
+ 4632      69676563 
+ 4632      6300
+ 4633              	.LASF8:
+ 4634 012d 756E7369 		.ascii	"unsigned int\000"
+ 4634      676E6564 
+ 4634      20696E74 
+ 4634      00
+ 4635              	.LASF7:
+ 4636 013a 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 4636      206C6F6E 
+ 4636      6720756E 
+ 4636      7369676E 
+ 4636      65642069 
+ 4637              	.LASF10:
+ 4638 0151 75696E74 		.ascii	"uint8_t\000"
+ 4638      385F7400 
+ 4639              	.LASF15:
+ 4640 0159 63795F6D 		.ascii	"cy_meta_flashprotect\000"
+ 4640      6574615F 
+ 4640      666C6173 
+ 4640      6870726F 
+ 4640      74656374 
+ 4641              	.LASF14:
+ 4642 016e 63795F6D 		.ascii	"cy_meta_wonvl\000"
+ 4642      6574615F 
+ 4642      776F6E76 
+ 4642      6C00
+ 4643              	.LASF11:
+ 4644 017c 73697A65 		.ascii	"sizetype\000"
+ 4644      74797065 
+ 4644      00
+ 4645              	.LASF6:
+ 4646 0185 6C6F6E67 		.ascii	"long long int\000"
+ 4646      206C6F6E 
+ 4646      6720696E 
+ 4646      7400
+ 4647              	.LASF2:
+ 4648 0193 73686F72 		.ascii	"short int\000"
+ 4648      7420696E 
+ 4648      7400
+ 4649              	.LASF4:
+ 4650 019d 6C6F6E67 		.ascii	"long int\000"
+ 4650      20696E74 
+ 4650      00
+ 4651              	.LASF0:
+ 4652 01a6 7369676E 		.ascii	"signed char\000"
+ 4652      65642063 
+ 4652      68617200 
+ 4653              	.LASF18:
+ 4654 01b2 47656E65 		.ascii	"Generated_Source\\PSoC5\\cymetadata.c\000"
+ 4654      72617465 
+ 4654      645F536F 
+ 4654      75726365 
+ 4654      5C50536F 
+ARM GAS  C:\Users\diego\AppData\Local\Temp\ccpNa36n.s 			page 84
+
+
+ 4655              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
